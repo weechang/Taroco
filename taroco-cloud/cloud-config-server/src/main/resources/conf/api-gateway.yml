@@ -28,7 +28,7 @@ spring:
     queue: gateway.event.stream
     terminal: gateway.axon.terminal
     project:
-      exchange: project.events.fanout.exchange
+      exchange: usercenter.events.fanout.exchange
   rabbitmq:
     hostname: 127.0.0.1
     username: guest

@@ -16,8 +16,8 @@ logging:
 spring:
   profiles: dev
   application:
-    exchange: project.events.fanout.exchange
-    queue: project.default.queue
+    exchange: usercenter.events.fanout.exchange
+    queue: usercenter.default.queue
     databaseName: projects
     eventsCollectionName: events
     snapshotCollectionName: snapshots

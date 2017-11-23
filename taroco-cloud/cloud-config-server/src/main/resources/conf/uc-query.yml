@@ -16,9 +16,9 @@ logging:
 spring:
   profiles: dev
   application:
-    exchange: project.events.fanout.exchange
-    queue: project.view.event.stream
-    terminal: project.axon.terminal
+    exchange: usercenter.events.fanout.exchange
+    queue: usercenter.view.event.stream
+    terminal: usercenter.axon.terminal
   rabbitmq:
     hostname: 127.0.0.1
     username: guest
@@ -27,6 +27,8 @@ spring:
   data:
     mongodb:
       uri: ${vcap.services.mongo.credentials.uri:mongodb://127.0.0.1:27017}/projects
+    rest:
+      uri: api
 
 security:
   oauth2:
