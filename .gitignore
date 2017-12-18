@@ -18,6 +18,8 @@
 *.tar.gz
 *.rar
 
+*node_modules*/*
+
 
 # IDE Files #
 .idea
