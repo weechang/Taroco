@@ -26,7 +26,6 @@ axios.defaults.baseURL = ajaxUrl;
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 axios.defaults.headers.common['Accept'] = '*/*';
 
-// axios.defaults.headers['Content-Type'] = 'application/json';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 axios.interceptors.request.use(function (config) {

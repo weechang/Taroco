@@ -17,6 +17,8 @@ import xyz.weechang.taroco.base.model.AuditEntry;
 @AllArgsConstructor
 public class DeleteCommand extends AuditAbleAbstractCommand  {
 
+    private static final long serialVersionUID = 3983160461992410742L;
+
     @TargetAggregateIdentifier
     private String id;
 
@@ -24,6 +26,9 @@ public class DeleteCommand extends AuditAbleAbstractCommand  {
 
     public DeleteCommand(AuditEntry auditEntry,String id, Boolean logic) {
         super(auditEntry);
+        if (logic == null){
+            logic = true;
+        }
         new DeleteCommand(id, logic);
     }
 }

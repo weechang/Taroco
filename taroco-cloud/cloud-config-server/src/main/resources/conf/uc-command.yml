@@ -28,7 +28,7 @@ spring:
 
   data:
     mongodb:
-      uri: ${vcap.services.mongo.credentials.uri:mongodb://127.0.0.1:27017}/projects
+      uri: ${vcap.services.mongo.credentials.uri:mongodb://127.0.0.1:27017}/taroco
       
 security:
   oauth2:

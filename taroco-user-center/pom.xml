@@ -12,10 +12,10 @@
     <artifactId>taroco-user</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>uc-auth</module>
         <module>uc-command</module>
         <module>uc-common</module>
         <module>uc-query</module>
+        <module>uc-auth</module>
     </modules>
 
 
