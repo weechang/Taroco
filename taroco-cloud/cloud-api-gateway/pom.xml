@@ -26,11 +26,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>xyz.weechang</groupId>
-            <artifactId>taroco-common</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>org.axonframework</groupId>
             <artifactId>axon-spring-boot-starter</artifactId>
         </dependency>
