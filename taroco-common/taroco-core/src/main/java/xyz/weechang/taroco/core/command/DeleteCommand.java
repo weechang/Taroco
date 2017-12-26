@@ -1,10 +1,9 @@
-package xyz.weechang.taroco.base.command;
+package xyz.weechang.taroco.core.command;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.axonframework.commandhandling.TargetAggregateIdentifier;
-import xyz.weechang.taroco.base.model.AuditEntry;
+import xyz.weechang.taroco.core.model.AuditEntry;
 
 /**
  * 说明：
@@ -19,12 +18,12 @@ public class DeleteCommand extends AuditAbleAbstractCommand  {
 
     private static final long serialVersionUID = 3983160461992410742L;
 
-    @TargetAggregateIdentifier
+//    @TargetAggregateIdentifier
     private String id;
 
     private Boolean logic;
 
-    public DeleteCommand(AuditEntry auditEntry,String id, Boolean logic) {
+    public DeleteCommand(AuditEntry auditEntry, String id, Boolean logic) {
         super(auditEntry);
         if (logic == null){
             logic = true;

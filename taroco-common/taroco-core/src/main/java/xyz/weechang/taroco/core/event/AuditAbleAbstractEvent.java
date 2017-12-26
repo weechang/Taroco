@@ -1,9 +1,9 @@
-package xyz.weechang.taroco.base.event;
+package xyz.weechang.taroco.core.event;
 
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import xyz.weechang.taroco.base.model.AuditEntry;
+import xyz.weechang.taroco.core.model.AuditEntry;
 
 /**
  * 可审计的抽象事件

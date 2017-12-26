@@ -1,4 +1,4 @@
-package xyz.weechang.taroco.base.dao;
+package xyz.weechang.taroco.core.dao;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.transaction.annotation.Transactional;
-import xyz.weechang.taroco.base.model.BaseEntry;
+import xyz.weechang.taroco.core.model.BaseEntry;
 
 import java.io.Serializable;
 import java.util.List;

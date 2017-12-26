@@ -1,4 +1,4 @@
-package xyz.weechang.taroco.base.model;
+package xyz.weechang.taroco.core.model;
 
 import lombok.Data;
 

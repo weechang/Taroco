@@ -1,10 +1,10 @@
-package xyz.weechang.taroco.base.command;
+package xyz.weechang.taroco.core.command;
 
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import xyz.weechang.taroco.base.model.AuditEntry;
+import xyz.weechang.taroco.core.model.AuditEntry;
 
 import java.io.Serializable;
 

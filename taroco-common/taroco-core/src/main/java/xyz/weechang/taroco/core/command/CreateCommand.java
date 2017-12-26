@@ -1,4 +1,4 @@
-package xyz.weechang.taroco.base.command;
+package xyz.weechang.taroco.core.command;
 
 /**
  * 说明：

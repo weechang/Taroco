@@ -1,4 +1,4 @@
-package xyz.weechang.taroco.base.event;
+package xyz.weechang.taroco.core.event;
 
 /**
  * 说明：

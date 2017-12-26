@@ -1,7 +1,7 @@
-package xyz.weechang.taroco.base.controller;
+package xyz.weechang.taroco.core.controller;
 
 import org.springframework.security.core.context.SecurityContextHolder;
-import xyz.weechang.taroco.base.model.AuditEntry;
+import xyz.weechang.taroco.core.model.AuditEntry;
 
 /**
  * 说明：

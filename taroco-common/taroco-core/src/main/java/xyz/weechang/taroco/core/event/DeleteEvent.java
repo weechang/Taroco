@@ -1,9 +1,9 @@
-package xyz.weechang.taroco.base.event;
+package xyz.weechang.taroco.core.event;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import xyz.weechang.taroco.base.model.AuditEntry;
+import xyz.weechang.taroco.core.model.AuditEntry;
 
 /**
  * 说明：

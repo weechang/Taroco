@@ -14,14 +14,7 @@
 
     <modules>
         <module>taroco-core</module>
-        <module>taroco-base</module>
         <module>taroco-service</module>
     </modules>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-    </dependencies>
 </project>
