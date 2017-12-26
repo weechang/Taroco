@@ -3,8 +3,8 @@ package xyz.weechang.user.center.common.event;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import xyz.weechang.taroco.base.event.AuditAbleAbstractEvent;
-import xyz.weechang.taroco.base.model.AuditEntry;
+import xyz.weechang.taroco.core.event.AuditAbleAbstractEvent;
+import xyz.weechang.taroco.core.model.AuditEntry;
 
 /**
  * 说明：

@@ -21,8 +21,8 @@ import xyz.weechang.user.center.query.domain.RoleEntry;
 @Slf4j
 public class RoleCommandHandler {
 
-    private Repository<Role> repository;
     private EventBus eventBus;
+    private Repository<Role> repository;
 
     public RoleCommandHandler(Repository<Role> repository, EventBus eventBus) {
         this.repository = repository;

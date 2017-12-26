@@ -6,8 +6,8 @@ import lombok.EqualsAndHashCode;
 import org.axonframework.commandhandling.TargetAggregateIdentifier;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
-import xyz.weechang.taroco.base.command.AuditAbleAbstractCommand;
-import xyz.weechang.taroco.base.model.AuditEntry;
+import xyz.weechang.taroco.core.command.AuditAbleAbstractCommand;
+import xyz.weechang.taroco.core.model.AuditEntry;
 import xyz.weechang.user.center.command.dto.RoleCreateRequest;
 
 import javax.validation.constraints.NotNull;

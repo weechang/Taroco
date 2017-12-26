@@ -4,7 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-import xyz.weechang.taroco.base.controller.BaseController;
+import xyz.weechang.taroco.core.controller.BaseController;
 import xyz.weechang.taroco.core.response.BaseResponse;
 
 /**

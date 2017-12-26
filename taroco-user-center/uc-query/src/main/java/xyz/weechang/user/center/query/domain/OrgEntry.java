@@ -4,7 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
-import xyz.weechang.taroco.base.model.BaseEntry;
+import xyz.weechang.taroco.core.model.BaseEntry;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;

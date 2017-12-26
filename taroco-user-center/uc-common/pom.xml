@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>xyz.weechang</groupId>
-            <artifactId>taroco-base</artifactId>
+            <artifactId>taroco-core</artifactId>
         </dependency>
     </dependencies>
 </project>

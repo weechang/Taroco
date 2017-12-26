@@ -4,8 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import xyz.weechang.taroco.base.event.AuditAbleAbstractEvent;
-import xyz.weechang.taroco.base.model.AuditEntry;
+import xyz.weechang.taroco.core.event.AuditAbleAbstractEvent;
+import xyz.weechang.taroco.core.model.AuditEntry;
 
 /**
  * 说明：

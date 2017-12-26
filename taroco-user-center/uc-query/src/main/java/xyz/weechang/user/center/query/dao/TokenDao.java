@@ -1,6 +1,6 @@
 package xyz.weechang.user.center.query.dao;
 
-import xyz.weechang.taroco.base.dao.BaseDao;
+import xyz.weechang.taroco.core.dao.BaseDao;
 import xyz.weechang.user.center.query.domain.TokenEntry;
 
 /**

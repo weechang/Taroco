@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import xyz.weechang.taroco.base.controller.BaseController;
+import xyz.weechang.taroco.core.controller.BaseController;
 import xyz.weechang.user.center.command.command.LoginCommand;
 import xyz.weechang.user.center.command.dto.LoginRequest;
 

@@ -2,7 +2,7 @@ package xyz.weechang.user.center.query.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import xyz.weechang.taroco.base.model.BaseEntry;
+import xyz.weechang.taroco.core.model.BaseEntry;
 
 import javax.persistence.*;
 import java.util.Date;

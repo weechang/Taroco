@@ -6,7 +6,7 @@ import org.axonframework.commandhandling.model.Aggregate;
 import org.axonframework.commandhandling.model.Repository;
 import org.axonframework.eventhandling.EventBus;
 import org.springframework.beans.factory.annotation.Autowired;
-import xyz.weechang.taroco.base.command.DeleteCommand;
+import xyz.weechang.taroco.core.command.DeleteCommand;
 import xyz.weechang.taroco.core.exception.BusinessException;
 import xyz.weechang.user.center.command.aggregate.User;
 import xyz.weechang.user.center.command.command.UserCreateCommand;

@@ -16,6 +16,8 @@
         <module>uc-common</module>
         <module>uc-query</module>
         <module>uc-auth</module>
+        <module>uc-query-service</module>
+        <module>uc-command-service</module>
     </modules>
 
 

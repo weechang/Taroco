@@ -7,7 +7,7 @@ import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.eventsourcing.SequenceNumber;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import xyz.weechang.taroco.base.event.DeleteEvent;
+import xyz.weechang.taroco.core.event.DeleteEvent;
 import xyz.weechang.user.center.common.event.OrgCreateEvent;
 import xyz.weechang.user.center.common.event.OrgUpdateEvent;
 import xyz.weechang.user.center.query.dao.OrgDao;
