@@ -13,7 +13,7 @@ eureka:
 
 ---
 spring:
-  #profiles: dev
+  profiles: dev
 
 eureka:
   instance:

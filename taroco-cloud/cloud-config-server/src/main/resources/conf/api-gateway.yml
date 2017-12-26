@@ -23,7 +23,7 @@ eureka:
       defaultZone: ${vcap.services.registry.credentials.uri:http://localhost:8761}/eureka/
 
 spring:
-  #profiles: dev
+  profiles: dev
   application:
     queue: gateway.event.stream
     terminal: gateway.axon.terminal
