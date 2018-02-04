@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>mc-websocket</artifactId>
+    <artifactId>message-center-websocket</artifactId>
 
 
 </project>
