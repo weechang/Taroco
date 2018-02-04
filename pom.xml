@@ -8,9 +8,11 @@
     <version>0.0.1-SNAPSHOT</version>
     <modules>
         <module>taroco-cloud</module>
-        <module>taroco-assembling</module>
         <module>taroco-common</module>
+        <module>taroco-message-center</module>
+        <module>taroco-pay</module>
         <module>taroco-user-center</module>
+        <module>taroco-web-ui</module>
     </modules>
     <packaging>pom</packaging>
 

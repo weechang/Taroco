@@ -25,10 +25,15 @@ Taroco
 |    ├── taroco-core -- 核心组件封装
 |    ├── taroco-service -- 服务组件封装
 ├── taroco-user-center -- 用户中心
-|    ├── uc-auth -- 用户授权系统
-|    ├── uc-command -- 用户命令端
-|    ├── uc-common -- 用户公用
-|    ├── uc-query -- 用户查询端
+|    ├── user-center-auth -- 用户授权系统
+|    ├── user-center-command -- 用户命令端
+|    ├── user-center-common -- 用户公用
+|    ├── user-center-query -- 用户查询端
+├── taroco-message-center --消息中心
+|    ├── message-center-api -- 消息中心API
+|    ├── message-center-websocket -- 消息中心websocket实现
+├── taroco-pay --支付中心
+|    ├── （支付宝，微信，银联）
 ```
 
 

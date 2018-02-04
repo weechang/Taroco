@@ -9,14 +9,6 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>taroco-user-center</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>user-center-command</module>
-        <module>user-center-common</module>
-        <module>user-center-query</module>
-        <module>user-center-auth</module>
-    </modules>
-
+    <artifactId>taroco-web-ui</artifactId>
 
 </project>

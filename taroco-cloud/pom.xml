@@ -16,6 +16,7 @@
         <module>cloud-registry-server</module>
         <module>cloud-api-gateway</module>
         <module>cloud-circuit-breaker</module>
+        <module>cloud-admin</module>
     </modules>
 
 
