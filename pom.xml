@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>xyz.weechang</groupId>
-    <artifactId>taroco-root</artifactId>
+    <artifactId>taroco</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <modules>
         <module>taroco-cloud</module>
@@ -13,13 +13,14 @@
         <module>taroco-pay</module>
         <module>taroco-user-center</module>
         <module>taroco-web-ui</module>
+        <module>taroco-oss</module>
     </modules>
     <packaging>pom</packaging>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.3.RELEASE</version>
+        <version>1.5.9.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -32,7 +33,7 @@
         <compiler.plugin.version>2.5.1</compiler.plugin.version>
 
         <axon.version>3.0.4</axon.version>
-        <spring-boot.version>1.5.3.RELEASE</spring-boot.version>
+        <spring-boot.version>1.5.9.RELEASE</spring-boot.version>
         <spring-cloud.version>Dalston.RELEASE</spring-cloud.version>
         <spring-data-releasetrain.version>Ingalls-SR3</spring-data-releasetrain.version>
         <springfox.version>2.6.1</springfox.version>

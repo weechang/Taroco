@@ -40,10 +40,7 @@ public class OrgController extends BaseController {
         log.debug(OrgCreateRequest.class.getSimpleName() + " request received");
 
         OrgCreateCommand command = new OrgCreateCommand(createAudit(), request);
-        UCError error = commandGateway.sendAndWait(command);
-        if (error != null) {
-            throw new BusinessException(error);
-        }
+        commandGateway.sendAndWait(command);
 
         log.debug(OrgCreateRequest.class.getSimpleName() + " sent to command gateway: org [{}] ", command.getId());
         return BaseResponse.create();

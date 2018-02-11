@@ -1,6 +1,5 @@
 package xyz.weechang.user.center.command.command;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.axonframework.commandhandling.TargetAggregateIdentifier;
@@ -20,7 +19,6 @@ import java.util.UUID;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@AllArgsConstructor
 public class OrgCreateCommand extends AuditAbleAbstractCommand {
 
     private static final long serialVersionUID = 8693514247658926855L;
@@ -39,12 +37,15 @@ public class OrgCreateCommand extends AuditAbleAbstractCommand {
     private String name;
 
     public OrgCreateCommand(AuditEntry auditEntry, OrgCreateRequest request) {
-        new OrgCreateCommand(auditEntry, request.getParentId(), request.getCode(), request.getName());
+        super(auditEntry);
+        this.id = UUID.randomUUID().toString();
+        this.parentId = request.getParentId();
+        this.code = request.getCode();
+        this.name = request.getName();
     }
 
-    public OrgCreateCommand(
-            AuditEntry auditEntry, String parentId, String code, String name) {
-        super(auditEntry);
-        new OrgCreateCommand(UUID.randomUUID().toString(), parentId, code, name);
-    }
+//    public OrgCreateCommand(
+//            AuditEntry auditEntry, String parentId, String code, String name) {
+//        super(auditEntry);
+//    }
 }

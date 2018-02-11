@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
+import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.spring.stereotype.Aggregate;
@@ -42,10 +43,12 @@ public class Org{
 
     private Boolean logic;
 
+    @CommandHandler
     public Org(OrgCreateCommand command) {
-        apply(new OrgCreateEvent(
+        OrgCreateEvent event = new OrgCreateEvent(
                 command.getId(), command.getAuditEntry(),
-                command.getParentId(), command.getCode(), command.getName(), 1));
+                command.getParentId(), command.getCode(), command.getName(), 1);
+        apply(event);
     }
 
     public void update(OrgUpdateCommand command) {

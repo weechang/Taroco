@@ -13,7 +13,6 @@
  
 ``` lua
 Taroco
-├── taroco-assembling -- 项目集合工程
 ├── taroco-cloud -- spring cloud 微服务相关基础组件
 |    ├── cloud-admin -- 服务监控
 |    ├── cloud-api-gateway -- 服务网关
@@ -21,19 +20,22 @@ Taroco
 |    ├── cloud-config -- 分布式配置中心
 |    ├── cloud-registry -- 服务注册中心
 ├── taroco-common -- 项目基础服务组件
-|    ├── taroco-base -- 基础组件封装
 |    ├── taroco-core -- 核心组件封装
 |    ├── taroco-service -- 服务组件封装
+├── taroco-message-center --消息中心
+|    ├── message-center-api -- 消息中心API
+|    ├── message-center-websocket -- 消息中心websocket实现
+├── taroco-oss --存储组件
+|    ├── （阿里云，七牛，自建云）
+├── taroco-pay --支付中心
+|    ├── （支付宝，微信，银联）
 ├── taroco-user-center -- 用户中心
 |    ├── user-center-auth -- 用户授权系统
 |    ├── user-center-command -- 用户命令端
 |    ├── user-center-common -- 用户公用
 |    ├── user-center-query -- 用户查询端
-├── taroco-message-center --消息中心
-|    ├── message-center-api -- 消息中心API
-|    ├── message-center-websocket -- 消息中心websocket实现
-├── taroco-pay --支付中心
-|    ├── （支付宝，微信，银联）
+
+├── taroco-web-ui -- 前端代码
 ```
 
 

@@ -3,7 +3,7 @@ package xyz.weechang.user.center.common.event;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import xyz.weechang.taroco.core.event.AuditAbleAbstractEvent;
+import xyz.weechang.taroco.core.event.AuditableAbstractEvent;
 import xyz.weechang.taroco.core.model.AuditEntry;
 
 /**
@@ -15,7 +15,7 @@ import xyz.weechang.taroco.core.model.AuditEntry;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrgUpdateEvent extends AuditAbleAbstractEvent{
+public class OrgUpdateEvent extends AuditableAbstractEvent{
 
     private static final long serialVersionUID = -3618294635402102769L;
 

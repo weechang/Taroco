@@ -1,4 +1,4 @@
-package xyz.weechang.taroco.service.config;
+package xyz.weechang.user.center.command.config;
 
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.commandhandling.SimpleCommandBus;
@@ -9,13 +9,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * axon 注册
- * @author weechang
- * @date 2017年11月18日23:49:02
+ * A configuration for axonframework.
+ * Axonframework is used to support eventsourcing and CQRS.
+ * 
+ * @author idugalic
+ *
  */
 @Configuration
 public class AxonConfiguration {
-
+    
     @Bean
     CommandBus commandBus(TransactionManager transactionManager) {
         SimpleCommandBus commandBus = new SimpleCommandBus(transactionManager, NoOpMessageMonitor.INSTANCE);

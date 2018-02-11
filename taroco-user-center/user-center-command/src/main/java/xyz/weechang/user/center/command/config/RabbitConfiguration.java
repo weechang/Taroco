@@ -1,4 +1,4 @@
-package xyz.weechang.taroco.service.config;
+package xyz.weechang.user.center.command.config;
 
 import org.springframework.amqp.core.AmqpAdmin;
 import org.springframework.amqp.core.FanoutExchange;
@@ -43,5 +43,6 @@ public class RabbitConfiguration {
     void rabbitAdmin(AmqpAdmin admin, FanoutExchange eventBusExchange) {
         admin.declareExchange(eventBusExchange);
     }
+
     
 }

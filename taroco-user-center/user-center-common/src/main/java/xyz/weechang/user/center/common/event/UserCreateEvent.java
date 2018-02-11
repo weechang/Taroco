@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import xyz.weechang.taroco.core.event.AuditAbleAbstractEvent;
+import xyz.weechang.taroco.core.event.AuditableAbstractEvent;
 import xyz.weechang.taroco.core.model.AuditEntry;
 
 /**
@@ -17,7 +17,7 @@ import xyz.weechang.taroco.core.model.AuditEntry;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserCreateEvent extends AuditAbleAbstractEvent {
+public class UserCreateEvent extends AuditableAbstractEvent {
     private static final long serialVersionUID = 6934728592504351920L;
 
     private String username;

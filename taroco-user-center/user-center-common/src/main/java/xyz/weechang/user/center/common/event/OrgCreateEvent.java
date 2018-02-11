@@ -1,10 +1,8 @@
 package xyz.weechang.user.center.common.event;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import xyz.weechang.taroco.core.event.AuditAbleAbstractEvent;
+import xyz.weechang.taroco.core.event.AuditableAbstractEvent;
 import xyz.weechang.taroco.core.model.AuditEntry;
 
 /**
@@ -15,9 +13,7 @@ import xyz.weechang.taroco.core.model.AuditEntry;
  */
 @EqualsAndHashCode(callSuper = false)
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class OrgCreateEvent extends AuditAbleAbstractEvent {
+public class OrgCreateEvent extends AuditableAbstractEvent {
 
     private static final long serialVersionUID = -3584082263472922318L;
 
@@ -33,6 +29,9 @@ public class OrgCreateEvent extends AuditAbleAbstractEvent {
             String id, AuditEntry auditEntry, String parentId,
             String code, String name, Integer orderNum) {
         super(id, auditEntry);
-        new OrgCreateEvent(parentId, code, name, orderNum);
+        this.parentId = parentId;
+        this.code = code;
+        this.name = name;
+        this.orderNum = orderNum;
     }
 }

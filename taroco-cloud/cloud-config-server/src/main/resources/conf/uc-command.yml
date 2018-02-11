@@ -3,6 +3,10 @@ info:
     name: Project service - Command Side
     description: Project service - Command Side (CQRS)
 
+management:
+  security:
+    enabled: false
+
 server:
   port: ${PORT:8082}
 
@@ -14,11 +18,10 @@ logging:
     xyz.weechang: DEBUG
 
 spring:
-  profiles: dev
   application:
     exchange: usercenter.events.fanout.exchange
     queue: usercenter.default.queue
-    databaseName: projects
+    databaseName: taroco
     eventsCollectionName: events
     snapshotCollectionName: snapshots
   rabbitmq:
@@ -45,6 +48,7 @@ eureka:
     serviceUrl:
       defaultZone: ${vcap.services.registry.credentials.uri:http://localhost:8761}/eureka/
 
+# The OAuth2 server definition that would be used to send the authorization requests to
 authserver:
   hostname: localhost
   port: 9999

@@ -1,6 +1,5 @@
 package xyz.weechang.taroco.core.event;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import xyz.weechang.taroco.core.model.AuditEntry;
@@ -13,8 +12,7 @@ import xyz.weechang.taroco.core.model.AuditEntry;
  */
 @EqualsAndHashCode(callSuper = false)
 @Data
-@AllArgsConstructor
-public class DeleteEvent extends AuditAbleAbstractEvent {
+public class DeleteEvent extends AuditableAbstractEvent {
     private static final long serialVersionUID = 8749413633678833616L;
 
     private Boolean logic;
