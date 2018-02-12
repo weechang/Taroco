@@ -586,19 +586,19 @@ jsc */
               output = output || [];
 
               Tools.each(values, function (item) {
-                  var OrgItem = { text: item.text || item.title };
+                  var menuItem = { text: item.text || item.title };
 
-                  if (item.Org) {
-                      OrgItem.Org = appendItems(item.Org);
+                  if (item.menu) {
+                      menuItem.menu = appendItems(item.menu);
                   } else {
-                      OrgItem.value = item.value;
+                      menuItem.value = item.value;
 
                       if (itemCallback) {
-                          itemCallback(OrgItem);
+                          itemCallback(menuItem);
                       }
                   }
 
-                  output.push(OrgItem);
+                  output.push(menuItem);
               });
 
               return output;
@@ -938,9 +938,9 @@ jsc */
           return href || elm.getAttribute('href');
       };
 
-      var isContextOrgVisible = function (editor) {
-          var contextOrg = editor.plugins.contextOrg;
-          return contextOrg ? contextOrg.isContextOrgVisible() : false;
+      var isContextMenuVisible = function (editor) {
+          var contextmenu = editor.plugins.contextmenu;
+          return contextmenu ? contextmenu.isContextMenuVisible() : false;
       };
 
       var hasOnlyAltModifier = function (e) {
@@ -976,7 +976,7 @@ jsc */
       var leftClickedOnAHref = function (editor) {
           return function (elm) {
               var sel, rng, node;
-              if (Settings.hasContextToolbar(editor.settings) && !isContextOrgVisible(editor) && Utils.isLink(elm)) {
+              if (Settings.hasContextToolbar(editor.settings) && !isContextMenuVisible(editor) && Utils.isLink(elm)) {
                   sel = editor.selection;
                   rng = sel.getRng();
                   node = rng.startContainer;
@@ -1144,8 +1144,8 @@ jsc */
           }
       };
 
-      var setupOrgItems = function (editor) {
-          editor.addOrgItem('openlink', {
+      var setupMenuItems = function (editor) {
+          editor.addMenuItem('openlink', {
               text: 'Open link',
               icon: 'newtab',
               onclick: Actions.gotoSelectedLink(editor),
@@ -1153,7 +1153,7 @@ jsc */
               prependToContext: true
           });
 
-          editor.addOrgItem('link', {
+          editor.addMenuItem('link', {
               icon: 'link',
               text: 'Link',
               shortcut: 'Meta+K',
@@ -1175,7 +1175,7 @@ jsc */
 
       return {
           setupButtons: setupButtons,
-          setupOrgItems: setupOrgItems,
+          setupMenuItems: setupMenuItems,
           setupContextToolbars: setupContextToolbars
       };
   }
@@ -1202,7 +1202,7 @@ jsc */
   function (PluginManager, Commands, Actions, Keyboard, Controls) {
       PluginManager.add('link', function (editor) {
           Controls.setupButtons(editor);
-          Controls.setupOrgItems(editor);
+          Controls.setupMenuItems(editor);
           Controls.setupContextToolbars(editor);
           Actions.setupGotoLinks(editor);
           Commands.register(editor);

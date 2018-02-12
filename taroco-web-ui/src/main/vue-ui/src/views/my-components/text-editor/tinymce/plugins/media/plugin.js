@@ -1984,7 +1984,7 @@ jsc */
               stateSelector: ['img[data-mce-object]', 'span[data-mce-object]', 'div[data-ephox-embed-iri]']
           });
 
-          editor.addOrgItem('media', {
+          editor.addMenuItem('media', {
               icon: 'media',
               text: 'Media',
               cmd: 'mceMedia',

@@ -139,7 +139,7 @@ jsc */
               cmd: 'InsertHorizontalRule'
           });
 
-          editor.addOrgItem('hr', {
+          editor.addMenuItem('hr', {
               icon: 'hr',
               text: 'Horizontal line',
               cmd: 'InsertHorizontalRule',
