@@ -1,4 +1,4 @@
-package xyz.weechang.user.center.command.config;
+package xyz.weechang.taroco.service.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,9 +12,7 @@ public class SecurityConfiguration extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.requestMatchers().and().authorizeRequests()
-                .antMatchers("swagger-ui.html").permitAll()
-                .antMatchers("/projects/**").permitAll();
-
+                .antMatchers("swagger-ui.html").permitAll();
     }
 
 }

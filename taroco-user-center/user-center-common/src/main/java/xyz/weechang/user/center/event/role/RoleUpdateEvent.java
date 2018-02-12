@@ -1,4 +1,4 @@
-package xyz.weechang.user.center.common.event;
+package xyz.weechang.user.center.event.role;
 
 /**
  * 说明：

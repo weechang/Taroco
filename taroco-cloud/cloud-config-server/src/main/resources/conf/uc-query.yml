@@ -17,21 +17,40 @@ logging:
     org.axonframework: DEBUG
     xyz.weechang: DEBUG
 
+mongodb:
+  url: 127.0.0.1
+  port: 27017
+  dbname: taroco
+  events:
+    collection:
+      name: events
+    snapshot:
+      collection:
+        name: snapshots
+
 spring:
-  application:
-    exchange: usercenter.events.fanout.exchange
-    queue: usercenter.view.event.stream
-    terminal: usercenter.axon.terminal
   rabbitmq:
     hostname: 127.0.0.1
     username: guest
     password: guest
 
   data:
-    mongodb:
-      uri: ${vcap.services.mongo.credentials.uri:mongodb://127.0.0.1:27017}/taroco
     rest:
       uri: api
+
+axon:
+  amqp:
+    exchange: taroco.evnetBus
+  eventhandling:
+    processors:
+      org:
+        source: orgQueueMessageSource
+      menu:
+        source: menuQueueMessageSource
+      role:
+        source: roleQueueMessageSource
+      user:
+        source: userQueueMessageSource
 
 security:
   oauth2:
@@ -53,30 +72,6 @@ authserver:
   hostname: localhost
   port: 9999
   contextPath: uaa
-
----
-spring:
-  profiles: dev
-  jpa:
-    database: MySQL
-    show-sql: true
-    hibernate:
-      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
-      ddl-auto: create
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL5Dialect
-
-  datasource:
-  url: jdbc:mysql://127.0.0.1:3306/taroco?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
-  username: taroco
-  password: taroco
-  driver-class-name: com.mysql.jdbc.Driver
-  max-active: 20
-  max-idle: 8
-  min-idle: 8
-  initial-size: 10
-
 
 authserver:
   hostname: localhost

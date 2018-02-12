@@ -1,6 +1,7 @@
 package xyz.weechang.user.center.query.handler;
 
 import lombok.extern.slf4j.Slf4j;
+import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.eventsourcing.SequenceNumber;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import xyz.weechang.user.center.query.dao.MenuDao;
  */
 @Slf4j
 @Component
+@ProcessingGroup("menu")
 public class MenuHandler {
 
     @Autowired
@@ -24,7 +26,7 @@ public class MenuHandler {
     @EventHandler
     public void handle(DeleteEvent event, @SequenceNumber Long version) {
         if (event.getLogic()){
-            dao.logicDelete(event.getId());
+//            dao.logicDelete(event.getId());
         } else {
             dao.delete(event.getId());
         }

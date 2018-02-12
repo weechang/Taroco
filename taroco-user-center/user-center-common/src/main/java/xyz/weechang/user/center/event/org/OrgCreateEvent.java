@@ -1,7 +1,8 @@
-package xyz.weechang.user.center.common.event;
+package xyz.weechang.user.center.event.org;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import xyz.weechang.taroco.core.event.AuditableAbstractEvent;
 import xyz.weechang.taroco.core.model.AuditEntry;
 
@@ -13,6 +14,7 @@ import xyz.weechang.taroco.core.model.AuditEntry;
  */
 @EqualsAndHashCode(callSuper = false)
 @Data
+@NoArgsConstructor
 public class OrgCreateEvent extends AuditableAbstractEvent {
 
     private static final long serialVersionUID = -3584082263472922318L;

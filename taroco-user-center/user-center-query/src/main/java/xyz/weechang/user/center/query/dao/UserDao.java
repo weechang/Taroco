@@ -1,6 +1,6 @@
 package xyz.weechang.user.center.query.dao;
 
-import xyz.weechang.taroco.core.dao.BaseDao;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import xyz.weechang.user.center.query.domain.UserEntry;
 
 /**
@@ -9,7 +9,7 @@ import xyz.weechang.user.center.query.domain.UserEntry;
  * @author zhangwei
  * @version 2017/11/5 20:28.
  */
-public interface UserDao extends BaseDao<UserEntry, String> {
+public interface UserDao extends MongoRepository<UserEntry, String> {
 
     UserEntry findByUsername(String username);
 }

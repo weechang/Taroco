@@ -1,4 +1,4 @@
-package xyz.weechang.user.center.common.event;
+package xyz.weechang.user.center.event.menu;
 
 /**
  * 说明：

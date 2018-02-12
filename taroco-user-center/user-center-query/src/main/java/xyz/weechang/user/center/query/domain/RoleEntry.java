@@ -2,9 +2,9 @@ package xyz.weechang.user.center.query.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.data.mongodb.core.mapping.Document;
 import xyz.weechang.taroco.core.model.BaseEntry;
 
-import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.List;
  */
 @EqualsAndHashCode(callSuper = false)
 @Data
-@Entity
+@Document
 public class RoleEntry extends BaseEntry {
 
     private static final long serialVersionUID = 574404246785708472L;

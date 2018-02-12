@@ -16,7 +16,7 @@ import xyz.weechang.user.center.query.dao.TokenDao;
  * @version 2017/11/20 22:55.
  */
 @Slf4j
-@ProcessingGroup("default")
+@ProcessingGroup("token")
 @Component
 public class TokenHandler {
 
@@ -26,7 +26,7 @@ public class TokenHandler {
     @EventHandler
     public void handle(DeleteEvent event, @SequenceNumber Long version) {
         if (event.getLogic()){
-            dao.logicDelete(event.getId());
+//            dao.logicDelete(event.getId());
         } else {
             dao.delete(event.getId());
         }

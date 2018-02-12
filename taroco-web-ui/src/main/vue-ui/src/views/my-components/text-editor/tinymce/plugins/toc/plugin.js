@@ -498,7 +498,7 @@ jsc */
               icon: 'reload'
           });
 
-          editor.addMenuItem('toc', {
+          editor.addOrgItem('toc', {
               text: 'Table of Contents',
               context: 'insert',
               cmd: 'mceInsertToc',

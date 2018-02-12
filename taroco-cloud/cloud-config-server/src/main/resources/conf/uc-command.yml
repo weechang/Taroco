@@ -17,21 +17,26 @@ logging:
     org.axonframework: DEBUG
     xyz.weechang: DEBUG
 
+mongodb:
+  url: 127.0.0.1
+  port: 27017
+  dbname: taroco
+  events:
+    collection:
+      name: events
+    snapshot:
+      collection:
+        name: snapshots
+
 spring:
-  application:
-    exchange: usercenter.events.fanout.exchange
-    queue: usercenter.default.queue
-    databaseName: taroco
-    eventsCollectionName: events
-    snapshotCollectionName: snapshots
   rabbitmq:
     hostname: 127.0.0.1
     username: guest
     password: guest
 
-  data:
-    mongodb:
-      uri: ${vcap.services.mongo.credentials.uri:mongodb://127.0.0.1:27017}/taroco
+axon:
+  amqp:
+    exchange: taroco.evnetBus
       
 security:
   oauth2:
@@ -53,7 +58,3 @@ authserver:
   hostname: localhost
   port: 9999
   contextPath: uaa
-
-axon:
-  amqp:
-    exchange: cqrest.admin.exchange

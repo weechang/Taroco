@@ -1,4 +1,4 @@
-package xyz.weechang.user.center.common.error;
+package xyz.weechang.user.center.error;
 
 import xyz.weechang.taroco.core.error.IError;
 

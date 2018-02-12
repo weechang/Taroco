@@ -37,6 +37,7 @@
         <spring-cloud.version>Dalston.RELEASE</spring-cloud.version>
         <spring-data-releasetrain.version>Ingalls-SR3</spring-data-releasetrain.version>
         <springfox.version>2.6.1</springfox.version>
+        <jackson.version>2.6.5</jackson.version>
     </properties>
 
     <dependencyManagement>
@@ -123,6 +124,11 @@
                 <artifactId>axon-test</artifactId>
                 <version>${axon.version}</version>
                 <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-jsr310</artifactId>
+                <version>${jackson.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

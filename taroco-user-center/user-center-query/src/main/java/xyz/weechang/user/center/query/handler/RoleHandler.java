@@ -16,7 +16,7 @@ import xyz.weechang.user.center.query.dao.RoleDao;
  * @version 2017/11/5 20:32.
  */
 @Slf4j
-@ProcessingGroup("default")
+@ProcessingGroup("role")
 @Component
 public class RoleHandler {
 
@@ -26,7 +26,7 @@ public class RoleHandler {
     @EventHandler
     public void handle(DeleteEvent event, @SequenceNumber Long version) {
         if (event.getLogic()){
-            dao.logicDelete(event.getId());
+//            dao.logicDelete(event.getId());
         } else {
             dao.delete(event.getId());
         }

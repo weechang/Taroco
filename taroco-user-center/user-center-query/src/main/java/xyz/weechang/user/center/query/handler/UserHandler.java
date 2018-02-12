@@ -7,8 +7,8 @@ import org.axonframework.eventsourcing.SequenceNumber;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import xyz.weechang.taroco.core.event.DeleteEvent;
-import xyz.weechang.user.center.common.event.UserCreateEvent;
-import xyz.weechang.user.center.common.event.UserUpdateEvent;
+import xyz.weechang.user.center.event.user.UserCreateEvent;
+import xyz.weechang.user.center.event.user.UserUpdateEvent;
 import xyz.weechang.user.center.query.dao.UserDao;
 import xyz.weechang.user.center.query.domain.UserEntry;
 
@@ -19,7 +19,7 @@ import xyz.weechang.user.center.query.domain.UserEntry;
  * @version 2017/11/5 20:33.
  */
 @Slf4j
-@ProcessingGroup("default")
+@ProcessingGroup("user")
 @Component
 public class UserHandler {
 
@@ -52,7 +52,7 @@ public class UserHandler {
     @EventHandler
     public void handle(DeleteEvent event, @SequenceNumber Long version) {
         if (event.getLogic()){
-            dao.logicDelete(event.getId());
+//            dao.logicDelete(event.getId());
         } else {
             dao.delete(event.getId());
         }

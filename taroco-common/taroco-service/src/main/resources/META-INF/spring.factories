@@ -1,5 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-xyz.weechang.taroco.service.config.AxonConfiguration,\
-xyz.weechang.taroco.service.config.CloudConfiguration,\
-xyz.weechang.taroco.service.config.RabbitConfiguration,\
 xyz.weechang.taroco.service.config.SecurityConfiguration

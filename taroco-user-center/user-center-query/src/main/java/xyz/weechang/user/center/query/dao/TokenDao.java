@@ -1,6 +1,6 @@
 package xyz.weechang.user.center.query.dao;
 
-import xyz.weechang.taroco.core.dao.BaseDao;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import xyz.weechang.user.center.query.domain.TokenEntry;
 
 /**
@@ -9,6 +9,6 @@ import xyz.weechang.user.center.query.domain.TokenEntry;
  * @author zhangwei
  * @version 2017/11/20 22:54.
  */
-public interface TokenDao extends BaseDao<TokenEntry, String> {
+public interface TokenDao extends MongoRepository<TokenEntry, String> {
 }
 

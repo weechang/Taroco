@@ -1,4 +1,4 @@
-package xyz.weechang.user.center.common.event;
+package xyz.weechang.user.center.event.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,10 +17,8 @@ import xyz.weechang.taroco.core.model.AuditEntry;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserCreateEvent extends AuditableAbstractEvent {
-    private static final long serialVersionUID = 6934728592504351920L;
-
-    private String username;
+public class UserUpdateEvent extends AuditableAbstractEvent {
+    private static final long serialVersionUID = -7437741439566351707L;
 
     private String password;
 
@@ -30,10 +28,10 @@ public class UserCreateEvent extends AuditableAbstractEvent {
 
     private Boolean enable;
 
-    public UserCreateEvent(
-            String id, AuditEntry auditEntry, String username,
-            String password, String phone, String email, Boolean enable) {
+    public UserUpdateEvent(
+            String id, AuditEntry auditEntry ,String password,
+            String phone, String email, Boolean enable) {
         super(id, auditEntry);
-        new UserCreateEvent(username, password, phone, email, enable);
+        new UserUpdateEvent(password, phone, email, enable);
     }
 }

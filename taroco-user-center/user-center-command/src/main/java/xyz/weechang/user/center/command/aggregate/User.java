@@ -10,8 +10,8 @@ import xyz.weechang.taroco.core.command.DeleteCommand;
 import xyz.weechang.taroco.core.event.DeleteEvent;
 import xyz.weechang.user.center.command.command.UserCreateCommand;
 import xyz.weechang.user.center.command.command.UserUpdateCommand;
-import xyz.weechang.user.center.common.event.UserCreateEvent;
-import xyz.weechang.user.center.common.event.UserUpdateEvent;
+import xyz.weechang.user.center.event.user.UserCreateEvent;
+import xyz.weechang.user.center.event.user.UserUpdateEvent;
 
 import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
 

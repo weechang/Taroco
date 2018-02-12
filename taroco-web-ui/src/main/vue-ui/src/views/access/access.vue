@@ -66,7 +66,7 @@ export default {
                 this.accessCode = 0;
                 Cookies.set('access', 0);
             }
-            this.$store.commit('updateMenulist');
+            this.$store.commit('updateOrglist');
         }
     }
 };

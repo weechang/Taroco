@@ -17,7 +17,7 @@ import xyz.weechang.user.center.command.command.UserCreateCommand;
 import xyz.weechang.user.center.command.command.UserUpdateCommand;
 import xyz.weechang.user.center.command.dto.UserCreateRequest;
 import xyz.weechang.user.center.command.dto.UserUpdateRequest;
-import xyz.weechang.user.center.common.error.UCError;
+import xyz.weechang.user.center.error.UCError;
 
 /**
  * 说明：

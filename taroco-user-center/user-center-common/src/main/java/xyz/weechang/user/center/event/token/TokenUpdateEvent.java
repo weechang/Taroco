@@ -1,4 +1,4 @@
-package xyz.weechang.user.center.common.event;
+package xyz.weechang.user.center.event.token;
 
 /**
  * 说明：

@@ -1,6 +1,6 @@
 package xyz.weechang.user.center.query.dao;
 
-import xyz.weechang.taroco.core.dao.BaseDao;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import xyz.weechang.user.center.query.domain.MenuEntry;
 
 /**
@@ -9,5 +9,5 @@ import xyz.weechang.user.center.query.domain.MenuEntry;
  * @author zhangwei
  * @version 2017/11/5 20:24.
  */
-public interface MenuDao extends BaseDao<MenuEntry, String> {
+public interface MenuDao extends MongoRepository<MenuEntry, String> {
 }

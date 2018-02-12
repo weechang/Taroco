@@ -2,9 +2,8 @@ package xyz.weechang.user.center.query.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.data.mongodb.core.mapping.Document;
 import xyz.weechang.taroco.core.model.BaseEntry;
-
-import javax.persistence.Entity;
 
 /**
  * 说明：目录
@@ -14,7 +13,7 @@ import javax.persistence.Entity;
  */
 @EqualsAndHashCode(callSuper = false)
 @Data
-@Entity
+@Document
 public class MenuEntry extends BaseEntry {
 
     private static final long serialVersionUID = -3480038672245433909L;

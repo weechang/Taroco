@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
 import org.axonframework.spring.stereotype.Aggregate;
 import xyz.weechang.user.center.command.command.RoleCreateCommand;
-import xyz.weechang.user.center.common.event.RoleCreateEvent;
+import xyz.weechang.user.center.event.role.RoleCreateEvent;
 
 import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
 

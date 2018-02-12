@@ -4,9 +4,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.data.mongodb.core.mapping.Document;
 import xyz.weechang.taroco.core.model.BaseEntry;
 
-import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import java.util.List;
@@ -20,7 +20,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = false)
 @Data
 @NoArgsConstructor
-@Entity
+@Document
 @DynamicUpdate
 public class OrgEntry extends BaseEntry {
 

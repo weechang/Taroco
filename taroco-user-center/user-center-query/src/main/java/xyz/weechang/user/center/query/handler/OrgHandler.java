@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import xyz.weechang.taroco.core.event.DeleteEvent;
 import xyz.weechang.taroco.core.exception.BusinessException;
-import xyz.weechang.user.center.common.error.UCError;
-import xyz.weechang.user.center.common.event.OrgCreateEvent;
-import xyz.weechang.user.center.common.event.OrgUpdateEvent;
+import xyz.weechang.user.center.error.UCError;
+import xyz.weechang.user.center.event.org.OrgCreateEvent;
+import xyz.weechang.user.center.event.org.OrgUpdateEvent;
 import xyz.weechang.user.center.query.dao.OrgDao;
 import xyz.weechang.user.center.query.domain.OrgEntry;
 
@@ -21,15 +21,15 @@ import xyz.weechang.user.center.query.domain.OrgEntry;
  * @version 2017/11/5 20:32.
  */
 @Slf4j
-@ProcessingGroup("default")
 @Component
+@ProcessingGroup("org")
 public class OrgHandler {
 
     @Autowired
     private OrgDao dao;
 
     @EventHandler
-    public void handle(OrgCreateEvent event) {
+    public void on(OrgCreateEvent event) {
         int count = dao.findCountByParentAndName(event.getParentId(), event.getName());
         if (count > 0){
             log.error("org is exist parentId: {}, name: {}", event.getParentId(), event.getName());
@@ -59,7 +59,7 @@ public class OrgHandler {
     @EventHandler
     public void handle(DeleteEvent event) {
         if (event.getLogic()){
-            dao.logicDelete(event.getId());
+//            dao.logicDelete(event.getId());
         } else {
             dao.delete(event.getId());
         }

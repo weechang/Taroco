@@ -2,6 +2,7 @@ package xyz.weechang.user.center.query.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.data.mongodb.core.mapping.Document;
 import xyz.weechang.taroco.core.model.BaseEntry;
 
 import javax.persistence.*;
@@ -15,7 +16,7 @@ import java.util.Date;
  */
 @EqualsAndHashCode(callSuper = false)
 @Data
-@Entity
+@Document
 public class TokenEntry extends BaseEntry {
 
     private static final long serialVersionUID = 987915253534545259L;

@@ -1,11 +1,8 @@
 package xyz.weechang.taroco.core.model;
 
 import lombok.Data;
+import org.springframework.data.annotation.Id;
 
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -16,7 +13,6 @@ import java.util.Date;
  * @version 2017/11/20 13:29.
  */
 @Data
-@MappedSuperclass
 public class BaseEntry implements Serializable {
 
     private static final long serialVersionUID = 5966306766659220492L;
@@ -24,13 +20,11 @@ public class BaseEntry implements Serializable {
     @Id
     protected String id;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    protected Date createdDate;
+    protected Date createdDate = new Date();
 
     protected String createdBy;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    protected Date updatedDate;
+    protected Date updatedDate = new Date();
 
     protected String updatedBy;
 

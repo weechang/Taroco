@@ -14,11 +14,11 @@ import xyz.weechang.user.center.command.aggregate.Menu;
 @Slf4j
 public class MenuCommandHandler {
 
-    private Repository<Menu> repository;
+    private Repository<Menu> menuRepository;
     private EventBus eventBus;
 
     public MenuCommandHandler(Repository<Menu> repository, EventBus eventBus) {
-        this.repository = repository;
+        this.menuRepository = repository;
         this.eventBus = eventBus;
     }
 }

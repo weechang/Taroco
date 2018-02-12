@@ -17,7 +17,7 @@ import xyz.weechang.user.center.command.command.MenuUpdateCommand;
 import xyz.weechang.user.center.command.command.OrgUpdateCommand;
 import xyz.weechang.user.center.command.dto.MenuCreateRequest;
 import xyz.weechang.user.center.command.dto.MenuUpdateRequest;
-import xyz.weechang.user.center.common.error.UCError;
+import xyz.weechang.user.center.error.UCError;
 
 /**
  * 说明：

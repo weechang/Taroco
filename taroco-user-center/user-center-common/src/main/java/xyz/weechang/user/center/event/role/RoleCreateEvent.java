@@ -1,4 +1,4 @@
-package xyz.weechang.user.center.common.event;
+package xyz.weechang.user.center.event.role;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

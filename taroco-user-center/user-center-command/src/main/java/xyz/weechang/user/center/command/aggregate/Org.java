@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.spring.stereotype.Aggregate;
@@ -13,8 +12,8 @@ import xyz.weechang.taroco.core.event.DeleteEvent;
 import xyz.weechang.taroco.core.exception.BusinessException;
 import xyz.weechang.user.center.command.command.OrgCreateCommand;
 import xyz.weechang.user.center.command.command.OrgUpdateCommand;
-import xyz.weechang.user.center.common.event.OrgCreateEvent;
-import xyz.weechang.user.center.common.event.OrgUpdateEvent;
+import xyz.weechang.user.center.event.org.OrgCreateEvent;
+import xyz.weechang.user.center.event.org.OrgUpdateEvent;
 
 import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
 
@@ -43,7 +42,6 @@ public class Org{
 
     private Boolean logic;
 
-    @CommandHandler
     public Org(OrgCreateCommand command) {
         OrgCreateEvent event = new OrgCreateEvent(
                 command.getId(), command.getAuditEntry(),
