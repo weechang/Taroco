@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * 说明：
@@ -27,14 +28,11 @@ public class RoleCreateRequest {
     @NotNull
     @NotEmpty
     @Length(min = 1, max = 10)
-    private String roleName;
-
-    @ApiModelProperty("角色标识")
-    @NotNull
-    @NotEmpty
-    @Length(min = 1, max = 10)
-    private String roleSign;
+    private String name;
 
     @ApiModelProperty("备注")
     private String remark;
+
+    @ApiModelProperty("授权目录")
+    private List<String> menus;
 }

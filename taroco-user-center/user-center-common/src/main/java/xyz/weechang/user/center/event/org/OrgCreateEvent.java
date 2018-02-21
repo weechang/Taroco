@@ -3,8 +3,8 @@ package xyz.weechang.user.center.event.org;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import xyz.weechang.taroco.core.event.AuditableAbstractEvent;
-import xyz.weechang.taroco.core.model.AuditEntry;
+import xyz.weechang.taroco.core.common.event.AuditableAbstractEvent;
+import xyz.weechang.taroco.core.query.domain.AuditEntry;
 
 /**
  * 说明：
@@ -21,19 +21,12 @@ public class OrgCreateEvent extends AuditableAbstractEvent {
 
     private String parentId;
 
-    private String code;
-
     private String name;
 
-    private Integer orderNum;
-
     public OrgCreateEvent(
-            String id, AuditEntry auditEntry, String parentId,
-            String code, String name, Integer orderNum) {
+            String id, AuditEntry auditEntry, String parentId, String name) {
         super(id, auditEntry);
         this.parentId = parentId;
-        this.code = code;
         this.name = name;
-        this.orderNum = orderNum;
     }
 }

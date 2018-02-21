@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import xyz.weechang.taroco.core.command.DeleteCommand;
-import xyz.weechang.taroco.core.controller.BaseController;
-import xyz.weechang.taroco.core.exception.BusinessException;
-import xyz.weechang.taroco.core.response.BaseResponse;
+import xyz.weechang.taroco.core.command.command.DeleteCommand;
+import xyz.weechang.taroco.core.common.controller.BaseController;
+import xyz.weechang.taroco.core.common.exception.BusinessException;
+import xyz.weechang.taroco.core.common.response.BaseResponse;
 import xyz.weechang.user.center.command.command.OrgUpdateCommand;
 import xyz.weechang.user.center.command.command.UserCreateCommand;
 import xyz.weechang.user.center.command.command.UserUpdateCommand;
@@ -26,16 +26,16 @@ import xyz.weechang.user.center.error.UCError;
  * @version 2017/11/20 23:00.
  */
 @Slf4j
-@Api("用户管理")
+@Api(tags = "user", description = "用户管理")
 @RestController
-@RequestMapping("user")
+@RequestMapping(value = "user", consumes = MediaType.APPLICATION_JSON_VALUE)
 public class UserController extends BaseController{
 
     @Autowired(required = false)
     private CommandGateway commandGateway;
 
     @ApiOperation("创建用户")
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
     public BaseResponse create(@RequestBody UserCreateRequest request){
         log.debug(UserCreateRequest.class.getSimpleName() + " request received");
@@ -51,7 +51,7 @@ public class UserController extends BaseController{
     }
 
     @ApiOperation("修改用户")
-    @PatchMapping(value = "{id}",consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PatchMapping(value = "{id}")
     @ResponseStatus(value = HttpStatus.ACCEPTED)
     public BaseResponse update(@PathVariable String id, @RequestBody UserUpdateRequest request){
         log.debug(UserUpdateRequest.class.getSimpleName() + " request received");
@@ -67,7 +67,7 @@ public class UserController extends BaseController{
     }
 
     @ApiOperation("删除用户")
-    @DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping
     @ResponseStatus(value = HttpStatus.ACCEPTED)
     public BaseResponse delete(@PathVariable String id, Boolean logic){
         log.debug("delete request received");

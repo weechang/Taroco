@@ -15,7 +15,6 @@
         <module>user-center-common</module>
         <module>user-center-command</module>
         <module>user-center-query</module>
-        <module>user-center-auth</module>
     </modules>
 
 

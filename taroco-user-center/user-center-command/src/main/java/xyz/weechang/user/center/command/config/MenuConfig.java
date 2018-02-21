@@ -7,6 +7,7 @@ import org.axonframework.eventsourcing.eventstore.EventStore;
 import org.axonframework.spring.eventsourcing.SpringPrototypeAggregateFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import xyz.weechang.user.center.command.aggregate.Menu;
 
@@ -16,6 +17,7 @@ import xyz.weechang.user.center.command.aggregate.Menu;
  * @author zhangwei
  * @version 2018/2/12 10:00.
  */
+@Configuration
 public class MenuConfig {
 
     @Autowired
@@ -35,7 +37,7 @@ public class MenuConfig {
     }
 
     @Bean
-    public Repository<Menu> orderAggregateRepository(){
+    public Repository<Menu> menuAggregateRepository(){
         EventSourcingRepository<Menu> repository = new EventSourcingRepository<>(
                 menuAggregateFactory(),
                 eventStore

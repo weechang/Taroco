@@ -5,6 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
+import java.util.List;
+
 /**
  * 说明：
  *
@@ -17,12 +19,12 @@ public class RoleUpdateRequest {
 
     @ApiModelProperty("角色名称")
     @Length(min = 1, max = 10)
-    private String roleName;
-
-    @ApiModelProperty("角色标识")
-    @Length(min = 1, max = 10)
-    private String roleSign;
+    private String name;
 
     @ApiModelProperty("备注")
     private String remark;
+
+
+    @ApiModelProperty("授权目录")
+    private List<String> menus;
 }

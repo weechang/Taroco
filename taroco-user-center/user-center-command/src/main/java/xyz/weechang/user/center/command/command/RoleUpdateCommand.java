@@ -6,12 +6,12 @@ import lombok.EqualsAndHashCode;
 import org.axonframework.commandhandling.TargetAggregateIdentifier;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
-import xyz.weechang.taroco.core.command.AuditAbleAbstractCommand;
-import xyz.weechang.taroco.core.model.AuditEntry;
-import xyz.weechang.user.center.command.dto.RoleCreateRequest;
+import xyz.weechang.taroco.core.command.command.AuditAbleAbstractCommand;
+import xyz.weechang.taroco.core.query.domain.AuditEntry;
+import xyz.weechang.user.center.command.dto.RoleUpdateRequest;
 
 import javax.validation.constraints.NotNull;
-import java.util.UUID;
+import java.util.List;
 
 /**
  * 说明：
@@ -31,24 +31,18 @@ public class RoleUpdateCommand extends AuditAbleAbstractCommand {
     @NotNull
     @NotEmpty
     @Length(min = 1, max = 10)
-    private String roleName;
-
-    @NotNull
-    @NotEmpty
-    @Length(min = 1, max = 10)
-    private String roleSign;
+    private String name;
 
     private String remark;
 
-    public RoleUpdateCommand(AuditEntry auditEntry, RoleCreateRequest request) {
-        new RoleUpdateCommand(auditEntry, request.getOrgId(), request.getRoleName(),
-                request.getRoleSign(), request.getRemark());
+    private List<String> menus;
+
+    public RoleUpdateCommand(AuditEntry auditEntry, String id, RoleUpdateRequest request) {
+       super(auditEntry);
+       this.id = id;
+       this.name = request.getName();
+       this.remark = request.getRemark();
+       this.menus = request.getMenus();
     }
 
-    public RoleUpdateCommand(
-            AuditEntry auditEntry, String orgId, String roleName,
-            String roleSign, String remark) {
-        super(auditEntry);
-        new RoleUpdateCommand(UUID.randomUUID().toString(), roleName, roleSign, remark);
-    }
 }

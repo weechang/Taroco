@@ -4,8 +4,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.axonframework.commandhandling.TargetAggregateIdentifier;
 import org.hibernate.validator.constraints.NotEmpty;
-import xyz.weechang.taroco.core.command.AuditAbleAbstractCommand;
-import xyz.weechang.taroco.core.model.AuditEntry;
+import xyz.weechang.taroco.core.command.command.AuditAbleAbstractCommand;
+import xyz.weechang.taroco.core.query.domain.AuditEntry;
 import xyz.weechang.user.center.command.dto.OrgCreateRequest;
 
 import javax.validation.constraints.NotNull;
@@ -30,22 +30,12 @@ public class OrgCreateCommand extends AuditAbleAbstractCommand {
 
     @NotNull
     @NotEmpty
-    private String code;
-
-    @NotNull
-    @NotEmpty
     private String name;
 
     public OrgCreateCommand(AuditEntry auditEntry, OrgCreateRequest request) {
         super(auditEntry);
         this.id = UUID.randomUUID().toString();
         this.parentId = request.getParentId();
-        this.code = request.getCode();
         this.name = request.getName();
     }
-
-//    public OrgCreateCommand(
-//            AuditEntry auditEntry, String parentId, String code, String name) {
-//        super(auditEntry);
-//    }
 }

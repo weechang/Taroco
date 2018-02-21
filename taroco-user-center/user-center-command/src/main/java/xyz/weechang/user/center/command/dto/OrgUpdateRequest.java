@@ -15,10 +15,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Data
 public class OrgUpdateRequest {
 
-    @ApiModelProperty("机构编码")
-    @NotEmpty
-    private String code;
-
     @ApiModelProperty("机构名称")
     @NotEmpty
     private String name;

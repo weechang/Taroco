@@ -2,11 +2,11 @@ package xyz.weechang.user.center.command.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Range;
+import xyz.weechang.user.center.enums.MenuType;
 
 import javax.validation.constraints.NotNull;
 
@@ -41,7 +41,7 @@ public class MenuUpdateRequest {
     @ApiModelProperty("类型(0：目录   1：菜单   2：按钮)")
     @NotNull
     @Range(min = 0, max = 2)
-    private Integer type;
+    private MenuType type;
 
     @ApiModelProperty("菜单图标")
     @NotNull
@@ -52,7 +52,4 @@ public class MenuUpdateRequest {
     @ApiModelProperty("排序")
     @NotNull
     private Integer orderNum;
-
-    @ApiModelProperty("ztree属性")
-    private Boolean open;
 }

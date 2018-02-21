@@ -5,8 +5,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.axonframework.commandhandling.TargetAggregateIdentifier;
 import org.hibernate.validator.constraints.NotEmpty;
-import xyz.weechang.taroco.core.command.AuditAbleAbstractCommand;
-import xyz.weechang.taroco.core.model.AuditEntry;
+import xyz.weechang.taroco.core.command.command.AuditAbleAbstractCommand;
+import xyz.weechang.taroco.core.query.domain.AuditEntry;
 import xyz.weechang.user.center.command.dto.OrgUpdateRequest;
 
 /**
@@ -34,12 +34,9 @@ public class OrgUpdateCommand extends AuditAbleAbstractCommand {
     private Integer orderNum;
 
     public OrgUpdateCommand(AuditEntry auditEntry, String id, OrgUpdateRequest request){
-        new OrgUpdateCommand(auditEntry, id, request.getCode(), request.getName(), request.getOrderNum());
-    }
-
-    public OrgUpdateCommand(
-            AuditEntry auditEntry, String id, String code, String name, Integer orderNum) {
         super(auditEntry);
-        new OrgUpdateCommand(id, code, name, orderNum);
+        this.id = id;
+        this.name = request.getName();
+        this.orderNum = request.getOrderNum();
     }
 }

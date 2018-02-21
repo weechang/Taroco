@@ -4,9 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.axonframework.commandhandling.TargetAggregateIdentifier;
-import xyz.weechang.taroco.core.command.AuditAbleAbstractCommand;
-import xyz.weechang.taroco.core.model.AuditEntry;
+import xyz.weechang.taroco.core.command.command.AuditAbleAbstractCommand;
+import xyz.weechang.taroco.core.query.domain.AuditEntry;
 import xyz.weechang.user.center.command.dto.MenuUpdateRequest;
+import xyz.weechang.user.center.enums.MenuType;
 
 /**
  * 说明：
@@ -29,24 +30,21 @@ public class MenuUpdateCommand extends AuditAbleAbstractCommand {
 
     private String perms;
 
-    private Integer type;
+    private MenuType type;
 
     private String icon;
 
     private Integer orderNum;
 
-    private Boolean open;
-
     public MenuUpdateCommand(AuditEntry auditEntry, String id, MenuUpdateRequest request) {
-        new MenuUpdateCommand(auditEntry, id, request.getName(), request.getUri(),
-                request.getPerms(), request.getType(), request.getIcon(),
-                request.getOrderNum(), request.getOpen());
+        super(auditEntry);
+        this.id = id;
+        this.name = request.getName();
+        this.uri = request.getUri();
+        this.perms = request.getPerms();
+        this.type = request.getType();
+        this.icon = request.getIcon();
+        this.orderNum = request.getOrderNum();
     }
 
-    public MenuUpdateCommand(
-            AuditEntry auditEntry, String id, String name, String uri,
-            String perms, Integer type, String icon, Integer orderNum, Boolean open) {
-        super(auditEntry);
-        new MenuUpdateCommand(id, name, uri, perms, type, icon, orderNum, open);
-    }
 }

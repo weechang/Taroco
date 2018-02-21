@@ -3,12 +3,17 @@ package xyz.weechang.user.center.query.handler;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.EventHandler;
-import org.axonframework.eventsourcing.SequenceNumber;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
-import xyz.weechang.taroco.core.event.DeleteEvent;
+import xyz.weechang.taroco.core.common.exception.BusinessException;
+import xyz.weechang.user.center.constant.UserConstant;
+import xyz.weechang.user.center.error.UCError;
 import xyz.weechang.user.center.event.user.UserCreateEvent;
+import xyz.weechang.user.center.event.user.UserDeleteEvent;
 import xyz.weechang.user.center.event.user.UserUpdateEvent;
+import xyz.weechang.user.center.query.dao.OrgDao;
+import xyz.weechang.user.center.query.dao.RoleDao;
 import xyz.weechang.user.center.query.dao.UserDao;
 import xyz.weechang.user.center.query.domain.UserEntry;
 
@@ -26,35 +31,56 @@ public class UserHandler {
     @Autowired
     private UserDao dao;
 
+    @Autowired
+    private OrgDao orgDao;
+
+    @Autowired
+    private RoleDao roleDao;
+
     @EventHandler
-    public void handle(UserCreateEvent event, @SequenceNumber Long version) {
+    public void on(UserCreateEvent event) {
+        int count = dao.countByUsername(event.getUsername());
+        if (count > 0) {
+            log.error("user is exist {}", event.getUsername());
+            throw new BusinessException(UCError.USER_IS_EXIST);
+        }
         UserEntry user = new UserEntry();
         user.setId(event.getId());
         user.setUsername(event.getUsername());
-        user.setPassword(event.getPassword());
+        String password = new BCryptPasswordEncoder(UserConstant.PW_ENCORDER_SALT).encode(event.getPassword());
+        user.setPassword(password);
         user.setPhone(event.getPhone());
         user.setEmail(event.getEmail());
-        user.setEnable(event.getEnable());
+        if (event.getOrgs() != null) {
+            user.setOrgs(orgDao.findByIds(event.getOrgs()));
+        }
+        if (event.getRoles() != null) {
+            user.setRoles(roleDao.findByIds(event.getRoles()));
+        }
         dao.save(user);
     }
 
     @EventHandler
-    public void handle(UserUpdateEvent event, @SequenceNumber Long version) {
+    public void on(UserUpdateEvent event) {
         UserEntry user = new UserEntry();
         user.setId(event.getId());
-        user.setPassword(event.getPassword());
+        String password = new BCryptPasswordEncoder(UserConstant.PW_ENCORDER_SALT).encode(event.getPassword());
+        user.setPassword(password);
         user.setPhone(event.getPhone());
         user.setEmail(event.getEmail());
-        user.setEnable(event.getEnable());
+        if (event.getOrgs() != null) {
+            user.setOrgs(orgDao.findByIds(event.getOrgs()));
+        }
+        if (event.getRoles() != null) {
+            user.setRoles(roleDao.findByIds(event.getRoles()));
+        }
         dao.save(user);
     }
 
     @EventHandler
-    public void handle(DeleteEvent event, @SequenceNumber Long version) {
-        if (event.getLogic()){
-//            dao.logicDelete(event.getId());
-        } else {
-            dao.delete(event.getId());
+    public void on(UserDeleteEvent event) {
+        if (event.getLogic()) {
+            dao.logicDelete(event.getId());
         }
     }
 

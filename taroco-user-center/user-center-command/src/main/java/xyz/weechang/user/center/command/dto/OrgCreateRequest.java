@@ -20,11 +20,6 @@ public class OrgCreateRequest {
     @ApiModelProperty("上级id")
     private String parentId;
 
-    @ApiModelProperty("机构编码")
-    @NotNull
-    @NotEmpty
-    private String code;
-
     @ApiModelProperty("机构名称")
     @NotNull
     @NotEmpty

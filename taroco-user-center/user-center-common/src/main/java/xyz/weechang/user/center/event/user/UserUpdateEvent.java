@@ -4,8 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import xyz.weechang.taroco.core.event.AuditableAbstractEvent;
-import xyz.weechang.taroco.core.model.AuditEntry;
+import xyz.weechang.taroco.core.common.event.AuditableAbstractEvent;
+import xyz.weechang.taroco.core.query.domain.AuditEntry;
+
+import java.util.List;
 
 /**
  * 说明：
@@ -26,12 +28,18 @@ public class UserUpdateEvent extends AuditableAbstractEvent {
 
     private String email;
 
-    private Boolean enable;
+    private List<String> orgs;
+
+    private List<String> roles;
 
     public UserUpdateEvent(
             String id, AuditEntry auditEntry ,String password,
-            String phone, String email, Boolean enable) {
+            String phone, String email, List<String> orgs, List<String> roles) {
         super(id, auditEntry);
-        new UserUpdateEvent(password, phone, email, enable);
+       this.password = password;
+       this.phone = phone;
+       this.email = email;
+       this.orgs = orgs;
+       this.roles = roles;
     }
 }

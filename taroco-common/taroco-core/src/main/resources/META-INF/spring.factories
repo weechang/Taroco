@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-xyz.weechang.taroco.core.config.ExceptionAutoConfig
+xyz.weechang.taroco.core.common.config.ExceptionAutoConfig

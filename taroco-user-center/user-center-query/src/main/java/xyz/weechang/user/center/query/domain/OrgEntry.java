@@ -3,12 +3,11 @@ package xyz.weechang.user.center.query.domain;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-import xyz.weechang.taroco.core.model.BaseEntry;
+import xyz.weechang.taroco.core.query.domain.BaseEntry;
 
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,15 +20,9 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Document
-@DynamicUpdate
 public class OrgEntry extends BaseEntry {
 
     private static final long serialVersionUID = 2136457038173964553L;
-
-    /**
-     * 上级机构
-     */
-    private OrgEntry parent;
 
     /**
      * 机构名称
@@ -39,11 +32,16 @@ public class OrgEntry extends BaseEntry {
     /**
      * 排序
      */
-    private Integer orderNum;
+    private Integer orderNum = 1;
 
     /**
-     * 所有的角色
+     * 上级id
      */
-    @ManyToMany(targetEntity = RoleEntry.class, fetch = FetchType.LAZY)
-    private List<RoleEntry> roles;
+    private String parentId;
+
+    /**
+     * 子结构
+     */
+    @DBRef
+    private List<OrgEntry> children = new ArrayList<OrgEntry>();
 }

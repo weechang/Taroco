@@ -3,10 +3,8 @@ package xyz.weechang.user.center.query.domain;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.data.mongodb.core.mapping.Document;
-import xyz.weechang.taroco.core.model.BaseEntry;
+import xyz.weechang.taroco.core.query.domain.BaseEntry;
 
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
 import java.util.List;
 
 /**
@@ -43,13 +41,12 @@ public class UserEntry extends BaseEntry {
     private String email;
 
     /**
-     * 是否可用
-     */
-    private Boolean enable;
-
-    /**
      * 所有的角色
      */
-    @ManyToMany(targetEntity = RoleEntry.class, fetch = FetchType.LAZY)
     private List<RoleEntry> roles;
+
+    /**
+     * 所属部门标签
+     */
+    private List<OrgEntry> orgs;
 }

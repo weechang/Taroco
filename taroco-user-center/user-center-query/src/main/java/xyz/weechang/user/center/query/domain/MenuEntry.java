@@ -2,8 +2,13 @@ package xyz.weechang.user.center.query.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-import xyz.weechang.taroco.core.model.BaseEntry;
+import xyz.weechang.taroco.core.query.domain.BaseEntry;
+import xyz.weechang.user.center.enums.MenuType;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 说明：目录
@@ -17,11 +22,6 @@ import xyz.weechang.taroco.core.model.BaseEntry;
 public class MenuEntry extends BaseEntry {
 
     private static final long serialVersionUID = -3480038672245433909L;
-
-    /**
-     * 上级目录
-     */
-    private MenuEntry parent;
 
     /**
      * 目录名称
@@ -39,9 +39,9 @@ public class MenuEntry extends BaseEntry {
     private String perms;
 
     /**
-     * 类型(0：目录   1：菜单   2：按钮)
+     * 类型(0：目录   1：菜单   2：按钮  4: tab)
      */
-    private Integer type;
+    private MenuType type = MenuType.MENU;
 
     /**
      * 菜单图标
@@ -51,10 +51,16 @@ public class MenuEntry extends BaseEntry {
     /**
      * 排序
      */
-    private Integer orderNum;
+    private Integer orderNum = 1;
 
     /**
-     * ztree属性
+     * 上级ID
      */
-    private Boolean open;
+    private String parentId;
+
+    /**
+     * 下级目录
+     */
+    @DBRef
+    private List<MenuEntry> children = new ArrayList<MenuEntry>();
 }

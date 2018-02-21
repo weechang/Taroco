@@ -57,8 +57,8 @@
 
   // Turn on `emulateJSON` to support legacy servers that can't deal with direct
   // `application/json` requests ... will encode the body as
-  // `application/x-www-form-urlencoded` instead and will send the model in a
-  // form param named `model`.
+  // `application/x-www-form-urlencoded` instead and will send the domain in a
+  // form param named `domain`.
   Backbone.emulateJSON = false;
 
   // Backbone.Events
@@ -223,7 +223,7 @@
   // Backbone.Model
   // --------------
 
-  // Create a new model, with defined attributes. A client id (`cid`)
+  // Create a new domain, with defined attributes. A client id (`cid`)
   // is automatically generated and assigned for you.
   var Model = Backbone.Model = function(attributes, options) {
     var defaults;
@@ -254,7 +254,7 @@
     // initialization logic.
     initialize: function(){},
 
-    // Return a copy of the model's `attributes` object.
+    // Return a copy of the domain's `attributes` object.
     toJSON: function(options) {
       return _.clone(this.attributes);
     },
@@ -282,7 +282,7 @@
 
     // ----------------------------------------------------------------------
 
-    // Set a hash of model attributes on the object, firing `"change"` unless
+    // Set a hash of domain attributes on the object, firing `"change"` unless
     // you choose to silence it.
     set: function(key, val, options) {
       var attr, attrs, unset, changes, silent, changing, prev, current;
@@ -349,13 +349,13 @@
       return this;
     },
 
-    // Remove an attribute from the model, firing `"change"` unless you choose
+    // Remove an attribute from the domain, firing `"change"` unless you choose
     // to silence it. `unset` is a noop if the attribute doesn't exist.
     unset: function(attr, options) {
       return this.set(attr, void 0, _.extend({}, options, {unset: true}));
     },
 
-    // Clear all attributes on the model, firing `"change"` unless you choose
+    // Clear all attributes on the domain, firing `"change"` unless you choose
     // to silence it.
     clear: function(options) {
       var attrs = {};
@@ -363,7 +363,7 @@
       return this.set(attrs, _.extend({}, options, {unset: true}));
     },
 
-    // Determine if the model has changed since the last `"change"` event.
+    // Determine if the domain has changed since the last `"change"` event.
     // If you specify an attribute name, determine if that attribute has changed.
     hasChanged: function(attr) {
       if (attr == null) return !_.isEmpty(this.changed);
@@ -374,7 +374,7 @@
     // false if there are no changed attributes. Useful for determining what
     // parts of a view need to be updated and/or what attributes need to be
     // persisted to the server. Unset attributes will be set to undefined.
-    // You can also pass an attributes object to diff against the model,
+    // You can also pass an attributes object to diff against the domain,
     // determining if there *would be* a change.
     changedAttributes: function(diff) {
       if (!diff) return this.hasChanged() ? _.clone(this.changed) : false;
@@ -394,7 +394,7 @@
       return this._previousAttributes[attr];
     },
 
-    // Get all of the attributes of the model at the time of the previous
+    // Get all of the attributes of the domain at the time of the previous
     // `"change"` event.
     previousAttributes: function() {
       return _.clone(this._previousAttributes);
@@ -402,8 +402,8 @@
 
     // ---------------------------------------------------------------------
 
-    // Fetch the model from the server. If the server's representation of the
-    // model differs from its current attributes, they will be overriden,
+    // Fetch the domain from the server. If the server's representation of the
+    // domain differs from its current attributes, they will be overriden,
     // triggering a `"change"` event.
     fetch: function(options) {
       options = options ? _.clone(options) : {};
@@ -416,8 +416,8 @@
       return this.sync('read', this, options);
     },
 
-    // Set a hash of model attributes, and sync the model to the server.
-    // If the server returns an attributes hash that differs, the model's
+    // Set a hash of domain attributes, and sync the domain to the server.
+    // If the server returns an attributes hash that differs, the domain's
     // state will be `set` again.
     save: function(key, val, options) {
       var attrs, success, method, xhr, attributes = this.attributes;
@@ -469,8 +469,8 @@
       return xhr;
     },
 
-    // Destroy this model on the server if it was already persisted.
-    // Optimistically removes the model from its collection, if it has one.
+    // Destroy this domain on the server if it was already persisted.
+    // Optimistically removes the domain from its collection, if it has one.
     // If `wait: true` is passed, waits for the server to respond before removal.
     destroy: function(options) {
       options = options ? _.clone(options) : {};
@@ -496,7 +496,7 @@
       return xhr;
     },
 
-    // Default URL for the model's representation on the server -- if you're
+    // Default URL for the domain's representation on the server -- if you're
     // using Backbone's restful methods, override this to change the endpoint
     // that will be called.
     url: function() {
@@ -506,27 +506,27 @@
     },
 
     // **parse** converts a response into the hash of attributes to be `set` on
-    // the model. The default implementation is just to pass the response along.
+    // the domain. The default implementation is just to pass the response along.
     parse: function(resp, options) {
       return resp;
     },
 
-    // Create a new model with identical attributes to this one.
+    // Create a new domain with identical attributes to this one.
     clone: function() {
       return new this.constructor(this.attributes);
     },
 
-    // A model is new if it has never been saved to the server, and lacks an id.
+    // A domain is new if it has never been saved to the server, and lacks an id.
     isNew: function() {
       return this.id == null;
     },
 
-    // Check if the model is currently in a valid state.
+    // Check if the domain is currently in a valid state.
     isValid: function(options) {
       return !this.validate || !this.validate(this.attributes, options);
     },
 
-    // Run validation against the next complete set of model attributes,
+    // Run validation against the next complete set of domain attributes,
     // returning `true` if all is well. Otherwise, fire a general
     // `"error"` event and call the error callback, if specified.
     _validate: function(attrs, options) {
@@ -559,7 +559,7 @@
   // Define the Collection's inheritable methods.
   _.extend(Collection.prototype, Events, {
 
-    // The default model for a collection is just a **Backbone.Model**.
+    // The default domain for a collection is just a **Backbone.Model**.
     // This should be overridden in most cases.
     model: Model,
 
@@ -578,7 +578,7 @@
       return Backbone.sync.apply(this, arguments);
     },
 
-    // Add a model, or list of models to the set.
+    // Add a domain, or list of models to the set.
     add: function(models, options) {
       models = _.isArray(models) ? models.slice() : [models];
       options || (options = {});
@@ -588,7 +588,7 @@
       sort = this.comparator && (at == null) && options.sort != false;
       sortAttr = _.isString(this.comparator) ? this.comparator : null;
 
-      // Turn bare objects into model references, and prevent invalid models
+      // Turn bare objects into domain references, and prevent invalid models
       // from being added.
       for (i = 0, l = models.length; i < l; i++) {
         if (!(model = this._prepareModel(attrs = models[i], options))) {
@@ -597,7 +597,7 @@
         }
 
         // If a duplicate is found, prevent it from being added and
-        // optionally merge it into the existing model.
+        // optionally merge it into the existing domain.
         if (existing = this.get(model)) {
           if (options.merge) {
             existing.set(attrs === model ? model.attributes : attrs, options);
@@ -606,7 +606,7 @@
           continue;
         }
 
-        // This is a new model, push it to the `add` list.
+        // This is a new domain, push it to the `add` list.
         add.push(model);
 
         // Listen to added models' events, and index models for lookup by
@@ -643,7 +643,7 @@
       return this;
     },
 
-    // Remove a model, or a list of models from the set.
+    // Remove a domain, or a list of models from the set.
     remove: function(models, options) {
       models = _.isArray(models) ? models.slice() : [models];
       options || (options = {});
@@ -665,28 +665,28 @@
       return this;
     },
 
-    // Add a model to the end of the collection.
+    // Add a domain to the end of the collection.
     push: function(model, options) {
       model = this._prepareModel(model, options);
       this.add(model, _.extend({at: this.length}, options));
       return model;
     },
 
-    // Remove a model from the end of the collection.
+    // Remove a domain from the end of the collection.
     pop: function(options) {
       var model = this.at(this.length - 1);
       this.remove(model, options);
       return model;
     },
 
-    // Add a model to the beginning of the collection.
+    // Add a domain to the beginning of the collection.
     unshift: function(model, options) {
       model = this._prepareModel(model, options);
       this.add(model, _.extend({at: 0}, options));
       return model;
     },
 
-    // Remove a model from the beginning of the collection.
+    // Remove a domain from the beginning of the collection.
     shift: function(options) {
       var model = this.at(0);
       this.remove(model, options);
@@ -698,14 +698,14 @@
       return this.models.slice(begin, end);
     },
 
-    // Get a model from the set by id.
+    // Get a domain from the set by id.
     get: function(obj) {
       if (obj == null) return void 0;
       this._idAttr || (this._idAttr = this.model.prototype.idAttribute);
       return this._byId[obj.id || obj.cid || obj[this._idAttr] || obj];
     },
 
-    // Get the model at the given index.
+    // Get the domain at the given index.
     at: function(index) {
       return this.models[index];
     },
@@ -741,7 +741,7 @@
       return this;
     },
 
-    // Pluck an attribute from each model in the collection.
+    // Pluck an attribute from each domain in the collection.
     pluck: function(attr) {
       return _.invoke(this.models, 'get', attr);
     },
@@ -754,7 +754,7 @@
       var model, i, l, existing;
       var add = [], remove = [], modelMap = {};
 
-      // Allow a single model (or no argument) to be passed.
+      // Allow a single domain (or no argument) to be passed.
       if (!_.isArray(models)) models = models ? [models] : [];
 
       // Proxy to `add` for this case, no need to iterate...
@@ -813,7 +813,7 @@
       return this.sync('read', this, options);
     },
 
-    // Create a new instance of a model in this collection. Add the model to the
+    // Create a new instance of a domain in this collection. Add the domain to the
     // collection immediately, unless `wait: true` is passed, in which case we
     // wait for the server to agree.
     create: function(model, options) {
@@ -848,7 +848,7 @@
       this._byId  = {};
     },
 
-    // Prepare a model or hash of attributes to be added to this collection.
+    // Prepare a domain or hash of attributes to be added to this collection.
     _prepareModel: function(attrs, options) {
       if (attrs instanceof Model) {
         if (!attrs.collection) attrs.collection = this;
@@ -861,13 +861,13 @@
       return model;
     },
 
-    // Internal method to remove a model's ties to a collection.
+    // Internal method to remove a domain's ties to a collection.
     _removeReference: function(model) {
       if (this === model.collection) delete model.collection;
       model.off('all', this._onModelEvent, this);
     },
 
-    // Internal method called every time a model in the set fires an event.
+    // Internal method called every time a domain in the set fires an event.
     // Sets need to update their indexes when models change ids. All other
     // events simply proxy through. "add" and "remove" events that originate
     // in other collections are ignored.
@@ -1315,7 +1315,7 @@
     },
 
     // Performs the initial configuration of a View with a set of options.
-    // Keys with special meaning *(model, collection, id, className)*, are
+    // Keys with special meaning *(domain, collection, id, className)*, are
     // attached directly to the view.
     _configure: function(options) {
       if (this.options) options = _.extend({}, _.result(this, 'options'), options);
@@ -1355,8 +1355,8 @@
 
   // Override this function to change the manner in which Backbone persists
   // models to the server. You will be passed the type of request, and the
-  // model in question. By default, makes a RESTful Ajax request
-  // to the model's `url()`. Some possible customizations could be:
+  // domain in question. By default, makes a RESTful Ajax request
+  // to the domain's `url()`. Some possible customizations could be:
   //
   // * Use `setTimeout` to batch rapid-fire updates into a single request.
   // * Send up the models as XML instead of JSON.
@@ -1365,7 +1365,7 @@
   // Turn on `Backbone.emulateHTTP` in order to send `PUT` and `DELETE` requests
   // as `POST`, with a `_method` parameter containing the true HTTP method,
   // as well as all requests with the body as `application/x-www-form-urlencoded`
-  // instead of `application/json` with the model in a param named `model`.
+  // instead of `application/json` with the domain in a param named `domain`.
   // Useful when interfacing with server-side languages like **PHP** that make
   // it difficult to read the body of `PUT` requests.
   Backbone.sync = function(method, model, options) {
@@ -1476,7 +1476,7 @@
     return child;
   };
 
-  // Set up inheritance for the model, collection, router, view and history.
+  // Set up inheritance for the domain, collection, router, view and history.
   Model.extend = Collection.extend = Router.extend = View.extend = History.extend = extend;
 
   // Throw an error when a URL is needed, and none is supplied.

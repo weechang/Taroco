@@ -72,13 +72,3 @@ authserver:
   hostname: localhost
   port: 9999
   contextPath: uaa
-
-authserver:
-  hostname: localhost
-  port: 80
-  contextPath: uaa
-
-eureka:
-  instance:
-    hostname: localhost
-    nonSecurePort: 80

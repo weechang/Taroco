@@ -1,12 +1,13 @@
 package xyz.weechang.user.center.command.command;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.axonframework.commandhandling.TargetAggregateIdentifier;
-import xyz.weechang.taroco.core.command.AuditAbleAbstractCommand;
-import xyz.weechang.taroco.core.model.AuditEntry;
+import xyz.weechang.taroco.core.command.command.AuditAbleAbstractCommand;
+import xyz.weechang.taroco.core.query.domain.AuditEntry;
 import xyz.weechang.user.center.command.dto.MenuCreateRequest;
+import xyz.weechang.user.center.enums.MenuType;
 
 import java.util.UUID;
 
@@ -18,7 +19,7 @@ import java.util.UUID;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@AllArgsConstructor
+@NoArgsConstructor
 public class MenuCreateCommand extends AuditAbleAbstractCommand {
 
     private static final long serialVersionUID = 6700408375672370119L;
@@ -34,25 +35,18 @@ public class MenuCreateCommand extends AuditAbleAbstractCommand {
 
     private String perms;
 
-    private Integer type;
+    private MenuType type;
 
     private String icon;
 
-    private Integer orderNum;
-
-    private Boolean open;
-
     public MenuCreateCommand(AuditEntry auditEntry, MenuCreateRequest request) {
-        new MenuCreateCommand(auditEntry, request.getParentId(),
-                request.getName(), request.getUri(), request.getPerms(), request.getType(),
-                request.getIcon(), request.getOrderNum(), request.getOpen());
-    }
-
-    public MenuCreateCommand(
-            AuditEntry auditEntry, String parentId, String name, String uri,
-            String perms, Integer type, String icon, Integer orderNum, Boolean open) {
         super(auditEntry);
-        new MenuCreateCommand(UUID.randomUUID().toString(), parentId,
-                name, uri, perms, type, icon, orderNum, open);
+        this.id = UUID.randomUUID().toString();
+        this.parentId = request.getParentId();
+        this.name = request.getName();
+        this.uri = request.getUri();
+        this.perms = request.getPerms();
+        this.type = request.getType();
+        this.icon = request.getIcon();
     }
 }

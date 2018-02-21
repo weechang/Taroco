@@ -8,7 +8,7 @@ import org.axonframework.eventhandling.EventBus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-import xyz.weechang.taroco.core.command.DeleteCommand;
+import xyz.weechang.taroco.core.command.command.DeleteCommand;
 import xyz.weechang.user.center.command.aggregate.Org;
 import xyz.weechang.user.center.command.command.OrgCreateCommand;
 import xyz.weechang.user.center.command.command.OrgUpdateCommand;
@@ -26,8 +26,8 @@ public class OrgCommandHandler {
     @Autowired
     private Repository<Org> orgAggregateRepository;
 
-    @Qualifier("eventBus")
     @Autowired
+    @Qualifier("eventBus")
     private EventBus eventBus;
 
     @CommandHandler

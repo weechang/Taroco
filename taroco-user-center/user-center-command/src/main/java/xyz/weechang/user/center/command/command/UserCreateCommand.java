@@ -4,10 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.axonframework.commandhandling.TargetAggregateIdentifier;
-import xyz.weechang.taroco.core.command.AuditAbleAbstractCommand;
-import xyz.weechang.taroco.core.model.AuditEntry;
+import xyz.weechang.taroco.core.command.command.AuditAbleAbstractCommand;
+import xyz.weechang.taroco.core.query.domain.AuditEntry;
 import xyz.weechang.user.center.command.dto.UserCreateRequest;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -33,17 +34,18 @@ public class UserCreateCommand extends AuditAbleAbstractCommand {
 
     private String email;
 
-    private Boolean enable;
+    private List<String> roles;
+
+    private List<String> orgs;
 
     public UserCreateCommand(AuditEntry auditEntry, UserCreateRequest request) {
-        new UserCreateCommand(auditEntry, request.getUsername(),
-                request.getPassword(), request.getPhone(), request.getEmail());
-    }
-
-    public UserCreateCommand(
-            AuditEntry auditEntry, String username,
-            String password, String phone, String email) {
         super(auditEntry);
-        new UserCreateCommand(UUID.randomUUID().toString(), username, password, phone, email, true);
+        this.id = UUID.randomUUID().toString();
+        this.username = request.getUsername();
+        this.password = request.getPassword();
+        this.phone = request.getPhone();
+        this.email = request.getEmail();
+        this.roles = request.getRoles();
+        this.orgs = request.getOrgs();
     }
 }

@@ -2,10 +2,16 @@ package xyz.weechang.user.center.command.handler;
 
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandHandler;
+import org.axonframework.commandhandling.model.Aggregate;
 import org.axonframework.commandhandling.model.Repository;
 import org.axonframework.eventhandling.EventBus;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+import xyz.weechang.taroco.core.command.command.DeleteCommand;
 import xyz.weechang.user.center.command.aggregate.Role;
 import xyz.weechang.user.center.command.command.RoleCreateCommand;
+import xyz.weechang.user.center.command.command.RoleUpdateCommand;
 
 /**
  * 说明：
@@ -14,20 +20,36 @@ import xyz.weechang.user.center.command.command.RoleCreateCommand;
  * @version 2017/11/20 22:31.
  */
 @Slf4j
+@Component
 public class RoleCommandHandler {
 
-    private EventBus eventBus;
-    private Repository<Role> repository;
+    @Autowired
+    private Repository<Role> roleAggregateRepository;
 
-    public RoleCommandHandler(Repository<Role> repository, EventBus eventBus) {
-        this.repository = repository;
-        this.eventBus = eventBus;
-    }
+    @Autowired
+    @Qualifier("eventBus")
+    private EventBus eventBus;
 
     @CommandHandler
     public void handle(RoleCreateCommand command) throws Exception {
-        repository.newInstance(() -> {
+        roleAggregateRepository.newInstance(() -> {
             return new Role(command);
+        });
+    }
+
+    @CommandHandler
+    public void handle(RoleUpdateCommand command) {
+        Aggregate<Role> role = roleAggregateRepository.load(command.getId());
+        role.execute(aggregateRoot -> {
+            aggregateRoot.update(command);
+        });
+    }
+
+    @CommandHandler
+    public void handle(DeleteCommand command) {
+        Aggregate<Role> role = roleAggregateRepository.load(command.getId());
+        role.execute(aggregateRoot -> {
+            aggregateRoot.delete(command);
         });
     }
 }

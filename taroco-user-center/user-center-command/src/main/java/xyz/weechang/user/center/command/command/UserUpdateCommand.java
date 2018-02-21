@@ -4,9 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.axonframework.commandhandling.TargetAggregateIdentifier;
-import xyz.weechang.taroco.core.command.AuditAbleAbstractCommand;
-import xyz.weechang.taroco.core.model.AuditEntry;
+import xyz.weechang.taroco.core.command.command.AuditAbleAbstractCommand;
+import xyz.weechang.taroco.core.query.domain.AuditEntry;
 import xyz.weechang.user.center.command.dto.UserUpdateRequest;
+
+import java.util.List;
 
 /**
  * 说明：
@@ -29,16 +31,17 @@ public class UserUpdateCommand extends AuditAbleAbstractCommand {
 
     private String email;
 
-    private Boolean enable;
+    private List<String> roles;
+
+    private List<String> orgs;
 
     public UserUpdateCommand(AuditEntry auditEntry, String id, UserUpdateRequest request) {
-        new UserUpdateCommand(auditEntry, id, request.getPassword(),
-                request.getPhone(), request.getEmail());
-    }
-
-    public UserUpdateCommand(
-            AuditEntry auditEntry, String id, String password, String phone, String email) {
-        super(auditEntry);
-        new UserUpdateCommand(id, password, phone, email, true);
+       super(auditEntry);
+       this.id = id;
+       this.password = request.getPassword();
+       this.phone = request.getPhone();
+       this.email = request.getEmail();
+       this.roles = request.getRoles();
+       this.orgs = request.getOrgs();
     }
 }

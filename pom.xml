@@ -12,8 +12,8 @@
         <module>taroco-message-center</module>
         <module>taroco-pay</module>
         <module>taroco-user-center</module>
-        <module>taroco-web-ui</module>
         <module>taroco-oss</module>
+        <module>taroco-auth</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -37,7 +37,7 @@
         <spring-cloud.version>Dalston.RELEASE</spring-cloud.version>
         <spring-data-releasetrain.version>Ingalls-SR3</spring-data-releasetrain.version>
         <springfox.version>2.6.1</springfox.version>
-        <jackson.version>2.6.5</jackson.version>
+        <commons-codec.version>1.4</commons-codec.version>
     </properties>
 
     <dependencyManagement>
@@ -129,6 +129,11 @@
                 <groupId>com.fasterxml.jackson.datatype</groupId>
                 <artifactId>jackson-datatype-jsr310</artifactId>
                 <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-codc</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>${commons-codec.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

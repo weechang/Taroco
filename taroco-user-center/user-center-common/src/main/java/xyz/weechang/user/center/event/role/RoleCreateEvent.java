@@ -2,9 +2,12 @@ package xyz.weechang.user.center.event.role;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import xyz.weechang.taroco.core.event.AuditableAbstractEvent;
-import xyz.weechang.taroco.core.model.AuditEntry;
+import xyz.weechang.taroco.core.common.event.AuditableAbstractEvent;
+import xyz.weechang.taroco.core.query.domain.AuditEntry;
+
+import java.util.List;
 
 /**
  * 说明：
@@ -13,24 +16,24 @@ import xyz.weechang.taroco.core.model.AuditEntry;
  * @version 2017/11/20 11:19.
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
-@AllArgsConstructor
 public class RoleCreateEvent extends AuditableAbstractEvent {
 
     private static final long serialVersionUID = 4917983558568684287L;
 
-    private String orgId;
-
-    private String roleName;
-
-    private String roleSign;
+    private String name;
 
     private String remark;
 
+    private List<String> menus;
+
     public RoleCreateEvent(
-            String id, AuditEntry auditEntry, String orgId,
-            String roleName, String roleSign, String remark) {
+            String id, AuditEntry auditEntry, String name,
+            String remark, List<String> menus) {
         super(id, auditEntry);
-        new RoleCreateEvent(orgId, roleName, roleSign, remark);
+        this.name = name;
+        this.remark = remark;
+        this.menus = menus;
     }
 }

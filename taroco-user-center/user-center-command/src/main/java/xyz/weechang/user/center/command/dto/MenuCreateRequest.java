@@ -6,6 +6,7 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Range;
+import xyz.weechang.user.center.enums.MenuType;
 
 import javax.validation.constraints.NotNull;
 
@@ -43,18 +44,11 @@ public class MenuCreateRequest {
     @ApiModelProperty("类型(0：目录   1：菜单   2：按钮)")
     @NotNull
     @Range(min = 0, max = 2)
-    private Integer type;
+    private MenuType type;
 
     @ApiModelProperty("菜单图标")
     @NotNull
     @NotEmpty
     @Length(min = 1, max = 255)
     private String icon;
-
-    @ApiModelProperty("排序")
-    @NotNull
-    private Integer orderNum;
-
-    @ApiModelProperty("ztree属性")
-    private Boolean open;
 }

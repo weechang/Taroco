@@ -2,8 +2,8 @@ package xyz.weechang.user.center.event.org;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import xyz.weechang.taroco.core.event.AuditableAbstractEvent;
-import xyz.weechang.taroco.core.model.AuditEntry;
+import xyz.weechang.taroco.core.common.event.AuditableAbstractEvent;
+import xyz.weechang.taroco.core.query.domain.AuditEntry;
 
 /**
  * 说明：
@@ -17,17 +17,13 @@ public class OrgUpdateEvent extends AuditableAbstractEvent{
 
     private static final long serialVersionUID = -3618294635402102769L;
 
-    private String code;
-
     private String name;
 
     private Integer orderNum;
 
     public OrgUpdateEvent(
-            String id, AuditEntry auditEntry, String code,
-            String name, Integer orderNum) {
+            String id, AuditEntry auditEntry, String name, Integer orderNum) {
         super(id, auditEntry);
-        this.code = code;
         this.name = name;
         this.orderNum = orderNum;
     }

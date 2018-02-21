@@ -4,6 +4,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * 说明：
  *
@@ -22,4 +24,10 @@ public class UserUpdateRequest {
 
     @ApiModelProperty("邮件")
     private String email;
+
+    @ApiModelProperty("角色")
+    private List<String> roles;
+
+    @ApiModelProperty("部门")
+    private List<String> orgs;
 }
