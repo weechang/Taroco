@@ -8,12 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import xyz.weechang.taroco.core.command.command.DeleteCommand;
 import xyz.weechang.taroco.core.common.controller.BaseController;
 import xyz.weechang.taroco.core.common.exception.BusinessException;
 import xyz.weechang.taroco.core.common.response.BaseResponse;
 import xyz.weechang.user.center.command.command.OrgUpdateCommand;
 import xyz.weechang.user.center.command.command.UserCreateCommand;
+import xyz.weechang.user.center.command.command.UserDeleteCommand;
 import xyz.weechang.user.center.command.command.UserUpdateCommand;
 import xyz.weechang.user.center.command.dto.UserCreateRequest;
 import xyz.weechang.user.center.command.dto.UserUpdateRequest;
@@ -67,18 +67,18 @@ public class UserController extends BaseController{
     }
 
     @ApiOperation("删除用户")
-    @DeleteMapping
+    @DeleteMapping(value = "/{id}", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @ResponseStatus(value = HttpStatus.ACCEPTED)
-    public BaseResponse delete(@PathVariable String id, Boolean logic){
+    public BaseResponse delete(@PathVariable String id, @RequestParam Boolean logic){
         log.debug("delete request received");
 
-        DeleteCommand command = new DeleteCommand(createAudit(), id, logic);
+        UserDeleteCommand command = new UserDeleteCommand(createAudit(), id, logic);
         UCError error = commandGateway.sendAndWait(command);
         if (error != null) {
             throw new BusinessException(error);
         }
 
-        log.debug(DeleteCommand.class.getSimpleName() + " sent to command gateway: user [{}] ", command.getId());
+        log.debug(UserDeleteCommand.class.getSimpleName() + " sent to command gateway: user [{}] ", command.getId());
         return BaseResponse.create();
     }
 }

@@ -8,8 +8,8 @@ import org.axonframework.commandhandling.model.AggregateIdentifier;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.spring.stereotype.Aggregate;
 import xyz.weechang.taroco.core.command.aggregate.BaseAggregate;
-import xyz.weechang.taroco.core.command.command.DeleteCommand;
 import xyz.weechang.user.center.command.command.MenuCreateCommand;
+import xyz.weechang.user.center.command.command.MenuDeleteCommand;
 import xyz.weechang.user.center.command.command.MenuUpdateCommand;
 import xyz.weechang.user.center.enums.MenuType;
 import xyz.weechang.user.center.event.menu.MenuCreateEvent;
@@ -66,7 +66,7 @@ public class Menu extends BaseAggregate{
         apply(event);
     }
 
-    public void delete(DeleteCommand command){
+    public void delete(MenuDeleteCommand command){
         MenuDeleteEvent event = new MenuDeleteEvent(command.getId(), command.getAuditEntry(), command.getLogic());
         apply(event);
     }

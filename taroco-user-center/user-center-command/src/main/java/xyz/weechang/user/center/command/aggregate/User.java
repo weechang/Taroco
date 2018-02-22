@@ -8,8 +8,8 @@ import org.axonframework.commandhandling.model.AggregateIdentifier;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.spring.stereotype.Aggregate;
 import xyz.weechang.taroco.core.command.aggregate.BaseAggregate;
-import xyz.weechang.taroco.core.command.command.DeleteCommand;
 import xyz.weechang.user.center.command.command.UserCreateCommand;
+import xyz.weechang.user.center.command.command.UserDeleteCommand;
 import xyz.weechang.user.center.command.command.UserUpdateCommand;
 import xyz.weechang.user.center.event.user.UserCreateEvent;
 import xyz.weechang.user.center.event.user.UserDeleteEvent;
@@ -63,7 +63,7 @@ public class User extends BaseAggregate {
         apply(event);
     }
 
-    public void delete(DeleteCommand command) {
+    public void delete(UserDeleteCommand command) {
         UserDeleteEvent event =  new UserDeleteEvent(command.getId(), command.getAuditEntry(), command.getLogic());
         apply(event);
     }
@@ -86,7 +86,7 @@ public class User extends BaseAggregate {
     }
 
     @EventSourcingHandler
-    public void on(DeleteCommand event) {
+    public void on(UserDeleteCommand event) {
         this.id = event.getId();
         if (event.getLogic()){
             super.deleted = true;

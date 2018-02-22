@@ -8,9 +8,9 @@ import org.axonframework.eventhandling.EventBus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-import xyz.weechang.taroco.core.command.command.DeleteCommand;
 import xyz.weechang.user.center.command.aggregate.User;
 import xyz.weechang.user.center.command.command.UserCreateCommand;
+import xyz.weechang.user.center.command.command.UserDeleteCommand;
 import xyz.weechang.user.center.command.command.UserUpdateCommand;
 
 /**
@@ -46,7 +46,7 @@ public class UserCommandHandler {
     }
 
     @CommandHandler
-    public void handle(DeleteCommand command) {
+    public void handle(UserDeleteCommand command) {
         Aggregate<User> user = userAggregateRepository.load(command.getId());
         user.execute(aggregateRoot -> {
             aggregateRoot.delete(command);

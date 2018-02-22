@@ -6,12 +6,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import xyz.weechang.taroco.core.command.command.DeleteCommand;
 import xyz.weechang.taroco.core.common.controller.BaseController;
 import xyz.weechang.taroco.core.common.exception.BusinessException;
 import xyz.weechang.taroco.core.common.response.BaseResponse;
 import xyz.weechang.user.center.command.command.RoleCreateCommand;
+import xyz.weechang.user.center.command.command.RoleDeleteCommand;
 import xyz.weechang.user.center.command.command.RoleUpdateCommand;
 import xyz.weechang.user.center.command.dto.RoleCreateRequest;
 import xyz.weechang.user.center.command.dto.RoleUpdateRequest;
@@ -61,14 +62,14 @@ public class RoleController extends BaseController{
     }
 
     @ApiOperation("删除角色")
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "/{id}", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @ResponseStatus(value = HttpStatus.ACCEPTED)
-    public BaseResponse update(@PathVariable String id, Boolean logic) {
+    public BaseResponse update(@PathVariable String id, @RequestParam Boolean logic) {
         log.debug("delete request received");
 
-        DeleteCommand command = new DeleteCommand(createAudit(), id, logic);
+        RoleDeleteCommand command = new RoleDeleteCommand(createAudit(), id, logic);
         commandGateway.sendAndWait(command);
-        log.debug(DeleteCommand.class.getSimpleName() + " sent to command gateway: org [{}] ", command.getId());
+        log.debug(RoleDeleteCommand.class.getSimpleName() + " sent to command gateway: org [{}] ", command.getId());
         return BaseResponse.create();
     }
 }

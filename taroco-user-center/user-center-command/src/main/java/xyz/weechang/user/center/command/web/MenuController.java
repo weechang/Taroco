@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import xyz.weechang.taroco.core.command.command.DeleteCommand;
 import xyz.weechang.taroco.core.common.controller.BaseController;
 import xyz.weechang.taroco.core.common.exception.BusinessException;
 import xyz.weechang.taroco.core.common.response.BaseResponse;
 import xyz.weechang.user.center.command.command.MenuCreateCommand;
+import xyz.weechang.user.center.command.command.MenuDeleteCommand;
 import xyz.weechang.user.center.command.command.MenuUpdateCommand;
 import xyz.weechang.user.center.command.command.OrgUpdateCommand;
 import xyz.weechang.user.center.command.dto.MenuCreateRequest;
@@ -64,18 +64,18 @@ public class MenuController extends BaseController{
     }
 
     @ApiOperation("删除目录")
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "/{id}", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @ResponseStatus(value = HttpStatus.ACCEPTED)
     public BaseResponse delete(@PathVariable String id, Boolean logic){
         log.debug("delete request received");
 
-        DeleteCommand command = new DeleteCommand(createAudit(), id, logic);
+        MenuDeleteCommand command = new MenuDeleteCommand(createAudit(), id, logic);
         UCError error = commandGateway.sendAndWait(command);
         if (error != null) {
             throw new BusinessException(error);
         }
 
-        log.debug(DeleteCommand.class.getSimpleName() + " sent to command gateway: menu [{}] ", command.getId());
+        log.debug(MenuDeleteCommand.class.getSimpleName() + " sent to command gateway: menu [{}] ", command.getId());
         return BaseResponse.create();
     }
 }

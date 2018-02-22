@@ -8,9 +8,9 @@ import org.axonframework.eventhandling.EventBus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-import xyz.weechang.taroco.core.command.command.DeleteCommand;
 import xyz.weechang.user.center.command.aggregate.Role;
 import xyz.weechang.user.center.command.command.RoleCreateCommand;
+import xyz.weechang.user.center.command.command.RoleDeleteCommand;
 import xyz.weechang.user.center.command.command.RoleUpdateCommand;
 
 /**
@@ -46,7 +46,7 @@ public class RoleCommandHandler {
     }
 
     @CommandHandler
-    public void handle(DeleteCommand command) {
+    public void handle(RoleDeleteCommand command) {
         Aggregate<Role> role = roleAggregateRepository.load(command.getId());
         role.execute(aggregateRoot -> {
             aggregateRoot.delete(command);

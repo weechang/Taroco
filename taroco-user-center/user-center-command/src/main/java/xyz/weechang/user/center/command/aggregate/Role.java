@@ -8,8 +8,8 @@ import org.axonframework.commandhandling.model.AggregateIdentifier;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.spring.stereotype.Aggregate;
 import xyz.weechang.taroco.core.command.aggregate.BaseAggregate;
-import xyz.weechang.taroco.core.command.command.DeleteCommand;
 import xyz.weechang.user.center.command.command.RoleCreateCommand;
+import xyz.weechang.user.center.command.command.RoleDeleteCommand;
 import xyz.weechang.user.center.command.command.RoleUpdateCommand;
 import xyz.weechang.user.center.event.role.RoleCreateEvent;
 import xyz.weechang.user.center.event.role.RoleDeleteEvent;
@@ -56,7 +56,7 @@ public class Role extends BaseAggregate {
         apply(event);
     }
 
-    public void delete(DeleteCommand command) {
+    public void delete(RoleDeleteCommand command) {
         RoleDeleteEvent event = new RoleDeleteEvent(
                 command.getId(), command.getAuditEntry(), command.getLogic());
         apply(event);

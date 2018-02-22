@@ -2,6 +2,7 @@ package xyz.weechang.user.center.event.menu;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import xyz.weechang.taroco.core.common.event.AuditableAbstractEvent;
 import xyz.weechang.taroco.core.query.domain.AuditEntry;
 
@@ -14,6 +15,7 @@ import xyz.weechang.taroco.core.query.domain.AuditEntry;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
+@NoArgsConstructor
 public class MenuDeleteEvent extends AuditableAbstractEvent {
     private static final long serialVersionUID = -7843090532088298652L;
 

@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import xyz.weechang.taroco.core.command.command.DeleteCommand;
 import xyz.weechang.taroco.core.common.controller.BaseController;
 import xyz.weechang.taroco.core.common.response.BaseResponse;
 import xyz.weechang.user.center.command.command.OrgCreateCommand;
+import xyz.weechang.user.center.command.command.OrgDeleteCommand;
 import xyz.weechang.user.center.command.command.OrgUpdateCommand;
 import xyz.weechang.user.center.command.dto.OrgCreateRequest;
 import xyz.weechang.user.center.command.dto.OrgUpdateRequest;
@@ -25,7 +25,7 @@ import xyz.weechang.user.center.command.dto.OrgUpdateRequest;
 @Slf4j
 @Api(tags = "org", description = "组织机构管理")
 @RestController
-@RequestMapping(value = "org", consumes = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "org")
 public class OrgController extends BaseController {
 
     @Autowired(required = false)
@@ -56,14 +56,14 @@ public class OrgController extends BaseController {
     }
 
     @ApiOperation("删除组织机构")
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "/{id}", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @ResponseStatus(value = HttpStatus.ACCEPTED)
-    public BaseResponse update(@PathVariable String id, Boolean logic) {
+    public BaseResponse update(@PathVariable String id, @RequestParam Boolean logic) {
         log.debug("delete request received");
 
-        DeleteCommand command = new DeleteCommand(createAudit(), id, logic);
+        OrgDeleteCommand command = new OrgDeleteCommand(createAudit(), id, logic);
         commandGateway.sendAndWait(command);
-        log.debug(DeleteCommand.class.getSimpleName() + " sent to command gateway: org [{}] ", command.getId());
+        log.debug(OrgDeleteCommand.class.getSimpleName() + " sent to command gateway: org [{}] ", command.getId());
         return BaseResponse.create();
     }
 }

@@ -8,8 +8,8 @@ import org.axonframework.commandhandling.model.AggregateIdentifier;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.spring.stereotype.Aggregate;
 import xyz.weechang.taroco.core.command.aggregate.BaseAggregate;
-import xyz.weechang.taroco.core.command.command.DeleteCommand;
 import xyz.weechang.user.center.command.command.OrgCreateCommand;
+import xyz.weechang.user.center.command.command.OrgDeleteCommand;
 import xyz.weechang.user.center.command.command.OrgUpdateCommand;
 import xyz.weechang.user.center.event.org.OrgCreateEvent;
 import xyz.weechang.user.center.event.org.OrgDeleteEvent;
@@ -57,7 +57,7 @@ public class Org extends BaseAggregate {
         apply(event);
     }
 
-    public void delete(DeleteCommand command) {
+    public void delete(OrgDeleteCommand command) {
        OrgDeleteEvent event = new OrgDeleteEvent(
                 command.getId(), command.getAuditEntry(), command.getLogic());
         apply(event);

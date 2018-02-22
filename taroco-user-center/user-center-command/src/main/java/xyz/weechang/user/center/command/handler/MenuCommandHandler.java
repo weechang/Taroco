@@ -8,9 +8,9 @@ import org.axonframework.eventhandling.EventBus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-import xyz.weechang.taroco.core.command.command.DeleteCommand;
 import xyz.weechang.user.center.command.aggregate.Menu;
 import xyz.weechang.user.center.command.command.MenuCreateCommand;
+import xyz.weechang.user.center.command.command.MenuDeleteCommand;
 import xyz.weechang.user.center.command.command.MenuUpdateCommand;
 
 /**
@@ -46,7 +46,7 @@ public class MenuCommandHandler {
     }
 
     @CommandHandler
-    public void on(DeleteCommand command){
+    public void on(MenuDeleteCommand command){
         Aggregate<Menu> menu = menuAggregateRepository.load(command.getId());
         if (command.getLogic()){
             menu.execute(aggregateRoot -> {

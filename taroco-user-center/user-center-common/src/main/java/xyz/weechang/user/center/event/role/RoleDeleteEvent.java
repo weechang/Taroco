@@ -2,6 +2,7 @@ package xyz.weechang.user.center.event.role;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import xyz.weechang.taroco.core.common.event.AuditableAbstractEvent;
 import xyz.weechang.taroco.core.query.domain.AuditEntry;
 
@@ -13,6 +14,7 @@ import xyz.weechang.taroco.core.query.domain.AuditEntry;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
+@NoArgsConstructor
 public class RoleDeleteEvent extends AuditableAbstractEvent {
     private static final long serialVersionUID = -345544909100121688L;
 
