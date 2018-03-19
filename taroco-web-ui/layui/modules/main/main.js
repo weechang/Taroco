@@ -39,33 +39,6 @@ layui.use(['form','element','layer','jquery'],function(){
     $(".panel a").click(function(){
         parent.addTab($(this));
     })
-    //系统基本参数
-    if(window.sessionStorage.getItem("systemParameter")){
-        var systemParameter = JSON.parse(window.sessionStorage.getItem("systemParameter"));
-        fillParameter(systemParameter);
-    }else{
-        $.ajax({
-            url : "../json/systemParameter.json",
-            type : "get",
-            dataType : "json",
-            success : function(data){
-                fillParameter(data);
-            }
-        })
-    }
-    //填充数据方法
-    function fillParameter(data){
-        //判断字段数据是否存在
-        function nullData(data){
-            if(data == '' || data == "undefined"){
-                return "未定义";
-            }else{
-                return data;
-            }
-        }
-        $(".version").text(nullData(data.version));      //当前版本
-        $(".author").text(nullData(data.author));        //开发作者
-    }
 
     //外部图标
     $.get(iconUrl,function(data){

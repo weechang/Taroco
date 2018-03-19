@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>用户中心-目录管理--TAROCO</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
+</head>
+<body style="padding:10px;">
+    <div class="layui-form">
+        <div class="layui-form-item">
+            <button class="layui-btn" id="addButton">新增下级目录</button>
+        </div>
+    </div>
+
+    <table id="table" lay-filter="table"></table>
+</body>
+
+<script type="text/javascript" src="../../layui/layui.js"></script>
+<script>
+    var baseUrl = "http://www.layui.com";
+    var table, layer, $;
+
+    layui.use(['table', 'layer'], function(){
+        table = layui.table;
+        layer = layui.layer;
+        $ = layui.$;
+        init();
+    });
+
+    function init () {
+        tableInit();
+        layerInit();
+    }
+
+    function tableInit () {
+        table.render({
+            elem: '#table'
+            ,height: 315
+            ,page: true
+            ,msg: "test"
+            ,cols: [[ //表头
+                {field: 'id', title: 'ID', fixed: 'left'}
+                ,{field: 'username', title: '目录名称'}
+                ,{field: 'sex', title: '目录路径'}
+                ,{field: 'city', title: '权限标志'}
+                ,{field: 'sign', title: '目录类型'}
+                ,{field: 'experience', title: '目录图标'}
+                ,{field: 'score', title: '评分'}
+                ,{field: 'classify', title: '职业'}
+                ,{field: 'wealth', title: '财富'}
+            ]]
+            ,data:[
+                {
+                    "id": "10001"
+                    ,"username": "杜甫"
+                    ,"sex": "男"
+                    ,"city": "浙江杭州"
+                    ,"sign": "人生恰似一场修行"
+                    ,"experience": "116"
+                    ,"score": "192.168.0.8"
+                    ,"classify": "108"
+                    ,"wealth": "2016-10-14"
+                }, {
+                    "id": "10002"
+                    ,"username": "李白"
+                    ,"sex": "男"
+                    ,"city": "浙江杭州"
+                    ,"sign": "人生恰似一场修行"
+                    ,"experience": "12"
+                    ,"score": "192.168.0.8"
+                    ,"classify": "106"
+                    ,"wealth": "2016-10-14"
+                    ,"LAY_CHECKED": true
+                }
+            ]
+        });
+    }
+
+    function layerInit () {
+        $(document).on('click','#addButton',function(){
+            var menuEdit = layer.open({
+                title: "新增下级目录",
+                area: ['800px', '350px'],
+                type: 2,
+                content: 'menuedit.html',
+                btn: ['提交', '取消'],
+                yes: function(index, layero){
+                    layer.msg(index);
+                    layer.close(menuEdit);
+                },
+                btn2: function(index, layero){
+                },
+                cancel: function(){
+                },
+                btnAlign: 'c'
+            });
+        });
+    }
+</script>
+</html>

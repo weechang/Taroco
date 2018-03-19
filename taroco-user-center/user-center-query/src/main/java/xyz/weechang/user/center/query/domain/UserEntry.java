@@ -28,7 +28,7 @@ public class UserEntry extends BaseEntry {
     /**
      * 密码
      */
-    private String password;
+    private transient String password;
 
     /**
      * 电话

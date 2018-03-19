@@ -2,57 +2,29 @@ var $,tab,dataStr,layer;
 layui.config({
 	base : "modules/common/"
 }).extend({
-	"tabs" : "tabs"
+	"bodyTab" : "bodyTab"
 })
-layui.use(['tabs','form','element','layer','jquery'],function(){
+layui.use(['bodyTab','form','element','layer','jquery'],function(){
 	var form = layui.form,
 		element = layui.element;
 		$ = layui.$;
-		layer = parent.layer === undefined ? layui.layer : top.layer;
-		tab = layui.tabs({
+    	layer = parent.layer === undefined ? layui.layer : top.layer;
+		tab = layui.bodyTab({
 			openTabNum : "50",  //最大可打开窗口数量
-			url : "json/navs.json" //获取菜单json地址
+			url : "test/menu1.json" //获取菜单json地址
 		});
 
 	//通过顶部菜单获取左侧二三级菜单   注：此处只做演示之用，实际开发中通过接口传参的方式获取导航数据
-	function getData(json){
+	function getData(){
 		$.getJSON(tab.tabConfig.url,function(data){
-			if(json == "contentManagement"){
-				dataStr = data.contentManagement;
-				//重新渲染左侧菜单
-				tab.render();
-			}else if(json == "memberCenter"){
-				dataStr = data.memberCenter;
-				//重新渲染左侧菜单
-				tab.render();
-			}else if(json == "systemeSttings"){
-				dataStr = data.systemeSttings;
-				//重新渲染左侧菜单
-				tab.render();
-			}else if(json == "seraphApi"){
-                dataStr = data.seraphApi;
-                //重新渲染左侧菜单
-                tab.render();
-            }
+        dataStr = data;
+        //重新渲染左侧菜单
+        tab.render();
 		})
 	}
-	//页面加载时判断左侧菜单是否显示
-	//通过顶部菜单获取左侧菜单
-	$(".topLevelMenus li,.mobileTopLevelMenus dd").click(function(){
-		if($(this).parents(".mobileTopLevelMenus").length != "0"){
-			$(".topLevelMenus li").eq($(this).index()).addClass("layui-this").siblings().removeClass("layui-this");
-		}else{
-			$(".mobileTopLevelMenus dd").eq($(this).index()).addClass("layui-this").siblings().removeClass("layui-this");
-		}
-		$(".layui-layout-admin").removeClass("showMenu");
-		$("body").addClass("site-mobile");
-		getData($(this).data("menu"));
-		//渲染顶部窗口
-		tab.tabMove();
-	})
 
 	//通过顶部菜单获取左侧二三级菜单   注：此处只做演示之用，实际开发中通过接口传参的方式获取导航数据
-	getData("contentManagement");
+	getData();
 
 	// 添加新窗口
 	$("body").on("click",".layui-nav .layui-nav-item a:not('.mobileTopLevelMenus .layui-nav-item a')",function(){
@@ -63,17 +35,6 @@ layui.use(['tabs','form','element','layer','jquery'],function(){
 		}
 		$(this).parent("li").siblings().removeClass("layui-nav-itemed");
 	})
-
-	//清除缓存
-	$(".clearCache").click(function(){
-		window.sessionStorage.clear();
-        window.localStorage.clear();
-        var index = layer.msg('清除缓存中，请稍候',{icon: 16,time:false,shade:0.8});
-        setTimeout(function(){
-            layer.close(index);
-            layer.msg("缓存清除成功！");
-        },1000);
-    })
 
 	//刷新后还原打开的窗口
     if(cacheStr == "true") {
@@ -100,12 +61,12 @@ layui.use(['tabs','form','element','layer','jquery'],function(){
                 //定位到刷新前的窗口
                 if (curmenu != "undefined") {
                     if (curmenu == '' || curmenu == "null") {  //定位到后台首页
-                        element.tabChange("tabs", '');
+                        element.tabChange("bodyTab", '');
                     } else if (JSON.parse(curmenu).title == menu[i].title) {  //定位到刷新前的页面
-                        element.tabChange("tabs", menu[i].layId);
+                        element.tabChange("bodyTab", menu[i].layId);
                     }
                 } else {
-                    element.tabChange("tabs", menu[menu.length - 1].layId);
+                    element.tabChange("bodyTab", menu[menu.length - 1].layId);
                 }
             }
             //渲染顶部窗口

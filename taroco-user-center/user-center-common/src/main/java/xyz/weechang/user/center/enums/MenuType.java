@@ -10,7 +10,7 @@ public enum MenuType {
     MENU("目录"),
     ITEM("菜单"),
     BUTTON("按钮"),
-    TAB("tab");
+    TAB("面板");
 
     private String type;
 

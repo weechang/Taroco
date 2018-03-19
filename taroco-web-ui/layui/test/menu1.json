@@ -1,0 +1,25 @@
+[
+  {
+    "title": "用户系统",
+    "icon": "&#xe613;",
+    "spread": false,
+    "children": [
+      {
+        "title": "目录管理",
+        "href": "modules/user-center/menu.html"
+      },
+      {
+        "title": "组织机构",
+        "href": "modules/user-center/org.html"
+      },
+      {
+        "title": "角色管理",
+        "href": "modules/user-center/role.html"
+      },
+      {
+        "title": "用户管理",
+        "href": "modules/user-center/user.html"
+      }
+    ]
+  }
+]

@@ -3,16 +3,19 @@
 <head>
 	<meta charset="utf-8">
 	<title>首页--TAROCO</title>
-	<meta name="renderer" content="webkit">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="format-detection" content="telephone=no">
 	<link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
-	<link rel="stylesheet" href="../common/public.css" media="all" />
+	<style>
+		.panel_box{ margin-bottom:5px;}
+		.panel{ text-align:center; height:90px;}
+		.panel_box a{display:block; border-radius:5px; overflow:hidden; height:80px; background-color:#f2f2f2 !important; }
+		.panel_icon{ width:40%; display: inline-block; line-height:80px; float:left; position:relative; height:100%;}
+		.panel_icon i{ font-size:40px !important; color:#fff; display: inline-block;}
+		.panel_word{ width:60%; display: inline-block; float:right; margin:13px 0 14px; }
+		.panel_word span{ font-size:25px; display:block; height:34px; }
+	</style>
 </head>
-<body class="childrenBody">
+<body style="padding: 10px">
 	<blockquote class="layui-elem-quote layui-bg-green">
 		<div id="nowTime"></div>
 	</blockquote>

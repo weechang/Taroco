@@ -1,8 +1,9 @@
-/**
- * @author weecahng
- * @time 2018-2-14 14:02:52
- * @description tab标签管理
- */
+/*
+	@Author: 驊驊龔頾
+	@Time: 2017-10
+	@Tittle: bodyTab
+	@Description: 点击对应按钮添加新窗口
+*/
 var tabFilter,menu=[],liIndex,curNav,delMenu,
     changeRefreshStr = window.sessionStorage.getItem("changeRefresh");
 layui.define(["element","jquery"],function(exports){
@@ -12,7 +13,7 @@ layui.define(["element","jquery"],function(exports){
 		Tab = function(){
 			this.tabConfig = {
 				openTabNum : undefined,  //最大可打开窗口数量
-				tabFilter : "tabs",  //添加窗口的filter
+				tabFilter : "bodyTab",  //添加窗口的filter
 				url : undefined  //获取菜单json地址
 			}
 		};
@@ -147,7 +148,7 @@ layui.define(["element","jquery"],function(exports){
 			//已打开的窗口中不存在
 			if(that.hasTab(_this.find("cite").text()) == -1 && _this.siblings("dl.layui-nav-child").length == 0){
 				if($(".layui-tab-title.top_tab li").length == openTabNum){
-					layer.msg('系统已限制窗口打开数为'+openTabNum+'个！');
+					layer.msg('只能同时打开'+openTabNum+'个选项卡哦。不然系统会卡的！');
 					return;
 				}
 				tabIdIndex++;
@@ -184,6 +185,97 @@ layui.define(["element","jquery"],function(exports){
 			}
 		}
 	}
+
+	//顶部窗口移动
+	Tab.prototype.tabMove = function(){
+		// $(window).on("resize",function(event){
+		// 	var topTabsBox = $("#top_tabs_box"),
+		// 		topTabsBoxWidth = $("#top_tabs_box").width(),
+		// 		topTabs = $("#top_tabs"),
+		// 		topTabsWidth = $("#top_tabs").width(),
+		// 		tabLi = topTabs.find("li.layui-this"),
+		// 		top_tabs = document.getElementById("top_tabs"),
+		// 		event = event || window.event;
+    //
+		// 	if(topTabsWidth > topTabsBoxWidth){
+		// 		if(tabLi.position().left > topTabsBoxWidth || tabLi.position().left+topTabsBoxWidth > topTabsWidth){
+		// 			topTabs.css("left",topTabsBoxWidth-topTabsWidth);
+		// 		}else{
+		// 			topTabs.css("left",-tabLi.position().left);
+		// 		}
+		// 		//拖动效果
+		// 		var flag = false;
+		// 		var cur = {
+		// 		    x:0,
+		// 		    y:0
+		// 		}
+		// 		var nx,dx,x ;
+		// 		function down(){
+		// 		    flag = true;
+		// 		    var touch ;
+		// 		    if(event.touches){
+		// 		        touch = event.touches[0];
+		// 		    }else {
+		// 		        touch = event;
+		// 		    }
+		// 		    cur.x = touch.clientX;
+		// 		    dx = top_tabs.offsetLeft;
+		// 		}
+		// 		function move(){
+		// 			var self = this;
+     //                if(flag){
+		// 				window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+		// 		        var touch ;
+		// 		        if(event.touches){
+		// 		            touch = event.touches[0];
+		// 		        }else {
+		// 		            touch = event;
+		// 		        }
+		// 		        nx = touch.clientX - cur.x;
+		// 		        x = dx+nx;
+		// 		        if(x > 0){
+		// 		        	x = 0;
+		// 		        }else{
+		// 		        	 if(x < topTabsBoxWidth-topTabsWidth){
+		// 		        	 	x = topTabsBoxWidth-topTabsWidth;
+		// 		        	 }else{
+		// 		        	 	x = dx+nx;
+		// 		        	 }
+		// 		        }
+		// 		        top_tabs.style.left = x +"px";
+		// 		        //阻止页面的滑动默认事件
+		// 		        document.addEventListener("touchmove",function(){
+		// 		            event.preventDefault();
+		// 		        },false);
+		// 		    }
+		// 		}
+		// 		//鼠标释放时候的函数
+		// 		function end(){
+		// 		    flag = false;
+		// 		}
+		// 		//pc端拖动效果
+		// 		topTabs.on("mousedown",down);
+		// 		topTabs.on("mousemove",move);
+		// 		$(document).on("mouseup",end);
+		// 		//移动端拖动效果
+		// 		topTabs.on("touchstart",down);
+		// 		topTabs.on("touchmove",move);
+		// 		topTabs.on("touchend",end);
+		// 	}else{
+		// 		//移除pc端拖动效果
+		// 		topTabs.off("mousedown",down);
+		// 		topTabs.off("mousemove",move);
+		// 		topTabs.off("mouseup",end);
+		// 		//移除移动端拖动效果
+		// 		topTabs.off("touchstart",down);
+		// 		topTabs.off("touchmove",move);
+		// 		topTabs.off("touchend",end);
+		// 		topTabs.removeAttr("style");
+		// 		return false;
+		// 	}
+		// }).resize();
+	}
+
     //切换后获取当前窗口的内容
 	$("body").on("click",".top_tab li",function(){
 		var curmenu = '';
@@ -235,7 +327,7 @@ layui.define(["element","jquery"],function(exports){
             menu.splice((liIndex - 1), 1);
             window.sessionStorage.setItem("menu", JSON.stringify(menu));
         }
-		element.tabDelete("tabs",$(this).parent("li").attr("lay-id")).init();
+		element.tabDelete("bodyTab",$(this).parent("li").attr("lay-id")).init();
 		bodyTab.tabMove();
 	})
 
@@ -247,6 +339,8 @@ layui.define(["element","jquery"],function(exports){
 			setTimeout(function(){
 				$(".refresh").addClass("refreshThis");
 			},2000)
+		}else{
+			layer.msg("您点击的速度超过了服务器的响应速度，还是等两秒再刷新吧！");
 		}
 	})
 
@@ -256,7 +350,7 @@ layui.define(["element","jquery"],function(exports){
 			var menu = JSON.parse(window.sessionStorage.getItem("menu"));
 			$("#top_tabs li").each(function(){
 				if($(this).attr("lay-id") != '' && !$(this).hasClass("layui-this")){
-					element.tabDelete("tabs",$(this).attr("lay-id")).init();
+					element.tabDelete("bodyTab",$(this).attr("lay-id")).init();
 					//此处将当前窗口重新获取放入session，避免一个个删除来回循环造成的不必要工作量
 					for(var i=0;i<menu.length;i++){
 						if($("#top_tabs li.layui-this cite").text() == menu[i].title){
@@ -269,12 +363,14 @@ layui.define(["element","jquery"],function(exports){
 		}else if($("#top_tabs li.layui-this cite").text()=="后台首页" && $("#top_tabs li").length>1){
 			$("#top_tabs li").each(function(){
 				if($(this).attr("lay-id") != '' && !$(this).hasClass("layui-this")){
-					element.tabDelete("tabs",$(this).attr("lay-id")).init();
+					element.tabDelete("bodyTab",$(this).attr("lay-id")).init();
 					window.sessionStorage.removeItem("menu");
 					menu = [];
 					window.sessionStorage.removeItem("curmenu");
 				}
 			})
+		}else{
+			layer.msg("没有可以关闭的窗口了@_@");
 		}
 		//渲染顶部窗口
 		tab.tabMove();
@@ -284,19 +380,21 @@ layui.define(["element","jquery"],function(exports){
 		if($("#top_tabs li").length > 1){
 			$("#top_tabs li").each(function(){
 				if($(this).attr("lay-id") != ''){
-					element.tabDelete("tabs",$(this).attr("lay-id")).init();
+					element.tabDelete("bodyTab",$(this).attr("lay-id")).init();
 					window.sessionStorage.removeItem("menu");
 					menu = [];
 					window.sessionStorage.removeItem("curmenu");
 				}
 			})
+		}else{
+			layer.msg("没有可以关闭的窗口了@_@");
 		}
 		//渲染顶部窗口
 		tab.tabMove();
 	})
 
-	var tabs = new Tab();
-	exports("tabs",function(option){
-		return tabs.set(option);
+	var bodyTab = new Tab();
+	exports("bodyTab",function(option){
+		return bodyTab.set(option);
 	});
 })
