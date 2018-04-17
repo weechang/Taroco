@@ -11,9 +11,9 @@ import xyz.weechang.user.center.query.domain.UserEntry;
  * @author zhangwei
  * @version 2017/11/5 20:28.
  */
+@Transactional(readOnly = true)
 public interface UserDao extends MongoBaseDao<UserEntry, String> {
 
-    @Transactional(readOnly = true)
     @Query(value = "{'username':?0, 'deleted':false}" ,count = true)
     int countByUsername(String username);
 

@@ -36,16 +36,34 @@ public class User extends BaseAggregate {
     @AggregateIdentifier
     private String id;
 
+    /**
+     * 用户名
+     */
     private String username;
 
+    /**
+     * 密码
+     */
     private String password;
 
+    /**
+     * 电话号码
+     */
     private String phone;
 
+    /**
+     * email
+     */
     private String email;
 
+    /**
+     * 角色
+     */
     private List<String> roles;
 
+    /**
+     * 部门
+     */
     private List<String> orgs;
 
     public User(UserCreateCommand command) {

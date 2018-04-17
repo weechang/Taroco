@@ -36,18 +36,39 @@ public class Menu extends BaseAggregate{
     @AggregateIdentifier
     private String id;
 
+    /**
+     * 上级id
+     */
     private String parentId;
 
+    /***
+     * 目录名
+     */
     private String name;
 
+    /**
+     * 目录uri
+     */
     private String uri;
 
+    /**
+     * 权限
+     */
     private String perms;
 
+    /**
+     * 目录类型
+     */
     private MenuType type = MenuType.MENU;
 
+    /**
+     * 目录icon
+     */
     private String icon;
 
+    /**
+     * 目录排序
+     */
     private Integer orderNum = 1;
 
     public Menu(MenuCreateCommand command) {

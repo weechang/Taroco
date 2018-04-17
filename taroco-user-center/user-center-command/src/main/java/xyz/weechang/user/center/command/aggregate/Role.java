@@ -36,10 +36,19 @@ public class Role extends BaseAggregate {
     @AggregateIdentifier
     private String id;
 
+    /**
+     * 角色名
+     */
     private String name;
 
+    /**
+     * 角色备注
+     */
     private String remark;
 
+    /**
+     * 角色目录
+     */
     private List<String> menus;
 
     public Role(RoleCreateCommand command) {

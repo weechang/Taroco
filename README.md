@@ -16,30 +16,20 @@
 
 ``` lua
 Taroco
-├── （暂未开发）taroco-auth -- 授权系统
-├── taroco-cloud -- spring cloud 微服务相关基础组件
-|    ├── （暂未开发）cloud-admin -- 服务监控
-|    ├── cloud-api-gateway -- 服务网关
-|    ├── cloud-circuit-breaker -- 服务容错保护
-|    ├── cloud-config -- 分布式配置中心
-|    ├── cloud-registry -- 服务注册中心
-├── （已完成）taroco-common -- 项目基础服务组件
+├── taroco-config -- 分布式配置中心
+├── taroco-registry -- 服务注册中心
+├── taroco-gateway -- 服务网关
+├── taroco-breaker -- 服务容错保护
+├── taroco-common -- 项目基础服务组件
 |    ├── taroco-core -- 核心组件封装
+|    ├── taroco-monitor -- 应用监控
+|    ├── taroco-log -- 统一日志
 |    ├── taroco-service -- 服务组件封装
-├── （暂未开发）taroco-message-center --消息中心
-|    ├── message-center-api -- 消息中心API
-|    ├── message-center-websocket -- 消息中心websocket实现
-├── （暂未开发）taroco-oss --存储组件
-|    ├── （阿里云，七牛）
-├── （暂未开发）taroco-pay --支付中心
-|    ├── （支付宝，微信，银联）
-├── （进行中）taroco-user-center -- 用户中心
+├── taroco-user-center -- 用户中心
 |    ├── user-center-command -- 用户命令端
 |    ├── user-center-common -- 用户公用
 |    ├── user-center-query -- 用户查询端
-├── taroco-web-ui -- 前端代码
-|    ├── （进行中）layui -- layui版本
-|    ├── （暂未开发）vue-ui -- vue版本
+├── taroco-oauth2 -- 用户授权
 ```
 
 ## 后端技术

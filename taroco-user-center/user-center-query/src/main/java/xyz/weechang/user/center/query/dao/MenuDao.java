@@ -14,9 +14,9 @@ import java.util.List;
  * @author zhangwei
  * @version 2017/11/5 20:24.
  */
+@Transactional(readOnly = true)
 public interface MenuDao extends MongoBaseDao<MenuEntry, String> {
 
-    @Transactional(readOnly = true)
     @Query(value = "{'parentId':?0, 'name':?1, 'deleted':false}" ,count = true)
     int countByParentAndName(String parentId, String name);
 

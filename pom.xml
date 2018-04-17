@@ -7,13 +7,13 @@
     <artifactId>taroco</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <modules>
-        <module>taroco-cloud</module>
+        <module>taroco-config</module>
+        <module>taroco-registry</module>
+        <module>taroco-gateway</module>
+        <module>taroco-breaker</module>
         <module>taroco-common</module>
-        <module>taroco-message-center</module>
-        <module>taroco-pay</module>
         <module>taroco-user-center</module>
-        <module>taroco-oss</module>
-        <module>taroco-auth</module>
+        <module>taroco-oauth2</module>
     </modules>
     <packaging>pom</packaging>
 

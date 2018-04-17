@@ -14,9 +14,9 @@ import java.util.List;
  * @author zhangwei
  * @version 2017/11/5 20:27.
  */
+@Transactional(readOnly = true)
 public interface RoleDao extends MongoBaseDao<RoleEntry, String> {
 
-    @Transactional(readOnly = true)
     @Query(value = "{'name':?0, 'deleted':false}" ,count = true)
     int countByName(String name);
 

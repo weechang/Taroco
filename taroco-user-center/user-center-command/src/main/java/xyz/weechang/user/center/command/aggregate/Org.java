@@ -35,12 +35,24 @@ public class Org extends BaseAggregate {
     @AggregateIdentifier
     private String id;
 
+    /**
+     * 上级id
+     */
     private String parentId;
 
+    /**
+     * 部门code
+     */
     private String code;
 
+    /**
+     * 部门名称
+     */
     private String name;
 
+    /**
+     * 排序
+     */
     private Integer orderNum = 1;
 
     public Org(OrgCreateCommand command) {

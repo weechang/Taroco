@@ -14,9 +14,9 @@ import java.util.List;
  * @author zhangwei
  * @version 2017/11/5 20:26.
  */
+@Transactional(readOnly = true)
 public interface OrgDao extends MongoBaseDao<OrgEntry, String> {
 
-    @Transactional(readOnly = true)
     @Query(value = "{'parentId':?0, 'name':?1, 'deleted':false}" ,count = true)
     int findCountByParentAndName(String parentId, String name);
 
