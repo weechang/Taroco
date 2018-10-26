@@ -1,14 +1,10 @@
 package io.github.weechang.moreco.sys.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.github.weechang.weechang.moreco.query.domain.BaseEntry;
+import io.github.weechang.weechang.moreco.base.BaseEntry;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.data.annotation.Id;
-
-import javax.validation.constraints.NotNull;
-import java.util.Date;
-import java.util.List;
 
 /**
  * 系统用户

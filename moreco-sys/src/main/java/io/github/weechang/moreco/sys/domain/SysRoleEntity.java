@@ -1,6 +1,6 @@
 package io.github.weechang.moreco.sys.domain;
 
-import io.github.weechang.weechang.moreco.query.domain.BaseEntry;
+import io.github.weechang.weechang.moreco.base.BaseEntry;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.data.annotation.Id;

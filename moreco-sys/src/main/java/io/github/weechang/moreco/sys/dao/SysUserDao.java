@@ -1,7 +1,7 @@
 package io.github.weechang.moreco.sys.dao;
 
 import io.github.weechang.moreco.sys.domain.SysUserEntity;
-import io.github.weechang.weechang.moreco.query.dao.JpaDao;
+import io.github.weechang.weechang.moreco.base.dao.JpaDao;
 import org.springframework.data.repository.NoRepositoryBean;
 
 /**
