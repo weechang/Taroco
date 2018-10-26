@@ -1,9 +1,13 @@
 package io.github.weechang.moreco.sys.dao;
 
+import io.github.weechang.weechang.moreco.query.dao.JapDao;
+import org.springframework.data.repository.NoRepositoryBean;
+
 /**
  * @author zhangwei
  * date 2018/10/26
  * time 18:09
  */
-public interface SysDictDao {
+@NoRepositoryBean
+public interface SysDictDao<SysDictEntity, Long> extends JapDao {
 }
