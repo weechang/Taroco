@@ -3,30 +3,26 @@ package io.github.weechang.moreco.sys.domain;
 import io.github.weechang.weechang.moreco.query.domain.BaseEntry;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springframework.data.annotation.Id;
 
 /**
- * 用户与角色对应关系
- *
  * @author zhangwei
  * date 2018/10/26
- * time 17:56
+ * time 18:18
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class SysUserRoleEntity extends BaseEntry {
-    private static final long serialVersionUID = -4753510506298775667L;
+public class SysUserDeptEntity extends BaseEntry {
+    private static final long serialVersionUID = 1717440330547599478L;
 
-    @Id
     private Long id;
 
     /**
-     * 用户ID
+     * 用户id
      */
     private Long userId;
 
     /**
-     * 角色ID
+     * 部门id
      */
-    private Long roleId;
+    private Long deptId;
 }

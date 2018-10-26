@@ -1,6 +1,7 @@
 package io.github.weechang.moreco.sys.dao;
 
-import io.github.weechang.weechang.moreco.query.dao.JapDao;
+import io.github.weechang.moreco.sys.domain.SysRoleMenuEntity;
+import io.github.weechang.weechang.moreco.query.dao.JpaDao;
 import org.springframework.data.repository.NoRepositoryBean;
 
 /**
@@ -9,5 +10,5 @@ import org.springframework.data.repository.NoRepositoryBean;
  * time 18:11
  */
 @NoRepositoryBean
-public interface SysRoleMenuDao<SysRoleMenuEntity, Long> extends JapDao {
+public interface SysRoleMenuDao extends JpaDao<SysRoleMenuEntity, Long> {
 }

@@ -15,7 +15,7 @@ import java.io.Serializable;
  * time 17:01
  */
 @NoRepositoryBean
-public interface JapDao<T extends BaseEntry, ID extends Serializable> extends BaseDao<T, ID> {
+public interface JpaDao<T extends BaseEntry, ID extends Serializable> extends BaseDao<T, ID> {
 
     @Override
     @Query("update #{#entityName} e set e.deleted = true ")

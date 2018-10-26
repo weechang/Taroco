@@ -3,6 +3,7 @@ package io.github.weechang.moreco.sys.domain;
 import io.github.weechang.weechang.moreco.query.domain.BaseEntry;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.data.annotation.Id;
 
 /**
  * 角色
@@ -15,4 +16,17 @@ import lombok.EqualsAndHashCode;
 @Data
 public class SysRoleEntity extends BaseEntry {
     private static final long serialVersionUID = -6369262328565896728L;
+
+    @Id
+    private Long id;
+
+    /**
+     * 角色名称
+     */
+    private String roleName;
+
+    /**
+     * 备注
+     */
+    private String remark;
 }

@@ -15,4 +15,16 @@ import lombok.EqualsAndHashCode;
 @Data
 public class SysRoleDeptEntity extends BaseEntry {
     private static final long serialVersionUID = -8120106714249885343L;
+
+    private Long id;
+
+    /**
+     * 角色ID
+     */
+    private Long roleId;
+
+    /**
+     * 部门ID
+     */
+    private Long deptId;
 }
