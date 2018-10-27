@@ -1,0 +1,3 @@
+#Ìí¼Ó autoconfigure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+xyz.weechang.taroco.core.common.config.ExceptionAutoConfig

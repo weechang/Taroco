@@ -1,9 +1,10 @@
 package io.github.weechang.moreco.spring.boot.starter.exception;
 
 
-import io.github.weechang.weechang.moreco.base.error.DefaultError;
-import io.github.weechang.weechang.moreco.base.error.IError;
-import io.github.weechang.weechang.moreco.base.response.BaseResponse;
+import io.github.weechang.moreco.base.error.DefaultError;
+import io.github.weechang.moreco.base.error.IError;
+import io.github.weechang.moreco.base.exception.BusinessException;
+import io.github.weechang.moreco.base.response.BaseResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;

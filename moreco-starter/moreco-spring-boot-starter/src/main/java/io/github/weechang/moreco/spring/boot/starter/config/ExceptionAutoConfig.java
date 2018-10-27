@@ -1,6 +1,6 @@
 package io.github.weechang.moreco.spring.boot.starter.config;
 
-import io.github.weechang.weechang.moreco.base.exception.CommonExceptionHandler;
+import io.github.weechang.moreco.spring.boot.starter.exception.CommonExceptionHandler;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

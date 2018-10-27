@@ -8,8 +8,15 @@
     <version>0.0.1-SNAPSHOT</version>
     <modules>
         <module>moreco-base</module>
+        <module>moreco-security</module>
         <module>moreco-starter</module>
-        <module>moreco-sys</module>
+        <module>moreco-rbac</module>
+        <module>moreco-cloud</module>
+        <module>moreco-oss</module>
+        <module>moreco-message</module>
+        <module>moreco-monitor</module>
+        <module>moreco-ops</module>
+        <module>moreco-demo</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -24,13 +31,12 @@
         <jdk.version>1.8</jdk.version>
         <compiler.plugin.version>2.5.1</compiler.plugin.version>
 
-        <axon.version>3.0.4</axon.version>
         <spring-boot.version>1.5.9.RELEASE</spring-boot.version>
-        <spring-cloud.version>Dalston.RELEASE</spring-cloud.version>
         <spring-data-releasetrain.version>Ingalls-SR3</spring-data-releasetrain.version>
-        <mysql.version>5.1.46</mysql.version>
         <springfox.version>2.6.1</springfox.version>
         <commons-codec.version>1.4</commons-codec.version>
+        <commons.lang.version>2.6</commons.lang.version>
+        <shiro.version>1.4.0</shiro.version>
     </properties>
 
     <dependencyManagement>
@@ -39,6 +45,11 @@
             <dependency>
                 <groupId>io.github.weechang</groupId>
                 <artifactId>moreco-base</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.weechang</groupId>
+                <artifactId>moreco-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -50,14 +61,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!--spring cloud-->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
             <!--spring data-->
             <dependency>
                 <groupId>org.springframework.data</groupId>
@@ -65,12 +68,6 @@
                 <version>${spring-data-releasetrain.version}</version>
                 <scope>import</scope>
                 <type>pom</type>
-            </dependency>
-            <!--mysql-->
-            <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>${mysql.version}</version>
             </dependency>
             <!--swagger -->
             <dependency>
@@ -88,38 +85,20 @@
                 <artifactId>springfox-data-rest</artifactId>
                 <version>${springfox.version}</version>
             </dependency>
-            <!--axon-->
+
+            <!--shiro-->
             <dependency>
-                <groupId>org.axonframework</groupId>
-                <artifactId>axon-spring-boot-starter</artifactId>
-                <version>${axon.version}</version>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-core</artifactId>
+                <version>${shiro.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.axonframework</groupId>
-                <artifactId>axon-spring</artifactId>
-                <version>${axon.version}</version>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-spring</artifactId>
+                <version>${shiro.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.axonframework</groupId>
-                <artifactId>axon-core</artifactId>
-                <version>${axon.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.axonframework</groupId>
-                <artifactId>axon-amqp</artifactId>
-                <version>${axon.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.axonframework</groupId>
-                <artifactId>axon-mongo</artifactId>
-                <version>${axon.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.axonframework</groupId>
-                <artifactId>axon-test</artifactId>
-                <version>${axon.version}</version>
-                <scope>test</scope>
-            </dependency>
+
+            <!--others-->
             <dependency>
                 <groupId>com.fasterxml.jackson.datatype</groupId>
                 <artifactId>jackson-datatype-jsr310</artifactId>
@@ -130,7 +109,37 @@
                 <artifactId>commons-codec</artifactId>
                 <version>${commons-codec.version}</version>
             </dependency>
+            <dependency>
+                <groupId>commons-lang</groupId>
+                <artifactId>commons-lang</artifactId>
+                <version>${commons.lang.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <!-- 阿里云maven仓库 -->
+    <repositories>
+        <repository>
+            <id>public</id>
+            <name>aliyun nexus</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>public</id>
+            <name>aliyun nexus</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 
 </project>

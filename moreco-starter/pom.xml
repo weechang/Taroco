@@ -13,7 +13,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>moreco-spring-boot-starter</module>
-    </modules>
+        <module>moreco-spring-cloud-starter</module>
+     </modules>
 
 
 </project>

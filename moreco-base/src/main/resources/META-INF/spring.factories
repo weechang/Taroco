@@ -1,7 +1,3 @@
-#Ìí¼Ó autoconfigure
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-xyz.weechang.taroco.core.common.config.ExceptionAutoConfig
-
 # ÅÅ³ý autoconfigure
 spring.autoconfigure.exclude=\
 org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration,\
