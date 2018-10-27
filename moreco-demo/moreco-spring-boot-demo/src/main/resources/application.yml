@@ -18,4 +18,4 @@ logging:
   level: debug
   level.io.github.weechang.moreco: debug
   path: logs/
-  file: spring-boot-demo.log
+  file: bootDemo.log

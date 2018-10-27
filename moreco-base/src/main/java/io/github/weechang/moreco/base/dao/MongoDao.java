@@ -1,6 +1,6 @@
 package io.github.weechang.moreco.base.dao;
 
-import io.github.weechang.moreco.base.domain.BaseEntry;
+import io.github.weechang.moreco.base.domain.BaseDomain;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.CountQuery;
 import org.springframework.data.mongodb.repository.ExistsQuery;
@@ -17,7 +17,7 @@ import java.util.List;
  * date 2018/10/26
  * time 17:02
  */
-public interface MongoDao<T extends BaseEntry, ID extends Serializable> extends BaseDao<T, ID> {
+public interface MongoDao<T extends BaseDomain> extends BaseDao<T> {
 
     @Override
     @Transactional(readOnly = true)
@@ -27,7 +27,7 @@ public interface MongoDao<T extends BaseEntry, ID extends Serializable> extends 
     @Override
     @Transactional(readOnly = true)
     @Query("{'_id':?0, 'deleted':false}")
-    T findOne(ID id);
+    T findOne(Serializable id);
 
     @Override
     @Transactional(readOnly = true)
@@ -37,7 +37,7 @@ public interface MongoDao<T extends BaseEntry, ID extends Serializable> extends 
     @Override
     @Transactional(readOnly = true)
     @ExistsQuery("{'_id':?0, 'deleted':false}")
-    boolean exists(ID id);
+    boolean exists(Serializable id);
 
     @Override
     @Query("update #{#entityName} e set e.deleted = true ")

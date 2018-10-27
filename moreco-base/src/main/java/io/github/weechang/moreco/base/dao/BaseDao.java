@@ -1,6 +1,6 @@
 package io.github.weechang.moreco.base.dao;
 
-import io.github.weechang.moreco.base.domain.BaseEntry;
+import io.github.weechang.moreco.base.domain.BaseDomain;
 import io.github.weechang.moreco.base.domain.enums.YnEnums;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.repository.NoRepositoryBean;
@@ -17,10 +17,10 @@ import java.io.Serializable;
  * time 16:21
  */
 @NoRepositoryBean
-interface BaseDao<T extends BaseEntry, ID extends Serializable> extends PagingAndSortingRepository<T, ID> {
+public interface BaseDao<T extends BaseDomain> extends PagingAndSortingRepository<T, Serializable> {
 
     @Transactional
-    default void logicDelete(ID id){
+    default void logicDelete(Serializable id){
         T entity = findOne(id);
         logicDelete(entity);
     }

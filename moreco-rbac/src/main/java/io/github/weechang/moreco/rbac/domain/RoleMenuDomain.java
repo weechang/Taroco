@@ -1,0 +1,32 @@
+package io.github.weechang.moreco.rbac.domain;
+
+import io.github.weechang.moreco.base.domain.BaseDomain;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.springframework.data.annotation.Id;
+
+/**
+ * 角色与菜单对应关系
+ *
+ * @author zhangwei
+ * date 2018/10/26
+ * time 17:56
+ */
+@EqualsAndHashCode(callSuper = true)
+@Data
+public class RoleMenuDomain extends BaseDomain {
+    private static final long serialVersionUID = 17923510531021555L;
+
+    @Id
+    private Long id;
+
+    /**
+     * 角色ID
+     */
+    private Long roleId;
+
+    /**
+     * 菜单ID
+     */
+    private Long menuId;
+}

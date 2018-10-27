@@ -1,11 +1,9 @@
 package io.github.weechang.moreco.base.dao;
 
-import io.github.weechang.moreco.base.domain.BaseEntry;
+import io.github.weechang.moreco.base.domain.BaseDomain;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.io.Serializable;
 
 /**
  * JPA dao
@@ -15,7 +13,7 @@ import java.io.Serializable;
  * time 17:01
  */
 @NoRepositoryBean
-public interface JpaDao<T extends BaseEntry, ID extends Serializable> extends BaseDao<T, ID> {
+public interface JpaDao<T extends BaseDomain> extends BaseDao<T> {
 
     @Override
     @Query("update #{#entityName} e set e.deleted = true ")
