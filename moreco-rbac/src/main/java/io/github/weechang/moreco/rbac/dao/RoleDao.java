@@ -9,6 +9,5 @@ import org.springframework.data.repository.NoRepositoryBean;
  * date 2018/10/26
  * time 18:10
  */
-@NoRepositoryBean
 public interface RoleDao extends JpaDao<RoleDomain> {
 }

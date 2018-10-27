@@ -3,8 +3,9 @@ package io.github.weechang.moreco.rbac.domain;
 import io.github.weechang.moreco.base.domain.BaseDomain;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.jpa.repository.EntityGraph;
+import org.hibernate.annotations.DynamicUpdate;
+
+import javax.persistence.*;
 
 /**
  * 部门
@@ -16,14 +17,10 @@ import org.springframework.data.jpa.repository.EntityGraph;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
+@DynamicUpdate()
 public class DeptDomain extends BaseDomain {
     private static final long serialVersionUID = 1230574664359885255L;
 
-    /**
-     * 部门id
-     */
-    @Id
-    private Long id;
     /**
      * 上级部门ID，一级部门为0
      */

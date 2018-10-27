@@ -18,7 +18,7 @@ import java.io.Serializable;
  * date 2018/10/27
  * time 0:32
  */
-public class BaseServiceImpl<D extends BaseDao, T extends BaseDomain> implements BaseService<T> {
+public abstract class BaseServiceImpl<D extends BaseDao, T extends BaseDomain> implements BaseService<T> {
 
     @Autowired
     protected D baseDao;
@@ -125,7 +125,7 @@ public class BaseServiceImpl<D extends BaseDao, T extends BaseDomain> implements
         if (physical){
             baseDao.deleteAll();
         } else {
-            baseDao.logicDeleteAll();
+//            baseDao.logicDeleteAll();
         }
     }
 

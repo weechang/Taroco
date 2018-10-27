@@ -3,6 +3,9 @@ package io.github.weechang.moreco.rbac.domain;
 import io.github.weechang.moreco.base.domain.BaseDomain;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.DynamicUpdate;
+
+import javax.persistence.*;
 
 /**
  * 角色与部门对应关系
@@ -15,10 +18,10 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
+@Entity
+@DynamicUpdate()
 public class RoleDeptDomain extends BaseDomain {
     private static final long serialVersionUID = -8120106714249885343L;
-
-    private Long id;
 
     /**
      * 角色ID

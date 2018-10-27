@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import io.github.weechang.moreco.base.exception.BusinessException;
 import io.github.weechang.moreco.base.service.impl.BaseServiceImpl;
 import io.github.weechang.moreco.rbac.dao.UserDao;
+import io.github.weechang.moreco.rbac.dao.UserRoleDao;
 import io.github.weechang.moreco.rbac.domain.RoleMenuDomain;
 import io.github.weechang.moreco.rbac.domain.UserDomain;
 import io.github.weechang.moreco.rbac.domain.UserRoleDomain;
@@ -13,6 +14,7 @@ import io.github.weechang.moreco.rbac.service.UserRoleService;
 import io.github.weechang.moreco.rbac.service.UserService;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -21,6 +23,7 @@ import java.util.List;
  * date 2018/10/27
  * time 16:24
  */
+@Service
 public class UserServiceImpl extends BaseServiceImpl<UserDao, UserDomain> implements UserService {
 
     @Autowired

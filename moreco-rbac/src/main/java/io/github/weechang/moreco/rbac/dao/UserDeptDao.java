@@ -9,6 +9,5 @@ import org.springframework.data.repository.NoRepositoryBean;
  * date 2018/10/26
  * time 18:19
  */
-@NoRepositoryBean
 public interface UserDeptDao extends JpaDao<UserDeptDomain> {
 }

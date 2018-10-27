@@ -9,7 +9,6 @@ import org.springframework.data.repository.NoRepositoryBean;
  * date 2018/10/26
  * time 18:11
  */
-@NoRepositoryBean
 public interface UserDao extends JpaDao<UserDomain> {
 
     UserDomain findFirstByUsername(String username);

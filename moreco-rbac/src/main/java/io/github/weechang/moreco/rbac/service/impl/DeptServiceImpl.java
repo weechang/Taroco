@@ -4,6 +4,7 @@ import io.github.weechang.moreco.base.service.impl.BaseServiceImpl;
 import io.github.weechang.moreco.rbac.dao.DeptDao;
 import io.github.weechang.moreco.rbac.domain.DeptDomain;
 import io.github.weechang.moreco.rbac.service.DeptService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

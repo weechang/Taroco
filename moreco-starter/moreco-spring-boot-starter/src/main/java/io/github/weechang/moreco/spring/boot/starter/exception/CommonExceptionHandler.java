@@ -1,10 +1,10 @@
 package io.github.weechang.moreco.spring.boot.starter.exception;
 
 
-import io.github.weechang.moreco.base.error.DefaultError;
+import io.github.weechang.moreco.base.error.SysError;
 import io.github.weechang.moreco.base.error.IError;
 import io.github.weechang.moreco.base.exception.BusinessException;
-import io.github.weechang.moreco.base.response.BaseResponse;
+import io.github.weechang.moreco.base.response.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
@@ -37,19 +37,20 @@ public class CommonExceptionHandler {
 
     @ExceptionHandler(Throwable.class)
     @ResponseBody
-    public BaseResponse handleError(Throwable e, HttpServletResponse servletResponse) {
+    public R handleError(Throwable e, HttpServletResponse servletResponse) {
         servletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        e.printStackTrace();
         return build(e, servletResponse);
     }
 
-    private BaseResponse build(Throwable ex, HttpServletResponse servletResponse) {
+    private R build(Throwable ex, HttpServletResponse servletResponse) {
         IError error;
         String extMessage = null;
         if (ex instanceof BusinessException) {
             error = ((BusinessException) ex).getError();
             extMessage = ((BusinessException) ex).getExtMessage();
         } else if (ex instanceof BindException) {
-            error = DefaultError.INVALID_PARAMETER;
+            error = SysError.INVALID_PARAMETER;
             List<ObjectError> errors = ((BindException) ex).getAllErrors();
             if (errors != null && errors.size() != 0) {
                 StringBuilder msg = new StringBuilder();
@@ -63,10 +64,10 @@ public class CommonExceptionHandler {
                 extMessage = msg.toString();
             }
         } else if (ex instanceof MissingServletRequestParameterException) {
-            error = DefaultError.INVALID_PARAMETER;
+            error = SysError.INVALID_PARAMETER;
             extMessage = ex.getMessage();
         } else if (ex instanceof ConstraintViolationException) {
-            error = DefaultError.INVALID_PARAMETER;
+            error = SysError.INVALID_PARAMETER;
             Set<ConstraintViolation<?>> violations = ((ConstraintViolationException) ex).getConstraintViolations();
             final StringBuilder msg = new StringBuilder();
             for (ConstraintViolation<?> constraintViolation : violations) {
@@ -74,37 +75,37 @@ public class CommonExceptionHandler {
             }
             extMessage = msg.toString();
         } else if (ex instanceof HttpMediaTypeNotSupportedException) {
-            error = DefaultError.CONTENT_TYPE_NOT_SUPPORT;
+            error = SysError.CONTENT_TYPE_NOT_SUPPORT;
             extMessage = ex.getMessage();
         } else if (ex instanceof HttpMessageNotReadableException) {
-            error = DefaultError.INVALID_PARAMETER;
+            error = SysError.INVALID_PARAMETER;
             extMessage = ex.getMessage();
         } else if (ex instanceof MethodArgumentNotValidException) {
-            error = DefaultError.INVALID_PARAMETER;
+            error = SysError.INVALID_PARAMETER;
             extMessage = ex.getMessage();
         } else if (ex instanceof HttpRequestMethodNotSupportedException) {
-            error = DefaultError.METHOD_NOT_SUPPORTED;
+            error = SysError.METHOD_NOT_SUPPORTED;
             extMessage = ex.getMessage();
         } else if (ex instanceof UnexpectedTypeException) {
-            error = DefaultError.INVALID_PARAMETER;
+            error = SysError.INVALID_PARAMETER;
             extMessage = ex.getMessage();
         } else if (ex instanceof NoHandlerFoundException) {
-            error = DefaultError.SERVICE_NOT_FOUND;
+            error = SysError.SERVICE_NOT_FOUND;
             extMessage = ex.getMessage();
         } else {
-            error = DefaultError.SYSTEM_INTERNAL_ERROR;
+            error = SysError.SYSTEM_INTERNAL_ERROR;
             extMessage = ex.getMessage();
         }
-        BaseResponse response = BaseResponse.create(error);
-        response.setExtMessage(extMessage);
+        R response = R.error(error);
+        response.put("extMessage", extMessage);
         int status = HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
-        if (error == DefaultError.INVALID_PARAMETER) {
+        if (error == SysError.INVALID_PARAMETER) {
             status = HttpServletResponse.SC_BAD_REQUEST;
-        } else if (error == DefaultError.METHOD_NOT_SUPPORTED) {
+        } else if (error == SysError.METHOD_NOT_SUPPORTED) {
             status = HttpServletResponse.SC_METHOD_NOT_ALLOWED;
-        } else if (error == DefaultError.SERVICE_NOT_FOUND) {
+        } else if (error == SysError.SERVICE_NOT_FOUND) {
             status = HttpServletResponse.SC_NOT_FOUND;
-        } else if (error == DefaultError.CONTENT_TYPE_NOT_SUPPORT) {
+        } else if (error == SysError.CONTENT_TYPE_NOT_SUPPORT) {
             status = HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE;
         }
         servletResponse.setStatus(status);

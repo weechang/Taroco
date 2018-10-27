@@ -36,8 +36,7 @@ public interface BaseDao<T extends BaseDomain> extends PagingAndSortingRepositor
         entities.forEach(entity -> logicDelete(entity));
     }
 
-    @Query("update #{#entityName} e set e.deleted = true ")
-    @Transactional
-    void logicDeleteAll();
+//    @Transactional
+//    void logicDeleteAll();
 
 }

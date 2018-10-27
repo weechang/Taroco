@@ -15,8 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 @NoRepositoryBean
 public interface JpaDao<T extends BaseDomain> extends BaseDao<T> {
 
-    @Override
-    @Query("update #{#entityName} e set e.deleted = true ")
-    @Transactional
-    void logicDeleteAll();
+//    @Override
+//    @Query("update #{#entityName} e set e.yn = 1 ")
+//    @Transactional
+//    void logicDeleteAll();
 }

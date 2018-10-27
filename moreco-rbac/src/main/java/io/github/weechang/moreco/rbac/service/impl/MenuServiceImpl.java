@@ -1,6 +1,7 @@
 package io.github.weechang.moreco.rbac.service.impl;
 
 import io.github.weechang.moreco.base.service.impl.BaseServiceImpl;
+import io.github.weechang.moreco.rbac.dao.DeptDao;
 import io.github.weechang.moreco.rbac.dao.MenuDao;
 import io.github.weechang.moreco.rbac.domain.MenuDomain;
 import io.github.weechang.moreco.rbac.domain.RoleDomain;
@@ -9,6 +10,7 @@ import io.github.weechang.moreco.rbac.service.MenuService;
 import io.github.weechang.moreco.rbac.service.RoleMenuService;
 import io.github.weechang.moreco.rbac.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,7 @@ import java.util.List;
  * date 2018/10/27
  * time 16:16
  */
+@Service
 public class MenuServiceImpl extends BaseServiceImpl<MenuDao, MenuDomain> implements MenuService {
 
     @Autowired

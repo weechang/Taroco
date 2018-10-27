@@ -11,7 +11,6 @@ import java.util.List;
  * date 2018/10/26
  * time 18:09
  */
-@NoRepositoryBean
 public interface DeptDao extends JpaDao<DeptDomain> {
 
     List<DeptDomain> queryAllByParentId(Long parentId);

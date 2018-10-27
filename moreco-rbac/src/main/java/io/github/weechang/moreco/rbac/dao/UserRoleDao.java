@@ -11,7 +11,6 @@ import java.util.List;
  * date 2018/10/26
  * time 18:11
  */
-@NoRepositoryBean
 public interface UserRoleDao extends JpaDao<UserRoleDomain> {
 
     List<UserRoleDomain> findAllByUserId(Long id);

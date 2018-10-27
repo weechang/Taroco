@@ -1,6 +1,5 @@
 package io.github.weechang.moreco.base.service;
 
-import com.sun.xml.internal.bind.v2.model.core.ID;
 import io.github.weechang.moreco.base.domain.BaseDomain;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

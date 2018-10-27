@@ -3,7 +3,9 @@ package io.github.weechang.moreco.rbac.domain;
 import io.github.weechang.moreco.base.domain.BaseDomain;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springframework.data.annotation.Id;
+import org.hibernate.annotations.DynamicUpdate;
+
+import javax.persistence.*;
 
 /**
  * 菜单
@@ -14,14 +16,10 @@ import org.springframework.data.annotation.Id;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
+@Entity
+@DynamicUpdate()
 public class MenuDomain extends BaseDomain {
     private static final long serialVersionUID = 5051501706109694638L;
-
-    /**
-     * 菜单ID
-     */
-    @Id
-    private Long menuId;
 
     /**
      * 父菜单ID，一级菜单为0

@@ -13,36 +13,31 @@ public enum RbacError implements IError {
     /**
      * 用户已存在
      */
-    USER_EXISTED("0001", "user is existed"),
+    USER_EXISTED(1, "user is existed"),
 
     ;
 
-    String errorCode;
-    String errorMessage;
+    int code;
+    String msg;
     private static final String ns = "RBAC";
 
-    RbacError(String errorCode, String errorMessage) {
-        this.errorCode = errorCode;
-        this.errorMessage = errorMessage;
-    }
-
-    RbacError(String errorCode, String errorMessage, String zh_errorMessage) {
-        this.errorCode = errorCode;
-        this.errorMessage = errorMessage;
+    RbacError(int code, String msg) {
+        this.code = code;
+        this.msg = msg;
     }
 
     @Override
-    public String getNameSpace() {
+    public String getNs() {
         return ns;
     }
 
     @Override
-    public String getErrorCode() {
-        return ns + "." + this.errorCode;
+    public int getCode() {
+        return this.code;
     }
 
     @Override
-    public String getErrorMessage() {
-        return this.errorMessage;
+    public String getMsg() {
+        return this.msg;
     }
 }

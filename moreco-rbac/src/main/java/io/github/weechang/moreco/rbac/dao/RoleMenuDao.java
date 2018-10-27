@@ -11,7 +11,6 @@ import java.util.List;
  * date 2018/10/26
  * time 18:11
  */
-@NoRepositoryBean
 public interface RoleMenuDao extends JpaDao<RoleMenuDomain> {
 
     List<RoleMenuDomain> findAllByRoleId(Long id);

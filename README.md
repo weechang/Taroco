@@ -14,7 +14,7 @@ moreco能够满足你的项目从单体到微服务的整个流程。但你从�
 
 moreco不仅仅是一套开发框架，moreco更是一套生态系统。从开发到监控至运维，moreco都提供一套更为完善的组件支持。包括但不限于以下项目：
 
-* 架构方面：spring boot项目开发、spring cloud项目开发、领域驱动项目开发。
+* 架构方面：spring boot开发、spring cloud开发、领域驱动开发。
 
 * 开发方面：对象存储（七牛、阿里云、HDFS、LOCAL）、消息通知（邮件、短信、站内信）。
 
@@ -32,13 +32,26 @@ moreco不仅仅是一套开发框架，moreco更是一套生态系统。从开�
 #### 项目结构
 ``` 
 moreco
-├── moreco-base -- 基础、公共方法封装
-├── moreco-security -- 安全认证
-|    ├── moreco-security-shiro -- shiro组件
-|    ├── moreco-security-spring-security -- spring security 组件
-├── moreco-starter -- 启动组件
-|    ├── moreco-starter-spring-boot -- spring boot 启动组件
-├── moreco-lxbel -- 权限管理组件
+├── moreco-base ------------------------------ 基础、公共方法封装
+├── moreco-cloud ----------------------------- spring cloud 组件
+|    ├── moreco-cloud-breaker----------------- 熔断
+|    ├── moreco-cloud-config  ---------------- 配置中心
+|    ├── moreco-cloud-gateway ---------------- 网关
+|    ├── moreco-cloud-register --------------- 服务注册中心
+├── moreco-demo ------------------------------ demo
+|    ├── moreco-spring-boot-demo ------------- spring boot demo
+├── moreco-message --------------------------- 消息中心
+├── moreco-monitor --------------------------- 监控中心
+├── moreco-ops ------------------------------- 运维中心
+├── moreco-oss ------------------------------- 对象存储
+├── moreco-rbac ------------------------------ RBAC权限管理
+├── moreco-security -------------------------- 安全认证
+|    ├── moreco-security-base ---------------- 安全认证基础组件
+|    ├── moreco-security-shiro --------------- shiro 组件
+|    ├── moreco-security-spring-security ----- spring security 组件
+├── moreco-starter --------------------------- 启动组件
+|    ├── moreco-starter-spring-boot ---------- spring boot 启动组件
+|    ├── moreco-starter-spring-cloud --------- spring cloud 启动组件
 ```
 
 #### 开发进度
