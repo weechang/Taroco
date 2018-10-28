@@ -3,6 +3,7 @@ package io.github.weechang.moreco.base.service.impl;
 import io.github.weechang.moreco.base.dao.BaseDao;
 import io.github.weechang.moreco.base.domain.BaseDomain;
 import io.github.weechang.moreco.base.service.BaseService;
+import io.github.weechang.moreco.base.util.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -64,8 +65,8 @@ public abstract class BaseServiceImpl<D extends BaseDao, T extends BaseDomain> i
     }
 
     @Override
-    public Page<T> findAll(Pageable pageable) {
-        return baseDao.findAll(pageable);
+    public PageUtil<T> findAll(Pageable pageable) {
+        return new PageUtil<T>(baseDao.findAll(pageable));
     }
 
     @Override
@@ -95,7 +96,7 @@ public abstract class BaseServiceImpl<D extends BaseDao, T extends BaseDomain> i
 
     @Override
     public void delete(Serializable id, boolean physical) {
-        if (physical){
+        if (physical) {
             baseDao.delete(id);
         } else {
             baseDao.logicDelete(id);
@@ -104,7 +105,7 @@ public abstract class BaseServiceImpl<D extends BaseDao, T extends BaseDomain> i
 
     @Override
     public void delete(T t, boolean physical) {
-        if (physical){
+        if (physical) {
             baseDao.delete(t);
         } else {
             baseDao.logicDelete(t);
@@ -113,7 +114,7 @@ public abstract class BaseServiceImpl<D extends BaseDao, T extends BaseDomain> i
 
     @Override
     public void delete(Iterable<? extends T> ts, boolean physical) {
-        if (physical){
+        if (physical) {
             baseDao.delete(ts);
         } else {
             baseDao.logicDelete(ts);
@@ -122,7 +123,7 @@ public abstract class BaseServiceImpl<D extends BaseDao, T extends BaseDomain> i
 
     @Override
     public void deleteAll(boolean physical) {
-        if (physical){
+        if (physical) {
             baseDao.deleteAll();
         } else {
 //            baseDao.logicDeleteAll();

@@ -1,9 +1,10 @@
 package io.github.weechang.moreco.base.response;
 
+import com.google.common.collect.Maps;
 import io.github.weechang.moreco.base.error.SysError;
 import io.github.weechang.moreco.base.error.IError;
+import lombok.Data;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -13,13 +14,17 @@ import java.util.Map;
  * date 2018/10/27
  * time 0:32
  */
-public class R extends HashMap<String, Object> {
-
+@Data
+public class R<T extends Object> {
     private static final long serialVersionUID = -6778838468426551277L;
 
+    private String ns;
+    private int code;
+    private String msg = "success";
+    private T result;
+    private Map<String, Object> ext = Maps.newHashMap();
+
     public R() {
-        put("code", 0);
-        put("msg", "success");
     }
 
     public static R error() {
@@ -36,9 +41,15 @@ public class R extends HashMap<String, Object> {
 
     public static R error(String ns, int code, String msg) {
         R r = new R();
-        r.put("ns", ns);
-        r.put("code", code);
-        r.put("msg", msg);
+        r.ns = ns;
+        r.code = code;
+        r.msg = msg;
+        return r;
+    }
+
+    public static R ok(Object t) {
+        R r = new R();
+        r.result = t;
         return r;
     }
 
@@ -50,7 +61,7 @@ public class R extends HashMap<String, Object> {
 
     public static R ok(Map<String, Object> map) {
         R r = new R();
-        r.putAll(map);
+        r.getExt().putAll(map);
         return r;
     }
 
@@ -58,9 +69,8 @@ public class R extends HashMap<String, Object> {
         return new R();
     }
 
-    @Override
     public R put(String key, Object value) {
-        super.put(key, value);
+        ext.put(key, value);
         return this;
     }
 }

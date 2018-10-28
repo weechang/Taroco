@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * 菜单
@@ -55,4 +56,10 @@ public class MenuDomain extends BaseDomain {
      * 排序
      */
     private Integer orderNum;
+
+    /**
+     * 子目录
+     */
+    @Transient
+    private List<MenuDomain> children;
 }

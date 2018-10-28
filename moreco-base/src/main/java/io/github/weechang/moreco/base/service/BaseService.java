@@ -1,6 +1,7 @@
 package io.github.weechang.moreco.base.service;
 
 import io.github.weechang.moreco.base.domain.BaseDomain;
+import io.github.weechang.moreco.base.util.PageUtil;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -77,7 +78,7 @@ public interface BaseService<T extends BaseDomain> {
      * @param pageable 分页参数
      * @return 分页记录
      */
-    Page<T> findAll(Pageable pageable);
+    PageUtil<T> findAll(Pageable pageable);
 
     /**
      * 查询共有多少条数据

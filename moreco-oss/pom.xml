@@ -10,5 +10,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>moreco-oss</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>moreco-oss-base</module>
+        <module>moreco-oss-qiniu</module>
+        <module>moreco-oss-aliyun</module>
+        <module>moreco-oss-tencent</module>
+        <module>moreco-oss-upyun</module>
+    </modules>
 
 </project>

@@ -11,12 +11,6 @@
 
     <artifactId>moreco-message</artifactId>
     <packaging>pom</packaging>
-    <modules>
-        <module>moreco-message-base</module>
-        <module>moreco-message-mail</module>
-        <module>moreco-mssage-web</module>
-        <module>moreco-message-sms</module>
-    </modules>
 
 
 </project>

@@ -1,16 +1,15 @@
 package io.github.weechang.moreco.base.domain;
 
+import com.google.common.collect.Maps;
 import io.github.weechang.moreco.base.domain.enums.YnEnums;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Map;
 
 /**
  * 说明：
@@ -39,4 +38,7 @@ public class BaseDomain implements Serializable {
     protected String updatedBy;
 
     protected Integer yn = YnEnums.Y.getKey();
+
+    @Transient
+    protected Map<String, Object> dataMap = Maps.newHashMap();
 }
