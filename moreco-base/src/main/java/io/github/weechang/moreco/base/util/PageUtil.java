@@ -30,7 +30,14 @@ public class PageUtil<T> implements Serializable {
     private List<T> list;
 
     public PageUtil() {
+    }
 
+    /**
+     * 分页
+     * @param index 当前页数
+     */
+    public PageUtil(int index) {
+        currPage = index;
     }
 
     /**

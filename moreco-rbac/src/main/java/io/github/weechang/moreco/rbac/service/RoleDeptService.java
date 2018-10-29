@@ -1,7 +1,7 @@
 package io.github.weechang.moreco.rbac.service;
 
 import io.github.weechang.moreco.base.service.BaseService;
-import io.github.weechang.moreco.rbac.domain.RoleDeptDomain;
+import io.github.weechang.moreco.rbac.domain.RbacRoleDept;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import java.util.List;
  * date 2018/10/27
  * time 15:58
  */
-public interface RoleDeptService extends BaseService<RoleDeptDomain> {
+public interface RoleDeptService extends BaseService<RbacRoleDept> {
 
     /**
      * 根据角色ID，获取部门ID列表

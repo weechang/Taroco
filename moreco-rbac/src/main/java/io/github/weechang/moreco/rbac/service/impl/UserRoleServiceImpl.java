@@ -2,9 +2,8 @@ package io.github.weechang.moreco.rbac.service.impl;
 
 import io.github.weechang.moreco.base.service.impl.BaseServiceImpl;
 import io.github.weechang.moreco.rbac.dao.UserRoleDao;
-import io.github.weechang.moreco.rbac.domain.UserRoleDomain;
+import io.github.weechang.moreco.rbac.domain.RbacUserRole;
 import io.github.weechang.moreco.rbac.service.UserRoleService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,10 +14,10 @@ import java.util.List;
  * time 16:23
  */
 @Service
-public class UserRoleServiceImpl extends BaseServiceImpl<UserRoleDao, UserRoleDomain> implements UserRoleService {
+public class UserRoleServiceImpl extends BaseServiceImpl<UserRoleDao, RbacUserRole> implements UserRoleService {
 
     @Override
-    public List<UserRoleDomain> findAllByUserId(Long id) {
+    public List<RbacUserRole> findAllByUserId(Long id) {
         return baseDao.findAllByUserId(id);
     }
 }

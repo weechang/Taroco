@@ -1,9 +1,11 @@
 package io.github.weechang.moreco.rbac.domain;
 
 import io.github.weechang.moreco.base.domain.BaseDomain;
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.List;
@@ -15,11 +17,13 @@ import java.util.List;
  * date 2018/10/26
  * time 17:55
  */
+@ApiModel("目录")
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
 @DynamicUpdate()
-public class MenuDomain extends BaseDomain {
+@Where(clause = "yn = 1")
+public class RbacMenu extends BaseDomain {
     private static final long serialVersionUID = 5051501706109694638L;
 
     /**
@@ -61,5 +65,5 @@ public class MenuDomain extends BaseDomain {
      * 子目录
      */
     @Transient
-    private List<MenuDomain> children;
+    private List<RbacMenu> children;
 }

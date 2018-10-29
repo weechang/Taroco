@@ -4,6 +4,7 @@ import io.github.weechang.moreco.base.domain.BaseDomain;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 
@@ -16,7 +17,8 @@ import javax.persistence.*;
 @Data
 @Entity
 @DynamicUpdate()
-public class UserDeptDomain extends BaseDomain {
+@Where(clause = "yn = 1")
+public class RbacUserDept extends BaseDomain {
     private static final long serialVersionUID = 1717440330547599478L;
 
     /**

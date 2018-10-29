@@ -1,8 +1,7 @@
 package io.github.weechang.moreco.rbac.dao;
 
 import io.github.weechang.moreco.base.dao.JpaDao;
-import io.github.weechang.moreco.rbac.domain.UserRoleDomain;
-import org.springframework.data.repository.NoRepositoryBean;
+import io.github.weechang.moreco.rbac.domain.RbacUserRole;
 
 import java.util.List;
 
@@ -11,7 +10,7 @@ import java.util.List;
  * date 2018/10/26
  * time 18:11
  */
-public interface UserRoleDao extends JpaDao<UserRoleDomain> {
+public interface UserRoleDao extends JpaDao<RbacUserRole> {
 
-    List<UserRoleDomain> findAllByUserId(Long id);
+    List<RbacUserRole> findAllByUserId(Long id);
 }

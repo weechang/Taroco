@@ -14,7 +14,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  * time 13:29
  */
 @Slf4j
-@ComponentScan(basePackages = "io.github.weechang.moreco")
 @EnableJpaRepositories(basePackages = "io.github.weechang.moreco")
 @SpringBootApplication
 public class Application extends SpringBootServletInitializer {

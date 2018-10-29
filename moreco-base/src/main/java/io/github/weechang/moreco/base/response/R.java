@@ -3,6 +3,8 @@ package io.github.weechang.moreco.base.response;
 import com.google.common.collect.Maps;
 import io.github.weechang.moreco.base.error.SysError;
 import io.github.weechang.moreco.base.error.IError;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.util.Map;
@@ -14,14 +16,20 @@ import java.util.Map;
  * date 2018/10/27
  * time 0:32
  */
+@ApiModel("请求相应")
 @Data
 public class R<T extends Object> {
     private static final long serialVersionUID = -6778838468426551277L;
 
+    @ApiModelProperty("namespace")
     private String ns;
+    @ApiModelProperty("响应码")
     private int code;
+    @ApiModelProperty("响应消息")
     private String msg = "success";
+    @ApiModelProperty("结果")
     private T result;
+    @ApiModelProperty("扩展信息")
     private Map<String, Object> ext = Maps.newHashMap();
 
     public R() {

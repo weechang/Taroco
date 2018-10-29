@@ -14,7 +14,18 @@ public enum RbacError implements IError {
      * 用户已存在
      */
     USER_EXISTED(1, "user is existed"),
-
+    /**
+     * 部门已存在
+     */
+    DEPT_EXISTED(2, "dept is existed"),
+    /**
+     * 目录已存在
+     */
+    MENU_EXISTED(3, "menu is existed"),
+    /**
+     * 角色已存在
+     */
+    ROLE_EXISTED(4, "role is existed"),
     ;
 
     int code;

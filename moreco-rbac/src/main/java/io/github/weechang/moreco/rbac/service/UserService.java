@@ -1,7 +1,7 @@
 package io.github.weechang.moreco.rbac.service;
 
 import io.github.weechang.moreco.base.service.BaseService;
-import io.github.weechang.moreco.rbac.domain.UserDomain;
+import io.github.weechang.moreco.rbac.domain.RbacUser;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import java.util.List;
  * date 2018/10/27
  * time 16:01
  */
-public interface UserService extends BaseService<UserDomain> {
+public interface UserService extends BaseService<RbacUser> {
 
     /**
      * 根据用户id 查询已授权的所有目录id

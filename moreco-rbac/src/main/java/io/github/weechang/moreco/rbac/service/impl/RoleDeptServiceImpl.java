@@ -1,11 +1,9 @@
 package io.github.weechang.moreco.rbac.service.impl;
 
 import io.github.weechang.moreco.base.service.impl.BaseServiceImpl;
-import io.github.weechang.moreco.rbac.dao.MenuDao;
 import io.github.weechang.moreco.rbac.dao.RoleDeptDao;
-import io.github.weechang.moreco.rbac.domain.RoleDeptDomain;
+import io.github.weechang.moreco.rbac.domain.RbacRoleDept;
 import io.github.weechang.moreco.rbac.service.RoleDeptService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,7 +14,7 @@ import java.util.List;
  * time 16:17
  */
 @Service
-public class RoleDeptServiceImpl extends BaseServiceImpl<RoleDeptDao, RoleDeptDomain> implements RoleDeptService {
+public class RoleDeptServiceImpl extends BaseServiceImpl<RoleDeptDao, RbacRoleDept> implements RoleDeptService {
 
     @Override
     public List<Long> queryDeptIdList(Long[] roleIds) {

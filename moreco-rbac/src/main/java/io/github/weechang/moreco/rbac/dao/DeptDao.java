@@ -1,8 +1,8 @@
 package io.github.weechang.moreco.rbac.dao;
 
-import io.github.weechang.moreco.rbac.domain.DeptDomain;
+import io.github.weechang.moreco.rbac.domain.RbacDept;
 import io.github.weechang.moreco.base.dao.JpaDao;
-import org.springframework.data.repository.NoRepositoryBean;
+import io.github.weechang.moreco.rbac.domain.RbacMenu;
 
 import java.util.List;
 
@@ -11,7 +11,9 @@ import java.util.List;
  * date 2018/10/26
  * time 18:09
  */
-public interface DeptDao extends JpaDao<DeptDomain> {
+public interface DeptDao extends JpaDao<RbacDept> {
 
-    List<DeptDomain> queryAllByParentId(Long parentId);
+    List<RbacDept> queryAllByParentId(Long parentId);
+
+    RbacDept findFirstByNameAndParentId(String name, Long parentId);
 }

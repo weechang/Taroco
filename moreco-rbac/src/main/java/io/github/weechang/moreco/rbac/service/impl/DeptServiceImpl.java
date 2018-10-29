@@ -1,13 +1,14 @@
 package io.github.weechang.moreco.rbac.service.impl;
 
+import io.github.weechang.moreco.base.exception.BusinessException;
 import io.github.weechang.moreco.base.service.impl.BaseServiceImpl;
 import io.github.weechang.moreco.rbac.dao.DeptDao;
-import io.github.weechang.moreco.rbac.domain.DeptDomain;
+import io.github.weechang.moreco.rbac.domain.RbacDept;
+import io.github.weechang.moreco.rbac.domain.RbacMenu;
+import io.github.weechang.moreco.rbac.error.RbacError;
 import io.github.weechang.moreco.rbac.service.DeptService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,43 +17,24 @@ import java.util.List;
  * time 16:14
  */
 @Service
-public class DeptServiceImpl extends BaseServiceImpl<DeptDao, DeptDomain> implements DeptService {
+public class DeptServiceImpl extends BaseServiceImpl<DeptDao, RbacDept> implements DeptService {
 
     @Override
-    public List<Long> queryDeptIdList(Long parentId) {
-        List<Long> deptIds = new ArrayList<>();
-        List<DeptDomain> depts = baseDao.queryAllByParentId(parentId);
-        if (depts != null && depts.size() > 0) {
-            for (DeptDomain dept : depts){
-                deptIds.add(dept.getId());
-            }
-        }
-        return deptIds;
+    public List<RbacDept> findListByParentId(Long parentId) {
+        parentId = parentId == null ? 0L : parentId;
+        return baseDao.queryAllByParentId(parentId);
     }
 
     @Override
-    public List<Long> getSubDeptIdList(Long deptId) {
-        //部门及子部门ID列表
-        List<Long> deptIdList = new ArrayList<>();
-
-        //获取子部门ID
-        List<Long> subIdList = queryDeptIdList(deptId);
-        getDeptTreeList(subIdList, deptIdList);
-
-        return deptIdList;
-    }
-
-    /**
-     * 递归
-     */
-    private void getDeptTreeList(List<Long> subIdList, List<Long> deptIdList){
-        for(Long deptId : subIdList){
-            List<Long> list = queryDeptIdList(deptId);
-            if(list.size() > 0){
-                getDeptTreeList(list, deptIdList);
+    public RbacDept save(RbacDept dept) {
+        long parentId = dept.getParentId() == null ? 0L : dept.getParentId();
+        dept.setParentId(parentId);
+        RbacDept saved = baseDao.findFirstByNameAndParentId(dept.getName(), dept.getParentId());
+        if (saved != null){
+            if (dept.getId() == null || !dept.getId().equals(saved.getId())){
+                throw new BusinessException(RbacError.DEPT_EXISTED);
             }
-
-            deptIdList.add(deptId);
         }
+        return super.save(dept);
     }
 }

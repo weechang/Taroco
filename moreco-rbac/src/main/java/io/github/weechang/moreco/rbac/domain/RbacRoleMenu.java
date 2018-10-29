@@ -4,24 +4,24 @@ import io.github.weechang.moreco.base.domain.BaseDomain;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 
 /**
- * 角色与部门对应关系
- * <p>
- * 用于数据权限管理
+ * 角色与菜单对应关系
  *
  * @author zhangwei
  * date 2018/10/26
- * time 17:55
+ * time 17:56
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
 @DynamicUpdate()
-public class RoleDeptDomain extends BaseDomain {
-    private static final long serialVersionUID = -8120106714249885343L;
+@Where(clause = "yn = 1")
+public class RbacRoleMenu extends BaseDomain {
+    private static final long serialVersionUID = 17923510531021555L;
 
     /**
      * 角色ID
@@ -29,7 +29,7 @@ public class RoleDeptDomain extends BaseDomain {
     private Long roleId;
 
     /**
-     * 部门ID
+     * 菜单ID
      */
-    private Long deptId;
+    private Long menuId;
 }
