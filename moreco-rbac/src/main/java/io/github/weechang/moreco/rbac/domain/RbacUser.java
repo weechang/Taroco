@@ -61,9 +61,9 @@ public class RbacUser extends BaseDomain {
      */
     private Integer status;
 
-    /**
-     * 用户角色
-     */
     @Transient
-    private List<RbacRole> roles;
+    private List<Long> deptIds;
+
+    @Transient
+    private List<Long> roleIds;
 }

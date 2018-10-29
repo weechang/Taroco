@@ -36,6 +36,8 @@ public class Swagger2Config {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("demo api")
+                .license("MIT")
+                .licenseUrl("")
                 .description("moreco spring boot demo API")
                 .contact(new Contact("耒耒耒耒耒", "https://blog.weechang.xyz", "zhangwei_sc@fomxmail.com"))
                 .version("0.0.1-SNAPSHOT")

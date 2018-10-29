@@ -43,7 +43,6 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuDao, RbacMenu> implemen
         RbacUser user = userService.findOne(userId);
         if (user != null) {
             userMenus = new ArrayList<>();
-            List<RbacRole> roles = user.getRoles();
         }
         return userMenus;
     }

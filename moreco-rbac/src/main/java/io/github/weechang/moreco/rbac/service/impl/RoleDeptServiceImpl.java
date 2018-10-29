@@ -1,9 +1,11 @@
 package io.github.weechang.moreco.rbac.service.impl;
 
+import com.google.common.collect.Lists;
 import io.github.weechang.moreco.base.service.impl.BaseServiceImpl;
 import io.github.weechang.moreco.rbac.dao.RoleDeptDao;
 import io.github.weechang.moreco.rbac.domain.RbacRoleDept;
 import io.github.weechang.moreco.rbac.service.RoleDeptService;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,5 +26,42 @@ public class RoleDeptServiceImpl extends BaseServiceImpl<RoleDeptDao, RbacRoleDe
     @Override
     public int deleteBatch(Long[] roleIds) {
         return 0;
+    }
+
+    @Override
+    public void save(Long roleId, List<Long> deptIds) {
+        if (CollectionUtils.isEmpty(deptIds)) {
+            return;
+        }
+        List<RbacRoleDept> saveds = baseDao.findAllByRoleIdAndDeptIdContains(roleId, deptIds);
+
+        List<Long> toSaveDeptIds = Lists.newArrayList();
+
+        for (RbacRoleDept saved : saveds) {
+            if (deptIds.contains(saved.getDeptId())) {
+                deptIds.remove(deptIds);
+            } else {
+                toSaveDeptIds.add(saved.getDeptId());
+            }
+        }
+
+        List<Long> toDeleteDeptIds = deptIds;
+
+        // 批量保存
+        if (CollectionUtils.isNotEmpty(toSaveDeptIds)){
+            List<RbacRoleDept> roleDepts = Lists.newArrayList();
+            for (Long deptId : toSaveDeptIds) {
+                RbacRoleDept roleDept = new RbacRoleDept();
+                roleDept.setDeptId(deptId);
+                roleDept.setRoleId(roleId);
+                roleDepts.add(roleDept);
+            }
+            baseDao.save(roleDepts);
+        }
+
+        // 批量删除
+        if (CollectionUtils.isNotEmpty(toDeleteDeptIds)){
+//            baseDao.updateByRoleIdAndDeptIdContains(roleId, toDeleteDeptIds);
+        }
     }
 }

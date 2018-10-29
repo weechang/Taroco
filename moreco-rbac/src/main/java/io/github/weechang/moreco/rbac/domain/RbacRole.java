@@ -7,6 +7,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * 角色
@@ -32,4 +33,10 @@ public class RbacRole extends BaseDomain {
      * 备注
      */
     private String remark;
+
+    @Transient
+    private List<Long> deptIdList;
+
+    @Transient
+    private List<Long> menuIdList;
 }

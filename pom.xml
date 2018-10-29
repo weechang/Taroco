@@ -8,15 +8,15 @@
     <version>0.0.1-SNAPSHOT</version>
     <modules>
         <module>moreco-base</module>
-        <module>moreco-security</module>
-        <module>moreco-starter</module>
-        <module>moreco-rbac</module>
         <module>moreco-cloud</module>
-        <module>moreco-oss</module>
+        <module>moreco-demo</module>
         <module>moreco-message</module>
         <module>moreco-monitor</module>
         <module>moreco-ops</module>
-        <module>moreco-demo</module>
+        <module>moreco-oss</module>
+        <module>moreco-rbac</module>
+        <module>moreco-security</module>
+        <module>moreco-starter</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -33,7 +33,7 @@
 
         <spring-boot.version>1.5.9.RELEASE</spring-boot.version>
         <spring-data-releasetrain.version>Ingalls-SR3</spring-data-releasetrain.version>
-        <springfox.version>2.6.1</springfox.version>
+        <springfox.version>2.8.0</springfox.version>
         <commons-codec.version>1.4</commons-codec.version>
         <commons.lang.version>2.6</commons.lang.version>
         <shiro.version>1.4.0</shiro.version>
