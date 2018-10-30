@@ -4,11 +4,12 @@ import com.google.common.collect.Lists;
 import io.github.weechang.moreco.base.exception.BusinessException;
 import io.github.weechang.moreco.base.service.impl.BaseServiceImpl;
 import io.github.weechang.moreco.rbac.dao.UserDao;
-import io.github.weechang.moreco.rbac.domain.RbacRoleMenu;
-import io.github.weechang.moreco.rbac.domain.RbacUser;
-import io.github.weechang.moreco.rbac.domain.RbacUserRole;
+import io.github.weechang.moreco.rbac.model.domain.RbacRoleMenu;
+import io.github.weechang.moreco.rbac.model.domain.RbacUser;
+import io.github.weechang.moreco.rbac.model.domain.RbacUserRole;
 import io.github.weechang.moreco.rbac.error.RbacError;
 import io.github.weechang.moreco.rbac.service.RoleMenuService;
+import io.github.weechang.moreco.rbac.service.UserDeptService;
 import io.github.weechang.moreco.rbac.service.UserRoleService;
 import io.github.weechang.moreco.rbac.service.UserService;
 import org.apache.commons.collections.CollectionUtils;
@@ -26,9 +27,11 @@ import java.util.List;
 public class UserServiceImpl extends BaseServiceImpl<UserDao, RbacUser> implements UserService {
 
     @Autowired
+    private RoleMenuService roleMenuService;
+    @Autowired
     private UserRoleService userRoleService;
     @Autowired
-    private RoleMenuService roleMenuService;
+    private UserDeptService userDeptService;
 
     @Override
     public List<Long> findAllMenuIdByUserId(Long id) {
@@ -77,6 +80,9 @@ public class UserServiceImpl extends BaseServiceImpl<UserDao, RbacUser> implemen
                 user.setPassword(saved.getPassword());
             }
         }
-        return super.save(user);
+        user = super.save(user);
+        userDeptService.save(user.getId(), user.getDeptIds());
+        userRoleService.save(user.getId(), user.getRoleIds());
+        return user;
     }
 }

@@ -4,14 +4,13 @@ import com.google.common.collect.Lists;
 import io.github.weechang.moreco.base.domain.enums.YnEnums;
 import io.github.weechang.moreco.base.service.impl.BaseServiceImpl;
 import io.github.weechang.moreco.rbac.dao.RoleDeptDao;
-import io.github.weechang.moreco.rbac.domain.RbacRole;
-import io.github.weechang.moreco.rbac.domain.RbacRoleDept;
+import io.github.weechang.moreco.rbac.model.domain.RbacRole;
+import io.github.weechang.moreco.rbac.model.domain.RbacRoleDept;
 import io.github.weechang.moreco.rbac.service.RoleDeptService;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 /**

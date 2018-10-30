@@ -1,7 +1,7 @@
 package io.github.weechang.moreco.rbac.service;
 
 import io.github.weechang.moreco.base.service.BaseService;
-import io.github.weechang.moreco.rbac.domain.RbacMenu;
+import io.github.weechang.moreco.rbac.model.domain.RbacMenu;
 
 import java.util.List;
 

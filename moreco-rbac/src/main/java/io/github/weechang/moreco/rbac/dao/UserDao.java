@@ -1,8 +1,7 @@
 package io.github.weechang.moreco.rbac.dao;
 
 import io.github.weechang.moreco.base.dao.JpaDao;
-import io.github.weechang.moreco.rbac.domain.RbacUser;
-import org.springframework.data.domain.Page;
+import io.github.weechang.moreco.rbac.model.domain.RbacUser;
 
 /**
  * @author zhangwei

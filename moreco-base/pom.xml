@@ -81,6 +81,10 @@
             <groupId>commons-collections</groupId>
             <artifactId>commons-collections</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.github.weechang</groupId>
+            <artifactId>jutil-common-util</artifactId>
+        </dependency>
 
         <!--validator-->
         <dependency>

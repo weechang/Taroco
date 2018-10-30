@@ -1,7 +1,9 @@
-package io.github.weechang.moreco.rbac.domain;
+package io.github.weechang.moreco.rbac.model.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.github.weechang.moreco.base.domain.BaseDomain;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.DynamicUpdate;
@@ -11,12 +13,12 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * 系统用户
  *
  * @author zhangwei
  * date 2018/10/26
  * time 17:56
  */
+@ApiModel("用户")
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
@@ -25,40 +27,26 @@ import java.util.List;
 public class RbacUser extends BaseDomain {
     private static final long serialVersionUID = -3083631620913551995L;
 
-    /**
-     * 用户名
-     */
+    @ApiModelProperty("用户名")
     private String username;
 
-    /**
-     * 密码
-     */
+    @ApiModelProperty("密码")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
-    /**
-     * 盐
-     */
+    @ApiModelProperty("盐")
     private String salt;
 
-    /**
-     * 真实姓名
-     */
+    @ApiModelProperty("真实姓名")
     private String realName;
 
-    /**
-     * 邮箱
-     */
+    @ApiModelProperty("邮箱")
     private String email;
 
-    /**
-     * 手机号
-     */
+    @ApiModelProperty("手机号")
     private String mobile;
 
-    /**
-     * 状态  0：禁用   1：正常
-     */
+    @ApiModelProperty("状态  0：禁用   1：正常")
     private Integer status;
 
     @Transient

@@ -1,4 +1,4 @@
-package io.github.weechang.moreco.base.util;
+package io.github.weechang.moreco.base.model;
 
 import lombok.Data;
 import org.springframework.data.domain.Page;
@@ -16,7 +16,7 @@ import java.util.List;
  * time 21:10
  */
 @Data
-public class PageUtil<T> implements Serializable {
+public class PageModel<T> implements Serializable {
 
     //当前页数
     private int currPage;
@@ -29,14 +29,14 @@ public class PageUtil<T> implements Serializable {
     //列表数据
     private List<T> list;
 
-    public PageUtil() {
+    public PageModel() {
     }
 
     /**
      * 分页
      * @param index 当前页数
      */
-    public PageUtil(int index) {
+    public PageModel(int index) {
         currPage = index;
     }
 
@@ -48,7 +48,7 @@ public class PageUtil<T> implements Serializable {
      * @param pageSize   每页记录数
      * @param currPage   当前页数
      */
-    public PageUtil(List<T> list, long totalCount, int pageSize, int currPage) {
+    public PageModel(List<T> list, long totalCount, int pageSize, int currPage) {
         this.list = list;
         this.totalCount = totalCount;
         this.pageSize = pageSize;
@@ -59,7 +59,7 @@ public class PageUtil<T> implements Serializable {
     /**
      * 分页
      */
-    public PageUtil(Page<T> page) {
+    public PageModel(Page<T> page) {
         this.list = page.getContent();
         this.totalCount = page.getTotalElements();
         this.pageSize = page.getSize();

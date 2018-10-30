@@ -3,8 +3,8 @@ package io.github.weechang.moreco.rbac.service.impl;
 import io.github.weechang.moreco.base.exception.BusinessException;
 import io.github.weechang.moreco.base.service.impl.BaseServiceImpl;
 import io.github.weechang.moreco.rbac.dao.RoleDao;
-import io.github.weechang.moreco.rbac.domain.RbacMenu;
-import io.github.weechang.moreco.rbac.domain.RbacRole;
+import io.github.weechang.moreco.rbac.model.domain.RbacMenu;
+import io.github.weechang.moreco.rbac.model.domain.RbacRole;
 import io.github.weechang.moreco.rbac.error.RbacError;
 import io.github.weechang.moreco.rbac.service.RoleDeptService;
 import io.github.weechang.moreco.rbac.service.RoleMenuService;
@@ -33,8 +33,9 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleDao, RbacRole> implemen
                 throw new BusinessException(RbacError.ROLE_EXISTED);
             }
         }
+        role = super.save(role);
         roleDeptService.save(role.getId(), role.getDeptIdList());
         roleMenuService.save(role.getId(), role.getMenuIdList());
-        return super.save(role);
+        return role;
     }
 }

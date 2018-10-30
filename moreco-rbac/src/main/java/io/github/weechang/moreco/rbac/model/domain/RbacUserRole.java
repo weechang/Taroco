@@ -1,4 +1,4 @@
-package io.github.weechang.moreco.rbac.domain;
+package io.github.weechang.moreco.rbac.model.domain;
 
 import io.github.weechang.moreco.base.domain.BaseDomain;
 import lombok.Data;
@@ -7,36 +7,29 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
- * 角色
+ * 用户与角色对应关系
  *
  * @author zhangwei
  * date 2018/10/26
- * time 17:55
+ * time 17:56
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
 @DynamicUpdate()
 @Where(clause = "yn = 1")
-public class RbacRole extends BaseDomain {
-    private static final long serialVersionUID = -6369262328565896728L;
+public class RbacUserRole extends BaseDomain {
+    private static final long serialVersionUID = -4753510506298775667L;
 
     /**
-     * 角色名称
+     * 用户ID
      */
-    private String name;
+    private Long userId;
 
     /**
-     * 备注
+     * 角色ID
      */
-    private String remark;
-
-    @Transient
-    private List<Long> deptIdList;
-
-    @Transient
-    private List<Long> menuIdList;
+    private Long roleId;
 }

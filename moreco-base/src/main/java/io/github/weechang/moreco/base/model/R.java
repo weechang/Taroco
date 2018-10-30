@@ -1,4 +1,4 @@
-package io.github.weechang.moreco.base.response;
+package io.github.weechang.moreco.base.model;
 
 import com.google.common.collect.Maps;
 import io.github.weechang.moreco.base.error.SysError;

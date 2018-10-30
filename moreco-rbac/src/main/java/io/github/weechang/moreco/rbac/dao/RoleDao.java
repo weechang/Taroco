@@ -1,6 +1,6 @@
 package io.github.weechang.moreco.rbac.dao;
 
-import io.github.weechang.moreco.rbac.domain.RbacRole;
+import io.github.weechang.moreco.rbac.model.domain.RbacRole;
 import io.github.weechang.moreco.base.dao.JpaDao;
 
 /**

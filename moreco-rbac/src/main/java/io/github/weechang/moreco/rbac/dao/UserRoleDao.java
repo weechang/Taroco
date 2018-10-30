@@ -1,7 +1,7 @@
 package io.github.weechang.moreco.rbac.dao;
 
 import io.github.weechang.moreco.base.dao.JpaDao;
-import io.github.weechang.moreco.rbac.domain.RbacUserRole;
+import io.github.weechang.moreco.rbac.model.domain.RbacUserRole;
 
 import java.util.List;
 
@@ -12,5 +12,5 @@ import java.util.List;
  */
 public interface UserRoleDao extends JpaDao<RbacUserRole> {
 
-    List<RbacUserRole> findAllByUserId(Long id);
+    List<RbacUserRole> findAllByUserId(Long userId);
 }

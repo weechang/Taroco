@@ -1,7 +1,9 @@
 package io.github.weechang.moreco.rbac.service;
 
 import io.github.weechang.moreco.base.service.BaseService;
-import io.github.weechang.moreco.rbac.domain.RbacUserDept;
+import io.github.weechang.moreco.rbac.model.domain.RbacUserDept;
+
+import java.util.List;
 
 /**
  * @author zhangwei
@@ -9,4 +11,12 @@ import io.github.weechang.moreco.rbac.domain.RbacUserDept;
  * time 16:00
  */
 public interface UserDeptService extends BaseService<RbacUserDept> {
+
+    /**
+     * 保存用户与部门关系
+     *
+     * @param userId  用户id
+     * @param deptIds 部门ids
+     */
+    void save(Long userId, List<Long> deptIds);
 }

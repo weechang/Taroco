@@ -1,19 +1,20 @@
 package io.github.weechang.moreco.rbac.controller;
 
 import io.github.weechang.moreco.base.controller.BaseController;
-import io.github.weechang.moreco.base.response.R;
-import io.github.weechang.moreco.base.util.PageUtil;
-import io.github.weechang.moreco.rbac.domain.RbacRole;
+import io.github.weechang.moreco.base.model.PageModel;
+import io.github.weechang.moreco.base.model.R;
+import io.github.weechang.moreco.rbac.model.domain.RbacRole;
+import io.github.weechang.moreco.rbac.model.dto.RoleSaveRequest;
 import io.github.weechang.moreco.rbac.service.RoleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 /**
- * 角色管理
  *
  * @author zhangwei
  * date 2018/10/27
@@ -27,25 +28,14 @@ public class RoleController extends BaseController {
     @Autowired
     private RoleService roleService;
 
-    /**
-     * 分页获取角色数据
-     *
-     * @param index 请求
-     * @return 分页结果
-     */
     @ApiOperation("分页获取角色数据")
     @GetMapping("page/{index}")
-    public R<PageUtil<RbacRole>> page(@PathVariable("index") int index) {
-        PageUtil request = new PageUtil(index);
-        PageUtil<RbacRole> page = roleService.findAll(request.toPageRequest());
+    public R<PageModel<RbacRole>> page(@ApiParam(name = "页码") @PathVariable("index") int index) {
+        PageModel request = new PageModel(index);
+        PageModel<RbacRole> page = roleService.findAll(request.toPageRequest());
         return R.ok(page);
     }
 
-    /**
-     * 获取角色列表
-     *
-     * @return 角色列表
-     */
     @ApiOperation("获取角色列表")
     @GetMapping("list")
     public R<List<RbacRole>> list() {
@@ -53,26 +43,17 @@ public class RoleController extends BaseController {
        return R.ok(list);
     }
 
-    /**
-     * 保存角色信息
-     *
-     * @param role 角色信息
-     * @return 保存结果
-     */
+    @ApiOperation("保存角色信息")
     @PostMapping("save")
-    public R save(RbacRole role) {
+    public R save(RoleSaveRequest request) {
+        RbacRole role = request.toRbacMenu();
         roleService.save(role);
         return R.ok();
     }
 
-    /**
-     * 删除角色
-     *
-     * @param id 角色id
-     * @return 删除结果
-     */
+    @ApiOperation("删除角色")
     @DeleteMapping("delete")
-    public R delete(Long id) {
+    public R delete(@ApiParam("角色id") Long id) {
         roleService.delete(id);
         return R.ok();
     }

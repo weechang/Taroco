@@ -1,6 +1,6 @@
 package io.github.weechang.moreco.rbac.dao;
 
-import io.github.weechang.moreco.rbac.domain.RbacRoleMenu;
+import io.github.weechang.moreco.rbac.model.domain.RbacRoleMenu;
 import io.github.weechang.moreco.base.dao.JpaDao;
 
 import java.util.List;

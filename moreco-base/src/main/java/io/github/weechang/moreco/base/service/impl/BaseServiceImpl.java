@@ -2,10 +2,9 @@ package io.github.weechang.moreco.base.service.impl;
 
 import io.github.weechang.moreco.base.dao.BaseDao;
 import io.github.weechang.moreco.base.domain.BaseDomain;
+import io.github.weechang.moreco.base.model.PageModel;
 import io.github.weechang.moreco.base.service.BaseService;
-import io.github.weechang.moreco.base.util.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
@@ -65,8 +64,8 @@ public abstract class BaseServiceImpl<D extends BaseDao, T extends BaseDomain> i
     }
 
     @Override
-    public PageUtil<T> findAll(Pageable pageable) {
-        return new PageUtil<T>(baseDao.findAll(pageable));
+    public PageModel<T> findAll(Pageable pageable) {
+        return new PageModel<T>(baseDao.findAll(pageable));
     }
 
     @Override
