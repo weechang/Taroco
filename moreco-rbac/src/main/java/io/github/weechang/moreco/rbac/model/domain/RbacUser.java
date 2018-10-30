@@ -10,6 +10,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -46,7 +47,13 @@ public class RbacUser extends BaseDomain {
     @ApiModelProperty("手机号")
     private String mobile;
 
-    @ApiModelProperty("状态  0：禁用   1：正常")
+    @ApiModelProperty("尝试次数")
+    private Integer triedTimes;
+
+    @ApiModelProperty("锁定时间")
+    private Date lockedTime;
+
+    @ApiModelProperty("状态  0：禁用 1：正常  2：锁定")
     private Integer status;
 
     @Transient

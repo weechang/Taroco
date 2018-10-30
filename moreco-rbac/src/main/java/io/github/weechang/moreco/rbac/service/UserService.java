@@ -34,4 +34,11 @@ public interface UserService extends BaseService<RbacUser> {
      * @param id 用户id
      */
     void resetPasswordByUserId(Long id);
+
+    /**
+     * 根据用户id 锁定账户
+     *
+     * @param userId 用户id
+     */
+    void changeLock(Long userId);
 }

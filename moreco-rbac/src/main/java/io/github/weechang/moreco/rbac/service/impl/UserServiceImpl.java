@@ -8,6 +8,7 @@ import io.github.weechang.moreco.rbac.model.domain.RbacRoleMenu;
 import io.github.weechang.moreco.rbac.model.domain.RbacUser;
 import io.github.weechang.moreco.rbac.model.domain.RbacUserRole;
 import io.github.weechang.moreco.rbac.error.RbacError;
+import io.github.weechang.moreco.rbac.model.domain.enums.UserStatusEnums;
 import io.github.weechang.moreco.rbac.service.RoleMenuService;
 import io.github.weechang.moreco.rbac.service.UserDeptService;
 import io.github.weechang.moreco.rbac.service.UserRoleService;
@@ -16,6 +17,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -66,6 +68,16 @@ public class UserServiceImpl extends BaseServiceImpl<UserDao, RbacUser> implemen
     public void resetPasswordByUserId(Long id) {
         RbacUser user = baseDao.findOne(id);
         if (user != null) {
+            baseDao.save(user);
+        }
+    }
+
+    @Override
+    public void lockUser(Long userId) {
+        RbacUser user = baseDao.findOne(userId);
+        if (user != null){
+            user.setLockedTime(new Date());
+            user.setStatus(UserStatusEnums.LOCKED.getKey());
             baseDao.save(user);
         }
     }
