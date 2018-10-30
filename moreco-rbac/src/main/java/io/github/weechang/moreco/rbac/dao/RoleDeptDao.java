@@ -13,5 +13,5 @@ import java.util.List;
  */
 public interface RoleDeptDao extends JpaDao<RbacRoleDept> {
 
-    List<RbacRoleDept> findAllByRoleIdAndDeptIdContains(Long roleId, List<Long> deptIds);
+    List<RbacRoleDept> findAllByRoleId(Long roleId);
 }

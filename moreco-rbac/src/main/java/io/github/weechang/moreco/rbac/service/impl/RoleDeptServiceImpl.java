@@ -1,14 +1,18 @@
 package io.github.weechang.moreco.rbac.service.impl;
 
 import com.google.common.collect.Lists;
+import io.github.weechang.moreco.base.domain.enums.YnEnums;
 import io.github.weechang.moreco.base.service.impl.BaseServiceImpl;
 import io.github.weechang.moreco.rbac.dao.RoleDeptDao;
+import io.github.weechang.moreco.rbac.domain.RbacRole;
 import io.github.weechang.moreco.rbac.domain.RbacRoleDept;
 import io.github.weechang.moreco.rbac.service.RoleDeptService;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 /**
  * @author zhangwei
@@ -33,22 +37,23 @@ public class RoleDeptServiceImpl extends BaseServiceImpl<RoleDeptDao, RbacRoleDe
         if (CollectionUtils.isEmpty(deptIds)) {
             return;
         }
-        List<RbacRoleDept> saveds = baseDao.findAllByRoleIdAndDeptIdContains(roleId, deptIds);
+        List<RbacRoleDept> saveds = baseDao.findAllByRoleId(roleId);
+
+        List<Long> savedIds = saveds.stream().map(c -> c.getDeptId()).collect(Collectors.toList());
 
         List<Long> toSaveDeptIds = Lists.newArrayList();
 
-        for (RbacRoleDept saved : saveds) {
-            if (deptIds.contains(saved.getDeptId())) {
-                deptIds.remove(deptIds);
+        for (Long deptId : deptIds) {
+            if (!savedIds.contains(deptId)) {
+                toSaveDeptIds.add(deptId);
             } else {
-                toSaveDeptIds.add(saved.getDeptId());
+                saveds.remove(savedIds.indexOf(deptId));
+                savedIds.remove(deptId);
             }
         }
 
-        List<Long> toDeleteDeptIds = deptIds;
-
         // 批量保存
-        if (CollectionUtils.isNotEmpty(toSaveDeptIds)){
+        if (CollectionUtils.isNotEmpty(toSaveDeptIds)) {
             List<RbacRoleDept> roleDepts = Lists.newArrayList();
             for (Long deptId : toSaveDeptIds) {
                 RbacRoleDept roleDept = new RbacRoleDept();
@@ -60,8 +65,9 @@ public class RoleDeptServiceImpl extends BaseServiceImpl<RoleDeptDao, RbacRoleDe
         }
 
         // 批量删除
-        if (CollectionUtils.isNotEmpty(toDeleteDeptIds)){
-//            baseDao.updateByRoleIdAndDeptIdContains(roleId, toDeleteDeptIds);
+        if (CollectionUtils.isNotEmpty(saveds)) {
+            saveds.stream().forEach(s -> s.setYn(YnEnums.N.getKey()));
+            baseDao.save(saveds);
         }
     }
 }

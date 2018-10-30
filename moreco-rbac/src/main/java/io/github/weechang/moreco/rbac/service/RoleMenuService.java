@@ -18,4 +18,12 @@ public interface RoleMenuService extends BaseService<RbacRoleMenu> {
      * @return 对应关系
      */
     List<RbacRoleMenu> findAllByRoleId(Long id);
+
+    /**
+     * 保存角色与目录关系
+     *
+     * @param roleId  角色id
+     * @param menuIds 目录ids
+     */
+    void save(Long roleId, List<Long> menuIds);
 }
