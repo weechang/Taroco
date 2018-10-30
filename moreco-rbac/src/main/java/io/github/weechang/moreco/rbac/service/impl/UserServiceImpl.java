@@ -73,12 +73,17 @@ public class UserServiceImpl extends BaseServiceImpl<UserDao, RbacUser> implemen
     }
 
     @Override
-    public void lockUser(Long userId) {
+    public void changeStatus(Long userId, int status) {
         RbacUser user = baseDao.findOne(userId);
         if (user != null){
-            user.setLockedTime(new Date());
-            user.setStatus(UserStatusEnums.LOCKED.getKey());
-            baseDao.save(user);
+            if (status == UserStatusEnums.FORBIDDEN.getKey()){
+                user.setStatus(UserStatusEnums.FORBIDDEN.getKey());
+            } else if (status == UserStatusEnums.AVAILABLE.getKey()){
+                user.setStatus(UserStatusEnums.AVAILABLE.getKey());
+            } else if (status == UserStatusEnums.LOCKED.getKey()){
+                user.setStatus(UserStatusEnums.LOCKED.getKey());
+                user.setLockedTime(new Date());
+            }
         }
     }
 
