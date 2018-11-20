@@ -17,8 +17,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class CorsInterceptor extends HandlerInterceptorAdapter {
 
-    private static final Logger logger = LoggerFactory.getLogger(CorsInterceptor.class);
-
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         corsHandle(request, response);
@@ -37,7 +35,6 @@ public class CorsInterceptor extends HandlerInterceptorAdapter {
      * @param response
      */
     protected void corsHandle(HttpServletRequest request, HttpServletResponse response) {
-        logger.debug("Begin CorsInterceptor : " + request.getRequestURI() + ", param=" + request.getParameter("param"));
         String origin = request.getHeader("Origin");
         if (StringUtils.isNotBlank(origin)) {
             response.setHeader("Access-Control-Allow-Origin", "*");

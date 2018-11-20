@@ -50,4 +50,8 @@ public class BaseDomain implements Serializable {
     @ApiModelProperty("扩展信息")
     @Transient
     protected Map<String, Object> dataMap = Maps.newHashMap();
+
+    public void addDataMap(String key, Object value){
+        dataMap.put(key, value);
+    }
 }

@@ -3,6 +3,7 @@ package io.github.weechang.moreco.rbac.controller;
 import io.github.weechang.moreco.base.controller.BaseController;
 import io.github.weechang.moreco.base.model.PageModel;
 import io.github.weechang.moreco.base.model.R;
+import io.github.weechang.moreco.rbac.model.domain.RbacMenu;
 import io.github.weechang.moreco.rbac.model.domain.RbacRole;
 import io.github.weechang.moreco.rbac.model.dto.RoleSaveRequest;
 import io.github.weechang.moreco.rbac.service.RoleService;
@@ -30,17 +31,20 @@ public class RoleController extends BaseController {
 
     @ApiOperation("分页获取角色数据")
     @GetMapping("page/{index}")
-    public R<PageModel<RbacRole>> page(@ApiParam(name = "页码") @PathVariable("index") int index) {
+    public R<PageModel<RbacRole>> page(
+            @ApiParam(name = "页码") @PathVariable("index") int index) {
         PageModel request = new PageModel(index);
         PageModel<RbacRole> page = roleService.findAll(request.toPageRequest());
+        RoleService.convert2String(page.getList());
         return R.ok(page);
     }
 
-    @ApiOperation("获取角色列表")
-    @GetMapping("list")
-    public R<List<RbacRole>> list() {
-       List<RbacRole> list = (List<RbacRole>) roleService.findAll();
-       return R.ok(list);
+    @ApiOperation("获取详情")
+    @GetMapping("/detail/{id}")
+    public R<RbacRole> detail(
+            @ApiParam(name = "id") @PathVariable("id") Long id) {
+        RbacRole role = roleService.detail(id);
+        return R.ok(role);
     }
 
     @ApiOperation("保存角色信息")

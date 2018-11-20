@@ -9,6 +9,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * 部门
@@ -34,4 +35,8 @@ public class RbacDept extends BaseDomain {
 
     @ApiModelProperty("排序")
     private Integer orderNum;
+
+    @ApiModelProperty("子机构")
+    @Transient
+    private List<RbacDept> children;
 }

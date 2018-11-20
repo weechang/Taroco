@@ -61,6 +61,12 @@ public class R<T extends Object> {
         return r;
     }
 
+    public static R okR(Object t) {
+        R r = new R();
+        r.result = t;
+        return r;
+    }
+
     public static R ok(String msg) {
         R r = new R();
         r.put("msg", msg);
