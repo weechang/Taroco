@@ -28,9 +28,6 @@ public class RoleSaveRequest implements Serializable {
     @ApiModelProperty("备注")
     private String remark;
 
-    @ApiModelProperty("授权数据权限部门")
-    private List<Long> deptIdList;
-
     @ApiModelProperty("授权目录权限列表")
     private List<Long> menuIdList;
 

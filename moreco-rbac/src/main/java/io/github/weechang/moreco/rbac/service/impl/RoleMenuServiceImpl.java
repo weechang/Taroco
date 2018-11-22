@@ -4,7 +4,6 @@ import com.google.common.collect.Lists;
 import io.github.weechang.moreco.base.domain.enums.YnEnums;
 import io.github.weechang.moreco.base.service.impl.BaseServiceImpl;
 import io.github.weechang.moreco.rbac.dao.RoleMenuDao;
-import io.github.weechang.moreco.rbac.model.domain.RbacRoleDept;
 import io.github.weechang.moreco.rbac.model.domain.RbacRoleMenu;
 import io.github.weechang.moreco.rbac.service.RoleMenuService;
 import org.apache.commons.collections.CollectionUtils;

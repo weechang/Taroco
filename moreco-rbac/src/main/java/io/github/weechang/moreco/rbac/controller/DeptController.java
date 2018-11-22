@@ -25,6 +25,7 @@ import java.util.List;
 @Api(tags = "dept", description = "部门管理")
 @RequestMapping("rbac/dept")
 @RestController
+@CrossOrigin
 public class DeptController {
 
     @Autowired
@@ -59,7 +60,7 @@ public class DeptController {
 
     @ApiOperation("保存部门信息")
     @PostMapping("save")
-    public R save(DeptSaveReqeust reqeust) {
+    public R save(@RequestBody DeptSaveReqeust reqeust) {
         RbacDept dept = reqeust.toRbacDept();
         deptService.save(dept);
         return R.ok();

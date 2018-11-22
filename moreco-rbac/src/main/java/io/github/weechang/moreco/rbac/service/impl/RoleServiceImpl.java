@@ -3,14 +3,10 @@ package io.github.weechang.moreco.rbac.service.impl;
 import io.github.weechang.moreco.base.exception.BusinessException;
 import io.github.weechang.moreco.base.service.impl.BaseServiceImpl;
 import io.github.weechang.moreco.rbac.dao.RoleDao;
-import io.github.weechang.moreco.rbac.dao.RoleDeptDao;
 import io.github.weechang.moreco.rbac.dao.RoleMenuDao;
-import io.github.weechang.moreco.rbac.model.domain.RbacMenu;
 import io.github.weechang.moreco.rbac.model.domain.RbacRole;
 import io.github.weechang.moreco.rbac.error.RbacError;
-import io.github.weechang.moreco.rbac.model.domain.RbacRoleDept;
 import io.github.weechang.moreco.rbac.model.domain.RbacRoleMenu;
-import io.github.weechang.moreco.rbac.service.RoleDeptService;
 import io.github.weechang.moreco.rbac.service.RoleMenuService;
 import io.github.weechang.moreco.rbac.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,13 +24,9 @@ import java.util.stream.Collectors;
 public class RoleServiceImpl extends BaseServiceImpl<RoleDao, RbacRole> implements RoleService {
 
     @Autowired
-    private RoleDeptService roleDeptService;
-    @Autowired
     private RoleMenuService roleMenuService;
     @Autowired
     private RoleMenuDao roleMenuDao;
-    @Autowired
-    private RoleDeptDao roleDeptDao;
 
     @Override
     public RbacRole save(RbacRole role) {
@@ -45,7 +37,6 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleDao, RbacRole> implemen
             }
         }
         role = super.save(role);
-        roleDeptService.save(role.getId(), role.getDeptIdList());
         roleMenuService.save(role.getId(), role.getMenuIdList());
         return role;
     }
@@ -55,9 +46,7 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleDao, RbacRole> implemen
         RbacRole role = baseDao.findOne(id);
         if (role != null) {
             List<Long> menuIds = roleMenuDao.findAllByRoleId(id).stream().map(RbacRoleMenu::getMenuId).collect(Collectors.toList());
-            List<Long> deptIds = roleDeptDao.findAllByRoleId(id).stream().map(RbacRoleDept::getDeptId).collect(Collectors.toList());
             role.setMenuIdList(menuIds);
-            role.setDeptIdList(deptIds);
         }
         return role;
     }

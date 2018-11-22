@@ -25,7 +25,7 @@ public class DeptServiceImpl extends BaseServiceImpl<DeptDao, RbacDept> implemen
     @Override
     public PageModel<RbacDept> findAllByParentId(Long parentId, Pageable pageable) {
         parentId = parentId == null ? 0L : parentId;
-        return new PageModel<RbacDept>(baseDao.queryAllByParentId(parentId, pageable));
+        return new PageModel<>(baseDao.queryAllByParentId(parentId, pageable));
     }
 
     @Override

@@ -33,6 +33,9 @@ public class UserSaveRequest implements Serializable {
     @ApiModelProperty("手机号")
     private String mobile;
 
+    @ApiModelProperty("部门id")
+    private Long deptId;
+
     public RbacUser toRbacUser(){
         return BeanUtil.beanToBean(this, RbacUser.class);
     }

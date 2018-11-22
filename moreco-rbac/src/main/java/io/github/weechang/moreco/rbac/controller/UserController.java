@@ -3,6 +3,7 @@ package io.github.weechang.moreco.rbac.controller;
 import io.github.weechang.moreco.base.controller.BaseController;
 import io.github.weechang.moreco.base.model.R;
 import io.github.weechang.moreco.base.model.PageModel;
+import io.github.weechang.moreco.rbac.model.domain.RbacRole;
 import io.github.weechang.moreco.rbac.model.domain.RbacUser;
 import io.github.weechang.moreco.rbac.model.dto.UserSaveRequest;
 import io.github.weechang.moreco.rbac.service.UserService;
@@ -31,12 +32,21 @@ public class UserController extends BaseController {
     public R<PageModel<RbacUser>> page(@ApiParam(name = "页码") @PathVariable("index") int index) {
         PageModel request = new PageModel(index);
         PageModel<RbacUser> page = userService.findAll(request.toPageRequest());
+        UserService.convert2String(page.getList());
         return R.ok(page);
+    }
+
+    @ApiOperation("获取详情")
+    @GetMapping("/detail/{id}")
+    public R<RbacRole> detail(
+            @ApiParam(name = "id") @PathVariable("id") Long id) {
+        RbacUser user = userService.detail(id);
+        return R.ok(user);
     }
 
     @ApiOperation("保存用户信息")
     @PostMapping("save")
-    public R save(UserSaveRequest request) {
+    public R save(@RequestBody UserSaveRequest request) {
         RbacUser user = request.toRbacUser();
         userService.save(user);
         return R.ok();

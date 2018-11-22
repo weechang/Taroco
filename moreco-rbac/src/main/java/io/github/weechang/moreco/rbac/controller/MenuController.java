@@ -71,7 +71,7 @@ public class MenuController extends BaseController {
 
     @ApiModelProperty("保存目录信息")
     @PostMapping("save")
-    public R save(MenuSaveRequest request) {
+    public R save(@RequestBody MenuSaveRequest request) {
         RbacMenu menu = request.toRbacMenu();
         menuService.save(menu);
         return R.ok();

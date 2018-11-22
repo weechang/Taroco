@@ -39,6 +39,13 @@ public class RoleController extends BaseController {
         return R.ok(page);
     }
 
+    @ApiOperation("获取所有角色")
+    @GetMapping("list")
+    public R<List<RbacRole>> list() {
+        List<RbacRole> list = (List<RbacRole>) roleService.findAll();
+        return R.ok(list);
+    }
+
     @ApiOperation("获取详情")
     @GetMapping("/detail/{id}")
     public R<RbacRole> detail(
@@ -49,7 +56,7 @@ public class RoleController extends BaseController {
 
     @ApiOperation("保存角色信息")
     @PostMapping("save")
-    public R save(RoleSaveRequest request) {
+    public R save(@RequestBody RoleSaveRequest request) {
         RbacRole role = request.toRbacMenu();
         roleService.save(role);
         return R.ok();

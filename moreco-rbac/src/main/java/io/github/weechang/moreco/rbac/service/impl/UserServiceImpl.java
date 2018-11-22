@@ -8,9 +8,8 @@ import io.github.weechang.moreco.rbac.model.domain.RbacRoleMenu;
 import io.github.weechang.moreco.rbac.model.domain.RbacUser;
 import io.github.weechang.moreco.rbac.model.domain.RbacUserRole;
 import io.github.weechang.moreco.rbac.error.RbacError;
-import io.github.weechang.moreco.rbac.model.domain.enums.UserStatusEnums;
+import io.github.weechang.moreco.rbac.model.domain.enums.UserStatusEnum;
 import io.github.weechang.moreco.rbac.service.RoleMenuService;
-import io.github.weechang.moreco.rbac.service.UserDeptService;
 import io.github.weechang.moreco.rbac.service.UserRoleService;
 import io.github.weechang.moreco.rbac.service.UserService;
 import org.apache.commons.collections.CollectionUtils;
@@ -19,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author zhangwei
@@ -32,8 +32,6 @@ public class UserServiceImpl extends BaseServiceImpl<UserDao, RbacUser> implemen
     private RoleMenuService roleMenuService;
     @Autowired
     private UserRoleService userRoleService;
-    @Autowired
-    private UserDeptService userDeptService;
 
     @Override
     public List<Long> findAllMenuIdByUserId(Long id) {
@@ -76,15 +74,25 @@ public class UserServiceImpl extends BaseServiceImpl<UserDao, RbacUser> implemen
     public void changeStatus(Long userId, int status) {
         RbacUser user = baseDao.findOne(userId);
         if (user != null){
-            if (status == UserStatusEnums.FORBIDDEN.getKey()){
-                user.setStatus(UserStatusEnums.FORBIDDEN.getKey());
-            } else if (status == UserStatusEnums.AVAILABLE.getKey()){
-                user.setStatus(UserStatusEnums.AVAILABLE.getKey());
-            } else if (status == UserStatusEnums.LOCKED.getKey()){
-                user.setStatus(UserStatusEnums.LOCKED.getKey());
+            if (status == UserStatusEnum.FORBIDDEN.getKey()){
+                user.setStatus(UserStatusEnum.FORBIDDEN.getKey());
+            } else if (status == UserStatusEnum.AVAILABLE.getKey()){
+                user.setStatus(UserStatusEnum.AVAILABLE.getKey());
+            } else if (status == UserStatusEnum.LOCKED.getKey()){
+                user.setStatus(UserStatusEnum.LOCKED.getKey());
                 user.setLockedTime(new Date());
             }
         }
+    }
+
+    @Override
+    public RbacUser detail(Long id) {
+        RbacUser user = baseDao.findOne(id);
+        if (user != null){
+            List<Long> roleIds = userRoleService.findAllByUserId(id).stream().map(RbacUserRole::getRoleId).collect(Collectors.toList());
+            user.setRoleIds(roleIds);
+        }
+        return user;
     }
 
     @Override
@@ -98,7 +106,6 @@ public class UserServiceImpl extends BaseServiceImpl<UserDao, RbacUser> implemen
             }
         }
         user = super.save(user);
-        userDeptService.save(user.getId(), user.getDeptIds());
         userRoleService.save(user.getId(), user.getRoleIds());
         return user;
     }

@@ -56,8 +56,8 @@ public class RbacUser extends BaseDomain {
     @ApiModelProperty("状态  0：禁用 1：正常  2：锁定")
     private Integer status;
 
-    @Transient
-    private List<Long> deptIds;
+    @ApiModelProperty("部门id")
+    private Long deptId;
 
     @Transient
     private List<Long> roleIds;
