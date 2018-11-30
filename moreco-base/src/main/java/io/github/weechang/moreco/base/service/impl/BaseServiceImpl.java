@@ -5,6 +5,7 @@ import io.github.weechang.moreco.base.domain.BaseDomain;
 import io.github.weechang.moreco.base.model.PageModel;
 import io.github.weechang.moreco.base.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
@@ -44,11 +45,6 @@ public abstract class BaseServiceImpl<D extends BaseDao, T extends BaseDomain> i
     }
 
     @Override
-    public boolean exists(Serializable id) {
-        return baseDao.exists(id);
-    }
-
-    @Override
     public Iterable<T> findAll() {
         return baseDao.findAll();
     }
@@ -59,18 +55,8 @@ public abstract class BaseServiceImpl<D extends BaseDao, T extends BaseDomain> i
     }
 
     @Override
-    public Iterable<T> findAll(Sort sort) {
-        return baseDao.findAll(sort);
-    }
-
-    @Override
     public PageModel<T> findAll(Pageable pageable) {
         return new PageModel<T>(baseDao.findAll(pageable));
-    }
-
-    @Override
-    public long count() {
-        return baseDao.count();
     }
 
     @Override
@@ -86,11 +72,6 @@ public abstract class BaseServiceImpl<D extends BaseDao, T extends BaseDomain> i
     @Override
     public void delete(Iterable<? extends T> ts) {
         this.delete(ts, physical);
-    }
-
-    @Override
-    public void deleteAll() {
-        this.deleteAll(physical);
     }
 
     @Override
@@ -119,15 +100,5 @@ public abstract class BaseServiceImpl<D extends BaseDao, T extends BaseDomain> i
             baseDao.logicDelete(ts);
         }
     }
-
-    @Override
-    public void deleteAll(boolean physical) {
-        if (physical) {
-            baseDao.deleteAll();
-        } else {
-//            baseDao.logicDeleteAll();
-        }
-    }
-
 
 }

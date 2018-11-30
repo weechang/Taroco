@@ -22,9 +22,10 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
+@Table(name = "moreco_rbac_menu")
 @DynamicUpdate()
 @Where(clause = "yn = 1")
-public class RbacMenu extends BaseDomain {
+public class Menu extends BaseDomain {
     private static final long serialVersionUID = 5051501706109694638L;
 
     @ApiModelProperty("父菜单ID，一级菜单为0")
@@ -50,5 +51,5 @@ public class RbacMenu extends BaseDomain {
 
     @ApiModelProperty("子目录")
     @Transient
-    private List<RbacMenu> children;
+    private List<Menu> children;
 }

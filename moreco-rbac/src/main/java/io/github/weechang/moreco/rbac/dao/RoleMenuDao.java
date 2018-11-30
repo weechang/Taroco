@@ -1,6 +1,6 @@
 package io.github.weechang.moreco.rbac.dao;
 
-import io.github.weechang.moreco.rbac.model.domain.RbacRoleMenu;
+import io.github.weechang.moreco.rbac.model.domain.RoleMenu;
 import io.github.weechang.moreco.base.dao.JpaDao;
 
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
  * date 2018/10/26
  * time 18:11
  */
-public interface RoleMenuDao extends JpaDao<RbacRoleMenu> {
+public interface RoleMenuDao extends JpaDao<RoleMenu> {
 
-    List<RbacRoleMenu> findAllByRoleId(Long id);
+    List<RoleMenu> findAllByRoleId(Long id);
 }

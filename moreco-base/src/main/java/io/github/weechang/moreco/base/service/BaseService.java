@@ -2,6 +2,7 @@ package io.github.weechang.moreco.base.service;
 
 import io.github.weechang.moreco.base.domain.BaseDomain;
 import io.github.weechang.moreco.base.model.PageModel;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
@@ -41,14 +42,6 @@ public interface BaseService<T extends BaseDomain> {
     T findOne(Serializable id);
 
     /**
-     * 根据id判断是否存在
-     *
-     * @param id id
-     * @return 是否存在
-     */
-    boolean exists(Serializable id);
-
-    /**
      * 查询所有记录
      *
      * @return 所有记录
@@ -64,27 +57,12 @@ public interface BaseService<T extends BaseDomain> {
     Iterable<T> findAll(Iterable<Serializable> ids);
 
     /**
-     * 排序查询所有对象
-     *
-     * @param sort 排序
-     * @return 所有对象
-     */
-    Iterable<T> findAll(Sort sort);
-
-    /**
      * 分页查询记录
      *
      * @param pageable 分页参数
      * @return 分页记录
      */
     PageModel<T> findAll(Pageable pageable);
-
-    /**
-     * 查询共有多少条数据
-     *
-     * @return 共有多少条数据
-     */
-    long count();
 
     /**
      * 根据id删除
@@ -106,11 +84,6 @@ public interface BaseService<T extends BaseDomain> {
      * @param ts 要批量删除的对象
      */
     void delete(Iterable<? extends T> ts);
-
-    /**
-     * 删除所有记录
-     */
-    void deleteAll();
 
     /**
      * 根据id删除
@@ -136,10 +109,4 @@ public interface BaseService<T extends BaseDomain> {
      */
     void delete(Iterable<? extends T> ts, boolean physical);
 
-    /**
-     * 删除所有记录
-     *
-     * @param physical 物理删除
-     */
-    void deleteAll(boolean physical);
 }

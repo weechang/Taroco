@@ -1,7 +1,7 @@
 package io.github.weechang.moreco.rbac.model.dto;
 
 import io.github.weechang.jutil.common.util.BeanUtil;
-import io.github.weechang.moreco.rbac.model.domain.RbacDept;
+import io.github.weechang.moreco.rbac.model.domain.Dept;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -30,9 +30,9 @@ public class DeptSaveReqeust implements Serializable {
     @ApiModelProperty("排序")
     private Integer orderNum;
 
-    public RbacDept toRbacDept(){
+    public Dept toDept(){
         parentId = parentId == null ? 0L : parentId;
         orderNum = orderNum == null ? 0 : orderNum;
-        return BeanUtil.beanToBean(this, RbacDept.class);
+        return BeanUtil.beanToBean(this, Dept.class);
     }
 }

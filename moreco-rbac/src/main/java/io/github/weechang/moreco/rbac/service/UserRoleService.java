@@ -1,7 +1,7 @@
 package io.github.weechang.moreco.rbac.service;
 
 import io.github.weechang.moreco.base.service.BaseService;
-import io.github.weechang.moreco.rbac.model.domain.RbacUserRole;
+import io.github.weechang.moreco.rbac.model.domain.UserRole;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import java.util.List;
  * date 2018/10/27
  * time 16:01
  */
-public interface UserRoleService extends BaseService<RbacUserRole> {
+public interface UserRoleService extends BaseService<UserRole> {
 
     /**
      * 根据用户id 获取所有对应关系
@@ -18,7 +18,7 @@ public interface UserRoleService extends BaseService<RbacUserRole> {
      * @param id 用户id
      * @return 所有对应关系
      */
-    List<RbacUserRole> findAllByUserId(Long id);
+    List<UserRole> findAllByUserId(Long id);
 
     /**
      * 保存用户与角色关系

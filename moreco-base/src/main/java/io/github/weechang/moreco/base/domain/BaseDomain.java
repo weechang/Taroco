@@ -27,7 +27,7 @@ public class BaseDomain implements Serializable {
     private static final long serialVersionUID = 5966306766659220492L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private Long id;
 
     @ApiModelProperty("创建时间")

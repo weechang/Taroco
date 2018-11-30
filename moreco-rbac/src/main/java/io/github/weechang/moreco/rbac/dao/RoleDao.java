@@ -1,6 +1,6 @@
 package io.github.weechang.moreco.rbac.dao;
 
-import io.github.weechang.moreco.rbac.model.domain.RbacRole;
+import io.github.weechang.moreco.rbac.model.domain.Role;
 import io.github.weechang.moreco.base.dao.JpaDao;
 
 /**
@@ -8,7 +8,7 @@ import io.github.weechang.moreco.base.dao.JpaDao;
  * date 2018/10/26
  * time 18:10
  */
-public interface RoleDao extends JpaDao<RbacRole> {
+public interface RoleDao extends JpaDao<Role> {
 
-    RbacRole findFirstByName(String name);
+    Role findFirstByName(String name);
 }

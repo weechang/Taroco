@@ -10,59 +10,59 @@ import io.github.weechang.moreco.base.error.IError;
  * @author zhangwei
  * @date 2017年11月18日23:45:47
  */
-public class BusinessException extends RuntimeException {
+public class AppException extends RuntimeException {
 
     private static final long serialVersionUID = -6293662498600553602L;
 
     private IError error;
     private String extMessage;
 
-    public BusinessException() {
+    public AppException() {
         this.error = SysError.SYSTEM_INTERNAL_ERROR;
         this.extMessage = null;
     }
 
-    public BusinessException(String message) {
+    public AppException(String message) {
         super(message);
         this.error = SysError.SYSTEM_INTERNAL_ERROR;
         this.extMessage = null;
         this.extMessage = message;
     }
 
-    public BusinessException(String message, Throwable cause) {
+    public AppException(String message, Throwable cause) {
         super(message, cause);
         this.error = SysError.SYSTEM_INTERNAL_ERROR;
         this.extMessage = null;
         this.extMessage = message;
     }
 
-    public BusinessException(Throwable cause) {
+    public AppException(Throwable cause) {
         super(cause);
         this.error = SysError.SYSTEM_INTERNAL_ERROR;
         this.extMessage = null;
     }
 
-    public BusinessException(IError error) {
+    public AppException(IError error) {
         this.error = SysError.SYSTEM_INTERNAL_ERROR;
         this.extMessage = null;
         this.error = error;
     }
 
-    public BusinessException(String message, IError error) {
+    public AppException(String message, IError error) {
         super(message);
         this.error = SysError.SYSTEM_INTERNAL_ERROR;
         this.extMessage = message;
         this.error = error;
     }
 
-    public BusinessException(String message, Throwable cause, IError error) {
+    public AppException(String message, Throwable cause, IError error) {
         super(message, cause);
         this.error = SysError.SYSTEM_INTERNAL_ERROR;
         this.extMessage = message;
         this.error = error;
     }
 
-    public BusinessException(Throwable cause, IError error) {
+    public AppException(Throwable cause, IError error) {
         super(cause);
         this.error = SysError.SYSTEM_INTERNAL_ERROR;
         this.extMessage = null;

@@ -16,6 +16,7 @@
         <module>moreco-monitor-manager</module>
         <module>moreco-monitor-sdk</module>
         <module>moreco-monitor-core</module>
+        <module>moreco-monitor-agent</module>
     </modules>
 
 

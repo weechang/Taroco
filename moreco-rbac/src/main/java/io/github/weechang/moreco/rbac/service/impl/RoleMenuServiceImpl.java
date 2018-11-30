@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import io.github.weechang.moreco.base.domain.enums.YnEnums;
 import io.github.weechang.moreco.base.service.impl.BaseServiceImpl;
 import io.github.weechang.moreco.rbac.dao.RoleMenuDao;
-import io.github.weechang.moreco.rbac.model.domain.RbacRoleMenu;
+import io.github.weechang.moreco.rbac.model.domain.RoleMenu;
 import io.github.weechang.moreco.rbac.service.RoleMenuService;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Service;
@@ -18,10 +18,10 @@ import java.util.stream.Collectors;
  * time 16:20
  */
 @Service
-public class RoleMenuServiceImpl extends BaseServiceImpl<RoleMenuDao, RbacRoleMenu> implements RoleMenuService {
+public class RoleMenuServiceImpl extends BaseServiceImpl<RoleMenuDao, RoleMenu> implements RoleMenuService {
 
     @Override
-    public List<RbacRoleMenu> findAllByRoleId(Long id) {
+    public List<RoleMenu> findAllByRoleId(Long id) {
         return baseDao.findAllByRoleId(id);
     }
 
@@ -30,7 +30,7 @@ public class RoleMenuServiceImpl extends BaseServiceImpl<RoleMenuDao, RbacRoleMe
         if (CollectionUtils.isEmpty(menuIds)) {
             return;
         }
-        List<RbacRoleMenu> saveds = baseDao.findAllByRoleId(roleId);
+        List<RoleMenu> saveds = baseDao.findAllByRoleId(roleId);
 
         List<Long> savedIds = saveds.stream().map(c -> c.getMenuId()).collect(Collectors.toList());
 
@@ -47,9 +47,9 @@ public class RoleMenuServiceImpl extends BaseServiceImpl<RoleMenuDao, RbacRoleMe
 
         // 批量保存
         if (CollectionUtils.isNotEmpty(toSaveMenuIds)) {
-            List<RbacRoleMenu> roleMenus = Lists.newArrayList();
+            List<RoleMenu> roleMenus = Lists.newArrayList();
             for (Long menuId : toSaveMenuIds) {
-                RbacRoleMenu roleMenu = new RbacRoleMenu();
+                RoleMenu roleMenu = new RoleMenu();
                 roleMenu.setMenuId(menuId);
                 roleMenu.setRoleId(roleId);
                 roleMenus.add(roleMenu);

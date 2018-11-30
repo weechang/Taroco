@@ -9,7 +9,7 @@ import org.hibernate.annotations.Where;
 import javax.persistence.*;
 
 /**
- * 角色与菜单对应关系
+ * 用户与角色对应关系
  *
  * @author zhangwei
  * date 2018/10/26
@@ -18,18 +18,19 @@ import javax.persistence.*;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
+@Table(name = "moreco_rbac_user_role")
 @DynamicUpdate()
 @Where(clause = "yn = 1")
-public class RbacRoleMenu extends BaseDomain {
-    private static final long serialVersionUID = 17923510531021555L;
+public class UserRole extends BaseDomain {
+    private static final long serialVersionUID = -4753510506298775667L;
+
+    /**
+     * 用户ID
+     */
+    private Long userId;
 
     /**
      * 角色ID
      */
     private Long roleId;
-
-    /**
-     * 菜单ID
-     */
-    private Long menuId;
 }

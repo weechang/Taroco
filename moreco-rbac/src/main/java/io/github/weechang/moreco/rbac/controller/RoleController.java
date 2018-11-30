@@ -3,8 +3,8 @@ package io.github.weechang.moreco.rbac.controller;
 import io.github.weechang.moreco.base.controller.BaseController;
 import io.github.weechang.moreco.base.model.PageModel;
 import io.github.weechang.moreco.base.model.R;
-import io.github.weechang.moreco.rbac.model.domain.RbacMenu;
-import io.github.weechang.moreco.rbac.model.domain.RbacRole;
+import io.github.weechang.moreco.rbac.model.domain.Role;
+import io.github.weechang.moreco.rbac.model.dto.RoleQueryRequest;
 import io.github.weechang.moreco.rbac.model.dto.RoleSaveRequest;
 import io.github.weechang.moreco.rbac.service.RoleService;
 import io.swagger.annotations.Api;
@@ -31,33 +31,34 @@ public class RoleController extends BaseController {
 
     @ApiOperation("分页获取角色数据")
     @GetMapping("page/{index}")
-    public R<PageModel<RbacRole>> page(
-            @ApiParam(name = "页码") @PathVariable("index") int index) {
+    public R<PageModel<Role>> page(
+            @ApiParam(name = "页码") @PathVariable("index") int index,
+            @ApiParam(name = "查询参数") RoleQueryRequest param) {
         PageModel request = new PageModel(index);
-        PageModel<RbacRole> page = roleService.findAll(request.toPageRequest());
+        PageModel<Role> page = roleService.findAll(param.toRole(), request.toPageRequest());
         RoleService.convert2String(page.getList());
         return R.ok(page);
     }
 
     @ApiOperation("获取所有角色")
     @GetMapping("list")
-    public R<List<RbacRole>> list() {
-        List<RbacRole> list = (List<RbacRole>) roleService.findAll();
+    public R<List<Role>> list() {
+        List<Role> list = (List<Role>) roleService.findAll();
         return R.ok(list);
     }
 
     @ApiOperation("获取详情")
     @GetMapping("/detail/{id}")
-    public R<RbacRole> detail(
+    public R<Role> detail(
             @ApiParam(name = "id") @PathVariable("id") Long id) {
-        RbacRole role = roleService.detail(id);
+        Role role = roleService.detail(id);
         return R.ok(role);
     }
 
     @ApiOperation("保存角色信息")
     @PostMapping("save")
     public R save(@RequestBody RoleSaveRequest request) {
-        RbacRole role = request.toRbacMenu();
+        Role role = request.toRole();
         roleService.save(role);
         return R.ok();
     }

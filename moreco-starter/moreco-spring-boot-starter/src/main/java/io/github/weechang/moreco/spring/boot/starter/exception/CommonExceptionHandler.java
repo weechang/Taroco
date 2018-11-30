@@ -3,7 +3,7 @@ package io.github.weechang.moreco.spring.boot.starter.exception;
 
 import io.github.weechang.moreco.base.error.SysError;
 import io.github.weechang.moreco.base.error.IError;
-import io.github.weechang.moreco.base.exception.BusinessException;
+import io.github.weechang.moreco.base.exception.AppException;
 import io.github.weechang.moreco.base.model.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -46,9 +46,9 @@ public class CommonExceptionHandler {
     private R build(Throwable ex, HttpServletResponse servletResponse) {
         IError error;
         String extMessage = null;
-        if (ex instanceof BusinessException) {
-            error = ((BusinessException) ex).getError();
-            extMessage = ((BusinessException) ex).getExtMessage();
+        if (ex instanceof AppException) {
+            error = ((AppException) ex).getError();
+            extMessage = ((AppException) ex).getExtMessage();
         } else if (ex instanceof BindException) {
             error = SysError.INVALID_PARAMETER;
             List<ObjectError> errors = ((BindException) ex).getAllErrors();

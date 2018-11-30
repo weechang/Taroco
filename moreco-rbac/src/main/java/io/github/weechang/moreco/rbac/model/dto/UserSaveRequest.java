@@ -1,7 +1,7 @@
 package io.github.weechang.moreco.rbac.model.dto;
 
 import io.github.weechang.jutil.common.util.BeanUtil;
-import io.github.weechang.moreco.rbac.model.domain.RbacUser;
+import io.github.weechang.moreco.rbac.model.domain.User;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -36,7 +36,7 @@ public class UserSaveRequest implements Serializable {
     @ApiModelProperty("部门id")
     private Long deptId;
 
-    public RbacUser toRbacUser(){
-        return BeanUtil.beanToBean(this, RbacUser.class);
+    public User toUser(){
+        return BeanUtil.beanToBean(this, User.class);
     }
 }

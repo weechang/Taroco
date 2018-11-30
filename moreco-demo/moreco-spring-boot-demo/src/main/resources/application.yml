@@ -5,6 +5,10 @@ server:
     min-spare-threads: 30
 
 spring:
+  profiles:
+    active: "@profileActive@"
+  application:
+    name: moreco-spring-boot-demo
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
@@ -13,25 +17,6 @@ spring:
       max-file-size: 100MB
       max-request-size: 100MB
       enabled: true
-  datasource:
-    url: jdbc:mysql://127.0.0.1:3306/moreco?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
-    username: moreco
-    password: moreco
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    max-active: 20
-    max-idle: 8
-    min-idle: 8
-    initial-size: 10
-  jpa:
-    database: MYSQL
-    show-sql: true
-    hibernate:
-      ddl-auto: update
-      naming:
-        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
 logging:
   level: debug

@@ -22,9 +22,10 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
+@Table(name = "moreco_rbac_dept")
 @DynamicUpdate()
 @Where(clause = "yn = 1")
-public class RbacDept extends BaseDomain {
+public class Dept extends BaseDomain {
     private static final long serialVersionUID = 1230574664359885255L;
 
     @ApiModelProperty("上级部门ID，一级部门为0")
@@ -38,5 +39,5 @@ public class RbacDept extends BaseDomain {
 
     @ApiModelProperty("子机构")
     @Transient
-    private List<RbacDept> children;
+    private List<Dept> children;
 }

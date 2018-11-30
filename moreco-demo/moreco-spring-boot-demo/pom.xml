@@ -17,6 +17,10 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+        </dependency>
+        <dependency>
             <groupId>io.github.weechang</groupId>
             <artifactId>moreco-rbac</artifactId>
         </dependency>
@@ -25,4 +29,28 @@
             <artifactId>moreco-spring-boot-starter</artifactId>
         </dependency>
     </dependencies>
+
+    <!-- Maven控制Spring Profile -->
+    <profiles>
+        <!-- Mysql环境 -->
+        <profile>
+            <id>mysql</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <profileActive>mysql</profileActive>
+            </properties>
+        </profile>
+        <!-- PG环境 -->
+        <profile>
+            <id>pg</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <profileActive>pg</profileActive>
+            </properties>
+        </profile>
+    </profiles>
 </project>

@@ -5,6 +5,7 @@ import io.github.weechang.moreco.base.domain.enums.YnEnums;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.CountQuery;
 import org.springframework.data.mongodb.repository.ExistsQuery;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,7 +19,7 @@ import java.util.List;
  * date 2018/10/26
  * time 17:02
  */
-public interface MongoDao<T extends BaseDomain> extends BaseDao<T> {
+public interface MongoDao<T extends BaseDomain> extends BaseDao<T>, MongoRepository<T, Serializable> {
 
 //    @Override
 //    @Transactional(readOnly = true)

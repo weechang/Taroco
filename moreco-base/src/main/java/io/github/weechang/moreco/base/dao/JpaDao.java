@@ -1,9 +1,21 @@
 package io.github.weechang.moreco.base.dao;
 
+import io.github.weechang.moreco.base.dao.support.ByExampleSpecification;
+import io.github.weechang.moreco.base.dao.support.ByRangeSpecification;
+import io.github.weechang.moreco.base.dao.support.Range;
 import io.github.weechang.moreco.base.domain.BaseDomain;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.jpa.domain.Specifications;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.NoRepositoryBean;
-import org.springframework.transaction.annotation.Transactional;
+
+import java.io.Serializable;
+import java.util.List;
+
 
 /**
  * JPA dao
@@ -13,10 +25,11 @@ import org.springframework.transaction.annotation.Transactional;
  * time 17:01
  */
 @NoRepositoryBean
-public interface JpaDao<T extends BaseDomain> extends BaseDao<T> {
+public interface JpaDao<T extends BaseDomain> extends BaseDao<T>, JpaRepository<T, Serializable>, JpaSpecificationExecutor {
 
-//    @Override
-//    @Query("update #{#entityName} e set e.yn = 1 ")
-//    @Transactional
-//    void logicDeleteAll();
+    default Page<T> findAll(Example example, List<Range<T>> ranges, Pageable pageable) {
+        Specification<T> byExample = new ByExampleSpecification<>(example);
+        Specification<T> byRanges = new ByRangeSpecification(ranges);
+        return findAll(Specifications.where(byExample).and(byRanges), pageable);
+    }
 }

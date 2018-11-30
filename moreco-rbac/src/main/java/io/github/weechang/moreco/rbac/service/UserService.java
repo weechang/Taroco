@@ -1,10 +1,12 @@
 package io.github.weechang.moreco.rbac.service;
 
 import io.github.weechang.jutil.common.util.DateUtil;
+import io.github.weechang.moreco.base.model.PageModel;
 import io.github.weechang.moreco.base.service.BaseService;
-import io.github.weechang.moreco.rbac.model.domain.RbacUser;
+import io.github.weechang.moreco.rbac.model.domain.User;
 import io.github.weechang.moreco.rbac.model.domain.enums.UserStatusEnum;
 import org.apache.commons.collections.CollectionUtils;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -13,21 +15,30 @@ import java.util.List;
  * date 2018/10/27
  * time 16:01
  */
-public interface UserService extends BaseService<RbacUser> {
+public interface UserService extends BaseService<User> {
 
     /**
      * 属性转换
      *
      * @param users 用户
      */
-    static void convert2String(List<RbacUser> users) {
+    static void convert2String(List<User> users) {
         if (CollectionUtils.isNotEmpty(users)) {
-            for (RbacUser user : users) {
+            for (User user : users) {
                 user.addDataMap("createdDate", DateUtil.format(user.getCreatedDate()));
                 user.addDataMap("status", UserStatusEnum.getNameByKey(user.getStatus()));
             }
         }
     }
+
+    /**
+     * 根据条件分页查询
+     *
+     * @param param    查询参数
+     * @param pageable 分页参数
+     * @return 结果
+     */
+    PageModel<User> findAll(User param, Pageable pageable);
 
     /**
      * 根据用户id 查询已授权的所有目录id
@@ -66,5 +77,5 @@ public interface UserService extends BaseService<RbacUser> {
      * @param id id
      * @return 详情
      */
-    RbacUser detail(Long id);
+    User detail(Long id);
 }

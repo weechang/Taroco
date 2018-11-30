@@ -21,9 +21,10 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
+@Table(name = "moreco_rbac_role")
 @DynamicUpdate()
 @Where(clause = "yn = 1")
-public class RbacRole extends BaseDomain {
+public class Role extends BaseDomain {
     private static final long serialVersionUID = -6369262328565896728L;
 
     @ApiModelProperty("角色名称")
