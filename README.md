@@ -94,6 +94,8 @@ moreco
 
 ![swagger](/doc-of-project/moreco-swagger.png)
 
+![monitor](/doc-of-project/moreco-monitor.png)
+
 ## 开发进度
 
 ## 安装教程
