@@ -11,5 +11,14 @@
 
     <artifactId>moreco-monitor-sdk</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>io.github.weechang</groupId>
+            <artifactId>moreco-monitor-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+    </dependencies>
 </project>

@@ -19,5 +19,13 @@
         <module>moreco-monitor-agent</module>
     </modules>
 
-
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.github.weechang</groupId>
+                <artifactId>moreco-monitor-core</artifactId>
+                <version>${parent.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
