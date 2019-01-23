@@ -109,4 +109,6 @@ moreco
 2. xxxx
 3. xxxx
 
-## 捐赠名单
+## QQ交流群
+
+[493659743](https://jq.qq.com/?_wv=1027&k=5Czuxq5)

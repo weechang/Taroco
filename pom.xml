@@ -44,6 +44,7 @@
         <qiniu.version>[7.2.0, 7.2.99]</qiniu.version>
         <aliyun.oss.version>2.5.0</aliyun.oss.version>
         <qcloud.cos.version>4.4</qcloud.cos.version>
+        <oshi.version>3.12.0</oshi.version>
     </properties>
 
     <dependencyManagement>
@@ -75,6 +76,16 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
                 <version>${spring-boot.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>net.java.dev.jna</groupId>
+                        <artifactId>jna</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>net.java.dev.jna</groupId>
+                        <artifactId>jna-platform</artifactId>
+                    </exclusion>
+                </exclusions>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -178,6 +189,11 @@
                 <groupId>io.github.weechang</groupId>
                 <artifactId>jutil-common-util</artifactId>
                 <version>${jutil.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.oshi</groupId>
+                <artifactId>oshi-core</artifactId>
+                <version>${oshi.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

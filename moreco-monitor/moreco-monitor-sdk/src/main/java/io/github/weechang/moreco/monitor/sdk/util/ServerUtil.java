@@ -1,11 +1,12 @@
 package io.github.weechang.moreco.monitor.sdk.util;
 
-import io.github.weechang.moreco.monitor.core.server.*;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
+import oshi.SystemInfo;
+import oshi.hardware.HardwareAbstractionLayer;
+import oshi.software.os.OperatingSystem;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 服务器工具类
@@ -18,118 +19,34 @@ import java.util.List;
 public class ServerUtil {
 
     /**
-     * 获取服务器信息
+     * 获取系统信息
      *
-     * @return 服务器信息
+     * @return 系统信息
      */
-    public static final ServerInfo getServerInfo() {
-        ServerInfo serverInfo = new ServerInfo();
-        String os = System.getProperty("os.name");
-        if (os != null && !os.startsWith("Windows")) {
-            // 获取linux 磁盘信息
-            serverInfo.setDiskInfos(getDiskInfo());
-            // 获取linux top信息
-            TopInfo topInfo = getTopInfo();
-            if (topInfo != null) {
-                serverInfo.setTaskInfo(topInfo.getTaskInfo());
-                serverInfo.setCpuInfo(topInfo.getCpuInfo());
-                serverInfo.setMemInfo(topInfo.getMemInfo());
-                serverInfo.setSwapInfo(topInfo.getSwapInfo());
-            }
-        }
-        return serverInfo;
+    private static SystemInfo getSystemInfo() {
+        return new SystemInfo();
     }
 
     /**
-     * 获取top 命令信息
+     * 获取硬件信息
      *
-     * @return top 信息
+     * @return 硬件信息
      */
-    public static final TopInfo getTopInfo() {
-        TopInfo topInfo = null;
-        String os = System.getProperty("os.name");
-        if (os != null && !os.startsWith("Windows")) {
-            // 获取linux top信息
-            topInfo = new TopInfo();
-            try {
-                String procCmd = "top -bn 1 -i -c";
-                String data = getShellCmdInfo(procCmd);
-                if (data != null) {
-                    String[] datas = data.split("\n");
-                    if (datas[0] != null) {
-                        TaskInfo taskInfo = new TaskInfo(datas[0]);
-                        topInfo.setTaskInfo(taskInfo);
-                    }
-                    if (datas[1] != null) {
-                        CpuInfo cpuInfo = new CpuInfo(datas[1]);
-                        topInfo.setCpuInfo(cpuInfo);
-                    }
-                    if (datas[2] != null) {
-                        MemInfo memInfo = new MemInfo(datas[2]);
-                        topInfo.setMemInfo(memInfo);
-                    }
-                    if (datas[3] != null) {
-                        SwapInfo swapInfo = new SwapInfo(datas[3]);
-                        topInfo.setSwapInfo(swapInfo);
-                    }
-                }
-            } catch (Exception e) {
-                log.error("获取top信息失败", e);
-            }
-        }
-        return topInfo;
+    public static HardwareAbstractionLayer getHardWare() {
+        return getSystemInfo().getHardware();
     }
 
     /**
-     * 获取磁盘信息
+     * 获取操作系统信息
      *
-     * @return 磁盘信息
+     * @return 操作系统
      */
-    public static final List<DiskInfo> getDiskInfo() {
-        List<DiskInfo> diskInfos = null;
-        String os = System.getProperty("os.name");
-        if (os != null && !os.startsWith("Windows")) {
-            diskInfos = new ArrayList<DiskInfo>();
-            try {
-                // 获取linux 磁盘信息
-                String procCmd = "df";
-                String data = getShellCmdInfo(procCmd);
-                if (data != null){
-                    String[] datas = data.split("\n");
-                    if (datas.length > 1){
-                        for (int i = 1; i < datas.length; i++){
-                            diskInfos.add(new DiskInfo(datas[i]));
-                        }
-                    }
-                }
-            } catch (Exception e){
-                log.error("获取磁盘信息失败", e);
-            }
-        }
-        return diskInfos;
+    public static OperatingSystem getSoftWare() {
+        return getSystemInfo().getOperatingSystem();
     }
 
-
-    /**
-     * shell 脚本执行器
-     *
-     * @param procCmd shell脚本
-     * @return 返回值
-     * @throws IOException Io
-     */
-    private static String getShellCmdInfo(String procCmd) throws IOException {
-        Process proc = Runtime.getRuntime().exec(procCmd);
-        StringBuilder sb = new StringBuilder();
-        try {
-            BufferedReader bReader = new BufferedReader(new InputStreamReader(proc.getInputStream()));
-            int ptr;
-            while ((ptr = bReader.read()) != -1) {
-                sb.append((char) ptr);
-            }
-            String result = sb.toString();
-            return result;
-        } finally {
-            proc.destroy();
-        }
+    public static void main(String[] args) {
+        JSON json  = (JSON) JSONObject.toJSON(getSoftWare());
+        System.out.println(json);
     }
 }

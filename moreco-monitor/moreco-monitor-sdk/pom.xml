@@ -10,15 +10,67 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>moreco-monitor-sdk</artifactId>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>7</source>
+                    <target>7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <dependencies>
         <dependency>
-            <groupId>io.github.weechang</groupId>
-            <artifactId>moreco-monitor-core</artifactId>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.github.weechang</groupId>
+            <artifactId>jutil-common-util</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.oshi</groupId>
+            <artifactId>oshi-core</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jna-platform</artifactId>
+                    <groupId>net.java.dev.jna</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jna</artifactId>
+                    <groupId>net.java.dev.jna</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <artifactId>jna</artifactId>
+            <groupId>net.java.dev.jna</groupId>
+            <version>5.1.0</version>
+        </dependency>
+        <dependency>
+            <artifactId>jna-platform</artifactId>
+            <groupId>net.java.dev.jna</groupId>
+            <version>5.1.0</version>
         </dependency>
     </dependencies>
 </project>
