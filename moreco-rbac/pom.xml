@@ -29,10 +29,6 @@
             <groupId>io.github.weechang</groupId>
             <artifactId>moreco-base</artifactId>
         </dependency>
-        <dependency>
-            <groupId>io.github.weechang</groupId>
-            <artifactId>moreco-security-base</artifactId>
-        </dependency>
     </dependencies>
 
 </project>

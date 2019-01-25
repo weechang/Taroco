@@ -1,6 +1,6 @@
 package io.github.weechang.moreco.rbac.model.dto;
 
-import io.github.weechang.jutil.common.util.BeanUtil;
+import cn.hutool.core.bean.BeanUtil;
 import io.github.weechang.moreco.rbac.model.domain.Role;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -32,6 +32,6 @@ public class RoleSaveRequest implements Serializable {
     private List<Long> menuIdList;
 
     public Role toRole(){
-        return BeanUtil.beanToBean(this, Role.class);
+        return BeanUtil.toBean(this, Role.class);
     }
 }

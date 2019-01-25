@@ -4,7 +4,7 @@
 
 ### 更多功能及文档正在不断完善中……
 ### 演示地址 [https://moreco.weechang.xyz/](https://moreco.weechang.xyz/)
-### 使用文档 [https://moreco-doc.weechang.xyz/](https://moreco-doc.weechang.xyz/)
+### 使用文档 [https://github.com/weechang/moreco/wiki](https://github.com/weechang/moreco/wiki)
 
 moreco -- more ecosystem 更完全的生态系统
 
@@ -18,9 +18,11 @@ moreco能够满足你的项目从单体到微服务的整个流程。但你从�
 
 moreco不仅仅是一套开发框架，moreco更是一套生态系统。从开发到监控至运维，moreco都提供一套更为完善的组件支持。包括但不限于以下项目：
 
-* 架构方面：spring boot开发、spring cloud开发、领域驱动开发。
+* 架构方面：spring boot → spring cloud。
 
 * 开发方面：对象存储（七牛、阿里云、腾讯云、又拍云、LOCAL）、消息通知（邮件、短信、站内信）。
+
+* 请求鉴权：shiro、spring-security
 
 * 监控报警：物理机监控、应用监控、方法监控、数据库监控。
 
@@ -42,7 +44,7 @@ moreco不仅仅是一套开发框架，moreco更是一套生态系统。从开�
 | Spring Data                | 持久化框架       | [https://spring.io/projects/spring-data](https://spring.io/projects/spring-data) |
 | Apache Shiro               | 安全框架        | [http://shiro.apache.org/](http://shiro.apache.org/)  |
 | Swagger2                   | 接口文档        | [http://swagger.io/](http://swagger.io/) |
-| AliOSS & Qiniu & QcloudCOS | 云存储平台       | [https://www.aliyun.com/product/oss/](https://www.aliyun.com/product/oss/) [http://www.qiniu.com/](http://www.qiniu.com/) [https://www.qcloud.com/product/cos](https://www.qcloud.com/product/cos) |
+| AliOSS & Qiniu & QCloudCOS | 云存储平台       | [https://www.aliyun.com/product/oss/](https://www.aliyun.com/product/oss/) [http://www.qiniu.com/](http://www.qiniu.com/) [https://www.qcloud.com/product/cos](https://www.qcloud.com/product/cos) |
 | Jenkins                    | 持续集成工具     | [https://jenkins.io/index.html](https://jenkins.io/index.html) |
 | Maven                      | 版本控制工具     | [http://maven.apache.org/](http://maven.apache.org/) |
 
@@ -70,6 +72,10 @@ moreco
 |    ├── moreco-spring-boot-demo ------------- spring boot demo
 ├── moreco-message --------------------------- 消息中心
 ├── moreco-monitor --------------------------- 监控中心
+|    ├── moreco-core ------------------------- 基础类
+|    ├── moreco-sdk -------------------------- sdk、agent
+|    ├── moreco-datahandler ------------------ 数据处理中心
+|    ├── moreco-manager ---------------------- 监控管理
 ├── moreco-ops ------------------------------- 运维中心
 ├── moreco-oss ------------------------------- 对象存储
 ├── moreco-rbac ------------------------------ RBAC权限管理
@@ -96,19 +102,12 @@ moreco
 
 ![monitor](/doc-of-project/moreco-monitor.png)
 
-## 开发进度
+## 开发进度汇总
 
-## 安装教程
-1. xxxx
-2. xxxx
-3. xxxx
-
-## 使用说明
-
-1. xxxx
-2. xxxx
-3. xxxx
+![开发进度](/doc-of-project/moreco-project-doing.png)
 
 ## QQ交流群
+
+欢迎各位有兴趣的朋友加入QQ交流群，一起交流问题、贡献代码
 
 [493659743](https://jq.qq.com/?_wv=1027&k=5Czuxq5)

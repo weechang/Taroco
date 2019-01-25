@@ -1,7 +1,7 @@
 package io.github.weechang.moreco.rbac.model.domain.enums;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
+import cn.hutool.json.JSONArray;
+import cn.hutool.json.JSONObject;
 import io.swagger.annotations.ApiModel;
 
 /**

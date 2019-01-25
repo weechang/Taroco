@@ -1,6 +1,6 @@
 package io.github.weechang.moreco.rbac.model.dto;
 
-import io.github.weechang.jutil.common.util.BeanUtil;
+import cn.hutool.core.bean.BeanUtil;
 import io.github.weechang.moreco.rbac.model.domain.Menu;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -44,6 +44,6 @@ public class MenuSaveRequest implements Serializable {
 
     public Menu toMenu(){
         orderNum = orderNum == null ? 0 : orderNum;
-        return BeanUtil.beanToBean(this, Menu.class);
+        return BeanUtil.toBean(this, Menu.class);
     }
 }

@@ -1,6 +1,6 @@
 package io.github.weechang.moreco.rbac.service;
 
-import io.github.weechang.jutil.common.util.DateUtil;
+import cn.hutool.core.date.DateUtil;
 import io.github.weechang.moreco.base.model.PageModel;
 import io.github.weechang.moreco.base.service.BaseService;
 import io.github.weechang.moreco.rbac.model.domain.Dept;
@@ -24,7 +24,7 @@ public interface DeptService extends BaseService<Dept> {
     static void convert2String(List<Dept> depts) {
         if (CollectionUtils.isNotEmpty(depts)) {
             for (Dept dept : depts) {
-                dept.addDataMap("createdDate", DateUtil.format(dept.getCreatedDate()));
+                dept.addDataMap("createdDate", DateUtil.formatDateTime(dept.getCreatedDate()));
             }
         }
     }

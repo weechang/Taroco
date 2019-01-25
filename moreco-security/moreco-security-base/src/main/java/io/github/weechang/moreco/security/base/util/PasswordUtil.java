@@ -25,7 +25,6 @@ public class PasswordUtil {
         byte[] passwordByte = password == null ? new byte[0] : password.getBytes();
         byte[] saltByte = salt == null ? null : salt.getBytes();
         MessageDigest digest = MessageDigest.getInstance(hashAlgorithmName);
-        ;
         if (saltByte != null) {
             digest.reset();
             digest.update(saltByte);

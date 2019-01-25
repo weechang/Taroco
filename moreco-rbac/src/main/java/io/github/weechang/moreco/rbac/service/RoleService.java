@@ -1,6 +1,6 @@
 package io.github.weechang.moreco.rbac.service;
 
-import io.github.weechang.jutil.common.util.DateUtil;
+import cn.hutool.core.date.DateUtil;
 import io.github.weechang.moreco.base.model.PageModel;
 import io.github.weechang.moreco.base.service.BaseService;
 import io.github.weechang.moreco.rbac.model.domain.Role;
@@ -24,7 +24,7 @@ public interface RoleService extends BaseService<Role> {
     static void convert2String(List<Role> roles) {
         if (CollectionUtils.isNotEmpty(roles)) {
             for (Role role : roles) {
-                role.addDataMap("createdDate", DateUtil.format(role.getCreatedDate()));
+                role.addDataMap("createdDate", DateUtil.formatDateTime(role.getCreatedDate()));
             }
         }
     }

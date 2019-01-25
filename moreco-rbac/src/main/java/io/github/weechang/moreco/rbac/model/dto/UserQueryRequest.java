@@ -1,6 +1,6 @@
 package io.github.weechang.moreco.rbac.model.dto;
 
-import io.github.weechang.jutil.common.util.BeanUtil;
+import cn.hutool.core.bean.BeanUtil;
 import io.github.weechang.moreco.rbac.model.domain.User;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -37,6 +37,6 @@ public class UserQueryRequest implements Serializable {
     private Integer status;
 
     public User toUser(){
-        return BeanUtil.beanToBean(this, User.class);
+        return BeanUtil.toBean(this, User.class);
     }
 }

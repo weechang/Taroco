@@ -1,6 +1,6 @@
 package io.github.weechang.moreco.rbac.model.dto;
 
-import io.github.weechang.jutil.common.util.BeanUtil;
+import cn.hutool.core.bean.BeanUtil;
 import io.github.weechang.moreco.rbac.model.domain.Dept;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -27,6 +27,6 @@ public class DeptQueryRequest implements Serializable {
 
     public Dept toDept(){
         parentId = parentId == null ? 0L : parentId;
-        return BeanUtil.beanToBean(this, Dept.class);
+        return BeanUtil.toBean(this, Dept.class);
     }
 }
