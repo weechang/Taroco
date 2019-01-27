@@ -1,8 +1,8 @@
 package io.github.weechang.moreco.base.model;
 
 import com.google.common.collect.Maps;
-import io.github.weechang.moreco.base.error.SysError;
 import io.github.weechang.moreco.base.error.IError;
+import io.github.weechang.moreco.base.error.SysError;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -21,6 +21,8 @@ import java.util.Map;
 public class R<T extends Object> {
     private static final long serialVersionUID = -6778838468426551277L;
 
+    @ApiModelProperty("请求结果")
+    private boolean success = false;
     @ApiModelProperty("namespace")
     private String ns;
     @ApiModelProperty("响应码")
@@ -57,30 +59,29 @@ public class R<T extends Object> {
 
     public static R ok(Object t) {
         R r = new R();
-        r.result = t;
-        return r;
-    }
-
-    public static R okR(Object t) {
-        R r = new R();
+        r.success = true;
         r.result = t;
         return r;
     }
 
     public static R ok(String msg) {
         R r = new R();
+        r.success = true;
         r.put("msg", msg);
         return r;
     }
 
     public static R ok(Map<String, Object> map) {
         R r = new R();
+        r.success = true;
         r.getExt().putAll(map);
         return r;
     }
 
     public static R ok() {
-        return new R();
+        R r = new R();
+        r.success = true;
+        return r;
     }
 
     public R put(String key, Object value) {

@@ -11,5 +11,4 @@ import io.github.weechang.moreco.rbac.model.domain.User;
 public interface UserDao extends JpaDao<User> {
 
     User findFirstByUsername(String username);
-
 }

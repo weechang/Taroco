@@ -1,5 +1,7 @@
 package io.github.weechang.moreco.rbac.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.common.collect.Lists;
 import io.github.weechang.moreco.base.domain.BaseDomain;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -37,9 +39,6 @@ public class Menu extends BaseDomain {
     @ApiModelProperty("菜单URL")
     private String url;
 
-    @ApiModelProperty("授权(多个用逗号分隔，如：/rbac/user/list,/rbac/user/edit)")
-    private String perms;
-
     @ApiModelProperty("类型  1：菜单   2：按钮")
     private Integer type;
 
@@ -49,7 +48,19 @@ public class Menu extends BaseDomain {
     @ApiModelProperty("排序")
     private Integer orderNum;
 
-    @ApiModelProperty("子目录")
+    @ApiModelProperty("菜单与资源")
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(name = "moreco_rbac_menu_resource",
+            joinColumns = @JoinColumn(name = "menus_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "resource_id", referencedColumnName = "id"))
+    private List<Resource> resources = Lists.newArrayList();
+
+    @ApiModelProperty("菜单与角色")
+    @JsonIgnore
+    @ManyToMany(mappedBy = "menus")
+    private List<Role> roles = Lists.newArrayList();
+
     @Transient
     private List<Menu> children;
 }

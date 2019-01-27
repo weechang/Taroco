@@ -4,10 +4,6 @@ spring:
     username: moreco
     password: moreco
     driver-class-name: com.mysql.cj.jdbc.Driver
-    max-active: 20
-    max-idle: 8
-    min-idle: 8
-    initial-size: 10
   jpa:
     database: mysql
     show-sql: true

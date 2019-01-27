@@ -38,8 +38,6 @@
         <springfox.version>2.8.0</springfox.version>
         <commons-codec.version>1.4</commons-codec.version>
         <commons.lang.version>2.6</commons.lang.version>
-        <jutil.version>1.0.0-SNAPSHOT</jutil.version>
-        <shiro.version>1.4.0</shiro.version>
         <qiniu.version>[7.2.0, 7.2.99]</qiniu.version>
         <aliyun.oss.version>2.5.0</aliyun.oss.version>
         <qcloud.cos.version>4.4</qcloud.cos.version>
@@ -71,15 +69,10 @@
                 <artifactId>moreco-rbac</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <!--self-base-security-->
+            <!--self-security-->
             <dependency>
                 <groupId>io.github.weechang</groupId>
-                <artifactId>moreco-security-base</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.github.weechang</groupId>
-                <artifactId>moreco-security-shiro</artifactId>
+                <artifactId>moreco-security</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -144,18 +137,6 @@
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-data-rest</artifactId>
                 <version>${springfox.version}</version>
-            </dependency>
-
-            <!--shiro-->
-            <dependency>
-                <groupId>org.apache.shiro</groupId>
-                <artifactId>shiro-core</artifactId>
-                <version>${shiro.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.shiro</groupId>
-                <artifactId>shiro-spring</artifactId>
-                <version>${shiro.version}</version>
             </dependency>
 
             <!--oss-->

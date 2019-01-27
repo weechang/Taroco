@@ -4,11 +4,8 @@ import io.github.weechang.moreco.base.exception.AppException;
 import io.github.weechang.moreco.base.model.PageModel;
 import io.github.weechang.moreco.base.service.impl.BaseServiceImpl;
 import io.github.weechang.moreco.rbac.dao.RoleDao;
-import io.github.weechang.moreco.rbac.dao.RoleMenuDao;
 import io.github.weechang.moreco.rbac.model.domain.Role;
 import io.github.weechang.moreco.rbac.error.RbacError;
-import io.github.weechang.moreco.rbac.model.domain.RoleMenu;
-import io.github.weechang.moreco.rbac.service.RoleMenuService;
 import io.github.weechang.moreco.rbac.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -27,11 +24,6 @@ import java.util.stream.Collectors;
 @Service
 public class RoleServiceImpl extends BaseServiceImpl<RoleDao, Role> implements RoleService {
 
-    @Autowired
-    private RoleMenuService roleMenuService;
-    @Autowired
-    private RoleMenuDao roleMenuDao;
-
     @Override
     public Role save(Role role) {
         Role saved = baseDao.findFirstByName(role.getName());
@@ -41,7 +33,6 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleDao, Role> implements R
             }
         }
         role = super.save(role);
-        roleMenuService.save(role.getId(), role.getMenuIdList());
         return role;
     }
 
@@ -54,11 +45,6 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleDao, Role> implements R
 
     @Override
     public Role detail(Long id) {
-        Role role = baseDao.findOne(id);
-        if (role != null) {
-            List<Long> menuIds = roleMenuDao.findAllByRoleId(id).stream().map(RoleMenu::getMenuId).collect(Collectors.toList());
-            role.setMenuIdList(menuIds);
-        }
-        return role;
+        return  baseDao.findOne(id);
     }
 }

@@ -17,9 +17,15 @@ spring:
       max-file-size: 100MB
       max-request-size: 100MB
       enabled: true
+  session:
+    store-type: redis
 
 logging:
   level: debug
   level.io.github.weechang.moreco: debug
   path: logs/
   file: moreco-spring-boot-demo.log
+
+moreco:
+  security:
+    noAuthPaths: ["/unLogin", "/login"]

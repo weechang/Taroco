@@ -1,7 +1,7 @@
 package io.github.weechang.moreco.oss;
 
 import io.github.weechang.moreco.oss.config.OSSConfig;
-import io.github.weechang.moreco.oss.enums.OSSEnums;
+import io.github.weechang.moreco.oss.enums.OSSEnum;
 
 /**
  * 存储方案
@@ -14,7 +14,7 @@ public abstract class StorageFactory {
 
     OSSConfig config;
 
-    public StorageFactory(OSSEnums type){
+    public StorageFactory(OSSEnum type){
 
     }
 

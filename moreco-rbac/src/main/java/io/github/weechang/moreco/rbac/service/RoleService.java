@@ -45,4 +45,5 @@ public interface RoleService extends BaseService<Role> {
      * @return 详情
      */
     Role detail(Long id);
+
 }

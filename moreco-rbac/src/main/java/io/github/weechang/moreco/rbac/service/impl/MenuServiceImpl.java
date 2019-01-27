@@ -7,7 +7,6 @@ import io.github.weechang.moreco.rbac.dao.MenuDao;
 import io.github.weechang.moreco.rbac.model.domain.Menu;
 import io.github.weechang.moreco.rbac.error.RbacError;
 import io.github.weechang.moreco.rbac.service.MenuService;
-import io.github.weechang.moreco.rbac.service.RoleMenuService;
 import io.github.weechang.moreco.rbac.service.UserService;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +27,6 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuDao, Menu> implements M
 
     @Autowired
     private UserService userService;
-    @Autowired
-    private RoleMenuService roleMenuService;
 
     @Override
     public PageModel<Menu> findAll(Menu param, Pageable pageable) {

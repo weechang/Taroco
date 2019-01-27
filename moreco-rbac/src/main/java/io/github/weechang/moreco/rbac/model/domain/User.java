@@ -61,5 +61,5 @@ public class User extends BaseDomain {
     private Long deptId;
 
     @Transient
-    private List<Long> roleIds;
+    private List<Role> roles;
 }

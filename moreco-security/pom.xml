@@ -10,22 +10,37 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>moreco-security</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>moreco-security-base</module>
-        <module>moreco-security-shiro</module>
-        <module>moreco-security-spring-security</module>
-    </modules>
 
-    <dependencyManagement>
-        <dependencies>
-            <!--this-->
-            <dependency>
-                <groupId>io.github.weechang</groupId>
-                <artifactId>moreco-security-base</artifactId>
-                <version>${project.parent.version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <!--self-->
+        <dependency>
+            <groupId>io.github.weechang</groupId>
+            <artifactId>moreco-rbac</artifactId>
+        </dependency>
+        <!--spring-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <!--JWT-->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.0</version>
+        </dependency>
+    </dependencies>
 
 </project>

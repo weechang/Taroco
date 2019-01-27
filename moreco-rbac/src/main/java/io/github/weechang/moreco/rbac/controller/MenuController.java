@@ -38,7 +38,7 @@ public class MenuController extends BaseController {
     public R toPage() {
         Map<String, Object> result = Maps.newHashMap();
         result.put("menuTypes", MenuTypeEnum.toJsonArray());
-        return R.okR(result);
+        return R.ok(result);
     }
 
     @ApiOperation("分页获取目录数据")

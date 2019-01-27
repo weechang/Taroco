@@ -1,0 +1,3 @@
+# Ìí¼Ó autoconfigure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+ io.github.weechang.moreco.security.config.SecurityAutoConfiguration

@@ -1,5 +1,7 @@
 package io.github.weechang.moreco.rbac.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.common.collect.Lists;
 import io.github.weechang.moreco.base.domain.BaseDomain;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -12,7 +14,6 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- *
  * @author zhangwei
  * date 2018/10/26
  * time 17:55
@@ -33,9 +34,19 @@ public class Role extends BaseDomain {
     @ApiModelProperty("备注")
     private String remark;
 
-    @Transient
-    private List<Long> deptIdList;
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(
+            name = "moreco_rbac_role_menu",
+            joinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "menu_id", referencedColumnName = "id")})
+    private List<Menu> menus = Lists.newArrayList();
 
-    @Transient
-    private List<Long> menuIdList;
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(
+            name = "moreco_rbac_role_dept",
+            joinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "dept_id", referencedColumnName = "id")})
+    private List<Dept> depts = Lists.newArrayList();
 }

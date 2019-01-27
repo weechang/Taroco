@@ -16,7 +16,5 @@ public interface MenuDao extends JpaDao<Menu> {
 
     List<Menu> findAllByParentId(Long parentId);
 
-    Page<Menu> findAllByParentId(Long parentId, Pageable pageable);
-
     Menu findFirstByNameAndParentId(String name, Long parentId);
 }

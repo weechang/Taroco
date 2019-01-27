@@ -41,14 +41,6 @@ public interface UserService extends BaseService<User> {
     PageModel<User> findAll(User param, Pageable pageable);
 
     /**
-     * 根据用户id 查询已授权的所有目录id
-     *
-     * @param id 用户id
-     * @return 已授权目录id
-     */
-    List<Long> findAllMenuIdByUserId(Long id);
-
-    /**
      * 根据用户id 修改密码
      *
      * @param id          用户ID
