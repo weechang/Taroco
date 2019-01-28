@@ -2,7 +2,7 @@ package io.github.weechang.moreco.rbac.model.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.collect.Lists;
-import io.github.weechang.moreco.base.domain.BaseDomain;
+import io.github.weechang.moreco.base.model.domain.BaseDomain;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -30,9 +30,9 @@ import java.util.List;
 @Where(clause = "yn = 1")
 public class Resource extends BaseDomain {
 
-    @ApiModelProperty("标签")
-    @Column(name = "tag")
-    private String tag;
+    @ApiModelProperty("资源名称")
+    @Column(name = "name")
+    private String name;
 
     @ApiModelProperty("路径")
     @Column(name = "path")
@@ -42,9 +42,13 @@ public class Resource extends BaseDomain {
     @Column(name = "method")
     private String method;
 
-    @ApiModelProperty("概要")
-    @Column(name = "summary")
-    private String summary;
+    @ApiModelProperty("资源tag")
+    @Column(name = "tag")
+    private String tag;
+
+    @ApiModelProperty("备注")
+    @Column(name = "remark")
+    private String remark;
 
     @JsonIgnore
     @ManyToMany(mappedBy = "resources")

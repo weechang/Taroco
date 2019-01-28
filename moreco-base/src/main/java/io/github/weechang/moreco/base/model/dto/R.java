@@ -1,4 +1,4 @@
-package io.github.weechang.moreco.base.model;
+package io.github.weechang.moreco.base.model.dto;
 
 import com.google.common.collect.Maps;
 import io.github.weechang.moreco.base.error.IError;

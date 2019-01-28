@@ -2,7 +2,7 @@ package io.github.weechang.moreco.rbac.model.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.collect.Lists;
-import io.github.weechang.moreco.base.domain.BaseDomain;
+import io.github.weechang.moreco.base.model.domain.BaseDomain;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -34,6 +34,7 @@ public class Role extends BaseDomain {
     @ApiModelProperty("备注")
     private String remark;
 
+    @ApiModelProperty("目录")
     @JsonIgnore
     @ManyToMany
     @JoinTable(
@@ -41,12 +42,4 @@ public class Role extends BaseDomain {
             joinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "menu_id", referencedColumnName = "id")})
     private List<Menu> menus = Lists.newArrayList();
-
-    @JsonIgnore
-    @ManyToMany
-    @JoinTable(
-            name = "moreco_rbac_role_dept",
-            joinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "dept_id", referencedColumnName = "id")})
-    private List<Dept> depts = Lists.newArrayList();
 }

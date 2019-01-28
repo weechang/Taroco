@@ -1,12 +1,15 @@
 package io.github.weechang.moreco.rbac.model.dto;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollectionUtil;
+import io.github.weechang.moreco.rbac.model.domain.Menu;
 import io.github.weechang.moreco.rbac.model.domain.Role;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,9 +32,19 @@ public class RoleSaveRequest implements Serializable {
     private String remark;
 
     @ApiModelProperty("授权目录权限列表")
-    private List<Long> menuIdList;
+    private List<Long> menuIds;
 
     public Role toRole(){
-        return BeanUtil.toBean(this, Role.class);
+        Role role = BeanUtil.toBean(this, Role.class);
+        if (CollectionUtil.isNotEmpty(menuIds)){
+            List<Menu> menus = new ArrayList<>();
+            for (Long menuId : menuIds){
+                Menu menu = new Menu();
+                menu.setId(menuId);
+                menus.add(menu);
+            }
+            role.setMenus(menus);
+        }
+        return role;
     }
 }

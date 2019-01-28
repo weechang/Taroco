@@ -2,8 +2,8 @@ package io.github.weechang.moreco.rbac.controller;
 
 import com.google.common.collect.Maps;
 import io.github.weechang.moreco.base.controller.BaseController;
-import io.github.weechang.moreco.base.model.PageModel;
-import io.github.weechang.moreco.base.model.R;
+import io.github.weechang.moreco.base.model.dto.PageModel;
+import io.github.weechang.moreco.base.model.dto.R;
 import io.github.weechang.moreco.rbac.model.domain.Menu;
 import io.github.weechang.moreco.rbac.model.domain.enums.MenuTypeEnum;
 import io.github.weechang.moreco.rbac.model.dto.MenuQueryRequest;

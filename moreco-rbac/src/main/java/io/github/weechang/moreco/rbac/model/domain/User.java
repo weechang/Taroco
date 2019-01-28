@@ -1,7 +1,7 @@
 package io.github.weechang.moreco.rbac.model.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.github.weechang.moreco.base.domain.BaseDomain;
+import io.github.weechang.moreco.base.model.domain.BaseDomain;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

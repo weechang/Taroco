@@ -1,12 +1,16 @@
 package io.github.weechang.moreco.rbac.model.dto;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollectionUtil;
 import io.github.weechang.moreco.rbac.model.domain.Menu;
+import io.github.weechang.moreco.rbac.model.domain.Resource;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author zhangwei
@@ -30,9 +34,6 @@ public class MenuSaveRequest implements Serializable {
     @ApiModelProperty("菜单URL")
     private String url;
 
-    @ApiModelProperty("授权(多个用逗号分隔，如：/rbac/user/list,/rbac/user/edit)")
-    private String perms;
-
     @ApiModelProperty("类型     0：目录   1：菜单   2：按钮")
     private Integer type;
 
@@ -42,8 +43,21 @@ public class MenuSaveRequest implements Serializable {
     @ApiModelProperty("排序")
     private Integer orderNum;
 
+    @ApiModelProperty("资源id")
+    private List<Long> resourceIds;
+
     public Menu toMenu(){
         orderNum = orderNum == null ? 0 : orderNum;
-        return BeanUtil.toBean(this, Menu.class);
+        Menu menu = BeanUtil.toBean(this, Menu.class);
+        if (CollectionUtil.isNotEmpty(resourceIds)){
+            List<Resource> resources = new ArrayList<>();
+            for (Long resourceId : resourceIds){
+                Resource resource = new Resource();
+                resource.setId(resourceId);
+                resources.add(resource);
+            }
+            menu.setResources(resources);
+        }
+        return menu;
     }
 }

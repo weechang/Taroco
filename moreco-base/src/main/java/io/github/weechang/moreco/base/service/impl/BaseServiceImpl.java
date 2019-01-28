@@ -1,13 +1,11 @@
 package io.github.weechang.moreco.base.service.impl;
 
 import io.github.weechang.moreco.base.dao.BaseDao;
-import io.github.weechang.moreco.base.domain.BaseDomain;
-import io.github.weechang.moreco.base.model.PageModel;
+import io.github.weechang.moreco.base.model.domain.BaseDomain;
+import io.github.weechang.moreco.base.model.dto.PageModel;
 import io.github.weechang.moreco.base.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 
 import java.io.Serializable;
 

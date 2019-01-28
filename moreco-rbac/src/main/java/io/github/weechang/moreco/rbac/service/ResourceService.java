@@ -1,6 +1,6 @@
 package io.github.weechang.moreco.rbac.service;
 
-import io.github.weechang.moreco.base.model.PageModel;
+import io.github.weechang.moreco.base.model.dto.PageModel;
 import io.github.weechang.moreco.base.service.BaseService;
 import io.github.weechang.moreco.rbac.model.domain.Resource;
 import io.github.weechang.moreco.rbac.model.domain.Role;

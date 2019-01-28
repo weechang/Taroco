@@ -1,7 +1,7 @@
 package io.github.weechang.moreco.rbac.service;
 
 import cn.hutool.core.date.DateUtil;
-import io.github.weechang.moreco.base.model.PageModel;
+import io.github.weechang.moreco.base.model.dto.PageModel;
 import io.github.weechang.moreco.base.service.BaseService;
 import io.github.weechang.moreco.rbac.model.domain.User;
 import io.github.weechang.moreco.rbac.model.domain.enums.UserStatusEnum;

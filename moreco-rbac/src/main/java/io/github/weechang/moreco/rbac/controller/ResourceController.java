@@ -1,16 +1,12 @@
 package io.github.weechang.moreco.rbac.controller;
 
-import io.github.weechang.moreco.base.model.PageModel;
-import io.github.weechang.moreco.base.model.R;
-import io.github.weechang.moreco.rbac.model.domain.Dept;
+import io.github.weechang.moreco.base.model.dto.PageModel;
+import io.github.weechang.moreco.base.model.dto.R;
 import io.github.weechang.moreco.rbac.model.domain.Resource;
 import io.github.weechang.moreco.rbac.model.dto.ResourceQueryRequest;
 import io.github.weechang.moreco.rbac.model.dto.ResourceSaveRequest;
 import io.github.weechang.moreco.rbac.service.ResourceService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModelProperty;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,12 +25,10 @@ public class ResourceController {
     private ResourceService resourceService;
 
     @ApiOperation("分页获取数据资源")
-    @GetMapping("page/{index}")
-    public R<PageModel<Dept>> page(
-            @ApiParam(name = "页码") @PathVariable("index") int index,
+    @GetMapping("page")
+    public R<PageModel<Resource>> page(
             @ApiParam(name = "查询条件") ResourceQueryRequest queryRequest) {
-        PageModel request = new PageModel(index);
-        PageModel<Resource> page = resourceService.findAll(queryRequest.toResource(), request.toPageRequest());
+        PageModel<Resource> page = resourceService.findAll(queryRequest.toResource(), queryRequest.toPageRequest());
         return R.ok(page);
     }
 

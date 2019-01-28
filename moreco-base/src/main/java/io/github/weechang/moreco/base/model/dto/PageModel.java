@@ -1,4 +1,4 @@
-package io.github.weechang.moreco.base.model;
+package io.github.weechang.moreco.base.model.dto;
 
 import lombok.Data;
 import org.springframework.data.domain.Page;
@@ -19,7 +19,7 @@ import java.util.List;
 public class PageModel<T> implements Serializable {
 
     //当前页数
-    private int currPage;
+    private int currentPage;
     //每页记录数
     private int pageSize;
     //总记录数
@@ -34,10 +34,20 @@ public class PageModel<T> implements Serializable {
 
     /**
      * 分页
-     * @param index 当前页数
+     * @param currentPage 当前页数
      */
-    public PageModel(int index) {
-        currPage = index;
+    public PageModel(int currentPage) {
+        this.currentPage = currentPage;
+    }
+
+    /**
+     * 分页
+     * @param currentPage 当前页数
+     * @param pageSize 每页记录数
+     */
+    public PageModel(int currentPage, int pageSize) {
+        this.currentPage = currentPage;
+        this.pageSize = pageSize;
     }
 
     /**
@@ -52,7 +62,7 @@ public class PageModel<T> implements Serializable {
         this.list = list;
         this.totalCount = totalCount;
         this.pageSize = pageSize;
-        this.currPage = currPage;
+        this.currentPage = currentPage;
         this.totalPage = (int) Math.ceil((double) totalCount / pageSize);
     }
 
@@ -63,7 +73,7 @@ public class PageModel<T> implements Serializable {
         this.list = page.getContent();
         this.totalCount = page.getTotalElements();
         this.pageSize = page.getSize();
-        this.currPage = page.getNumber() + 1;
+        this.currentPage = page.getNumber() + 1;
         this.totalPage = page.getTotalPages();
     }
 
@@ -73,9 +83,9 @@ public class PageModel<T> implements Serializable {
      * @return pageRequest
      */
     public PageRequest toPageRequest() {
-        currPage = currPage <= 1 ? 1 : currPage;
+        currentPage = currentPage <= 1 ? 1 : currentPage;
         pageSize = pageSize <= 0 ? 10 : pageSize;
-        return new PageRequest(currPage - 1, pageSize);
+        return new PageRequest(currentPage - 1, pageSize);
     }
 
     /**
@@ -85,8 +95,8 @@ public class PageModel<T> implements Serializable {
      * @return pageRequest
      */
     public PageRequest toPageRequest(Sort sort) {
-        currPage = currPage <= 1 ? 1 : currPage;
+        currentPage = currentPage <= 1 ? 1 : currentPage;
         pageSize = pageSize <= 0 ? 10 : pageSize;
-        return new PageRequest(currPage - 1, pageSize, sort);
+        return new PageRequest(currentPage - 1, pageSize, sort);
     }
 }
