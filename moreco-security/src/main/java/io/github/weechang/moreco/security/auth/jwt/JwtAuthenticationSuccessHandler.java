@@ -2,7 +2,7 @@ package io.github.weechang.moreco.security.auth.jwt;
 
 import cn.hutool.json.JSONUtil;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import io.github.weechang.moreco.base.model.R;
+import io.github.weechang.moreco.base.model.dto.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -40,6 +40,8 @@ public class JwtAuthenticationSuccessHandler implements AuthenticationSuccessHan
     @Override
     public void onAuthenticationSuccess(HttpServletRequest req, HttpServletResponse res, Authentication auth) throws IOException, ServletException {
         res.setStatus(HttpServletResponse.SC_OK);
+        res.setCharacterEncoding("UTF-8");
+        res.setContentType("application/json; charset=utf-8");
         DecodedJWT jwt = ((JwtAuthenticationToken) auth).getToken();
         String token = jwt.getToken();
         boolean shouldRefresh = shouldTokenRefresh(jwt.getIssuedAt());

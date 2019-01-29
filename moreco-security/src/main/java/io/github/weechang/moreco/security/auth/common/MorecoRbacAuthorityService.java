@@ -19,19 +19,23 @@ import java.util.Set;
 public class MorecoRbacAuthorityService {
 
     public boolean hasPermission(HttpServletRequest req, Authentication authentication) {
-        String username = (String) authentication.getPrincipal();
         boolean hasPermission = false;
-        // 公共资源
-        Set<String> noAuthUrls = new HashSet<>();
-        AntPathMatcher antPathMatcher = new AntPathMatcher();
-        for (String url : noAuthUrls) {
-            if (antPathMatcher.match(url, req.getRequestURI())) {
+        String username = (String) authentication.getPrincipal();
+        if (username != null){
+            // 公共资源
+            Set<String> noAuthUrls = new HashSet<>();
+            AntPathMatcher antPathMatcher = new AntPathMatcher();
+            for (String url : noAuthUrls) {
+                if (antPathMatcher.match(url, req.getRequestURI())) {
+                    hasPermission = true;
+                    break;
+                }
+            }
+            // 登录授权资源
+            if (!"anonymousUser".equals(username)){
                 hasPermission = true;
-                break;
             }
         }
-        // 登录授权资源
-        hasPermission = true;
         return hasPermission;
     }
 }

@@ -35,17 +35,22 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             final String authToken = authHeader.substring("Bearer ".length());
 
-            DecodedJWT decodedJWT = JWT.decode(authToken);
-            String username = decodedJWT.getSubject();
+            try {
+                DecodedJWT decodedJWT = JWT.decode(authToken);
+                String username = decodedJWT.getSubject();
 
-            if (username != null) {
-                UserDetails userDetails = jwtUserDetailsService.getUserLoginInfo(username);
+                if (username != null) {
+                    UserDetails userDetails = jwtUserDetailsService.getUserLoginInfo(username);
 
-                if (userDetails != null) {
-                    JwtAuthenticationToken authentication = new JwtAuthenticationToken(userDetails, decodedJWT, null);
-                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                    if (userDetails != null) {
+                        JwtAuthenticationToken authentication = new JwtAuthenticationToken(userDetails, decodedJWT, null);
+                        SecurityContextHolder.getContext().setAuthentication(authentication);
+                    }
                 }
+            }catch (Exception e){
+                logger.error("wrong token attempted:", e);
             }
+
         }
 
         chain.doFilter(req, res);

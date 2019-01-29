@@ -1,7 +1,7 @@
 package io.github.weechang.moreco.security.auth.common;
 
 import cn.hutool.json.JSONUtil;
-import io.github.weechang.moreco.base.model.R;
+import io.github.weechang.moreco.base.model.dto.R;
 import io.github.weechang.moreco.security.error.SecurityError;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.AuthenticationException;
@@ -28,7 +28,9 @@ public class MorecoAuthenticationEntryPoint implements AuthenticationEntryPoint 
     @Override
     public void commence(HttpServletRequest req, HttpServletResponse res, AuthenticationException e) throws IOException, ServletException {
         res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        R r = R.error(SecurityError.LOGIN_ERROR);
+        res.setCharacterEncoding("UTF-8");
+        res.setContentType("application/json; charset=utf-8");
+        R r = R.error(SecurityError.USER_NOT_LOGIN);
         PrintWriter writer = null;
         try {
             writer = res.getWriter();
