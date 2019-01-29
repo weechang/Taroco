@@ -1,8 +1,7 @@
 package io.github.weechang.moreco.base.dao;
 
-import io.github.weechang.moreco.base.domain.BaseDomain;
-import io.github.weechang.moreco.base.domain.enums.YnEnums;
-import org.springframework.data.mongodb.repository.Query;
+import io.github.weechang.moreco.base.model.domain.BaseDomain;
+import io.github.weechang.moreco.base.model.domain.enums.YnEnums;
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.transaction.annotation.Transactional;

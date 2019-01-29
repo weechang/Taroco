@@ -1,16 +1,9 @@
 package io.github.weechang.moreco.base.dao;
 
-import io.github.weechang.moreco.base.domain.BaseDomain;
-import io.github.weechang.moreco.base.domain.enums.YnEnums;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.mongodb.repository.CountQuery;
-import org.springframework.data.mongodb.repository.ExistsQuery;
+import io.github.weechang.moreco.base.model.domain.BaseDomain;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.repository.Query;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Mongo Dao

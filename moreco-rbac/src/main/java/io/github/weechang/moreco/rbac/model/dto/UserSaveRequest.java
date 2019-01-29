@@ -1,12 +1,17 @@
 package io.github.weechang.moreco.rbac.model.dto;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollectionUtil;
+import io.github.weechang.moreco.rbac.model.domain.Resource;
+import io.github.weechang.moreco.rbac.model.domain.Role;
 import io.github.weechang.moreco.rbac.model.domain.User;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author zhangwei
@@ -36,7 +41,20 @@ public class UserSaveRequest implements Serializable {
     @ApiModelProperty("部门id")
     private Long deptId;
 
+    @ApiModelProperty("角色id")
+    private List<Long> roleIds;
+
     public User toUser(){
-        return BeanUtil.toBean(this, User.class);
+        User user = BeanUtil.toBean(this, User.class);
+        if (CollectionUtil.isNotEmpty(roleIds)){
+            List<Role> roles = new ArrayList<>();
+            for (Long roleId : roleIds){
+                Role role = new Role();
+                role.setId(roleId);
+                roles.add(role);
+            }
+            user.setRoles(roles);
+        }
+        return user;
     }
 }

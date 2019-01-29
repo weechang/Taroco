@@ -1,4 +1,4 @@
-package io.github.weechang.moreco.base.domain.enums;
+package io.github.weechang.moreco.base.model.domain.enums;
 
 /**
  * 状态枚举

@@ -1,10 +1,12 @@
 package io.github.weechang.moreco.rbac.model.dto;
 
 import cn.hutool.core.bean.BeanUtil;
+import io.github.weechang.moreco.base.model.dto.QueryRequest;
 import io.github.weechang.moreco.rbac.model.domain.Resource;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 
@@ -13,9 +15,10 @@ import java.io.Serializable;
  * date 2019/1/26
  * time 23:09
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 @ApiModel("资源查询")
-public class ResourceQueryRequest implements Serializable {
+public class ResourceQueryRequest extends QueryRequest {
     private static final long serialVersionUID = 3082986066177529332L;
 
     @ApiModelProperty("标签")

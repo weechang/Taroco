@@ -1,10 +1,8 @@
 package io.github.weechang.moreco.base.service;
 
-import io.github.weechang.moreco.base.domain.BaseDomain;
-import io.github.weechang.moreco.base.model.PageModel;
-import org.springframework.data.domain.Example;
+import io.github.weechang.moreco.base.model.domain.BaseDomain;
+import io.github.weechang.moreco.base.model.dto.PageModel;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 
 import java.io.Serializable;
 

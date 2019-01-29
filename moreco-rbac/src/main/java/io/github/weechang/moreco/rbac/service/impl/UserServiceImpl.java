@@ -1,7 +1,7 @@
 package io.github.weechang.moreco.rbac.service.impl;
 
 import io.github.weechang.moreco.base.exception.AppException;
-import io.github.weechang.moreco.base.model.PageModel;
+import io.github.weechang.moreco.base.model.dto.PageModel;
 import io.github.weechang.moreco.base.service.impl.BaseServiceImpl;
 import io.github.weechang.moreco.rbac.dao.UserDao;
 import io.github.weechang.moreco.rbac.model.domain.User;

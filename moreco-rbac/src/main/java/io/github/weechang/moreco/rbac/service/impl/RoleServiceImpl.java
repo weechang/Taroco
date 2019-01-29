@@ -1,20 +1,16 @@
 package io.github.weechang.moreco.rbac.service.impl;
 
 import io.github.weechang.moreco.base.exception.AppException;
-import io.github.weechang.moreco.base.model.PageModel;
+import io.github.weechang.moreco.base.model.dto.PageModel;
 import io.github.weechang.moreco.base.service.impl.BaseServiceImpl;
 import io.github.weechang.moreco.rbac.dao.RoleDao;
 import io.github.weechang.moreco.rbac.model.domain.Role;
 import io.github.weechang.moreco.rbac.error.RbacError;
 import io.github.weechang.moreco.rbac.service.RoleService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author zhangwei

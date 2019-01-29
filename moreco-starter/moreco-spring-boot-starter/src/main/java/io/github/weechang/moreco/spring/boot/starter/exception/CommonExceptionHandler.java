@@ -4,7 +4,7 @@ package io.github.weechang.moreco.spring.boot.starter.exception;
 import io.github.weechang.moreco.base.error.SysError;
 import io.github.weechang.moreco.base.error.IError;
 import io.github.weechang.moreco.base.exception.AppException;
-import io.github.weechang.moreco.base.model.R;
+import io.github.weechang.moreco.base.model.dto.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;

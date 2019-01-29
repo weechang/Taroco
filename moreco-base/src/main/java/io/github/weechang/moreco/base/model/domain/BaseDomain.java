@@ -1,7 +1,7 @@
-package io.github.weechang.moreco.base.domain;
+package io.github.weechang.moreco.base.model.domain;
 
 import com.google.common.collect.Maps;
-import io.github.weechang.moreco.base.domain.enums.YnEnums;
+import io.github.weechang.moreco.base.model.domain.enums.YnEnums;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

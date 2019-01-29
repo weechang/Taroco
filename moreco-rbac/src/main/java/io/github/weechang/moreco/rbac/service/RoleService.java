@@ -2,7 +2,7 @@ package io.github.weechang.moreco.rbac.service;
 
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.date.DateUtil;
-import io.github.weechang.moreco.base.model.PageModel;
+import io.github.weechang.moreco.base.model.dto.PageModel;
 import io.github.weechang.moreco.base.service.BaseService;
 import io.github.weechang.moreco.rbac.model.domain.Role;
 import org.springframework.data.domain.Pageable;

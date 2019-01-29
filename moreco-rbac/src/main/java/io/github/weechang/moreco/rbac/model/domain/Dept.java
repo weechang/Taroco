@@ -1,8 +1,6 @@
 package io.github.weechang.moreco.rbac.model.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.google.common.collect.Lists;
-import io.github.weechang.moreco.base.domain.BaseDomain;
+import io.github.weechang.moreco.base.model.domain.BaseDomain;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -38,10 +36,6 @@ public class Dept extends BaseDomain {
 
     @ApiModelProperty("排序")
     private Integer orderNum;
-
-    @JsonIgnore
-    @ManyToMany(mappedBy = "menus")
-    private List<Role> roles = Lists.newArrayList();
 
     @Transient
     private List<Dept> children;

@@ -2,7 +2,7 @@ package io.github.weechang.moreco.rbac.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
 import io.github.weechang.moreco.base.exception.AppException;
-import io.github.weechang.moreco.base.model.PageModel;
+import io.github.weechang.moreco.base.model.dto.PageModel;
 import io.github.weechang.moreco.base.service.impl.BaseServiceImpl;
 import io.github.weechang.moreco.rbac.dao.DeptDao;
 import io.github.weechang.moreco.rbac.error.RbacError;
