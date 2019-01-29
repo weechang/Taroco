@@ -1,10 +1,10 @@
 package io.github.weechang.moreco.rbac.service;
 
+import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.date.DateUtil;
 import io.github.weechang.moreco.base.model.PageModel;
 import io.github.weechang.moreco.base.service.BaseService;
 import io.github.weechang.moreco.rbac.model.domain.Role;
-import org.apache.commons.collections.CollectionUtils;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -22,7 +22,7 @@ public interface RoleService extends BaseService<Role> {
      * @param roles 角色
      */
     static void convert2String(List<Role> roles) {
-        if (CollectionUtils.isNotEmpty(roles)) {
+        if (CollectionUtil.isNotEmpty(roles)) {
             for (Role role : roles) {
                 role.addDataMap("createdDate", DateUtil.formatDateTime(role.getCreatedDate()));
             }

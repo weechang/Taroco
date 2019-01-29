@@ -1,4 +1,4 @@
-package io.github.weechang.moreco.security.custom;
+package io.github.weechang.moreco.security.auth.common;
 
 import io.github.weechang.moreco.base.exception.AppException;
 import io.github.weechang.moreco.rbac.dao.UserDao;
@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
 
 /**
  * UserDetailsService 实现
@@ -17,7 +16,6 @@ import org.springframework.stereotype.Service;
  * date 2019/1/26
  * time 20:49
  */
-@Service
 public class MorecoUserDetailsService implements UserDetailsService {
 
     @Autowired
@@ -29,6 +27,6 @@ public class MorecoUserDetailsService implements UserDetailsService {
         if (user == null) {
             throw new AppException(SecurityError.USER_NOT_FOUNT);
         }
-        return new MorecoUserDetails(user);
+        return new MorecoUserDetails(user.getUsername(), user.getPassword());
     }
 }

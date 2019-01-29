@@ -30,7 +30,7 @@ public class MenuSaveRequest implements Serializable {
     @ApiModelProperty("菜单URL")
     private String url;
 
-    @ApiModelProperty("授权(多个用逗号分隔，如：/rbac/user/list,/rbac/user/edit)")
+    @ApiModelProperty("授权(多个用逗号分隔，如：/rbac/permission/list,/rbac/permission/edit)")
     private String perms;
 
     @ApiModelProperty("类型     0：目录   1：菜单   2：按钮")

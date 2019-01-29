@@ -1,13 +1,13 @@
 package io.github.weechang.moreco.rbac.service.impl;
 
+import cn.hutool.core.collection.CollectionUtil;
 import io.github.weechang.moreco.base.exception.AppException;
 import io.github.weechang.moreco.base.model.PageModel;
 import io.github.weechang.moreco.base.service.impl.BaseServiceImpl;
 import io.github.weechang.moreco.rbac.dao.DeptDao;
-import io.github.weechang.moreco.rbac.model.domain.Dept;
 import io.github.weechang.moreco.rbac.error.RbacError;
+import io.github.weechang.moreco.rbac.model.domain.Dept;
 import io.github.weechang.moreco.rbac.service.DeptService;
-import org.apache.commons.collections.CollectionUtils;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Pageable;
@@ -43,7 +43,7 @@ public class DeptServiceImpl extends BaseServiceImpl<DeptDao, Dept> implements D
      * @param depts 机构
      */
     private void buildTree(List<Dept> depts){
-        if (CollectionUtils.isNotEmpty(depts)){
+        if (CollectionUtil.isNotEmpty(depts)){
             for (Dept dept: depts){
                 List<Dept> children = baseDao.findAllByParentId(dept.getId());
                 dept.setChildren(children);

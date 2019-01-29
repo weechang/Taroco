@@ -1,8 +1,6 @@
 package io.github.weechang.moreco.spring.boot.starter.interceptor;
 
-import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import cn.hutool.core.util.StrUtil;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,7 +34,7 @@ public class CorsInterceptor extends HandlerInterceptorAdapter {
      */
     protected void corsHandle(HttpServletRequest request, HttpServletResponse response) {
         String origin = request.getHeader("Origin");
-        if (StringUtils.isNotBlank(origin)) {
+        if (StrUtil.isNotBlank(origin)) {
             response.setHeader("Access-Control-Allow-Origin", "*");
             response.setHeader("Access-Control-Allow-Methods","GET, POST, OPTIONS, DELETE");
             response.setHeader("Access-Control-Allow-Headers", "DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type, Accept-Language, Origin, Accept-Encoding");

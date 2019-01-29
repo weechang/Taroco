@@ -1,14 +1,14 @@
 package io.github.weechang.moreco.rbac.service.impl;
 
+import cn.hutool.core.collection.CollectionUtil;
 import io.github.weechang.moreco.base.exception.AppException;
 import io.github.weechang.moreco.base.model.PageModel;
 import io.github.weechang.moreco.base.service.impl.BaseServiceImpl;
 import io.github.weechang.moreco.rbac.dao.MenuDao;
-import io.github.weechang.moreco.rbac.model.domain.Menu;
 import io.github.weechang.moreco.rbac.error.RbacError;
+import io.github.weechang.moreco.rbac.model.domain.Menu;
 import io.github.weechang.moreco.rbac.service.MenuService;
 import io.github.weechang.moreco.rbac.service.UserService;
-import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -49,7 +49,7 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuDao, Menu> implements M
      * @param menus 目录
      */
     private void buildTree(List<Menu> menus){
-        if (CollectionUtils.isNotEmpty(menus)){
+        if (CollectionUtil.isNotEmpty(menus)){
             for (Menu menu: menus){
                 List<Menu> children = baseDao.findAllByParentId(menu.getId());
                 menu.setChildren(children);

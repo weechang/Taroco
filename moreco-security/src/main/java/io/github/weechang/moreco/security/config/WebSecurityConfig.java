@@ -1,6 +1,9 @@
 package io.github.weechang.moreco.security.config;
 
-import io.github.weechang.moreco.security.custom.*;
+import io.github.weechang.moreco.security.auth.common.*;
+import io.github.weechang.moreco.security.auth.jwt.JwtAuthenticationSuccessHandler;
+import io.github.weechang.moreco.security.auth.jwt.JwtAuthenticationProvider;
+import io.github.weechang.moreco.security.auth.jwt.JwtAuthenticationTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -24,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private MorecoAuthenticationEntryPoint authenticationEntryPoint;
     @Autowired
-    private MorecoAuthenticationSuccessHandler authenticationSuccessHandler;
+    private JwtAuthenticationSuccessHandler authenticationSuccessHandler;
     @Autowired
     private MorecoAuthenticationFailureHandler authenticationFailureHandler;
     @Autowired
@@ -32,20 +35,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private MorecoAccessDeniedHandler accessDeniedHandler;
     @Autowired
-    private MorecoAuthenticationProvider authenticationProvider;
+    private JwtAuthenticationProvider jwtAuthenticationProvider;
     @Autowired
     private SecurityProperties securityProperties;
     @Autowired
     private MorecoUserDetailsService userDetailsService;
     @Autowired
-    MorecoJwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
+    JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
 
     /**
      * 定义认证用户信息获取来源，密码校验规则等
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(authenticationProvider);
+        auth.authenticationProvider(jwtAuthenticationProvider);
     }
 
     /**
@@ -72,7 +75,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 /***RBAC权限*/
                 .anyRequest()
-                .access("@rbacauthorityservice.hasPermission(request,authentication)")
+                .access("@rbacAuthorityservice.hasPermission(request,authentication)")
 
                 .and()
                 .formLogin()

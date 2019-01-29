@@ -1,11 +1,11 @@
 package io.github.weechang.moreco.rbac.service;
 
+import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.date.DateUtil;
 import io.github.weechang.moreco.base.model.PageModel;
 import io.github.weechang.moreco.base.service.BaseService;
 import io.github.weechang.moreco.rbac.model.domain.User;
 import io.github.weechang.moreco.rbac.model.domain.enums.UserStatusEnum;
-import org.apache.commons.collections.CollectionUtils;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -23,7 +23,7 @@ public interface UserService extends BaseService<User> {
      * @param users 用户
      */
     static void convert2String(List<User> users) {
-        if (CollectionUtils.isNotEmpty(users)) {
+        if (CollectionUtil.isNotEmpty(users)) {
             for (User user : users) {
                 user.addDataMap("createdDate", DateUtil.formatDateTime(user.getCreatedDate()));
                 user.addDataMap("status", UserStatusEnum.getNameByKey(user.getStatus()));

@@ -1,8 +1,8 @@
 package io.github.weechang.moreco.security.config;
 
+import cn.hutool.core.collection.CollectionUtil;
 import com.google.common.collect.Lists;
 import lombok.Data;
-import org.apache.commons.collections.CollectionUtils;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -27,30 +27,12 @@ public class SecurityProperties {
     /***配置前缀*/
     public static final String PREFIX = "moreco.security";
 
-    /***未登录路径*/
-    public static final String unLoginPath = "/unLogin";
-
-    /***登录成功路径*/
-    public static final String loginSuccess = "/loginSuccess";
-
-    /***登录失败路径*/
-    public static final String loginFailure = "/loginFailure";
-
-    /***权限不够*/
-    public static final String accessDenied = "/accessDenied";
-
-    /***授权key*/
-    public static final String authKey = "auth";
-
     /***不需要授权的路径*/
     private List<String> noAuthPaths;
 
     @PostConstruct
     public void init(){
-        noAuthPaths = CollectionUtils.isEmpty(noAuthPaths) ? Lists.newArrayList() : noAuthPaths;
-        noAuthPaths.add(unLoginPath);
-        noAuthPaths.add(loginFailure);
-        noAuthPaths.add("/favicon.ico");
+        noAuthPaths = CollectionUtil.isEmpty(noAuthPaths) ? Lists.newArrayList() : noAuthPaths;
     }
 
 }

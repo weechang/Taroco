@@ -1,10 +1,10 @@
 package io.github.weechang.moreco.rbac.service;
 
+import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.date.DateUtil;
 import io.github.weechang.moreco.base.model.PageModel;
 import io.github.weechang.moreco.base.service.BaseService;
 import io.github.weechang.moreco.rbac.model.domain.Dept;
-import org.apache.commons.collections.CollectionUtils;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -22,7 +22,7 @@ public interface DeptService extends BaseService<Dept> {
      * @param depts 部门
      */
     static void convert2String(List<Dept> depts) {
-        if (CollectionUtils.isNotEmpty(depts)) {
+        if (CollectionUtil.isNotEmpty(depts)) {
             for (Dept dept : depts) {
                 dept.addDataMap("createdDate", DateUtil.formatDateTime(dept.getCreatedDate()));
             }

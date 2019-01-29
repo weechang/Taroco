@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
  * date 2018/10/27
  * time 16:29
  */
-@Api(tags = "user", description = "用户管理")
+@Api(tags = "permission", description = "用户管理")
 @RequestMapping("rbac/user")
 @RestController
 public class UserController extends BaseController {

@@ -1,11 +1,10 @@
-package io.github.weechang.moreco.security.custom;
+package io.github.weechang.moreco.security.auth.jwt;
 
-import io.github.weechang.moreco.security.util.JwtTokenUtil;
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -23,10 +22,10 @@ import java.io.IOException;
  * time 16:36
  */
 @Component
-public class MorecoJwtAuthenticationTokenFilter extends OncePerRequestFilter {
+public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
     @Autowired
-    private MorecoUserDetailsService userDetailsService;
+    private JwtUserDetailsService jwtUserDetailsService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws ServletException, IOException {
@@ -36,16 +35,14 @@ public class MorecoJwtAuthenticationTokenFilter extends OncePerRequestFilter {
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             final String authToken = authHeader.substring("Bearer ".length());
 
-            String username = JwtTokenUtil.parseToken(authToken, "_secret");
+            DecodedJWT decodedJWT = JWT.decode(authToken);
+            String username = decodedJWT.getSubject();
 
-            if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-                UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+            if (username != null) {
+                UserDetails userDetails = jwtUserDetailsService.getUserLoginInfo(username);
 
                 if (userDetails != null) {
-                    UsernamePasswordAuthenticationToken authentication =
-                            new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-                    authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(req));
-
+                    JwtAuthenticationToken authentication = new JwtAuthenticationToken(userDetails, decodedJWT, null);
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 }
             }

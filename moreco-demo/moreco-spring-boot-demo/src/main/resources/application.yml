@@ -28,4 +28,4 @@ logging:
 
 moreco:
   security:
-    noAuthPaths: ["/unLogin", "/login"]
+    noAuthPaths: []

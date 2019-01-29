@@ -1,10 +1,10 @@
 package io.github.weechang.moreco.rbac.service;
 
+import cn.hutool.core.collection.CollectionUtil;
 import io.github.weechang.moreco.base.model.PageModel;
 import io.github.weechang.moreco.base.service.BaseService;
 import io.github.weechang.moreco.rbac.model.domain.Menu;
 import io.github.weechang.moreco.rbac.model.domain.enums.MenuTypeEnum;
-import org.apache.commons.collections.CollectionUtils;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -22,7 +22,7 @@ public interface MenuService extends BaseService<Menu> {
      * @param menus 目录
      */
     static void convert2String(List<Menu> menus) {
-        if (CollectionUtils.isNotEmpty(menus)) {
+        if (CollectionUtil.isNotEmpty(menus)) {
             for (Menu menu : menus) {
                 menu.addDataMap("type", MenuTypeEnum.getNameByKey(menu.getType()));
             }
