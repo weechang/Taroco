@@ -1,7 +1,7 @@
 package io.github.weechang.moreco.rbac.service;
 
 import cn.hutool.core.collection.CollectionUtil;
-import io.github.weechang.moreco.base.model.PageModel;
+import io.github.weechang.moreco.base.model.dto.PageModel;
 import io.github.weechang.moreco.base.service.BaseService;
 import io.github.weechang.moreco.rbac.model.domain.Menu;
 import io.github.weechang.moreco.rbac.model.domain.enums.MenuTypeEnum;
