@@ -44,4 +44,20 @@ public interface MenuService extends BaseService<Menu> {
      * @return 树结构
      */
     List<Menu> tree();
+
+    /**
+     * 查询授权目录
+     *
+     * @return 授权目录树结构
+     */
+    List<Menu> permissionMenu(String username);
+
+    /**
+     * 根据目录路径，查询授权页面组件
+     *
+     * @param menuPath 目录路径
+     * @param username 用户名
+     * @return
+     */
+    List<Menu> permissionComponent(String menuPath, String username);
 }

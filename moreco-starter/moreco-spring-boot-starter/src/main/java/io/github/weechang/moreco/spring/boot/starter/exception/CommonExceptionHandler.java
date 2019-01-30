@@ -97,7 +97,6 @@ public class CommonExceptionHandler {
             extMessage = ex.getMessage();
         }
         R response = R.error(error);
-        response.put("extMessage", extMessage);
         int status = HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
         if (error == SysError.INVALID_PARAMETER) {
             status = HttpServletResponse.SC_BAD_REQUEST;

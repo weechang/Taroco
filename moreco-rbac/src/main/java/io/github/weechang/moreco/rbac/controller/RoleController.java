@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- *
  * @author zhangwei
  * date 2018/10/27
  * time 16:30
@@ -30,12 +29,10 @@ public class RoleController extends BaseController {
     private RoleService roleService;
 
     @ApiOperation("分页获取角色数据")
-    @GetMapping("page/{index}")
+    @GetMapping("page")
     public R<PageModel<Role>> page(
-            @ApiParam(name = "页码") @PathVariable("index") int index,
-            @ApiParam(name = "查询参数") RoleQueryRequest param) {
-        PageModel request = new PageModel(index);
-        PageModel<Role> page = roleService.findAll(param.toRole(), request.toPageRequest());
+            @ApiParam(name = "查询参数") RoleQueryRequest queryRequest) {
+        PageModel<Role> page = roleService.findAll(queryRequest.toRole(), queryRequest.toPageRequest());
         RoleService.convert2String(page.getList());
         return R.ok(page);
     }
@@ -64,8 +61,8 @@ public class RoleController extends BaseController {
     }
 
     @ApiOperation("删除角色")
-    @DeleteMapping("delete")
-    public R delete(@ApiParam("角色id") Long id) {
+    @DeleteMapping("delete/{id}")
+    public R delete(@ApiParam("角色id") @PathVariable("id") Long id) {
         roleService.delete(id);
         return R.ok();
     }

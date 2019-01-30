@@ -1,12 +1,11 @@
 package io.github.weechang.moreco.rbac.model.dto;
 
 import cn.hutool.core.bean.BeanUtil;
+import io.github.weechang.moreco.base.model.dto.QueryRequest;
 import io.github.weechang.moreco.rbac.model.domain.Menu;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-
-import java.io.Serializable;
 
 /**
  * @author zhangwei
@@ -15,7 +14,7 @@ import java.io.Serializable;
  */
 @Data
 @ApiModel("部门查询请求")
-public class MenuQueryRequest implements Serializable {
+public class MenuQueryRequest extends QueryRequest {
     private static final long serialVersionUID = 8496684025572743107L;
 
     @ApiModelProperty("父菜单ID，一级菜单为0")

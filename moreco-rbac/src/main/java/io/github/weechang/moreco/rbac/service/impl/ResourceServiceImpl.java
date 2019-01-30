@@ -26,6 +26,7 @@ public class ResourceServiceImpl extends BaseServiceImpl<ResourceDao, Resource> 
     @Override
     public PageModel<Resource> findAll(Resource param, Pageable pageable) {
         ExampleMatcher matcher = ExampleMatcher.matching()
+                .withMatcher("name", ExampleMatcher.GenericPropertyMatchers.contains())
                 .withMatcher("tag", ExampleMatcher.GenericPropertyMatchers.contains())
                 .withMatcher("path", ExampleMatcher.GenericPropertyMatchers.contains());
         return new PageModel<>(baseDao.findAll(Example.of(param, matcher), pageable));

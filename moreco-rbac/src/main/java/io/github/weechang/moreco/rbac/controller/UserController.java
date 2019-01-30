@@ -28,12 +28,10 @@ public class UserController extends BaseController {
     private UserService userService;
 
     @ApiOperation("分页获取用户数据")
-    @GetMapping("page/{index}")
+    @GetMapping("page")
     public R<PageModel<User>> page(
-            @ApiParam(name = "页码") @PathVariable("index") int index,
             @ApiParam(name = "查询条件") UserQueryRequest queryRequest) {
-        PageModel request = new PageModel(index);
-        PageModel<User> page = userService.findAll(queryRequest.toUser(), request.toPageRequest());
+        PageModel<User> page = userService.findAll(queryRequest.toUser(), queryRequest.toPageRequest());
         UserService.convert2String(page.getList());
         return R.ok(page);
     }
@@ -47,7 +45,7 @@ public class UserController extends BaseController {
     }
 
     @ApiOperation("保存用户信息")
-    @PostMapping("save")
+    @PostMapping("/save")
     public R save(@RequestBody UserSaveRequest request) {
         User user = request.toUser();
         userService.save(user);
@@ -55,7 +53,7 @@ public class UserController extends BaseController {
     }
 
     @ApiOperation("修改密码")
-    @PostMapping("updatePassword")
+    @PostMapping("/updatePassword")
     public R updatePassword(@ApiParam("新密码") String newPassword) {
         Long userId = 0L;
         userService.updatePasswordByUserId(userId, newPassword);
@@ -63,7 +61,7 @@ public class UserController extends BaseController {
     }
 
     @ApiOperation("重置密码")
-    @PostMapping("restPassword")
+    @PostMapping("/restPassword")
     public R resetPassword() {
         Long userId = 0L;
         userService.resetPasswordByUserId(userId);
@@ -71,8 +69,8 @@ public class UserController extends BaseController {
     }
 
     @ApiOperation("删除用户")
-    @DeleteMapping("delete")
-    public R delete(@ApiParam("用户id") Long id) {
+    @DeleteMapping("/delete/{id}")
+    public R delete(@ApiParam("用户id") @PathVariable("id") Long id) {
         userService.delete(id);
         return R.ok();
     }

@@ -1,13 +1,10 @@
 package io.github.weechang.moreco.base.model.dto;
 
-import com.google.common.collect.Maps;
 import io.github.weechang.moreco.base.error.IError;
 import io.github.weechang.moreco.base.error.SysError;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-
-import java.util.Map;
 
 /**
  * 请求响应
@@ -31,8 +28,6 @@ public class R<T extends Object> {
     private String msg = "success";
     @ApiModelProperty("结果")
     private T result;
-    @ApiModelProperty("扩展信息")
-    private Map<String, Object> ext = Maps.newHashMap();
 
     public R() {
     }
@@ -67,14 +62,7 @@ public class R<T extends Object> {
     public static R ok(String msg) {
         R r = new R();
         r.success = true;
-        r.put("msg", msg);
-        return r;
-    }
-
-    public static R ok(Map<String, Object> map) {
-        R r = new R();
-        r.success = true;
-        r.getExt().putAll(map);
+        r.msg = msg;
         return r;
     }
 
@@ -82,10 +70,5 @@ public class R<T extends Object> {
         R r = new R();
         r.success = true;
         return r;
-    }
-
-    public R put(String key, Object value) {
-        ext.put(key, value);
-        return this;
     }
 }

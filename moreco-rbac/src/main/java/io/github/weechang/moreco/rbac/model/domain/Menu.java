@@ -39,11 +39,14 @@ public class Menu extends BaseDomain {
     @ApiModelProperty("菜单URL")
     private String url;
 
-    @ApiModelProperty("类型  1：菜单   2：按钮")
+    @ApiModelProperty("类型  1：菜单   2：页面组件")
     private Integer type;
 
     @ApiModelProperty("菜单图标")
     private String icon;
+
+    @ApiModelProperty("是否显示")
+    private Boolean show;
 
     @ApiModelProperty("排序")
     private Integer orderNum;

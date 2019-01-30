@@ -42,7 +42,7 @@ public enum UserStatusEnum {
     }
 
     public static String getNameByKey(Integer key) {
-        for (UserStatusEnum item : UserStatusEnum.values()) {
+        for (UserStatusEnum item : values()) {
             if (item.key == key) {
                 return item.name;
             }
@@ -52,7 +52,7 @@ public enum UserStatusEnum {
 
     public static JSONArray toJsonArray() {
         JSONArray array = new JSONArray();
-        for (UserStatusEnum e : UserStatusEnum.values()) {
+        for (UserStatusEnum e : values()) {
             JSONObject item = new JSONObject();
             item.put("key", e.getKey());
             item.put("name", e.getName());

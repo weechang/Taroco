@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
 import java.io.Serializable;
 
@@ -31,5 +32,10 @@ public class QueryRequest implements Serializable {
     public PageRequest toPageRequest(){
         PageModel pageModel = new PageModel(currentPage, pageSize);
         return pageModel.toPageRequest();
+    }
+
+    public PageRequest toPageRequest(Sort sort){
+        PageModel pageModel = new PageModel(currentPage, pageSize);
+        return pageModel.toPageRequest(sort);
     }
 }

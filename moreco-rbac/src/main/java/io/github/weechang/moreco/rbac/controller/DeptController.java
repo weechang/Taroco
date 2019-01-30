@@ -31,13 +31,11 @@ public class DeptController {
     private DeptService deptService;
 
     @ApiOperation("分页获取部门数据")
-    @GetMapping("page/{index}")
+    @GetMapping("page")
     public R<PageModel<Dept>> page(
-            @ApiParam(name = "页码") @PathVariable("index") int index,
             @ApiParam(name = "查询条件") DeptQueryRequest queryRequest) {
-        PageModel request = new PageModel(index);
         Sort sort = new Sort(Sort.Direction.ASC, "orderNum");
-        PageModel<Dept> page = deptService.findAll(queryRequest.toDept(), request.toPageRequest(sort));
+        PageModel<Dept> page = deptService.findAll(queryRequest.toDept(), queryRequest.toPageRequest(sort));
         DeptService.convert2String(page.getList());
         return R.ok(page);
     }

@@ -21,17 +21,17 @@ import java.io.Serializable;
 public class ResourceQueryRequest extends QueryRequest {
     private static final long serialVersionUID = 3082986066177529332L;
 
-    @ApiModelProperty("标签")
-    private String tag;
+    @ApiModelProperty("名称")
+    private String name;
 
     @ApiModelProperty("路径")
     private String path;
 
+    @ApiModelProperty("标签")
+    private String tag;
+
     @ApiModelProperty("请求方法")
     private String method;
-
-    @ApiModelProperty("权限标记")
-    private String summary;
 
     public Resource toResource() {
         return BeanUtil.toBean(this, Resource.class);

@@ -1,6 +1,7 @@
 package io.github.weechang.moreco.rbac.model.dto;
 
 import cn.hutool.core.bean.BeanUtil;
+import io.github.weechang.moreco.base.model.dto.QueryRequest;
 import io.github.weechang.moreco.rbac.model.domain.User;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -15,7 +16,7 @@ import java.io.Serializable;
  */
 @ApiModel("用户查询请求")
 @Data
-public class UserQueryRequest implements Serializable {
+public class UserQueryRequest extends QueryRequest {
     private static final long serialVersionUID = -1632895627523323729L;
 
     @ApiModelProperty("用户名")

@@ -40,6 +40,9 @@ public class MenuSaveRequest implements Serializable {
     @ApiModelProperty("菜单图标")
     private String icon;
 
+    @ApiModelProperty("是否显示")
+    private Boolean show;
+
     @ApiModelProperty("排序")
     private Integer orderNum;
 
