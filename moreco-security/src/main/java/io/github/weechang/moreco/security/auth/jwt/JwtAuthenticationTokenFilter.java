@@ -2,6 +2,8 @@ package io.github.weechang.moreco.security.auth.jwt;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import io.github.weechang.moreco.base.core.MorecoSecurityUtil;
+import io.github.weechang.moreco.security.config.SecurityProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -30,7 +32,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws ServletException, IOException {
 
-        String authHeader = req.getHeader("Authorization");
+        String authHeader = req.getHeader(SecurityProperties.authKey);
 
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             final String authToken = authHeader.substring("Bearer ".length());
@@ -43,6 +45,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                     UserDetails userDetails = jwtUserDetailsService.getUserLoginInfo(username);
 
                     if (userDetails != null) {
+                        MorecoSecurityUtil.setLoginInfo(username, null);
                         JwtAuthenticationToken authentication = new JwtAuthenticationToken(userDetails, decodedJWT, null);
                         SecurityContextHolder.getContext().setAuthentication(authentication);
                     }
@@ -55,4 +58,5 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
         chain.doFilter(req, res);
     }
+
 }

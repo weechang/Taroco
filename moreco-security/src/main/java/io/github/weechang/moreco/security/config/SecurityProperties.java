@@ -27,6 +27,12 @@ public class SecurityProperties {
     /***配置前缀*/
     public static final String PREFIX = "moreco.security";
 
+    /***授权key*/
+    public static final String authKey = "authorization";
+
+    /***授权Bearer key*/
+    public static final String authBearKey = "Bearer";
+
     /***不需要授权的路径*/
     private List<String> noAuthPaths;
 

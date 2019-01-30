@@ -46,7 +46,7 @@ public class Menu extends BaseDomain {
     private String icon;
 
     @ApiModelProperty("是否显示")
-    private Boolean show;
+    private Integer show;
 
     @ApiModelProperty("排序")
     private Integer orderNum;
