@@ -6,7 +6,10 @@ import io.github.weechang.moreco.rbac.model.domain.Resource;
 import io.github.weechang.moreco.rbac.model.dto.ResourceQueryRequest;
 import io.github.weechang.moreco.rbac.model.dto.ResourceSaveRequest;
 import io.github.weechang.moreco.rbac.service.ResourceService;
-import io.swagger.annotations.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

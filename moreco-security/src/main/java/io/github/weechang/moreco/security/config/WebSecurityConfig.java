@@ -1,8 +1,8 @@
 package io.github.weechang.moreco.security.config;
 
 import io.github.weechang.moreco.security.auth.common.*;
-import io.github.weechang.moreco.security.auth.jwt.JwtAuthenticationSuccessHandler;
 import io.github.weechang.moreco.security.auth.jwt.JwtAuthenticationProvider;
+import io.github.weechang.moreco.security.auth.jwt.JwtAuthenticationSuccessHandler;
 import io.github.weechang.moreco.security.auth.jwt.JwtAuthenticationTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +10,9 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsUtils;
 
 import java.util.List;
 
@@ -77,6 +79,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .access("@rbacAuthorityservice.hasPermission(request,authentication)")
 
+//                /***跨域*/
+//                .and()
+//                .headers().addHeaderWriter(new StaticHeadersWriter(Arrays.asList(
+//                new Header("Access-control-Allow-Origin", "*"),
+//                new Header("Access-Control-Expose-Headers", SecurityProperties.authKey))))
+//                .and()
+//                .addFilterAfter(new OptionsRequestFilter(), CorsFilter.class)
+
                 .and()
                 .formLogin()
                 /***登录成功*/
@@ -84,6 +94,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 /***登录失败*/
                 .failureHandler(authenticationFailureHandler)
                 .permitAll()
+                .and()
+                .cors()
 
                 .and()
                 .logout()
@@ -100,5 +112,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         /***JWT*/
         http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
+
+        /***跨域*/
+        ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry registry
+                = http.authorizeRequests();
+        registry.requestMatchers(CorsUtils::isPreFlightRequest).permitAll();
     }
 }

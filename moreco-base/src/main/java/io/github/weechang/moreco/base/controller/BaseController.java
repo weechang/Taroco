@@ -1,5 +1,7 @@
 package io.github.weechang.moreco.base.controller;
 
+import io.github.weechang.moreco.base.core.MorecoSecurityUtil;
+
 /**
  * 说明：
  *
@@ -8,11 +10,8 @@ package io.github.weechang.moreco.base.controller;
  */
 public class BaseController {
 
-    protected String getCurrentUser() {
-//        if (SecurityContextHolder.getContext().getAuthentication() != null) {
-//            return SecurityContextHolder.getContext().getAuthentication().getName();
-//        }
-        return null;
+    protected String getUsername() {
+        return MorecoSecurityUtil.getUsername();
     }
 
 }

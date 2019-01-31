@@ -1,6 +1,7 @@
 package io.github.weechang.moreco.security.auth.common;
 
 import cn.hutool.json.JSONUtil;
+import io.github.weechang.moreco.base.core.MorecoSecurityUtil;
 import io.github.weechang.moreco.base.model.dto.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
@@ -32,6 +33,7 @@ public class MorecoLogoutSuccessHandler implements LogoutSuccessHandler {
         R r = R.ok();
         PrintWriter writer = null;
         try {
+            MorecoSecurityUtil.logout();
             writer = res.getWriter();
             writer.write(JSONUtil.toJsonStr(r));
         } catch (Exception ex) {

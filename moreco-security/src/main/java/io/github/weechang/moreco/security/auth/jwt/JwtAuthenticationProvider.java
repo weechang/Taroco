@@ -13,6 +13,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
+
 /**
  * 自定义登录认证
  *
@@ -26,6 +30,8 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
     @Autowired
     private JwtUserDetailsService jwtUserDetailsService;
 
+    private static final int tokenRefreshInterval = 300;  //刷新间隔5分钟
+
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String userName = (String) authentication.getPrincipal();
@@ -34,18 +40,24 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
         if (authentication instanceof JwtAuthenticationToken) {
             JwtAuthenticationToken jwtToken = (JwtAuthenticationToken) authentication;
             decodedJWT = jwtToken.getToken();
-            // todo 验证Token否过期--时间、salt
+            // todo token 是否正确
+            boolean shouldRefresh = shouldTokenRefresh(decodedJWT.getIssuedAt());
+            if (shouldRefresh) {
+                UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(userName);
+                String authToken = jwtUserDetailsService.loginSuccess(userDetails);
+                decodedJWT = JWT.decode(authToken);
+            }
         } else {
             Md5PasswordEncoder md5PasswordEncoder = new Md5PasswordEncoder();
             String encodePwd = md5PasswordEncoder.encodePassword(password, userName);
 
-            UserDetails userInfo = jwtUserDetailsService.loadUserByUsername(userName);
+            UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(userName);
 
-            if (!userInfo.getPassword().equals(encodePwd)) {
+            if (!userDetails.getPassword().equals(encodePwd)) {
                 throw new BadCredentialsException("用户名密码不正确，请重新登陆！");
             }
 
-            String token = jwtUserDetailsService.loginSuccess(userInfo);
+            String token = jwtUserDetailsService.loginSuccess(userDetails);
             decodedJWT = JWT.decode(token);
         }
 
@@ -58,4 +70,10 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
     public boolean supports(Class<?> aClass) {
         return true;
     }
+
+    protected boolean shouldTokenRefresh(Date issueAt) {
+        LocalDateTime issueTime = LocalDateTime.ofInstant(issueAt.toInstant(), ZoneId.systemDefault());
+        return LocalDateTime.now().minusSeconds(tokenRefreshInterval).isAfter(issueTime);
+    }
+
 }

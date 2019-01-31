@@ -69,14 +69,16 @@ public class MenuController extends BaseController {
     @ApiOperation("获取授权目录")
     @GetMapping("/permissionMenu")
     public R<List<Menu>> permissionMenu() {
-        List<Menu> menus = menuService.tree();
+        String username = null;
+        List<Menu> menus = menuService.permissionMenu(username);
         return R.ok(menus);
     }
 
     @ApiOperation("根据目录路径，获取授权页面元素")
     @GetMapping("/permissionComponent")
     public R<List<Menu>> permissionComponent(@ApiParam("目录路径") String menuPath) {
-        List<Menu> menus = menuService.tree();
+        String username = null;
+        List<Menu> menus = menuService.permissionComponent(menuPath, username);
         return R.ok(menus);
     }
 

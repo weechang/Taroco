@@ -3,10 +3,9 @@ package io.github.weechang.moreco.security.auth.jwt;
 import cn.hutool.json.JSONUtil;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import io.github.weechang.moreco.base.model.dto.R;
+import io.github.weechang.moreco.security.config.SecurityProperties;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
@@ -15,9 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,11 +28,6 @@ import java.util.Map;
 @Component
 public class JwtAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
-    private static final int tokenRefreshInterval = 300;  //刷新间隔5分钟
-
-    @Autowired
-    private JwtUserDetailsService jwtUserDetailsService;
-
     @Override
     public void onAuthenticationSuccess(HttpServletRequest req, HttpServletResponse res, Authentication auth) throws IOException, ServletException {
         res.setStatus(HttpServletResponse.SC_OK);
@@ -44,16 +35,12 @@ public class JwtAuthenticationSuccessHandler implements AuthenticationSuccessHan
         res.setContentType("application/json; charset=utf-8");
         DecodedJWT jwt = ((JwtAuthenticationToken) auth).getToken();
         String token = jwt.getToken();
-        boolean shouldRefresh = shouldTokenRefresh(jwt.getIssuedAt());
-        if (shouldRefresh) {
-            token = jwtUserDetailsService.loginSuccess((UserDetails) auth.getPrincipal());
-        }
-
-        Map<String, String> result = new HashMap<>();
-        result.put("token", token);
-        R r = R.ok(result);
+        res.setHeader(SecurityProperties.authKey, token);
         PrintWriter writer = null;
         try {
+            Map<String, String> result = new HashMap<>();
+            result.put("token", token);
+            R r = R.ok(result);
             writer = res.getWriter();
             writer.write(JSONUtil.toJsonStr(r));
         } catch (Exception ex) {
@@ -64,10 +51,4 @@ public class JwtAuthenticationSuccessHandler implements AuthenticationSuccessHan
             }
         }
     }
-
-    protected boolean shouldTokenRefresh(Date issueAt) {
-        LocalDateTime issueTime = LocalDateTime.ofInstant(issueAt.toInstant(), ZoneId.systemDefault());
-        return LocalDateTime.now().minusSeconds(tokenRefreshInterval).isAfter(issueTime);
-    }
-
 }
