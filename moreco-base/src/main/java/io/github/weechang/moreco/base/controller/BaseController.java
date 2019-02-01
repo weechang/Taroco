@@ -1,6 +1,7 @@
 package io.github.weechang.moreco.base.controller;
 
 import io.github.weechang.moreco.base.core.MorecoSecurityUtil;
+import io.github.weechang.moreco.base.exception.AppException;
 
 /**
  * 说明：
@@ -11,6 +12,10 @@ import io.github.weechang.moreco.base.core.MorecoSecurityUtil;
 public class BaseController {
 
     protected String getUsername() {
+        String username = MorecoSecurityUtil.getUsername();
+        if (username == null) {
+            throw new AppException();
+        }
         return MorecoSecurityUtil.getUsername();
     }
 

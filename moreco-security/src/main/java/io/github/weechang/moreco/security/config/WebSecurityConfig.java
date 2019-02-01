@@ -10,10 +10,12 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsUtils;
+import org.springframework.security.web.header.Header;
+import org.springframework.security.web.header.writers.StaticHeadersWriter;
+import org.springframework.web.filter.CorsFilter;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -79,15 +81,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .access("@rbacAuthorityservice.hasPermission(request,authentication)")
 
-//                /***跨域*/
-//                .and()
-//                .headers().addHeaderWriter(new StaticHeadersWriter(Arrays.asList(
-//                new Header("Access-control-Allow-Origin", "*"),
-//                new Header("Access-Control-Expose-Headers", SecurityProperties.authKey))))
-//                .and()
-//                .addFilterAfter(new OptionsRequestFilter(), CorsFilter.class)
-
+                /***跨域*/
                 .and()
+                .headers().addHeaderWriter(new StaticHeadersWriter(Arrays.asList(
+                new Header("Access-control-Allow-Origin", "*"),
+                new Header("Access-Control-Expose-Headers", SecurityProperties.authKey))))
+                .and()
+                .addFilterAfter(new OptionsRequestFilter(), CorsFilter.class)
+
+//                .and()
                 .formLogin()
                 /***登录成功*/
                 .successHandler(authenticationSuccessHandler)
@@ -114,8 +116,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
 
         /***跨域*/
-        ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry registry
-                = http.authorizeRequests();
-        registry.requestMatchers(CorsUtils::isPreFlightRequest).permitAll();
+//        ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry registry
+//                = http.authorizeRequests();
+//        registry.requestMatchers(CorsUtils::isPreFlightRequest).permitAll();
     }
 }

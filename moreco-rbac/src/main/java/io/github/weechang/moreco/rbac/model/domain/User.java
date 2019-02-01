@@ -1,5 +1,7 @@
 package io.github.weechang.moreco.rbac.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.github.weechang.moreco.base.model.domain.BaseDomain;
 import io.swagger.annotations.ApiModel;
@@ -14,7 +16,6 @@ import java.util.Date;
 import java.util.List;
 
 /**
- *
  * @author zhangwei
  * date 2018/10/26
  * time 17:56
@@ -58,8 +59,16 @@ public class User extends BaseDomain {
     private Integer status;
 
     @ApiModelProperty("部门id")
-    private Long deptId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "dept_id")
+    @JsonBackReference
+    private Dept dept;
 
-    @Transient
+    @ApiModelProperty("用户与")
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(name = "moreco_rbac_user_role",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private List<Role> roles;
 }

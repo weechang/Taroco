@@ -34,7 +34,7 @@ public class MenuController extends BaseController {
     private MenuService menuService;
 
     @ApiOperation("页面初始化参数")
-    @GetMapping("/toPage")
+    @GetMapping("toPage")
     public R toPage() {
         Map<String, Object> result = Maps.newHashMap();
         result.put("menuTypes", MenuTypeEnum.toJsonArray());
@@ -42,7 +42,7 @@ public class MenuController extends BaseController {
     }
 
     @ApiOperation("分页获取目录数据")
-    @GetMapping("/page")
+    @GetMapping("page")
     public R<PageModel<Menu>> page(
             @ApiParam(name = "查询条件") MenuQueryRequest queryRequest) {
         Sort sort = new Sort(Sort.Direction.ASC, "orderNum");
@@ -52,7 +52,7 @@ public class MenuController extends BaseController {
     }
 
     @ApiOperation("获取详情")
-    @GetMapping("/detail/{id}")
+    @GetMapping("detail/{id}")
     public R<Menu> detail(
             @ApiParam(name = "id") @PathVariable("id") Long id) {
         Menu menu = menuService.findOne(id);
@@ -60,30 +60,30 @@ public class MenuController extends BaseController {
     }
 
     @ApiOperation("获取树形结构")
-    @GetMapping("/tree")
+    @GetMapping("tree")
     public R<List<Menu>> tree() {
         List<Menu> menus = menuService.tree();
         return R.ok(menus);
     }
 
-    @ApiOperation("获取授权目录")
-    @GetMapping("/permissionMenu")
-    public R<List<Menu>> permissionMenu() {
-        String username = null;
-        List<Menu> menus = menuService.permissionMenu(username);
+    @ApiOperation("获取授权目录树")
+    @GetMapping("permissionMenuTree")
+    public R<List<Menu>> permissionMenuTree() {
+        String username = getUsername();
+        List<Menu> menus = menuService.permissionMenuTree(username);
         return R.ok(menus);
     }
 
     @ApiOperation("根据目录路径，获取授权页面元素")
-    @GetMapping("/permissionComponent")
+    @GetMapping("permissionComponent")
     public R<List<Menu>> permissionComponent(@ApiParam("目录路径") String menuPath) {
-        String username = null;
+        String username = getUsername();
         List<Menu> menus = menuService.permissionComponent(menuPath, username);
         return R.ok(menus);
     }
 
     @ApiModelProperty("保存目录信息")
-    @PostMapping("/save")
+    @PostMapping("save")
     public R save(@RequestBody MenuSaveRequest request) {
         Menu menu = request.toMenu();
         menuService.save(menu);
@@ -91,7 +91,7 @@ public class MenuController extends BaseController {
     }
 
     @ApiModelProperty("删除目录信息")
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("delete/{id}")
     public R delete(@ApiParam("目录id") @PathVariable("id") Long id) {
         menuService.delete(id);
         return R.ok();

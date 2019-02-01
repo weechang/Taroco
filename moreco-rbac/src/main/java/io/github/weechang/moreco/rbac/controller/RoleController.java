@@ -45,7 +45,7 @@ public class RoleController extends BaseController {
     }
 
     @ApiOperation("获取详情")
-    @GetMapping("/detail/{id}")
+    @GetMapping("detail/{id}")
     public R<Role> detail(
             @ApiParam(name = "id") @PathVariable("id") Long id) {
         Role role = roleService.detail(id);

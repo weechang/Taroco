@@ -16,29 +16,29 @@ import javax.servlet.http.HttpServletResponse;
 public class CorsInterceptor extends HandlerInterceptorAdapter {
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        corsHandle(request, response);
+    public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object handler) throws Exception {
+        corsHandle(req, res);
         return true;
     }
 
     @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        corsHandle(request, response);
+    public void afterCompletion(HttpServletRequest req, HttpServletResponse res, Object handler, Exception ex) throws Exception {
+        corsHandle(req, res);
     }
 
     /**
      * 跨域处理
      *
-     * @param request
-     * @param response
+     * @param req
+     * @param res
      */
-    protected void corsHandle(HttpServletRequest request, HttpServletResponse response) {
-        String origin = request.getHeader("Origin");
+    protected void corsHandle(HttpServletRequest req, HttpServletResponse res) {
+        String origin = req.getHeader("Origin");
         if (StrUtil.isNotBlank(origin)) {
-            response.setHeader("Access-Control-Allow-Origin", "*");
-            response.setHeader("Access-Control-Allow-Methods","GET, POST, OPTIONS, DELETE");
-            response.setHeader("Access-Control-Allow-Headers", "DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type, Accept-Language, Origin, Accept-Encoding");
-            response.setCharacterEncoding("UTF-8");
+            res.setHeader("Access-Control-Allow-Origin", "*");
+            res.setHeader("Access-Control-Allow-Methods","GET, POST, OPTIONS, DELETE");
+            res.setHeader("Access-Control-Allow-Headers", "DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type, Accept-Language, Origin, Accept-Encoding");
+            res.setCharacterEncoding("UTF-8");
         }
     }
 

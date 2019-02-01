@@ -24,7 +24,6 @@ import java.util.List;
 @Api(tags = "dept", description = "部门管理")
 @RequestMapping("rbac/dept")
 @RestController
-@CrossOrigin
 public class DeptController {
 
     @Autowired
@@ -41,7 +40,7 @@ public class DeptController {
     }
 
     @ApiOperation("获取详情")
-    @GetMapping("/detail/{id}")
+    @GetMapping("detail/{id}")
     public R<Menu> detail(
             @ApiParam(name = "id") @PathVariable("id") Long id) {
         Dept dept = deptService.findOne(id);

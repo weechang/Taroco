@@ -25,7 +25,13 @@ public class DeptQueryRequest extends QueryRequest {
     private String name;
 
     public Dept toDept(){
-        parentId = parentId == null ? 0L : parentId;
-        return BeanUtil.toBean(this, Dept.class);
+        Dept parent = null;
+        Dept dept = BeanUtil.toBean(this, Dept.class);
+        if (parentId != null){
+            parent = new Dept();
+            parent.setId(parentId);
+        }
+        dept.setParent(parent);
+        return dept;
     }
 }

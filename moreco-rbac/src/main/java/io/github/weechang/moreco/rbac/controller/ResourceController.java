@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = "resource", description = "资源管理")
 @RequestMapping("rbac/resource")
 @RestController
-@CrossOrigin
 public class ResourceController {
 
     @Autowired
@@ -36,7 +35,7 @@ public class ResourceController {
     }
 
     @ApiOperation("获取详情")
-    @GetMapping("/detail/{id}")
+    @GetMapping("detail/{id}")
     public R<Resource> detail(
             @ApiParam(name = "id") @PathVariable("id") Long id) {
         Resource resource = resourceService.findOne(id);

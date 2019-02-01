@@ -1,5 +1,7 @@
 package io.github.weechang.moreco.rbac.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.github.weechang.moreco.base.model.domain.BaseDomain;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -28,8 +30,11 @@ import java.util.List;
 public class Dept extends BaseDomain {
     private static final long serialVersionUID = 1230574664359885255L;
 
-    @ApiModelProperty("上级部门ID，一级部门为0")
-    private Long parentId;
+    @ApiModelProperty("父级")
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_id")
+    private Dept parent;
 
     @ApiModelProperty("部门名称")
     private String name;
@@ -37,6 +42,13 @@ public class Dept extends BaseDomain {
     @ApiModelProperty("排序")
     private Integer orderNum;
 
-    @Transient
+    @ApiModelProperty("用户")
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "dept")
+    private List<User> users;
+
+    @ApiModelProperty("子级")
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "parent")
     private List<Dept> children;
 }

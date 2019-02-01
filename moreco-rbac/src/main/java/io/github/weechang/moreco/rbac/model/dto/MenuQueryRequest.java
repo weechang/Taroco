@@ -26,7 +26,11 @@ public class MenuQueryRequest extends QueryRequest {
     @ApiModelProperty("类型     0：目录   1：菜单   2：按钮")
     private Integer type;
 
-    public Menu toMenu(){
-        return BeanUtil.toBean(this, Menu.class);
+    public Menu toMenu() {
+        Menu parent = new Menu();
+        parent.setId(parentId);
+        Menu menu = BeanUtil.toBean(this, Menu.class);
+        menu.setParent(parent);
+        return menu;
     }
 }

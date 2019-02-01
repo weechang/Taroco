@@ -1,6 +1,8 @@
 package io.github.weechang.moreco.rbac.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.google.common.collect.Lists;
 import io.github.weechang.moreco.base.model.domain.BaseDomain;
 import io.swagger.annotations.ApiModel;
@@ -30,11 +32,14 @@ import java.util.List;
 public class Menu extends BaseDomain {
     private static final long serialVersionUID = 5051501706109694638L;
 
-    @ApiModelProperty("父菜单ID，一级菜单为0")
-    private Long parentId;
-
     @ApiModelProperty("菜单名称")
     private String name;
+
+    @ApiModelProperty("父级")
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_id")
+    private Menu parent;
 
     @ApiModelProperty("菜单URL")
     private String url;
@@ -55,7 +60,7 @@ public class Menu extends BaseDomain {
     @JsonIgnore
     @ManyToMany
     @JoinTable(name = "moreco_rbac_menu_resource",
-            joinColumns = @JoinColumn(name = "menus_id", referencedColumnName = "id"),
+            joinColumns = @JoinColumn(name = "menu_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "resource_id", referencedColumnName = "id"))
     private List<Resource> resources = Lists.newArrayList();
 
@@ -64,6 +69,9 @@ public class Menu extends BaseDomain {
     @ManyToMany(mappedBy = "menus")
     private List<Role> roles = Lists.newArrayList();
 
-    @Transient
+    @ApiModelProperty("子级")
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "parent")
     private List<Menu> children;
+
 }

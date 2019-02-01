@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * spring security 跨域处理
+ *
  * @author zhangwei
  * date 2019/1/30
  * time 22:06
@@ -19,8 +21,8 @@ public class OptionsRequestFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain filter)
             throws ServletException, IOException {
         if (req.getMethod().equals("OPTIONS")) {
-            res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS,HEAD");
-            res.setHeader("Access-Control-Allow-Headers", res.getHeader("Access-Control-Request-Headers"));
+            res.setHeader("Access-Control-Allow-Methods", "*");
+            res.setHeader("Access-Control-Allow-Headers", req.getHeader("Access-Control-Request-Headers"));
             return;
         }
         filter.doFilter(req, res);

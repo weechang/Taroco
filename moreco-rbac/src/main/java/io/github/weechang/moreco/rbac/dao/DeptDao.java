@@ -14,9 +14,9 @@ import java.util.List;
  */
 public interface DeptDao extends JpaDao<Dept> {
 
-    List<Dept> findAllByParentId(Long parentId);
+    List<Dept> findAllByParent(Dept parent);
 
-    Page<Dept> queryAllByParentId(Long parentId, Pageable pageable);
+    Page<Dept> queryAllByParent(Dept parentParent, Pageable pageable);
 
-    Dept findFirstByNameAndParentId(String name, Long parentId);
+    Dept findFirstByNameAndParent(String name, Dept parent);
 }

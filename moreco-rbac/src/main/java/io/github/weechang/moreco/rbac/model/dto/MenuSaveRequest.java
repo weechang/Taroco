@@ -61,6 +61,12 @@ public class MenuSaveRequest implements Serializable {
             }
             menu.setResources(resources);
         }
+        Menu parent = null;
+        if (parentId != null){
+            parent = new Menu();
+            parent.setId(parentId);
+        }
+        menu.setParent(parent);
         return menu;
     }
 }
