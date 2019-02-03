@@ -24,7 +24,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
-@Table(name = "moreco_rbac_user")
+@Table(name = "moreco_rbac_user", uniqueConstraints = @UniqueConstraint(columnNames = "username"))
 @DynamicUpdate()
 @Where(clause = "yn = 1")
 public class User extends BaseDomain {

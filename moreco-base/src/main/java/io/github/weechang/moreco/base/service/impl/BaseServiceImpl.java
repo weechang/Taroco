@@ -99,4 +99,9 @@ public abstract class BaseServiceImpl<D extends BaseDao, T extends BaseDomain> i
         }
     }
 
+    @Override
+    public void doConvertDataMap(T... ts) {
+
+    }
+
 }

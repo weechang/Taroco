@@ -35,7 +35,7 @@ public class DeptController {
             @ApiParam(name = "查询条件") DeptQueryRequest queryRequest) {
         Sort sort = new Sort(Sort.Direction.ASC, "orderNum");
         PageModel<Dept> page = deptService.findAll(queryRequest.toDept(), queryRequest.toPageRequest(sort));
-        DeptService.convert2String(page.getList());
+        deptService.convertDataMap(page.getList());
         return R.ok(page);
     }
 
@@ -44,6 +44,7 @@ public class DeptController {
     public R<Menu> detail(
             @ApiParam(name = "id") @PathVariable("id") Long id) {
         Dept dept = deptService.findOne(id);
+        deptService.convertDataMap(dept);
         return R.ok(dept);
     }
 

@@ -27,10 +27,9 @@ public class MenuQueryRequest extends QueryRequest {
     private Integer type;
 
     public Menu toMenu() {
-        Menu parent = new Menu();
-        parent.setId(parentId);
+        parentId = parentId == null ? 0 : parentId;
         Menu menu = BeanUtil.toBean(this, Menu.class);
-        menu.setParent(parent);
+        menu.setParent(new Menu(parentId));
         return menu;
     }
 }

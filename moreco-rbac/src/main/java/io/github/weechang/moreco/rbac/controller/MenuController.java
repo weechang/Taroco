@@ -47,7 +47,7 @@ public class MenuController extends BaseController {
             @ApiParam(name = "查询条件") MenuQueryRequest queryRequest) {
         Sort sort = new Sort(Sort.Direction.ASC, "orderNum");
         PageModel<Menu> page = menuService.findAll(queryRequest.toMenu(), queryRequest.toPageRequest(sort));
-        MenuService.convert2String(page.getList());
+        menuService.convertDataMap(page.getList());
         return R.ok(page);
     }
 
@@ -56,6 +56,7 @@ public class MenuController extends BaseController {
     public R<Menu> detail(
             @ApiParam(name = "id") @PathVariable("id") Long id) {
         Menu menu = menuService.findOne(id);
+        menuService.convertDataMap(menu);
         return R.ok(menu);
     }
 

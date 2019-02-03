@@ -1,12 +1,13 @@
 package io.github.weechang.moreco.rbac.controller;
 
 import io.github.weechang.moreco.base.controller.BaseController;
-import io.github.weechang.moreco.base.model.dto.R;
 import io.github.weechang.moreco.base.model.dto.PageModel;
+import io.github.weechang.moreco.base.model.dto.R;
 import io.github.weechang.moreco.rbac.model.domain.Role;
 import io.github.weechang.moreco.rbac.model.domain.User;
 import io.github.weechang.moreco.rbac.model.dto.UserQueryRequest;
 import io.github.weechang.moreco.rbac.model.dto.UserSaveRequest;
+import io.github.weechang.moreco.rbac.model.dto.UserStatusChangeRequest;
 import io.github.weechang.moreco.rbac.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -32,7 +33,7 @@ public class UserController extends BaseController {
     public R<PageModel<User>> page(
             @ApiParam(name = "查询条件") UserQueryRequest queryRequest) {
         PageModel<User> page = userService.findAll(queryRequest.toUser(), queryRequest.toPageRequest());
-        UserService.convert2String(page.getList());
+        userService.convertDataMap(page.getList());
         return R.ok(page);
     }
 
@@ -41,6 +42,7 @@ public class UserController extends BaseController {
     public R<Role> detail(
             @ApiParam(name = "id") @PathVariable("id") Long id) {
         User user = userService.detail(id);
+        userService.convertDataMap(user);
         return R.ok(user);
     }
 
@@ -55,16 +57,21 @@ public class UserController extends BaseController {
     @ApiOperation("修改密码")
     @PostMapping("updatePassword")
     public R updatePassword(@ApiParam("新密码") String newPassword) {
-        Long userId = 0L;
-        userService.updatePasswordByUserId(userId, newPassword);
+        userService.updatePasswordByUsername(getUsername(), newPassword);
+        return R.ok();
+    }
+
+    @ApiOperation("修改状态")
+    @PostMapping("changeStatus")
+    public R changeStatus(@RequestBody UserStatusChangeRequest request) {
+        userService.changeStatus(request.getUserId(), request.getTargetStatus());
         return R.ok();
     }
 
     @ApiOperation("重置密码")
-    @PostMapping("restPassword")
-    public R resetPassword() {
-        Long userId = 0L;
-        userService.resetPasswordByUserId(userId);
+    @PostMapping("restPassword/{id}")
+    public R resetPassword(@ApiParam("用户id") @PathVariable("id") Long id) {
+        userService.resetPasswordByUserId(id);
         return R.ok();
     }
 

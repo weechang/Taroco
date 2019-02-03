@@ -24,14 +24,10 @@ public class DeptQueryRequest extends QueryRequest {
     @ApiModelProperty("部门名称")
     private String name;
 
-    public Dept toDept(){
-        Dept parent = null;
+    public Dept toDept() {
+        parentId = parentId == null ? 0L : parentId;
         Dept dept = BeanUtil.toBean(this, Dept.class);
-        if (parentId != null){
-            parent = new Dept();
-            parent.setId(parentId);
-        }
-        dept.setParent(parent);
+        dept.setParent(new Dept(parentId));
         return dept;
     }
 }

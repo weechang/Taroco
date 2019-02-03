@@ -1,12 +1,12 @@
 package io.github.weechang.moreco.security.auth.jwt;
 
+import cn.hutool.crypto.digest.DigestUtil;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import io.github.weechang.moreco.security.auth.common.MorecoUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -34,7 +34,7 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        String userName = (String) authentication.getPrincipal();
+        String username = (String) authentication.getPrincipal();
         String password = (String) authentication.getCredentials();
         DecodedJWT decodedJWT = null;
         if (authentication instanceof JwtAuthenticationToken) {
@@ -43,26 +43,21 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
             // todo token 是否正确
             boolean shouldRefresh = shouldTokenRefresh(decodedJWT.getIssuedAt());
             if (shouldRefresh) {
-                UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(userName);
+                UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(username);
                 String authToken = jwtUserDetailsService.loginSuccess(userDetails);
                 decodedJWT = JWT.decode(authToken);
             }
         } else {
-            Md5PasswordEncoder md5PasswordEncoder = new Md5PasswordEncoder();
-            String encodePwd = md5PasswordEncoder.encodePassword(password, userName);
-
-            UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(userName);
-
+            String encodePwd = new String(DigestUtil.sha256(username, password));
+            UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(username);
             if (!userDetails.getPassword().equals(encodePwd)) {
                 throw new BadCredentialsException("用户名密码不正确，请重新登陆！");
             }
-
             String token = jwtUserDetailsService.loginSuccess(userDetails);
             decodedJWT = JWT.decode(token);
         }
-
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        MorecoUserDetails morecoUserDetails = new MorecoUserDetails(userName, password);
+        MorecoUserDetails morecoUserDetails = new MorecoUserDetails(username, password);
         return new JwtAuthenticationToken(morecoUserDetails, decodedJWT, null);
     }
 

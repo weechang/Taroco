@@ -2,7 +2,7 @@ package io.github.weechang.moreco.rbac.model.dto;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollectionUtil;
-import io.github.weechang.moreco.rbac.model.domain.Resource;
+import io.github.weechang.moreco.rbac.model.domain.Dept;
 import io.github.weechang.moreco.rbac.model.domain.Role;
 import io.github.weechang.moreco.rbac.model.domain.User;
 import io.swagger.annotations.ApiModel;
@@ -44,16 +44,21 @@ public class UserSaveRequest implements Serializable {
     @ApiModelProperty("角色id")
     private List<Long> roleIds;
 
-    public User toUser(){
+    public User toUser() {
         User user = BeanUtil.toBean(this, User.class);
-        if (CollectionUtil.isNotEmpty(roleIds)){
+        // 角色
+        if (CollectionUtil.isNotEmpty(roleIds)) {
             List<Role> roles = new ArrayList<>();
-            for (Long roleId : roleIds){
+            for (Long roleId : roleIds) {
                 Role role = new Role();
                 role.setId(roleId);
                 roles.add(role);
             }
             user.setRoles(roles);
+        }
+        // 部门
+        if (deptId != null) {
+            user.setDept(new Dept(deptId));
         }
         return user;
     }

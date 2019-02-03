@@ -36,6 +36,7 @@ public class RoleSaveRequest implements Serializable {
 
     public Role toRole(){
         Role role = BeanUtil.toBean(this, Role.class);
+        // 目录
         if (CollectionUtil.isNotEmpty(menuIds)){
             List<Menu> menus = new ArrayList<>();
             for (Long menuId : menuIds){

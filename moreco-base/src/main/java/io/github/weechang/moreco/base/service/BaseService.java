@@ -1,10 +1,13 @@
 package io.github.weechang.moreco.base.service;
 
+import cn.hutool.core.collection.CollectionUtil;
 import io.github.weechang.moreco.base.model.domain.BaseDomain;
 import io.github.weechang.moreco.base.model.dto.PageModel;
 import org.springframework.data.domain.Pageable;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.Collection;
 
 /**
  * 基础service类
@@ -106,5 +109,41 @@ public interface BaseService<T extends BaseDomain> {
      * @param physical 物理删除
      */
     void delete(Iterable<? extends T> ts, boolean physical);
+
+    /**
+     * 属性转换
+     *
+     * @param ts 要转换的实例
+     */
+    default void convertDataMap(T... ts) {
+        if (ts != null && ts.length > 0) {
+            this.doConvertDataMap(ts);
+        }
+    }
+
+    /**
+     * 属性批量转换
+     *
+     * @param ts 要转换的实例
+     */
+    default void convertDataMap(Collection<T> ts) {
+        if (CollectionUtil.isNotEmpty(ts)) {
+            Class clazz = null;
+            for (T t : ts) {
+                clazz = t.getClass();
+                break;
+            }
+            if (clazz != null){
+                this.convertDataMap(ts.toArray((T[]) Array.newInstance(clazz, 0)));
+            }
+        }
+    }
+
+    /**
+     * 真正的属性转换，减少校验代码
+     *
+     * @param ts ts
+     */
+    void doConvertDataMap(T... ts);
 
 }

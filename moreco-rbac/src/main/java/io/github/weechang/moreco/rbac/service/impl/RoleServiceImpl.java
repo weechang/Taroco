@@ -1,16 +1,21 @@
 package io.github.weechang.moreco.rbac.service.impl;
 
+import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.date.DateUtil;
 import io.github.weechang.moreco.base.exception.AppException;
 import io.github.weechang.moreco.base.model.dto.PageModel;
 import io.github.weechang.moreco.base.service.impl.BaseServiceImpl;
 import io.github.weechang.moreco.rbac.dao.RoleDao;
 import io.github.weechang.moreco.rbac.error.RbacError;
+import io.github.weechang.moreco.rbac.model.domain.Menu;
 import io.github.weechang.moreco.rbac.model.domain.Role;
 import io.github.weechang.moreco.rbac.service.RoleService;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.stream.Collectors;
 
 /**
  * @author zhangwei
@@ -19,6 +24,16 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class RoleServiceImpl extends BaseServiceImpl<RoleDao, Role> implements RoleService {
+
+    @Override
+    public void doConvertDataMap(Role... roles){
+        for (Role role :roles){
+            role.addDataMap("createdDate", DateUtil.formatDateTime(role.getCreatedDate()));
+            if (CollectionUtil.isNotEmpty(role.getMenus())) {
+                role.addDataMap("menuIds", role.getMenus().stream().map(Menu::getId).collect(Collectors.toList()));
+            }
+        }
+    }
 
     @Override
     public Role save(Role role) {

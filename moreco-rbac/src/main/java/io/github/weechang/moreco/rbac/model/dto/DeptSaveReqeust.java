@@ -30,9 +30,12 @@ public class DeptSaveReqeust implements Serializable {
     @ApiModelProperty("排序")
     private Integer orderNum;
 
-    public Dept toDept(){
-        parentId = parentId == null ? 0L : parentId;
+    public Dept toDept() {
         orderNum = orderNum == null ? 0 : orderNum;
-        return BeanUtil.toBean(this, Dept.class);
+        Dept dept = BeanUtil.toBean(this, Dept.class);
+        // 上级
+        parentId = parentId == null ? 0L : parentId;
+        dept.setParent(new Dept(parentId));
+        return dept;
     }
 }

@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Where;
 
@@ -22,6 +23,7 @@ import java.util.List;
  */
 @ApiModel("部门")
 @EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
 @Data
 @Entity
 @Table(name = "moreco_rbac_dept")
@@ -51,4 +53,9 @@ public class Dept extends BaseDomain {
     @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "parent")
     private List<Dept> children;
+
+    public Dept(Long id) {
+        this.setId(id);
+        return;
+    }
 }

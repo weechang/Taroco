@@ -1,7 +1,5 @@
 package io.github.weechang.moreco.rbac.service;
 
-import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.date.DateUtil;
 import io.github.weechang.moreco.base.model.dto.PageModel;
 import io.github.weechang.moreco.base.service.BaseService;
 import io.github.weechang.moreco.rbac.model.domain.Dept;
@@ -15,19 +13,6 @@ import java.util.List;
  * time 15:56
  */
 public interface DeptService extends BaseService<Dept> {
-
-    /**
-     * 属性转换
-     *
-     * @param depts 部门
-     */
-    static void convert2String(List<Dept> depts) {
-        if (CollectionUtil.isNotEmpty(depts)) {
-            for (Dept dept : depts) {
-                dept.addDataMap("createdDate", DateUtil.formatDateTime(dept.getCreatedDate()));
-            }
-        }
-    }
 
     /**
      * 根据条件分页查询部门列表

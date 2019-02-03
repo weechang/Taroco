@@ -8,8 +8,10 @@ import io.github.weechang.moreco.rbac.dao.MenuDao;
 import io.github.weechang.moreco.rbac.dao.UserDao;
 import io.github.weechang.moreco.rbac.error.RbacError;
 import io.github.weechang.moreco.rbac.model.domain.Menu;
+import io.github.weechang.moreco.rbac.model.domain.Resource;
 import io.github.weechang.moreco.rbac.model.domain.Role;
 import io.github.weechang.moreco.rbac.model.domain.User;
+import io.github.weechang.moreco.rbac.model.domain.enums.MenuShowEnum;
 import io.github.weechang.moreco.rbac.model.domain.enums.MenuTypeEnum;
 import io.github.weechang.moreco.rbac.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author zhangwei
@@ -35,16 +38,33 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuDao, Menu> implements M
     private MenuDao menuDao;
 
     @Override
+    public void doConvertDataMap(Menu... menus) {
+        for (Menu menu : menus) {
+            menu.addDataMap("type", MenuTypeEnum.getNameByKey(menu.getType()));
+            menu.addDataMap("showBoolean", menu.getShow().equals(MenuShowEnum.SHOW.getKey()));
+            if (CollectionUtil.isNotEmpty(menu.getResources())) {
+                menu.addDataMap("resourceIds", menu.getResources().stream().map(Resource::getId).collect(Collectors.toList()));
+            }
+        }
+    }
+
+    @Override
     public PageModel<Menu> findAll(Menu param, Pageable pageable) {
         ExampleMatcher matcher = ExampleMatcher.matching()
                 .withMatcher("name", ExampleMatcher.GenericPropertyMatchers.contains());
         PageModel<Menu> page = new PageModel<>(menuDao.findAll(Example.of(param, matcher), pageable));
+        if (CollectionUtil.isNotEmpty(page.getList())) {
+            for (Menu menu : page.getList()) {
+                // 避免序列化的时候懒加载查询
+                menu.setChildren(null);
+            }
+        }
         return page;
     }
 
     @Override
     public List<Menu> tree() {
-        List<Menu> list = baseDao.findAllByParent(null);
+        List<Menu> list = baseDao.findAllByParent(new Menu(0L));
         return list;
     }
 

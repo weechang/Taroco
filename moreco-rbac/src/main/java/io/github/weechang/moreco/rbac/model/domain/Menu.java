@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Where;
 
@@ -23,6 +24,7 @@ import java.util.List;
  * time 17:55
  */
 @ApiModel("目录")
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
@@ -73,5 +75,10 @@ public class Menu extends BaseDomain {
     @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "parent")
     private List<Menu> children;
+
+    public Menu(Long id) {
+        this.setId(id);
+        return;
+    }
 
 }

@@ -33,7 +33,7 @@ public class RoleController extends BaseController {
     public R<PageModel<Role>> page(
             @ApiParam(name = "查询参数") RoleQueryRequest queryRequest) {
         PageModel<Role> page = roleService.findAll(queryRequest.toRole(), queryRequest.toPageRequest());
-        RoleService.convert2String(page.getList());
+        roleService.convertDataMap(page.getList());
         return R.ok(page);
     }
 
@@ -49,6 +49,7 @@ public class RoleController extends BaseController {
     public R<Role> detail(
             @ApiParam(name = "id") @PathVariable("id") Long id) {
         Role role = roleService.detail(id);
+        roleService.convertDataMap(role);
         return R.ok(role);
     }
 

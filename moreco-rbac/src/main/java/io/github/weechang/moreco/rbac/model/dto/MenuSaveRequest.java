@@ -52,6 +52,7 @@ public class MenuSaveRequest implements Serializable {
     public Menu toMenu(){
         orderNum = orderNum == null ? 0 : orderNum;
         Menu menu = BeanUtil.toBean(this, Menu.class);
+        // 资源
         if (CollectionUtil.isNotEmpty(resourceIds)){
             List<Resource> resources = new ArrayList<>();
             for (Long resourceId : resourceIds){
@@ -61,12 +62,9 @@ public class MenuSaveRequest implements Serializable {
             }
             menu.setResources(resources);
         }
-        Menu parent = null;
-        if (parentId != null){
-            parent = new Menu();
-            parent.setId(parentId);
-        }
-        menu.setParent(parent);
+        // 上级
+        parentId = parentId == null ? 0 : parentId;
+        menu.setParent(new Menu(parentId));
         return menu;
     }
 }

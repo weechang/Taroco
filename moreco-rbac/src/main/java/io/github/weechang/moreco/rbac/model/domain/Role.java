@@ -21,7 +21,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
-@Table(name = "moreco_rbac_role")
+@Table(name = "moreco_rbac_role", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
 @DynamicUpdate()
 @Where(clause = "yn = 1")
 public class Role extends BaseDomain {
