@@ -15,7 +15,6 @@
         <module>moreco-cloud-config</module>
         <module>moreco-cloud-register</module>
         <module>moreco-cloud-gateway</module>
-        <module>moreco-cloud-breaker</module>
     </modules>
 
 

@@ -12,4 +12,11 @@
     <artifactId>moreco-cloud-register</artifactId>
 
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka</artifactId>
+            <version>1.3.0.RELEASE</version>
+        </dependency>
+    </dependencies>
 </project>

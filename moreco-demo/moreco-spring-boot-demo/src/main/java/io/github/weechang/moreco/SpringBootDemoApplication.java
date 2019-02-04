@@ -17,14 +17,14 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaAuditing
 @EnableJpaRepositories(basePackages = "io.github.weechang.moreco")
 @SpringBootApplication
-public class Application extends SpringBootServletInitializer {
+public class SpringBootDemoApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(SpringBootDemoApplication.class, args);
     }
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(Application.class);
+        return application.sources(SpringBootDemoApplication.class);
     }
 }

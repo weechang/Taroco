@@ -2,6 +2,7 @@ package io.github.weechang.moreco.rbac.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.crypto.SecureUtil;
 import cn.hutool.crypto.digest.DigestUtil;
 import io.github.weechang.moreco.base.exception.AppException;
 import io.github.weechang.moreco.base.model.dto.PageModel;
@@ -63,7 +64,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserDao, User> implements U
     public void updatePasswordByUsername(String username, String newPassword) {
         User user = baseDao.findFirstByUsername(username);
         if (user != null) {
-            String encodePwd = new String(DigestUtil.sha256(username, newPassword));
+            String encodePwd = SecureUtil.sha256(SecureUtil.sha256(username) + SecureUtil.sha256(newPassword));
             user.setPassword(encodePwd);
             baseDao.save(user);
         }
@@ -73,7 +74,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserDao, User> implements U
     public void resetPasswordByUserId(Long id) {
         User user = baseDao.findOne(id);
         if (user != null) {
-            String encodePwd = new String(DigestUtil.sha256(user.getUsername(), "123456"));
+            String encodePwd = SecureUtil.sha256(SecureUtil.sha256(user.getUsername()) + SecureUtil.sha256("123456"));
             user.setPassword(encodePwd);
             baseDao.save(user);
         }

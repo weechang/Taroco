@@ -12,7 +12,7 @@ public enum OSSEnum {
     ALIYUN(2, "阿里云"),
     TENCENT(3, "腾讯云"),
     UPYUN(4, "又拍云"),
-    LOCAL(5, "本地存储");
+    LOCAL(5, "本机存储");
 
     private Integer key;
     private String value;

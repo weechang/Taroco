@@ -11,5 +11,15 @@
 
     <artifactId>moreco-cloud-gateway</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+        </dependency>
+        <!-- spring-cloud 限流 -->
+        <dependency>
+            <groupId>com.marcosbarbero.cloud</groupId>
+            <artifactId>spring-cloud-zuul-ratelimit</artifactId>
+        </dependency>
+    </dependencies>
 </project>

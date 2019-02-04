@@ -1,6 +1,6 @@
 package io.github.weechang.moreco.security.auth.jwt;
 
-import cn.hutool.crypto.digest.DigestUtil;
+import cn.hutool.crypto.SecureUtil;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import io.github.weechang.moreco.security.auth.common.MorecoUserDetails;
@@ -48,7 +48,7 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
                 decodedJWT = JWT.decode(authToken);
             }
         } else {
-            String encodePwd = new String(DigestUtil.sha256(username, password));
+            String encodePwd = SecureUtil.sha256(SecureUtil.sha256(username) + SecureUtil.sha256(password));
             UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(username);
             if (!userDetails.getPassword().equals(encodePwd)) {
                 throw new BadCredentialsException("用户名密码不正确，请重新登陆！");

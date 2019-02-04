@@ -11,11 +11,11 @@
         <module>moreco-cloud</module>
         <module>moreco-demo</module>
         <module>moreco-message</module>
-        <module>moreco-ops</module>
         <module>moreco-oss</module>
         <module>moreco-rbac</module>
         <module>moreco-security</module>
         <module>moreco-starter</module>
+        <module>moreco-monitor</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -32,6 +32,7 @@
 
         <spring-boot.version>1.5.9.RELEASE</spring-boot.version>
         <spring-data-releasetrain.version>Ingalls-SR3</spring-data-releasetrain.version>
+        <spring-cloud.version>Dalston SR1</spring-cloud.version>
         <mysql.version>8.0.11</mysql.version>
         <mssql.version>4.0</mssql.version>
         <oracle.version>11.2.0.3</oracle.version>
@@ -221,5 +222,19 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

@@ -32,9 +32,10 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws ServletException, IOException {
 
+        String reqUri = req.getRequestURI();
         String authHeader = req.getHeader(SecurityProperties.authKey);
 
-        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+        if (authHeader != null && authHeader.startsWith("Bearer ") && !reqUri.equals("/login")) {
             final String authToken = authHeader.substring("Bearer ".length());
 
             try {
