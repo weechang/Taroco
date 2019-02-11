@@ -32,7 +32,7 @@ public interface BaseService<T extends BaseDomain> {
      * @param ts 记录集合
      * @return 记录集合
      */
-    Iterable<T> save(Iterable<T> ts);
+    Iterable<T> saveAll(Iterable<T> ts);
 
     /**
      * 根据id 查询一条记录
@@ -40,7 +40,7 @@ public interface BaseService<T extends BaseDomain> {
      * @param id id
      * @return 记录
      */
-    T findOne(Serializable id);
+    T findById(Object id);
 
     /**
      * 查询所有记录
@@ -55,7 +55,7 @@ public interface BaseService<T extends BaseDomain> {
      * @param ids ids
      * @return ids包含的记录
      */
-    Iterable<T> findAll(Iterable<Serializable> ids);
+    Iterable<T> findAllById(Iterable<Serializable> ids);
 
     /**
      * 分页查询记录

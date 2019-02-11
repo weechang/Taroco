@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 
 import java.io.Serializable;
+import java.util.Optional;
 
 
 /**
@@ -33,13 +34,18 @@ public abstract class BaseServiceImpl<D extends BaseDao, T extends BaseDomain> i
     }
 
     @Override
-    public Iterable<T> save(Iterable<T> ts) {
-        return baseDao.save(ts);
+    public Iterable<T> saveAll(Iterable<T> ts) {
+        return baseDao.saveAll(ts);
     }
 
     @Override
-    public T findOne(Serializable id) {
-        return (T) baseDao.findOne(id);
+    public T findById(Object id) {
+        T t = null;
+        Optional<T> optional = baseDao.findById(id);
+        if (optional.isPresent()){
+            t = optional.get();
+        }
+        return t;
     }
 
     @Override
@@ -48,8 +54,8 @@ public abstract class BaseServiceImpl<D extends BaseDao, T extends BaseDomain> i
     }
 
     @Override
-    public Iterable<T> findAll(Iterable<Serializable> ids) {
-        return baseDao.findAll(ids);
+    public Iterable<T> findAllById(Iterable<Serializable> ids) {
+        return baseDao.findAllById(ids);
     }
 
     @Override

@@ -26,8 +26,8 @@ import java.util.stream.Collectors;
 public class RoleServiceImpl extends BaseServiceImpl<RoleDao, Role> implements RoleService {
 
     @Override
-    public void doConvertDataMap(Role... roles){
-        for (Role role :roles){
+    public void doConvertDataMap(Role... roles) {
+        for (Role role : roles) {
             role.addDataMap("createdDate", DateUtil.formatDateTime(role.getCreatedDate()));
             if (CollectionUtil.isNotEmpty(role.getMenus())) {
                 role.addDataMap("menuIds", role.getMenus().stream().map(Menu::getId).collect(Collectors.toList()));
@@ -50,12 +50,12 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleDao, Role> implements R
     @Override
     public PageModel<Role> findAll(Role param, Pageable pageable) {
         ExampleMatcher matcher = ExampleMatcher.matching()
-                .withMatcher("name" ,ExampleMatcher.GenericPropertyMatchers.contains());
-        return new PageModel<>( baseDao.findAll(Example.of(param, matcher), pageable));
+                .withMatcher("name", ExampleMatcher.GenericPropertyMatchers.contains());
+        return new PageModel<>(baseDao.findAll(Example.of(param, matcher), pageable));
     }
 
     @Override
     public Role detail(Long id) {
-        return  baseDao.findOne(id);
+        return super.findById(id);
     }
 }

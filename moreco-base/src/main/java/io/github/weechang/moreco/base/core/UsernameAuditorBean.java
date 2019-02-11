@@ -3,6 +3,8 @@ package io.github.weechang.moreco.base.core;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
 
+import java.util.Optional;
+
 /**
  * 操作人员
  *
@@ -14,9 +16,10 @@ import org.springframework.data.domain.AuditorAware;
 public class UsernameAuditorBean implements AuditorAware<String> {
 
     @Override
-    public String getCurrentAuditor() {
+    public Optional<String> getCurrentAuditor() {
         String username = MorecoSecurityUtil.getUsername();
         username = username == null ? "SYSTEM" : username;
-        return username;
+        Optional<String> auditor = Optional.of(username);
+        return auditor;
     }
 }

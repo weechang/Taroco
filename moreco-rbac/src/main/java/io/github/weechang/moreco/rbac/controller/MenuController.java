@@ -55,7 +55,7 @@ public class MenuController extends BaseController {
     @GetMapping("detail/{id}")
     public R<Menu> detail(
             @ApiParam(name = "id") @PathVariable("id") Long id) {
-        Menu menu = menuService.findOne(id);
+        Menu menu = menuService.findById(id);
         menuService.convertDataMap(menu);
         return R.ok(menu);
     }

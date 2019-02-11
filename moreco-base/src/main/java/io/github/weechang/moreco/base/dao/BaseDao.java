@@ -7,6 +7,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
+import java.util.Optional;
 
 /**
  * Dao类基本方法
@@ -20,8 +21,8 @@ public interface BaseDao<T extends BaseDomain> extends PagingAndSortingRepositor
 
     @Transactional
     default void logicDelete(Serializable id){
-        T entity = findOne(id);
-        logicDelete(entity);
+        Optional<T> optional = findById(id);
+        logicDelete(optional.get());
     }
 
     @Transactional

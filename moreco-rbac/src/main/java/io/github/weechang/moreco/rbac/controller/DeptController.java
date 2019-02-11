@@ -43,7 +43,7 @@ public class DeptController {
     @GetMapping("detail/{id}")
     public R<Menu> detail(
             @ApiParam(name = "id") @PathVariable("id") Long id) {
-        Dept dept = deptService.findOne(id);
+        Dept dept = deptService.findById(id);
         deptService.convertDataMap(dept);
         return R.ok(dept);
     }

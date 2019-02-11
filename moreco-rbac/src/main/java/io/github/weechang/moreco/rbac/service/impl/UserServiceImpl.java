@@ -19,6 +19,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -72,7 +73,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserDao, User> implements U
 
     @Override
     public void resetPasswordByUserId(Long id) {
-        User user = baseDao.findOne(id);
+        User user = baseDao.findById(id).get();
         if (user != null) {
             String encodePwd = SecureUtil.sha256(SecureUtil.sha256(user.getUsername()) + SecureUtil.sha256("123456"));
             user.setPassword(encodePwd);
@@ -82,8 +83,9 @@ public class UserServiceImpl extends BaseServiceImpl<UserDao, User> implements U
 
     @Override
     public void changeStatus(Long userId, int status) {
-        User user = baseDao.findOne(userId);
-        if (user != null) {
+        Optional<User> optionalUser = baseDao.findById(userId);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
             if (status == UserStatusEnum.FORBIDDEN.getKey()) {
                 user.setStatus(UserStatusEnum.FORBIDDEN.getKey());
             } else if (status == UserStatusEnum.AVAILABLE.getKey()) {
@@ -97,7 +99,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserDao, User> implements U
 
     @Override
     public User detail(Long id) {
-        return baseDao.findOne(id);
+        return baseDao.findById(id).get();
     }
 
     @Override

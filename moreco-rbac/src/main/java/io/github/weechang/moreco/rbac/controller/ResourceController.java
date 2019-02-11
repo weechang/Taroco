@@ -38,7 +38,7 @@ public class ResourceController {
     @GetMapping("detail/{id}")
     public R<Resource> detail(
             @ApiParam(name = "id") @PathVariable("id") Long id) {
-        Resource resource = resourceService.findOne(id);
+        Resource resource = resourceService.findById(id);
         return R.ok(resource);
     }
 
