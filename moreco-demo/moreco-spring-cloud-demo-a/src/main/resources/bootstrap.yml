@@ -1,0 +1,40 @@
+server:
+  port: 8180
+
+spring:
+  application:
+    name: moreco-spring-cloud-demo-a
+  profiles:
+    active: "@profileActive@"
+  cloud:
+    config:
+      fail-fast: true
+      profile: ${spring.profiles.active}
+      label: ${spring.profiles.active}
+      discovery:
+        service-id: taroco-config
+        enabled: true
+
+---
+spring:
+  profiles: dev-pg
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+---
+spring:
+  profiles: dev-mysql
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+---
+spring:
+  profiles: test
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://moreco-cloud-registry:8761/eureka

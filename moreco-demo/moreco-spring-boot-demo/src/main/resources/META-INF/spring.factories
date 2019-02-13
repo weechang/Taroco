@@ -1,8 +1,0 @@
-# ееЁЩ autoconfigure
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration,\
-org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration,\
-org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration,\
-org.springframework.boot.autoconfigure.data.web.SpringDataWebAutoConfiguration,\
-org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration,\
-org.springframework.boot.autoconfigure.mongo.embedded.EmbeddedMongoAutoConfiguration
