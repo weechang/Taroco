@@ -1,9 +1,5 @@
 package xyz.weechang.moreco.security.config;
 
-import xyz.weechang.moreco.security.auth.common.*;
-import xyz.weechang.moreco.security.auth.jwt.JwtAuthenticationProvider;
-import xyz.weechang.moreco.security.auth.jwt.JwtAuthenticationSuccessHandler;
-import xyz.weechang.moreco.security.auth.jwt.JwtAuthenticationTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -14,6 +10,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.header.Header;
 import org.springframework.security.web.header.writers.StaticHeadersWriter;
 import org.springframework.web.filter.CorsFilter;
+import xyz.weechang.moreco.core.security.MorecoSecurityService;
+import xyz.weechang.moreco.security.auth.common.*;
+import xyz.weechang.moreco.security.auth.jwt.JwtAuthenticationProvider;
+import xyz.weechang.moreco.security.auth.jwt.JwtAuthenticationSuccessHandler;
+import xyz.weechang.moreco.security.auth.jwt.JwtAuthenticationTokenFilter;
 
 import java.util.Arrays;
 import java.util.List;
@@ -43,9 +44,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private SecurityProperties securityProperties;
     @Autowired
+    private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
+
+    @Autowired
     private MorecoUserDetailsService userDetailsService;
     @Autowired
-    private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
+    protected MorecoSecurityService morecoSecurityService;
 
     /**
      * 定义认证用户信息获取来源，密码校验规则等
@@ -79,7 +83,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 /***RBAC权限*/
                 .anyRequest()
-                .access("@rbacAuthorityservice.hasPermission(request,authentication)")
+                .access("@morecoAuthorityservice.hasPermission(request,authentication)")
 
                 /***跨域*/
                 .and()

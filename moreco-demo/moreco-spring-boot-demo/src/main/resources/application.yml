@@ -22,8 +22,7 @@ spring:
 
 logging:
   level: debug
-    xyz:
-      weechang: debug
+  level.xyz.weechang: debug
   path: logs/
 
 moreco:

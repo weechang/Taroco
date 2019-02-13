@@ -35,11 +35,11 @@
             <artifactId>moreco-component-rbac</artifactId>
             <version>${parent.version}</version>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>xyz.weechang.moreco</groupId>-->
-            <!--<artifactId>moreco-security</artifactId>-->
-            <!--<version>${parent.version}</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>xyz.weechang.moreco</groupId>
+            <artifactId>moreco-security</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>mysql</groupId>

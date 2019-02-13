@@ -40,7 +40,7 @@ public class MorecoAuthorityService {
             }
             // 登录授权资源
             if (!hasPermission){
-                morecoSecurityService.isUrlPermissionByName(username, req.getRequestURI());
+                hasPermission = morecoSecurityService.isUrlPermissionByName(username, req.getRequestURI());
             }
         }
         return hasPermission;
