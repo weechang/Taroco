@@ -1,0 +1,56 @@
+info:
+  app:
+    name: moreco-spring-cloud-demo-a
+
+server:
+  port: ${PORT:8180}
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+spring:
+  profiles: dev-pg
+  application:
+    name: moreco-spring-cloud-demo-a
+    jackson:
+      date-format: yyyy-MM-dd HH:mm:ss
+      time-zone: GMT+8
+    servlet:
+      multipart:
+        max-file-size: 100MB
+        max-request-size: 100MB
+        enabled: true
+    session:
+      store-type: redis
+
+  logging:
+    level: debug
+    level.io.github.weechang.moreco: debug
+    path: logs/
+    file: moreco-spring-cloud-demo-a.log
+
+  datasource:
+    platform: postgres
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://127.0.0.1:5432/moreco?useSSL=false
+    username: moreco
+    password: moreco
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        hbm2ddl:
+          auto: update
+        temp:
+          use_jdbc_metadata_defaults: false
+
+  moreco:
+    security:
+      # 不需要授权的路径
+      noAuthPaths: []
+      # token过期时间--单位（S）
+      tokenExpiredTime: 1800

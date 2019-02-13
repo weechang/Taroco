@@ -4,12 +4,43 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>moreco-cloud</artifactId>
-        <groupId>io.github.weechang</groupId>
+        <groupId>xyz.weechang.moreco</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>moreco-cloud-gateway</artifactId>
 
-
+    <dependencies>
+        <!--self-->
+        <dependency>
+            <groupId>xyz.weechang.moreco</groupId>
+            <artifactId>moreco-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>xyz.weechang.moreco</groupId>
+            <artifactId>moreco-data-redis</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>xyz.weechang.moreco</groupId>
+            <artifactId>moreco-component-swagger</artifactId>
+        </dependency>
+        <!--zuul-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+        </dependency>
+        <!-- spring-cloud 限流 -->
+        <dependency>
+            <groupId>com.marcosbarbero.cloud</groupId>
+            <artifactId>spring-cloud-zuul-ratelimit</artifactId>
+            <version>1.5.0.RELEASE</version>
+        </dependency>
+        <!--feign-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-openfeign-core</artifactId>
+        </dependency>
+    </dependencies>
 </project>

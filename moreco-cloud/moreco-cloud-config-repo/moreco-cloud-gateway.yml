@@ -1,0 +1,21 @@
+info:
+  app:
+    name: moreco-cloud-gateway
+
+server:
+  port: ${PORT:9000}
+
+zuul:
+  routes:
+    demo-a:
+      path: /demo-a/**
+    demo-b:
+      path: /demo-b/**
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+spring:
+  profiles: dev

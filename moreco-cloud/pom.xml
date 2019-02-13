@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>moreco</artifactId>
-        <groupId>io.github.weechang</groupId>
+        <groupId>xyz.weechang.moreco</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -15,8 +15,6 @@
         <module>moreco-cloud-config</module>
         <module>moreco-cloud-register</module>
         <module>moreco-cloud-gateway</module>
-        <module>moreco-cloud-breaker</module>
     </modules>
-
 
 </project>

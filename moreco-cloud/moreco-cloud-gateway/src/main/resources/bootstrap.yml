@@ -1,0 +1,32 @@
+server:
+  port: 10000
+
+spring:
+  application:
+    name: moreco-cloud-gateway
+  profiles:
+    active: dev
+  cloud:
+    config:
+      fail-fast: true
+      profile: ${spring.profiles.active}
+      label: master
+      discovery:
+        service-id: moreco-cloud-config
+        enabled: true
+
+---
+spring:
+  profiles: dev
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+---
+spring:
+  profiles: test
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://moreco-cloud-registry:8761/eureka
