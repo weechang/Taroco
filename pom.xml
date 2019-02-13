@@ -3,38 +3,35 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.github.weechang</groupId>
+    <groupId>xyz.weechang.moreco</groupId>
     <artifactId>moreco</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+
     <modules>
-        <module>moreco-base</module>
-        <module>moreco-cloud</module>
-        <module>moreco-demo</module>
-        <module>moreco-message</module>
-        <module>moreco-oss</module>
-        <module>moreco-rbac</module>
+        <module>moreco-core</module>
+        <module>moreco-data</module>
+        <module>moreco-component</module>
         <module>moreco-security</module>
         <module>moreco-starter</module>
+        <module>moreco-demo</module>
+        <module>moreco-cloud</module>
         <module>moreco-monitor</module>
     </modules>
+
     <packaging>pom</packaging>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.0.5.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <compiler.plugin.version>2.5.1</compiler.plugin.version>
-
+        <spring-cloud.version>Finchley.SR1</spring-cloud.version>
         <spring-boot.version>2.0.5.RELEASE</spring-boot.version>
         <spring-data-releasetrain.version>Ingalls-SR3</spring-data-releasetrain.version>
-        <spring-cloud.version>Finchley.SR1</spring-cloud.version>
-        <mysql.version>8.0.11</mysql.version>
-        <mssql.version>4.0</mssql.version>
-        <oracle.version>11.2.0.3</oracle.version>
         <springfox.version>2.8.0</springfox.version>
         <qiniu.version>[7.2.0, 7.2.99]</qiniu.version>
         <aliyun.oss.version>2.5.0</aliyun.oss.version>
@@ -48,31 +45,86 @@
 
     <dependencyManagement>
         <dependencies>
-            <!--self-->
-            <!--self-base-->
+            <!--&lt;!&ndash;self&ndash;&gt;-->
+            <!--<dependency>-->
+                <!--<groupId>xyz.weechang.moreco</groupId>-->
+                <!--<artifactId>moreco-core</artifactId>-->
+                <!--<version>${project.version}</version>-->
+            <!--</dependency>-->
+            <!--&lt;!&ndash;<dependency>&ndash;&gt;-->
+                <!--&lt;!&ndash;<groupId>xyz.weechang.moreco</groupId>&ndash;&gt;-->
+                <!--&lt;!&ndash;<artifactId>moreco-data</artifactId>&ndash;&gt;-->
+                <!--&lt;!&ndash;<version>${project.version}</version>&ndash;&gt;-->
+                <!--&lt;!&ndash;<type>pom</type>&ndash;&gt;-->
+                <!--&lt;!&ndash;<scope>import</scope>&ndash;&gt;-->
+            <!--&lt;!&ndash;</dependency>&ndash;&gt;-->
+            <!--data-->
             <dependency>
-                <groupId>io.github.weechang</groupId>
-                <artifactId>moreco-base</artifactId>
+                <groupId>xyz.weechang.moreco</groupId>
+                <artifactId>moreco-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <!--self-stater-->
             <dependency>
-                <groupId>io.github.weechang</groupId>
-                <artifactId>moreco-spring-boot-starter</artifactId>
+                <groupId>xyz.weechang.moreco</groupId>
+                <artifactId>moreco-data-jpa</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <!--self-rbac-->
+            <!--<dependency>-->
+                <!--<groupId>xyz.weechang.moreco</groupId>-->
+                <!--<artifactId>moreco-data-jpa</artifactId>-->
+                <!--<version>${project.version}</version>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>xyz.weechang.moreco</groupId>-->
+                <!--<artifactId>moreco-data-redis</artifactId>-->
+                <!--<version>${project.version}</version>-->
+            <!--</dependency>-->
             <dependency>
-                <groupId>io.github.weechang</groupId>
-                <artifactId>moreco-rbac</artifactId>
+                <groupId>xyz.weechang.moreco</groupId>
+                <artifactId>moreco-component-swagger</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <!--self-security-->
-            <dependency>
-                <groupId>io.github.weechang</groupId>
-                <artifactId>moreco-security</artifactId>
-                <version>${project.version}</version>
-            </dependency>
+            <!--&lt;!&ndash;<dependency>&ndash;&gt;-->
+                <!--&lt;!&ndash;<groupId>xyz.moreco</groupId>&ndash;&gt;-->
+                <!--&lt;!&ndash;<artifactId>moreco-component-rbac</artifactId>&ndash;&gt;-->
+                <!--&lt;!&ndash;<version>${project.version}</version>&ndash;&gt;-->
+            <!--&lt;!&ndash;</dependency>&ndash;&gt;-->
+            <!--<dependency>-->
+                <!--<groupId>xyz.weechang.moreco</groupId>-->
+                <!--<artifactId>moreco-component-ops</artifactId>-->
+                <!--<version>${project.version}</version>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>xyz.weechang.moreco</groupId>-->
+                <!--<artifactId>moreco-security</artifactId>-->
+                <!--<version>${project.version}</version>-->
+            <!--</dependency>-->
+            <!--&lt;!&ndash;<dependency>&ndash;&gt;-->
+                <!--&lt;!&ndash;<groupId>xyz.weechang.moreco</groupId>&ndash;&gt;-->
+                <!--&lt;!&ndash;<artifactId>moreco-starter</artifactId>&ndash;&gt;-->
+                <!--&lt;!&ndash;<version>${project.version}</version>&ndash;&gt;-->
+                <!--&lt;!&ndash;<type>pom</type>&ndash;&gt;-->
+                <!--&lt;!&ndash;<scope>import</scope>&ndash;&gt;-->
+            <!--&lt;!&ndash;</dependency>&ndash;&gt;-->
+            <!--&lt;!&ndash;<dependency>&ndash;&gt;-->
+                <!--&lt;!&ndash;<groupId>xyz.moreco</groupId>&ndash;&gt;-->
+                <!--&lt;!&ndash;<artifactId>moreco-spring-boot-starter</artifactId>&ndash;&gt;-->
+                <!--&lt;!&ndash;<version>${project.version}</version>&ndash;&gt;-->
+            <!--&lt;!&ndash;</dependency>&ndash;&gt;-->
+            <!--<dependency>-->
+                <!--<groupId>xyz.weechang.moreco</groupId>-->
+                <!--<artifactId>moreco-cloud</artifactId>-->
+                <!--<version>${project.version}</version>-->
+                <!--<type>pom</type>-->
+                <!--<scope>import</scope>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>xyz.weechang.moreco</groupId>-->
+                <!--<artifactId>moreco-monitor</artifactId>-->
+                <!--<version>${project.version}</version>-->
+                <!--<type>pom</type>-->
+                <!--<scope>import</scope>-->
+            <!--</dependency>-->
 
             <!-- Spring cloud -->
             <dependency>
@@ -107,25 +159,6 @@
                 <version>${spring-data-releasetrain.version}</version>
                 <scope>import</scope>
                 <type>pom</type>
-            </dependency>
-
-            <!-- mysql驱动 -->
-            <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>${mysql.version}</version>
-            </dependency>
-            <!-- oracle驱动 -->
-            <dependency>
-                <groupId>com.oracle</groupId>
-                <artifactId>ojdbc6</artifactId>
-                <version>${oracle.version}</version>
-            </dependency>
-            <!-- mssql驱动 -->
-            <dependency>
-                <groupId>com.microsoft.sqlserver</groupId>
-                <artifactId>sqljdbc4</artifactId>
-                <version>${mssql.version}</version>
             </dependency>
 
             <!--swagger -->

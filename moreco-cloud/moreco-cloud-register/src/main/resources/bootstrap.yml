@@ -2,7 +2,7 @@ spring:
   application:
     name: moreco-cloud-registry
 server:
-  port: 9000
+  port: 8761
 
 eureka:
   client:

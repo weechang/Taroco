@@ -4,29 +4,51 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>moreco-demo</artifactId>
-        <groupId>io.github.weechang</groupId>
+        <groupId>xyz.weechang.moreco</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>moreco-spring-boot-demo</artifactId>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
     <dependencies>
+        <dependency>
+            <groupId>xyz.weechang.moreco</groupId>
+            <artifactId>moreco-spring-boot-starter</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>xyz.weechang.moreco</groupId>
+            <artifactId>moreco-component-rbac</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>xyz.weechang.moreco</groupId>-->
+            <!--<artifactId>moreco-security</artifactId>-->
+            <!--<version>${parent.version}</version>-->
+        <!--</dependency>-->
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.11</version>
         </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.github.weechang</groupId>
-            <artifactId>moreco-spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.github.weechang</groupId>
-            <artifactId>moreco-security</artifactId>
         </dependency>
     </dependencies>
 
@@ -34,7 +56,7 @@
     <profiles>
         <!-- Mysql环境 -->
         <profile>
-            <id>mysql</id>
+            <id>dev-mysql</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
@@ -44,7 +66,7 @@
         </profile>
         <!-- PG环境 -->
         <profile>
-            <id>pg</id>
+            <id>dev-pg</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>

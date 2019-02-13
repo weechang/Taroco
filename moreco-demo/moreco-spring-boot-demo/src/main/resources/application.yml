@@ -28,4 +28,8 @@ logging:
 
 moreco:
   security:
+    # 不需要授权的路径
     noAuthPaths: []
+    # token过期时间--单位（S）
+    tokenExpiredTime: 1800
+

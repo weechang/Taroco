@@ -12,7 +12,7 @@ spring:
       profile: ${spring.profiles.active}
       label: master
       discovery:
-        service-id: taroco-config
+        service-id: moreco-cloud-config
         enabled: true
 
 ---
@@ -21,7 +21,7 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:9000/eureka
+      defaultZone: http://localhost:8761/eureka
 
 ---
 spring:
@@ -29,4 +29,4 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://taroco-registry:9000/eureka
+      defaultZone: http://moreco-cloud-registry:8761/eureka
