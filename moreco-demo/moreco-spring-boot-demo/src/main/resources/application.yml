@@ -22,9 +22,9 @@ spring:
 
 logging:
   level: debug
-  level.io.github.weechang.moreco: debug
+    xyz:
+      weechang: debug
   path: logs/
-  file: moreco-spring-boot-demo.log
 
 moreco:
   security:

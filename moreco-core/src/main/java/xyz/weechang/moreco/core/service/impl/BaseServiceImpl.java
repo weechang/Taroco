@@ -6,6 +6,7 @@ import xyz.weechang.moreco.core.model.domain.BaseDomain;
 import xyz.weechang.moreco.core.model.domain.enums.YnEnums;
 import xyz.weechang.moreco.core.model.dto.PageModel;
 import xyz.weechang.moreco.core.service.BaseService;
+import xyz.weechang.moreco.data.core.BaseRepository;
 
 import java.io.Serializable;
 import java.util.Optional;

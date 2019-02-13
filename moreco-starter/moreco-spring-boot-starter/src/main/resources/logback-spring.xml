@@ -2,7 +2,6 @@
 <configuration>
     <contextName>${APP_NAME}</contextName>
     <springProperty name="APP_NAME" scope="context" source="spring.application.name"/>
-    <springProperty name="LOG_FILE" scope="context" source="logging.file" defaultValue="logs/${APP_NAME}"/>
     <springProperty name="LOG_MAXFILESIZE" scope="context" source="logback.filesize" defaultValue="100MB"/>
     <springProperty name="LOG_FILEMAXDAY" scope="context" source="logback.filemaxday" defaultValue="7"/>
     <springProperty name="ServerIP" scope="context" source="spring.cloud.client.ip-address" defaultValue="0.0.0.0"/>
@@ -28,7 +27,7 @@
     </appender>
     <!-- 按照每天生成常规日志文件 -->
     <appender name="FileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_PATH}/${LOG_FILE}/${APP_NAME}.log</file>
+        <file>${LOG_PATH}/${APP_NAME}/${APP_NAME}.log</file>
         <encoder>
             <pattern>${CONSOLE_LOG_PATTERN_NO_COLOR}</pattern>
             <charset>UTF-8</charset>

@@ -29,10 +29,10 @@
             <groupId>xyz.weechang.moreco</groupId>
             <artifactId>moreco-data-jpa</artifactId>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>xyz.weechang.moreco</groupId>-->
-            <!--<artifactId>moreco-component-swagger</artifactId>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>xyz.weechang.moreco</groupId>
+            <artifactId>moreco-component-swagger</artifactId>
+        </dependency>
         <!--spring-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

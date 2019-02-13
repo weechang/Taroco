@@ -27,7 +27,7 @@
     <dependencies>
         <dependency>
             <groupId>xyz.weechang.moreco</groupId>
-            <artifactId>moreco-data-jpa</artifactId>
+            <artifactId>moreco-core</artifactId>
         </dependency>
     </dependencies>
 
