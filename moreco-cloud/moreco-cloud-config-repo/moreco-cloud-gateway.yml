@@ -1,6 +1,6 @@
 info:
   app:
-    name: moreco-cloud-gateway
+    name: moreco-storage-gateway
 
 server:
   port: ${PORT:9000}

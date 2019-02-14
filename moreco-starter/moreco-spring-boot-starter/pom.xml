@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>moreco-starter</artifactId>
-        <groupId>xyz.weechang.moreco</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <groupId>xyz.weechang</groupId>
+        <version>0.0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -27,7 +27,7 @@
     <dependencies>
         <!--self-->
         <dependency>
-            <groupId>xyz.weechang.moreco</groupId>
+            <groupId>xyz.weechang</groupId>
             <artifactId>moreco-core</artifactId>
         </dependency>
 

@@ -4,18 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>moreco</artifactId>
-        <groupId>xyz.weechang.moreco</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <groupId>xyz.weechang</groupId>
+        <version>0.0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>moreco-demo</artifactId>
     <packaging>pom</packaging>
-
     <modules>
         <module>moreco-spring-boot-demo</module>
-        <module>moreco-spring-cloud-demo-a</module>
-        <module>moreco-spring-cloud-demo-b</module>
     </modules>
 
 </project>

@@ -22,13 +22,10 @@ spring:
 
 logging:
   level: debug
-  level.xyz.weechang: debug
+  level.io.github.weechang.moreco: debug
   path: logs/
+  file: moreco-spring-boot-demo.log
 
 moreco:
   security:
-    # 不需要授权的路径
     noAuthPaths: []
-    # token过期时间--单位（S）
-    tokenExpiredTime: 1800
-

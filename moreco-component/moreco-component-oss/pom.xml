@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>moreco-component</artifactId>
-        <groupId>xyz.weechang.moreco</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <groupId>xyz.weechang</groupId>
+        <version>0.0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -13,6 +13,11 @@
 
 
     <dependencies>
+        <dependency>
+            <groupId>xyz.weechang</groupId>
+            <artifactId>moreco-data-jpa</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>com.qiniu</groupId>
             <artifactId>qiniu-java-sdk</artifactId>
@@ -24,6 +29,15 @@
         <dependency>
             <groupId>com.qcloud</groupId>
             <artifactId>cos_api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
         </dependency>
     </dependencies>
 
