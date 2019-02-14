@@ -1,7 +1,6 @@
 package xyz.weechang.moreco.monitor.core.common;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
@@ -13,7 +12,6 @@ import java.io.Serializable;
  * time 13:59
  */
 @Data
-@NoArgsConstructor
 public class MonitorId implements Serializable {
 
     private static final long serialVersionUID = 8690126427362648489L;
@@ -37,6 +35,9 @@ public class MonitorId implements Serializable {
      * 实例编码
      */
     private String instanceCode;
+
+    public MonitorId() {
+    }
 
     public MonitorId(String groupKey, String appKey) {
         this.groupKey = groupKey;

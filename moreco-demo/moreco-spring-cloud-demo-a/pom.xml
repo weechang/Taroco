@@ -5,7 +5,7 @@
     <parent>
         <artifactId>moreco-demo</artifactId>
         <groupId>xyz.weechang</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -33,26 +33,26 @@
     </dependencies>
 
     <!-- Maven控制Spring Profile -->
-    <profiles>
-        <!-- Mysql环境 -->
-        <profile>
-            <id>mysql</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <profileActive>mysql</profileActive>
-            </properties>
-        </profile>
-        <!-- PG环境 -->
-        <profile>
-            <id>pg</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <properties>
-                <profileActive>pg</profileActive>
-            </properties>
-        </profile>
-    </profiles>
+    <!--<profiles>-->
+        <!--&lt;!&ndash; Mysql环境 &ndash;&gt;-->
+        <!--<profile>-->
+            <!--<id>mysql</id>-->
+            <!--<activation>-->
+                <!--<activeByDefault>true</activeByDefault>-->
+            <!--</activation>-->
+            <!--<properties>-->
+                <!--<profileActive>mysql</profileActive>-->
+            <!--</properties>-->
+        <!--</profile>-->
+        <!--&lt;!&ndash; PG环境 &ndash;&gt;-->
+        <!--<profile>-->
+            <!--<id>pg</id>-->
+            <!--<activation>-->
+                <!--<activeByDefault>false</activeByDefault>-->
+            <!--</activation>-->
+            <!--<properties>-->
+                <!--<profileActive>pg</profileActive>-->
+            <!--</properties>-->
+        <!--</profile>-->
+    <!--</profiles>-->
 </project>

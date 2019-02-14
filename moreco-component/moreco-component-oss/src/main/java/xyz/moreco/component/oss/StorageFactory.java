@@ -1,6 +1,6 @@
 package xyz.moreco.component.oss;
 
-import xyz.moreco.component.oss.config.OSSConfiguration;
+import xyz.moreco.component.oss.config.OssProperties;
 import xyz.moreco.component.oss.enums.OSSEnum;
 
 /**
@@ -12,7 +12,7 @@ import xyz.moreco.component.oss.enums.OSSEnum;
  */
 public abstract class StorageFactory {
 
-    OSSConfiguration config;
+    OssProperties config;
 
     public StorageFactory(OSSEnum type){
 

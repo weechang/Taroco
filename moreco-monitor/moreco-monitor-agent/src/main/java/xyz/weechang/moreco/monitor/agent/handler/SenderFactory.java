@@ -1,7 +1,8 @@
 package xyz.weechang.moreco.monitor.agent.handler;
 
-import io.github.weechang.mcm.core.config.Agent;
-import org.apache.commons.lang.StringUtils;
+
+import cn.hutool.core.util.StrUtil;
+import xyz.weechang.moreco.monitor.core.config.Agent;
 
 /**
  * 发送器 工厂类
@@ -14,7 +15,7 @@ public class SenderFactory {
 
     public static Sender getSender() {
         Sender sender = null;
-        if (StringUtils.isNotBlank(Agent.getInstance().topic)) {
+        if (StrUtil.isNotBlank(Agent.getInstance().topic)) {
             // kafka
             sender = KafkaSender.getInstance();
         } else {

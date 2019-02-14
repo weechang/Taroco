@@ -1,8 +1,16 @@
 package xyz.weechang.moreco.monitor.agent.util;
 
+import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.util.StrUtil;
+import com.alibaba.fastjson.JSON;
 import com.sun.management.OperatingSystemMXBean;
-import xyz.weechang.moreco.monitor.agent.McmAgentApplication;
+import lombok.extern.slf4j.Slf4j;
+import sun.jvmstat.monitor.MonitoredHost;
+import sun.jvmstat.monitor.MonitoredVm;
+import sun.jvmstat.monitor.MonitoredVmUtil;
+import sun.jvmstat.monitor.VmIdentifier;
 import sun.management.ConnectorAddressLink;
+import xyz.weechang.moreco.monitor.agent.McmAgentApplication;
 import xyz.weechang.moreco.monitor.core.jvm.*;
 
 import javax.management.MBeanServerConnection;
@@ -145,7 +153,7 @@ public class JvmUtil {
             jvm.setProcessCpuTime(osBean.getProcessCpuTime());
             jvm.setSystemLoadAverage(osBean.getSystemLoadAverage());
         }
-        if (CollectionUtils.isNotEmpty(bpBeans)) {
+        if (CollectionUtil.isNotEmpty(bpBeans)) {
             List<BufferPool> bufferPoolList = new ArrayList<>(bpBeans.size());
             for (BufferPoolMXBean bp : bpBeans) {
                 BufferPool bufferPool = new BufferPool();
@@ -157,7 +165,7 @@ public class JvmUtil {
             }
             jvm.setBufferPoolList(bufferPoolList);
         }
-        if (CollectionUtils.isNotEmpty(mpBeans)) {
+        if (CollectionUtil.isNotEmpty(mpBeans)) {
             List<MemoryPool> memoryPoolList = new ArrayList<>();
             MemoryPool memory;
             for (MemoryPoolMXBean mp : mpBeans) {
@@ -252,7 +260,7 @@ public class JvmUtil {
             jvmStart.setArguments(runtimeBean.getInputArguments().toString());
             jvmStart.setStartTime(runtimeBean.getStartTime());
         }
-        if (CollectionUtils.isNotEmpty(gcBeans)) {
+        if (CollectionUtil.isNotEmpty(gcBeans)) {
             jvmStart.setYoungGC((gcBeans.get(0)).getName());
             jvmStart.setFullGC((gcBeans.get(1)).getName());
         }
@@ -280,15 +288,15 @@ public class JvmUtil {
             if (connection != null) {
                 Set<ObjectName> objectNames = null;
                 Set<ObjectName> catalinaObjectNames = connection.queryNames(new ObjectName("Catalina:type=Connector,*"), null);
-                if (CollectionUtils.isNotEmpty(catalinaObjectNames)) {
+                if (CollectionUtil.isNotEmpty(catalinaObjectNames)) {
                     objectNames = catalinaObjectNames;
                 } else {
                     Set<ObjectName> tomcatObjectNames = connection.queryNames(new ObjectName("Tomcat:type=Connector,*"), null);
-                    if (CollectionUtils.isNotEmpty(tomcatObjectNames)) {
+                    if (CollectionUtil.isNotEmpty(tomcatObjectNames)) {
                         objectNames = tomcatObjectNames;
                     }
                 }
-                if (CollectionUtils.isNotEmpty(objectNames)) {
+                if (CollectionUtil.isNotEmpty(objectNames)) {
                     for (ObjectName item : objectNames) {
                         String protocol = (String) connection.getAttribute(item, "protocol");
                         if (protocol != null) {
@@ -350,7 +358,7 @@ public class JvmUtil {
                 String mainClass = MonitoredVmUtil.mainClass(vm, true);
                 // 当前应用或者开启jmxRemote的才返回，排除监控应用本身
                 String address = ConnectorAddressLink.importFrom(pid);
-                if ((currentProcess.getPid() == pid || StringUtils.isNotBlank(address))
+                if ((currentProcess.getPid() == pid || StrUtil.isNotBlank(address))
                         && !McmAgentApplication.class.getName().equals(mainClass)) {
                     boolean current = false;
                     if (pid == currentProcess.getPid()) {

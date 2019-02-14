@@ -1,7 +1,15 @@
 package xyz.weechang.moreco.monitor.agent;
 
 
-import sun.management.Agent;
+import cn.hutool.core.util.StrUtil;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.CollectionUtils;
+import xyz.weechang.moreco.monitor.agent.handler.Collector;
+import xyz.weechang.moreco.monitor.agent.handler.SenderFactory;
+import xyz.weechang.moreco.monitor.agent.util.TaskUtil;
+import xyz.weechang.moreco.monitor.core.config.Agent;
+import xyz.weechang.moreco.monitor.core.util.SerializeUtil;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,7 +17,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.stream.Collector;
 
 /**
  * 监控主方法
@@ -41,7 +48,7 @@ public class Monitor {
         this.groupKey = groupKey;
         this.appKey = appKey;
         this.appSecret = appSecret;
-        if (StringUtils.isBlank(configURL)) {
+        if (StrUtil.isBlank(configURL)) {
             throw new IllegalArgumentException("configURL can not be blank");
         }
         this.configInit();

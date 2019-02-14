@@ -5,7 +5,7 @@
 
     <groupId>xyz.weechang</groupId>
     <artifactId>moreco</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
 
     <modules>
         <module>moreco-core</module>
@@ -263,6 +263,25 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
+
+    <scm>
+        <connection>scm:git:https://github.com/weechang/moreco.git</connection>
+        <developerConnection>scm:git:https://github.com/weechang/moreco.git</developerConnection>
+        <url>https://github.com/weechang/moreco</url>
+        <tag>${project.version}</tag>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <name>Maven Central Staging Repository</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
     <build>
         <plugins>
