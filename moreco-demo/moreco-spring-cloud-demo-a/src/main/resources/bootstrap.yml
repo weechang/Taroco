@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: moreco-spring-cloud-demo-a
+    name: moreco-spring-storage-demo-a
   profiles:
     active: "@profileActive@"
   cloud:
@@ -37,4 +37,4 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://moreco-cloud-registry:8761/eureka
+      defaultZone: http://moreco-storage-registry:8761/eureka

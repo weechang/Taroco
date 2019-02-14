@@ -1,6 +1,6 @@
 package xyz.moreco.component.message.sender;
 
-import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamSource;
 import org.springframework.mail.SimpleMailMessage;
@@ -16,7 +16,7 @@ import javax.mail.internet.MimeMessage;
  * date 2018/11/24
  * time 18:54
  */
-@Log
+@Slf4j
 @Component
 public class MailSender {
 

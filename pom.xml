@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>xyz.weechang.moreco</groupId>
+    <groupId>xyz.weechang</groupId>
     <artifactId>moreco</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
@@ -16,6 +16,7 @@
         <module>moreco-demo</module>
         <module>moreco-cloud</module>
         <module>moreco-monitor</module>
+        <module>moreco-task</module>
     </modules>
 
     <packaging>pom</packaging>
@@ -47,12 +48,12 @@
         <dependencies>
             <!--&lt;!&ndash;self&ndash;&gt;-->
             <!--<dependency>-->
-                <!--<groupId>xyz.weechang.moreco</groupId>-->
+                <!--<groupId>xyz.weechang</groupId>-->
                 <!--<artifactId>moreco-core</artifactId>-->
                 <!--<version>${project.version}</version>-->
             <!--</dependency>-->
             <!--&lt;!&ndash;<dependency>&ndash;&gt;-->
-                <!--&lt;!&ndash;<groupId>xyz.weechang.moreco</groupId>&ndash;&gt;-->
+                <!--&lt;!&ndash;<groupId>xyz.weechang</groupId>&ndash;&gt;-->
                 <!--&lt;!&ndash;<artifactId>moreco-data</artifactId>&ndash;&gt;-->
                 <!--&lt;!&ndash;<version>${project.version}</version>&ndash;&gt;-->
                 <!--&lt;!&ndash;<type>pom</type>&ndash;&gt;-->
@@ -60,27 +61,27 @@
             <!--&lt;!&ndash;</dependency>&ndash;&gt;-->
             <!--data-->
             <dependency>
-                <groupId>xyz.weechang.moreco</groupId>
+                <groupId>xyz.weechang</groupId>
                 <artifactId>moreco-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>xyz.weechang.moreco</groupId>
+                <groupId>xyz.weechang</groupId>
                 <artifactId>moreco-data-jpa</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!--<dependency>-->
-                <!--<groupId>xyz.weechang.moreco</groupId>-->
+                <!--<groupId>xyz.weechang</groupId>-->
                 <!--<artifactId>moreco-data-jpa</artifactId>-->
                 <!--<version>${project.version}</version>-->
             <!--</dependency>-->
             <!--<dependency>-->
-                <!--<groupId>xyz.weechang.moreco</groupId>-->
+                <!--<groupId>xyz.weechang</groupId>-->
                 <!--<artifactId>moreco-data-redis</artifactId>-->
                 <!--<version>${project.version}</version>-->
             <!--</dependency>-->
             <dependency>
-                <groupId>xyz.weechang.moreco</groupId>
+                <groupId>xyz.weechang</groupId>
                 <artifactId>moreco-component-swagger</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -90,17 +91,17 @@
                 <!--&lt;!&ndash;<version>${project.version}</version>&ndash;&gt;-->
             <!--&lt;!&ndash;</dependency>&ndash;&gt;-->
             <!--<dependency>-->
-                <!--<groupId>xyz.weechang.moreco</groupId>-->
+                <!--<groupId>xyz.weechang</groupId>-->
                 <!--<artifactId>moreco-component-ops</artifactId>-->
                 <!--<version>${project.version}</version>-->
             <!--</dependency>-->
             <!--<dependency>-->
-                <!--<groupId>xyz.weechang.moreco</groupId>-->
+                <!--<groupId>xyz.weechang</groupId>-->
                 <!--<artifactId>moreco-security</artifactId>-->
                 <!--<version>${project.version}</version>-->
             <!--</dependency>-->
             <!--&lt;!&ndash;<dependency>&ndash;&gt;-->
-                <!--&lt;!&ndash;<groupId>xyz.weechang.moreco</groupId>&ndash;&gt;-->
+                <!--&lt;!&ndash;<groupId>xyz.weechang</groupId>&ndash;&gt;-->
                 <!--&lt;!&ndash;<artifactId>moreco-starter</artifactId>&ndash;&gt;-->
                 <!--&lt;!&ndash;<version>${project.version}</version>&ndash;&gt;-->
                 <!--&lt;!&ndash;<type>pom</type>&ndash;&gt;-->
@@ -112,21 +113,21 @@
                 <!--&lt;!&ndash;<version>${project.version}</version>&ndash;&gt;-->
             <!--&lt;!&ndash;</dependency>&ndash;&gt;-->
             <!--<dependency>-->
-                <!--<groupId>xyz.weechang.moreco</groupId>-->
-                <!--<artifactId>moreco-cloud</artifactId>-->
+                <!--<groupId>xyz.weechang</groupId>-->
+                <!--<artifactId>moreco-storage</artifactId>-->
                 <!--<version>${project.version}</version>-->
                 <!--<type>pom</type>-->
                 <!--<scope>import</scope>-->
             <!--</dependency>-->
             <!--<dependency>-->
-                <!--<groupId>xyz.weechang.moreco</groupId>-->
+                <!--<groupId>xyz.weechang</groupId>-->
                 <!--<artifactId>moreco-monitor</artifactId>-->
                 <!--<version>${project.version}</version>-->
                 <!--<type>pom</type>-->
                 <!--<scope>import</scope>-->
             <!--</dependency>-->
 
-            <!-- Spring cloud -->
+            <!-- Spring storage -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>

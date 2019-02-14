@@ -62,30 +62,35 @@ moreco不仅仅是一套开发框架，moreco更是一套生态系统。从开�
 ## 项目结构
 ``` 
 moreco
-├── moreco-base ------------------------------ 基础、公共方法封装
+├── moreco-core ------------------------------ 核心、公共方法封装
+├── moreco-data ------------------------------ ORM
+|    ├── moreco-data-core -------------------- ORM 核心
+|    ├── moreco-data-jpa --------------------- ORM Jpa
+|    ├── moreco-data-redis ------------------- ORM Redis
+|    ├── moreco-data-mongodb ----------------- ORM MongoDB
+├── moreco-component ------------------------- 项目组件
+|    ├── moreco-component-swagger ------------ swagger 组件
+|    ├── moreco-component-rbac --------------- rbac 组件
+|    ├── moreco-component-oss ---------------- 对象存储组件
+|    ├── moreco-component-message ------------ 消息通知组件
+|    ├── moreco-component-ops ---------------- 运维组件（日志、动态切流）
+├── moreco-security -------------------------- 安全认证
 ├── moreco-cloud ----------------------------- spring cloud 组件
-|    ├── moreco-cloud-breaker----------------- 熔断
+|    ├── moreco-cloud-register --------------- 服务注册中心
 |    ├── moreco-cloud-config  ---------------- 配置中心
 |    ├── moreco-cloud-gateway ---------------- 网关
-|    ├── moreco-cloud-register --------------- 服务注册中心
 ├── moreco-demo ------------------------------ demo
 |    ├── moreco-spring-boot-demo ------------- spring boot demo
-├── moreco-message --------------------------- 消息中心
+|    ├── moreco-spring-cloud-demo-a ------------- spring cloud demo a
+|    ├── moreco-spring-cloud-demo-a ------------- spring cloud demo b
 ├── moreco-monitor --------------------------- 监控中心
 |    ├── moreco-core ------------------------- 基础类
-|    ├── moreco-sdk -------------------------- sdk、agent
-|    ├── moreco-datahandler ------------------ 数据处理中心
-|    ├── moreco-manager ---------------------- 监控管理
-├── moreco-ops ------------------------------- 运维中心
-├── moreco-oss ------------------------------- 对象存储
-├── moreco-rbac ------------------------------ RBAC权限管理
-├── moreco-security -------------------------- 安全认证
-|    ├── moreco-security-base ---------------- 安全认证基础组件
-|    ├── moreco-security-shiro --------------- shiro 组件
-|    ├── moreco-security-spring-security ----- spring security 组件
+|    ├── moreco-agent ------------------------ sdk、agent
+|    ├── moreco-home ------------------------- 数据处理、管理
 ├── moreco-starter --------------------------- 启动组件
 |    ├── moreco-starter-spring-boot ---------- spring boot 启动组件
 |    ├── moreco-starter-spring-cloud --------- spring cloud 启动组件
+├── moreco-task ------------------------------ 分布式任务管理
 ```
 
 ## 运行效果
@@ -104,7 +109,7 @@ moreco
 
 ## 开发进度汇总
 
-![开发进度](/doc-of-project/moreco-project-doing.png)
+![开发进度](/doc-of-project/moreco-doing.png)
 
 ## QQ交流群
 

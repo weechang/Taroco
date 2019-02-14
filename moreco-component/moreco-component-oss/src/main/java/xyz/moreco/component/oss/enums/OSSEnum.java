@@ -11,8 +11,7 @@ public enum OSSEnum {
     QINIU(1, "七牛"),
     ALIYUN(2, "阿里云"),
     TENCENT(3, "腾讯云"),
-    UPYUN(4, "又拍云"),
-    LOCAL(5, "本机存储");
+    UPYUN(4, "又拍云");
 
     private Integer key;
     private String value;
