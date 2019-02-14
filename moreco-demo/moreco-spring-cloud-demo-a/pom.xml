@@ -26,7 +26,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.github.weechang</groupId>
+            <groupId>xyz.weechang</groupId>
             <artifactId>moreco-spring-cloud-starter</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
