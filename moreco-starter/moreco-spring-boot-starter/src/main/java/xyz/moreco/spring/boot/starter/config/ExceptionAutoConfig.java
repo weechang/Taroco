@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
  * spring mvc 异常映射
  *
  * @author weechang
- * @date 2017年11月18日23:44:36
+ * date 2017年11月18日23:44:36
  */
 @Configuration
 public class ExceptionAutoConfig {

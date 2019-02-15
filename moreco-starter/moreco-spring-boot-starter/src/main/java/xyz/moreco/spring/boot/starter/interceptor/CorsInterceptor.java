@@ -29,8 +29,8 @@ public class CorsInterceptor extends HandlerInterceptorAdapter {
     /**
      * 跨域处理
      *
-     * @param req
-     * @param res
+     * @param req 请求
+     * @param res 相应
      */
     protected void corsHandle(HttpServletRequest req, HttpServletResponse res) {
         String origin = req.getHeader("Origin");
