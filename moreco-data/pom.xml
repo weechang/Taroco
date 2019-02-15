@@ -24,7 +24,7 @@
             <dependency>
                 <groupId>xyz.weechang</groupId>
                 <artifactId>moreco-data-core</artifactId>
-                <version>${parent.version}</version>
+                <version>${project.parent.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

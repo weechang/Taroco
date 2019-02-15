@@ -5,7 +5,7 @@ package xyz.weechang.moreco.core.error;
  * 说明：
  *
  * @author zhangwei
- * @date 2017年11月18日23:45:26
+ * date 2017年11月18日23:45:26
  */
 public enum SysError implements IError {
     SYSTEM_INTERNAL_ERROR(500, "系统内部错误"),

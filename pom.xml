@@ -46,20 +46,7 @@
 
     <dependencyManagement>
         <dependencies>
-            <!--&lt;!&ndash;self&ndash;&gt;-->
-            <!--<dependency>-->
-                <!--<groupId>xyz.weechang</groupId>-->
-                <!--<artifactId>moreco-core</artifactId>-->
-                <!--<version>${project.version}</version>-->
-            <!--</dependency>-->
-            <!--&lt;!&ndash;<dependency>&ndash;&gt;-->
-                <!--&lt;!&ndash;<groupId>xyz.weechang</groupId>&ndash;&gt;-->
-                <!--&lt;!&ndash;<artifactId>moreco-data</artifactId>&ndash;&gt;-->
-                <!--&lt;!&ndash;<version>${project.version}</version>&ndash;&gt;-->
-                <!--&lt;!&ndash;<type>pom</type>&ndash;&gt;-->
-                <!--&lt;!&ndash;<scope>import</scope>&ndash;&gt;-->
-            <!--&lt;!&ndash;</dependency>&ndash;&gt;-->
-            <!--data-->
+            <!--self-->
             <dependency>
                 <groupId>xyz.weechang</groupId>
                 <artifactId>moreco-core</artifactId>
@@ -70,62 +57,11 @@
                 <artifactId>moreco-data-jpa</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <!--<dependency>-->
-                <!--<groupId>xyz.weechang</groupId>-->
-                <!--<artifactId>moreco-data-jpa</artifactId>-->
-                <!--<version>${project.version}</version>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>xyz.weechang</groupId>-->
-                <!--<artifactId>moreco-data-redis</artifactId>-->
-                <!--<version>${project.version}</version>-->
-            <!--</dependency>-->
             <dependency>
                 <groupId>xyz.weechang</groupId>
                 <artifactId>moreco-component-swagger</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <!--&lt;!&ndash;<dependency>&ndash;&gt;-->
-                <!--&lt;!&ndash;<groupId>xyz.moreco</groupId>&ndash;&gt;-->
-                <!--&lt;!&ndash;<artifactId>moreco-component-rbac</artifactId>&ndash;&gt;-->
-                <!--&lt;!&ndash;<version>${project.version}</version>&ndash;&gt;-->
-            <!--&lt;!&ndash;</dependency>&ndash;&gt;-->
-            <!--<dependency>-->
-                <!--<groupId>xyz.weechang</groupId>-->
-                <!--<artifactId>moreco-component-ops</artifactId>-->
-                <!--<version>${project.version}</version>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>xyz.weechang</groupId>-->
-                <!--<artifactId>moreco-security</artifactId>-->
-                <!--<version>${project.version}</version>-->
-            <!--</dependency>-->
-            <!--&lt;!&ndash;<dependency>&ndash;&gt;-->
-                <!--&lt;!&ndash;<groupId>xyz.weechang</groupId>&ndash;&gt;-->
-                <!--&lt;!&ndash;<artifactId>moreco-starter</artifactId>&ndash;&gt;-->
-                <!--&lt;!&ndash;<version>${project.version}</version>&ndash;&gt;-->
-                <!--&lt;!&ndash;<type>pom</type>&ndash;&gt;-->
-                <!--&lt;!&ndash;<scope>import</scope>&ndash;&gt;-->
-            <!--&lt;!&ndash;</dependency>&ndash;&gt;-->
-            <!--&lt;!&ndash;<dependency>&ndash;&gt;-->
-                <!--&lt;!&ndash;<groupId>xyz.moreco</groupId>&ndash;&gt;-->
-                <!--&lt;!&ndash;<artifactId>moreco-spring-boot-starter</artifactId>&ndash;&gt;-->
-                <!--&lt;!&ndash;<version>${project.version}</version>&ndash;&gt;-->
-            <!--&lt;!&ndash;</dependency>&ndash;&gt;-->
-            <!--<dependency>-->
-                <!--<groupId>xyz.weechang</groupId>-->
-                <!--<artifactId>moreco-storage</artifactId>-->
-                <!--<version>${project.version}</version>-->
-                <!--<type>pom</type>-->
-                <!--<scope>import</scope>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>xyz.weechang</groupId>-->
-                <!--<artifactId>moreco-monitor</artifactId>-->
-                <!--<version>${project.version}</version>-->
-                <!--<type>pom</type>-->
-                <!--<scope>import</scope>-->
-            <!--</dependency>-->
 
             <!-- Spring storage -->
             <dependency>
@@ -282,6 +218,65 @@
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.6</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!--<plugin>-->
+                        <!--<groupId>org.sonatype.plugins</groupId>-->
+                        <!--<artifactId>nexus-staging-maven-plugin</artifactId>-->
+                        <!--<version>1.6.8</version>-->
+                        <!--<extensions>true</extensions>-->
+                        <!--<configuration>-->
+                            <!--<serverId>ossrh</serverId>-->
+                            <!--<nexusUrl>https://oss.sonatype.org</nexusUrl>-->
+                            <!--<autoReleaseAfterClose>true</autoReleaseAfterClose>-->
+                        <!--</configuration>-->
+                    <!--</plugin>-->
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <build>
         <plugins>

@@ -12,7 +12,7 @@ import java.util.Map;
  * swagger2 属性配置
  *
  * @author liuht
- * @date 2017/11/18 9:17
+ * date 2017/11/18 9:17
  */
 @Data
 @ConfigurationProperties(SwaggerConfiguration.preKey)

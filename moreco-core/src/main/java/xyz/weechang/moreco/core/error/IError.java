@@ -4,7 +4,7 @@ package xyz.weechang.moreco.core.error;
  * 说明：
  *
  * @author zhangwei
- * @date 2017年11月18日23:45:37
+ * date 2017年11月18日23:45:37
  */
 public interface IError {
 

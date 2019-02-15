@@ -1,6 +1,7 @@
 package xyz.weechang.moreco.component.rbac.model.dto;
 
 import cn.hutool.core.bean.BeanUtil;
+import lombok.EqualsAndHashCode;
 import xyz.weechang.moreco.component.rbac.model.domain.Menu;
 import xyz.weechang.moreco.core.model.dto.QueryRequest;
 import io.swagger.annotations.ApiModel;
@@ -12,6 +13,7 @@ import lombok.Data;
  * date 2018/11/30
  * time 13:13
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 @ApiModel("部门查询请求")
 public class MenuQueryRequest extends QueryRequest {

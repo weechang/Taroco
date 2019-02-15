@@ -8,7 +8,7 @@ import xyz.weechang.moreco.core.error.IError;
  * 说明：
  *
  * @author zhangwei
- * @date 2017年11月18日23:45:47
+ * date 2017年11月18日23:45:47
  */
 public class AppException extends RuntimeException {
 

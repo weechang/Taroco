@@ -33,6 +33,7 @@ public interface MenuService extends BaseService<Menu> {
     /**
      * 查询授权目录
      *
+     * @param username 用户名
      * @return 授权目录
      */
     List<Menu> permissionMenu(String username);
@@ -50,7 +51,7 @@ public interface MenuService extends BaseService<Menu> {
      *
      * @param menuPath 目录路径
      * @param username 用户名
-     * @return
+     * @return 授权目录
      */
     List<Menu> permissionComponent(String menuPath, String username);
 }

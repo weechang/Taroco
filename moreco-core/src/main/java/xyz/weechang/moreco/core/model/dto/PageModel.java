@@ -34,6 +34,7 @@ public class PageModel<T> implements Serializable {
 
     /**
      * 分页
+     *
      * @param currentPage 当前页数
      */
     public PageModel(int currentPage) {
@@ -42,8 +43,9 @@ public class PageModel<T> implements Serializable {
 
     /**
      * 分页
+     *
      * @param currentPage 当前页数
-     * @param pageSize 每页记录数
+     * @param pageSize    每页记录数
      */
     public PageModel(int currentPage, int pageSize) {
         this.currentPage = currentPage;
@@ -68,6 +70,8 @@ public class PageModel<T> implements Serializable {
 
     /**
      * 分页
+     *
+     * @param page 分页
      */
     public PageModel(Page<T> page) {
         this.list = page.getContent();
@@ -85,7 +89,7 @@ public class PageModel<T> implements Serializable {
     public PageRequest toPageRequest() {
         currentPage = currentPage <= 1 ? 1 : currentPage;
         pageSize = pageSize <= 0 ? 10 : pageSize;
-        return new PageRequest(currentPage - 1, pageSize);
+        return PageRequest.of(currentPage - 1, pageSize);
     }
 
     /**
@@ -97,6 +101,6 @@ public class PageModel<T> implements Serializable {
     public PageRequest toPageRequest(Sort sort) {
         currentPage = currentPage <= 1 ? 1 : currentPage;
         pageSize = pageSize <= 0 ? 10 : pageSize;
-        return new PageRequest(currentPage - 1, pageSize, sort);
+        return PageRequest.of(currentPage - 1, pageSize, sort);
     }
 }
