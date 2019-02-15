@@ -28,17 +28,17 @@
         <dependency>
             <groupId>xyz.weechang</groupId>
             <artifactId>moreco-spring-boot-starter</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>xyz.weechang</groupId>
             <artifactId>moreco-component-rbac</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>xyz.weechang</groupId>
             <artifactId>moreco-security</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
 
         <dependency>
@@ -53,26 +53,26 @@
     </dependencies>
 
     <!-- Maven控制Spring Profile -->
-    <!--<profiles>-->
-        <!--&lt;!&ndash; Mysql环境 &ndash;&gt;-->
-        <!--<profile>-->
-            <!--<id>dev-mysql</id>-->
-            <!--<activation>-->
-                <!--<activeByDefault>true</activeByDefault>-->
-            <!--</activation>-->
-            <!--<properties>-->
-                <!--<profileActive>mysql</profileActive>-->
-            <!--</properties>-->
-        <!--</profile>-->
-        <!--&lt;!&ndash; PG环境 &ndash;&gt;-->
-        <!--<profile>-->
-            <!--<id>dev-pg</id>-->
-            <!--<activation>-->
-                <!--<activeByDefault>false</activeByDefault>-->
-            <!--</activation>-->
-            <!--<properties>-->
-                <!--<profileActive>pg</profileActive>-->
-            <!--</properties>-->
-        <!--</profile>-->
-    <!--</profiles>-->
+    <profiles>
+        <!-- Mysql环境 -->
+        <profile>
+            <id>dev-mysql</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <profileActive>mysql</profileActive>
+            </properties>
+        </profile>
+        <!-- PG环境 -->
+        <profile>
+            <id>dev-pg</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <profileActive>pg</profileActive>
+            </properties>
+        </profile>
+    </profiles>
 </project>

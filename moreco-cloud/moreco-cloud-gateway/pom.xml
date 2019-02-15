@@ -16,12 +16,12 @@
         <dependency>
             <groupId>xyz.weechang</groupId>
             <artifactId>moreco-security</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>xyz.weechang</groupId>
             <artifactId>moreco-data-redis</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <!--zuul-->
         <dependency>
