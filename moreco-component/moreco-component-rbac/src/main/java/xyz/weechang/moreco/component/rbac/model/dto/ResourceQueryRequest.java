@@ -31,6 +31,9 @@ public class ResourceQueryRequest extends QueryRequest {
     @ApiModelProperty("请求方法")
     private String method;
 
+    @ApiModelProperty("目录id")
+    private Long menuId;
+
     public Resource toResource() {
         return BeanUtil.toBean(this, Resource.class);
     }

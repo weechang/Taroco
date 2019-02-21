@@ -36,8 +36,6 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
     @Autowired
     private SecurityProperties securityProperties;
 
-    private static final int tokenRefreshInterval = 300;  //刷新间隔5分钟
-
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = (String) authentication.getPrincipal();
@@ -51,13 +49,6 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
             boolean isExpired = isExpired(decodedJWT.getExpiresAt());
             if (isExpired){
                 throw new AccountExpiredException("token已过期");
-            }
-            // token 刷新
-            boolean shouldRefresh = shouldTokenRefresh(decodedJWT.getIssuedAt());
-            if (shouldRefresh) {
-                UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(username);
-                String authToken = jwtUserDetailsService.loginSuccess(userDetails);
-                decodedJWT = JWT.decode(authToken);
             }
         } else {
             String encodePwd = SecureUtil.sha256(SecureUtil.sha256(username) + SecureUtil.sha256(password));
@@ -87,17 +78,6 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
     private boolean isExpired(Date issueAt) {
         LocalDateTime issueTime = LocalDateTime.ofInstant(issueAt.toInstant(), ZoneId.systemDefault());
         return LocalDateTime.now().minusSeconds(securityProperties.getTokenExpiredTime()).isAfter(issueTime);
-    }
-
-    /**
-     * 判断token是否需要刷新
-     *
-     * @param issueAt token刷新时间
-     * @return 是否需要刷新
-     */
-    private boolean shouldTokenRefresh(Date issueAt) {
-        LocalDateTime issueTime = LocalDateTime.ofInstant(issueAt.toInstant(), ZoneId.systemDefault());
-        return LocalDateTime.now().minusSeconds(tokenRefreshInterval).isAfter(issueTime);
     }
 
 }

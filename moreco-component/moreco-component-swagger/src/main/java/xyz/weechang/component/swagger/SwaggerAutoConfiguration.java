@@ -33,6 +33,7 @@ import java.util.stream.Collectors;
  * time 11:31
  */
 @Configuration
+@ConditionalOnProperty(name = SwaggerConfiguration.enableKey, matchIfMissing = true)
 @Import( {
         SwaggerConfiguration.class
 })

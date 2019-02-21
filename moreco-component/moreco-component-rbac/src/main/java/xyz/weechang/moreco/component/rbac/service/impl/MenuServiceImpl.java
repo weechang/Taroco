@@ -41,7 +41,7 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuDao, Menu> implements M
     public void doConvertDataMap(Menu... menus) {
         for (Menu menu : menus) {
             menu.addDataMap("type", MenuTypeEnum.getNameByKey(menu.getType()));
-            menu.addDataMap("showBoolean", menu.getShow().equals(MenuShowEnum.SHOW.getKey()));
+            menu.addDataMap("showBoolean", MenuShowEnum.SHOW.getKey().equals(menu.getVisible()));
             if (CollectionUtil.isNotEmpty(menu.getResources())) {
                 menu.addDataMap("resourceIds", menu.getResources().stream().map(Resource::getId).collect(Collectors.toList()));
             }

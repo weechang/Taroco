@@ -1,6 +1,7 @@
 package xyz.weechang.moreco.component.rbac.model.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import xyz.weechang.moreco.core.model.domain.BaseDomain;
 import io.swagger.annotations.ApiModel;
@@ -45,6 +46,7 @@ public class Dept extends BaseDomain {
     private Integer orderNum;
 
     @ApiModelProperty("用户")
+    @JsonIgnore
     @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "dept")
     private List<User> users;

@@ -7,11 +7,11 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import xyz.weechang.moreco.security.auth.common.*;
-import xyz.weechang.moreco.security.auth.jwt.JwtAuthenticationProvider;
-import xyz.weechang.moreco.security.auth.jwt.JwtAuthenticationSuccessHandler;
-import xyz.weechang.moreco.security.auth.jwt.JwtAuthenticationTokenFilter;
-import xyz.weechang.moreco.security.auth.jwt.JwtUserDetailsService;
+import xyz.weechang.moreco.security.auth.common.MorecoAccessDeniedHandler;
+import xyz.weechang.moreco.security.auth.common.MorecoAuthenticationEntryPoint;
+import xyz.weechang.moreco.security.auth.common.MorecoAuthenticationFailureHandler;
+import xyz.weechang.moreco.security.auth.common.MorecoLogoutSuccessHandler;
+import xyz.weechang.moreco.security.auth.jwt.*;
 
 /**
  * 自动配置
@@ -68,14 +68,20 @@ public class SecurityAutoConfiguration implements BeanFactoryAware {
 
     @Bean
     @ConditionalOnMissingBean
+    public JwtUserDetailsService jwtUserDetailsService() {
+        return new JwtUserDetailsService();
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
     public JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter() {
         return new JwtAuthenticationTokenFilter();
     }
 
     @Bean
     @ConditionalOnMissingBean
-    public JwtUserDetailsService jwtUserDetailsService() {
-        return new JwtUserDetailsService();
+    public JwtAuthenticationRefreshFilter jwtAuthenticationRefreshFilter() {
+        return new JwtAuthenticationRefreshFilter();
     }
 
     @Override
