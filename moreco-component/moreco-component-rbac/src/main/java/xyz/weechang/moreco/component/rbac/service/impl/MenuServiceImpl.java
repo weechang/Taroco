@@ -1,24 +1,24 @@
 package xyz.weechang.moreco.component.rbac.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
-import xyz.weechang.moreco.component.rbac.dao.MenuDao;
-import xyz.weechang.moreco.component.rbac.dao.UserDao;
-import xyz.weechang.moreco.component.rbac.error.RbacError;
-import xyz.weechang.moreco.component.rbac.model.domain.Menu;
-import xyz.weechang.moreco.component.rbac.model.domain.Role;
-import xyz.weechang.moreco.component.rbac.model.domain.User;
-import xyz.weechang.moreco.component.rbac.model.domain.enums.MenuShowEnum;
-import xyz.weechang.moreco.component.rbac.model.domain.enums.MenuTypeEnum;
-import xyz.weechang.moreco.core.exception.AppException;
-import xyz.weechang.moreco.core.model.dto.PageModel;
-import xyz.weechang.moreco.core.service.impl.BaseServiceImpl;
-import xyz.weechang.moreco.component.rbac.model.domain.Resource;
-import xyz.weechang.moreco.component.rbac.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import xyz.weechang.moreco.component.rbac.dao.MenuDao;
+import xyz.weechang.moreco.component.rbac.dao.UserDao;
+import xyz.weechang.moreco.component.rbac.error.RbacError;
+import xyz.weechang.moreco.component.rbac.model.domain.Menu;
+import xyz.weechang.moreco.component.rbac.model.domain.Resource;
+import xyz.weechang.moreco.component.rbac.model.domain.Role;
+import xyz.weechang.moreco.component.rbac.model.domain.User;
+import xyz.weechang.moreco.component.rbac.model.domain.enums.MenuShowEnum;
+import xyz.weechang.moreco.component.rbac.model.domain.enums.MenuTypeEnum;
+import xyz.weechang.moreco.component.rbac.service.MenuService;
+import xyz.weechang.moreco.core.exception.AppException;
+import xyz.weechang.moreco.core.model.dto.PageModel;
+import xyz.weechang.moreco.core.service.impl.BaseServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,6 +89,7 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuDao, Menu> implements M
         List<Menu> tree = this.tree();
         List<Menu> permissionMenus = permissionMenu(username);
         removeUnPermission(tree, permissionMenus);
+        removeComponent(tree);
         return tree;
     }
 
@@ -142,17 +143,61 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuDao, Menu> implements M
         }
     }
 
-    @Override
-    public List<Menu> permissionComponent(String menuPath, String username) {
-        List<Menu> components = null;
-        List<Menu> menus = menuDao.findAllByUrlAndType(menuPath, MenuTypeEnum.MENU.getKey());
+    /**
+     * 移除非目录组件
+     *
+     * @param menus 目录
+     */
+    private void removeComponent(List<Menu> menus) {
         if (CollectionUtil.isNotEmpty(menus)) {
-            for (Menu menu : menus) {
-                List<Menu> componentItems = menuDao.findAllByParentAndType(menu.getParent(), MenuTypeEnum.COMPONENT.getKey());
-                components.addAll(componentItems);
+            int size = menus.size();
+            for (int i = 0; i < menus.size(); i++) {
+                Menu menu = menus.get(i);
+                if (CollectionUtil.isNotEmpty(menu.getChildren())) {
+                    removeComponent(menu.getChildren());
+                } else {
+                    if (!MenuTypeEnum.MENU.getKey().equals(menu.getType())) {
+                        menus.remove(i);
+                        i--;
+                    }
+                }
+                if (size == menus.size()) {
+                    break;
+                }
+            }
+        }
+    }
+
+    @Override
+    public List<Menu> permissionComponent(List<String> matchedPathList, String username) {
+        List<Menu> components = null;
+        if (CollectionUtil.isNotEmpty(matchedPathList)) {
+            Menu menu = getTargetMenuByPath(matchedPathList, new Menu(0L), 0);
+            if (menu != null) {
+                components = menuDao.findAllByParentAndType(menu, MenuTypeEnum.COMPONENT.getKey());
             }
         }
         return components;
+    }
+
+    private Menu getTargetMenuByPath(List<String> matchedPathList, Menu parent, int index) {
+        Menu menu = null;
+        if (CollectionUtil.isNotEmpty(matchedPathList)) {
+            String matchedPath = matchedPathList.get(index);
+            if (index != 0) {
+                String lastPath = matchedPathList.get(index - 1);
+                matchedPath = matchedPath.replace(lastPath, "");
+            }
+            menu = menuDao.findFirstByParentAndUrlAndType(parent, matchedPath, MenuTypeEnum.MENU.getKey());
+            if (index != 0 && menu == null) {
+                matchedPath = matchedPath.replace("/", "");
+                menu = menuDao.findFirstByParentAndUrlAndType(parent, matchedPath, MenuTypeEnum.MENU.getKey());
+            }
+            if (index != matchedPathList.size() - 1) {
+                menu = getTargetMenuByPath(matchedPathList, menu, ++index);
+            }
+        }
+        return menu;
     }
 
     @Override

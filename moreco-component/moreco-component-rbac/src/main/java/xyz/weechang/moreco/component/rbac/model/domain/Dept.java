@@ -57,7 +57,6 @@ public class Dept extends BaseDomain {
     private List<Dept> children;
 
     public Dept(Long id) {
-        this.setId(id);
-        return;
+        this.id = id;
     }
 }

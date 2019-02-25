@@ -77,8 +77,7 @@ public class Menu extends BaseDomain {
     private List<Menu> children;
 
     public Menu(Long id) {
-        this.setId(id);
-        return;
+        this.id = id;
     }
 
 }
