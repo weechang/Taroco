@@ -4,7 +4,7 @@
 
 ### 更多功能及文档正在不断完善中……
 ### 演示地址 [https://moreco.weechang.xyz/](https://moreco.weechang.xyz/)
-### 使用文档 [https://github.com/weechang/moreco/wiki](https://github.com/weechang/moreco/wiki)
+### 使用文档 [https://moreco-doc.weechang.xyz](https://moreco.weechang.xyz)
 
 moreco -- more ecosystem 更完全的生态系统
 
@@ -27,6 +27,14 @@ moreco不仅仅是一套开发框架，moreco更是一套生态系统。从开�
 * 监控报警：物理机监控、应用监控、方法监控、数据库监控。
 
 * 运维方面：统一日志。
+
+## QQ交流群
+
+欢迎各位有兴趣的朋友加入QQ交流群，一起交流问题、贡献代码
+
+**强烈欢迎拥有Java、Vue、React技能的同学参与贡献**
+
+[493659743](https://jq.qq.com/?_wv=1027&k=5Czuxq5)
 
 ## 软件架构
 
@@ -81,8 +89,8 @@ moreco
 |    ├── moreco-cloud-gateway ---------------- 网关
 ├── moreco-demo ------------------------------ demo
 |    ├── moreco-spring-boot-demo ------------- spring boot demo
-|    ├── moreco-spring-cloud-demo-a ------------- spring cloud demo a
-|    ├── moreco-spring-cloud-demo-a ------------- spring cloud demo b
+|    ├── moreco-spring-cloud-demo-a ---------- spring cloud demo a
+|    ├── moreco-spring-cloud-demo-a ---------- spring cloud demo b
 ├── moreco-monitor --------------------------- 监控中心
 |    ├── moreco-core ------------------------- 基础类
 |    ├── moreco-agent ------------------------ sdk、agent
@@ -110,9 +118,3 @@ moreco
 ## 开发进度汇总
 
 ![开发进度](/doc-of-project/moreco-doing.png)
-
-## QQ交流群
-
-欢迎各位有兴趣的朋友加入QQ交流群，一起交流问题、贡献代码
-
-[493659743](https://jq.qq.com/?_wv=1027&k=5Czuxq5)

@@ -46,32 +46,17 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.11</version>
         </dependency>
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-        </dependency>
     </dependencies>
 
     <!-- Maven控制Spring Profile -->
     <profiles>
-        <!-- Mysql环境 -->
         <profile>
-            <id>dev-mysql</id>
+            <id>dev</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
                 <profileActive>mysql</profileActive>
-            </properties>
-        </profile>
-        <!-- PG环境 -->
-        <profile>
-            <id>dev-pg</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <properties>
-                <profileActive>pg</profileActive>
             </properties>
         </profile>
     </profiles>

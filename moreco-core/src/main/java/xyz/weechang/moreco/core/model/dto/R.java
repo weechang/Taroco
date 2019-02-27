@@ -15,7 +15,7 @@ import lombok.Data;
  */
 @ApiModel("请求相应")
 @Data
-public class R<T extends Object> {
+public class R<T> {
     private static final long serialVersionUID = -6778838468426551277L;
 
     @ApiModelProperty("请求结果")

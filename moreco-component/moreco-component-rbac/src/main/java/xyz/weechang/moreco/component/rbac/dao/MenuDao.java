@@ -16,7 +16,7 @@ public interface MenuDao extends JpaBaseRepository<Menu> {
 
     Menu findFirstByNameAndParent(String name, Menu parent);
 
-    List<Menu> findAllByUrlAndType(String url, Integer type);
+    Menu findFirstByParentAndUrlAndType(Menu parent, String url, Integer type);
 
     List<Menu> findAllByParentAndType(Menu parent, Integer type);
 }

@@ -1,17 +1,18 @@
 package xyz.weechang.moreco.component.rbac.controller;
 
-import xyz.weechang.moreco.core.model.dto.PageModel;
-import xyz.weechang.moreco.core.model.dto.R;
-import xyz.weechang.moreco.component.rbac.model.domain.Resource;
-import xyz.weechang.moreco.component.rbac.model.dto.ResourceQueryRequest;
-import xyz.weechang.moreco.component.rbac.model.dto.ResourceSaveRequest;
-import xyz.weechang.moreco.component.rbac.service.ResourceService;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import xyz.weechang.moreco.component.rbac.model.domain.Resource;
+import xyz.weechang.moreco.component.rbac.model.dto.ResourceQueryRequest;
+import xyz.weechang.moreco.component.rbac.model.dto.ResourceSaveRequest;
+import xyz.weechang.moreco.component.rbac.service.ResourceService;
+import xyz.weechang.moreco.core.model.dto.PageModel;
+import xyz.weechang.moreco.core.model.dto.R;
+
+import java.util.List;
 
 /**
  * @author zhangwei
@@ -34,6 +35,13 @@ public class ResourceController {
         return R.ok(page);
     }
 
+    @ApiOperation("查询标签树")
+    @GetMapping("tagTree")
+    public R<List<Resource>> tagTree(@ApiParam(name = "目录Id") Long menuId) {
+        List<Resource> tags = resourceService.getResourceTags(menuId);
+        return R.ok(tags);
+    }
+
     @ApiOperation("获取详情")
     @GetMapping("detail/{id}")
     public R<Resource> detail(
@@ -42,7 +50,7 @@ public class ResourceController {
         return R.ok(resource);
     }
 
-    @ApiModelProperty("保存资源信息")
+    @ApiOperation("保存资源信息")
     @PostMapping("save")
     public R save(@RequestBody ResourceSaveRequest request) {
         Resource resource = request.toResource();
@@ -50,7 +58,7 @@ public class ResourceController {
         return R.ok();
     }
 
-    @ApiModelProperty("删除资源信息")
+    @ApiOperation("删除资源信息")
     @DeleteMapping("delete/{id}")
     public R delete(@ApiParam("资源id") @PathVariable("id") Long id) {
         resourceService.delete(id);

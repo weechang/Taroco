@@ -13,6 +13,7 @@ import org.springframework.web.filter.CorsFilter;
 import xyz.weechang.moreco.core.security.MorecoSecurityService;
 import xyz.weechang.moreco.security.auth.common.*;
 import xyz.weechang.moreco.security.auth.jwt.JwtAuthenticationProvider;
+import xyz.weechang.moreco.security.auth.jwt.JwtAuthenticationRefreshFilter;
 import xyz.weechang.moreco.security.auth.jwt.JwtAuthenticationSuccessHandler;
 import xyz.weechang.moreco.security.auth.jwt.JwtAuthenticationTokenFilter;
 
@@ -43,13 +44,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private JwtAuthenticationProvider jwtAuthenticationProvider;
     @Autowired
     private SecurityProperties securityProperties;
-    @Autowired
-    private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
 
     @Autowired
     private MorecoUserDetailsService userDetailsService;
     @Autowired
     protected MorecoSecurityService morecoSecurityService;
+
+    @Autowired
+    private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
+    @Autowired
+    private JwtAuthenticationRefreshFilter jwtAuthenticationRefreshFilter;
 
     /**
      * 定义认证用户信息获取来源，密码校验规则等
@@ -116,7 +120,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.exceptionHandling().accessDeniedHandler(accessDeniedHandler);
 
         /***JWT*/
-        http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterAfter(jwtAuthenticationRefreshFilter, UsernamePasswordAuthenticationFilter.class);
 
         /***跨域*/
 //        ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry registry

@@ -25,6 +25,14 @@ public interface ResourceService extends BaseService<Resource> {
     PageModel<Resource> findAll(Resource param, Pageable pageable);
 
     /**
+     * 查询所有
+     *
+     * @param param 查询条件
+     * @return 资源列表
+     */
+    List<Resource> list(Resource param);
+
+    /**
      * 根据路径获取资源
      *
      * @param path 路径
@@ -39,4 +47,12 @@ public interface ResourceService extends BaseService<Resource> {
      * @return 角色
      */
     List<Role> getRolesById(Long id);
+
+    /**
+     * 获取资源标签
+     *
+     * @param menuId 目录id
+     * @return tags
+     */
+    List<Resource> getResourceTags(Long menuId);
 }

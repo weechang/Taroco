@@ -1,6 +1,7 @@
 package xyz.weechang.moreco.component.rbac.controller;
 
 import com.google.common.collect.Maps;
+import io.swagger.annotations.*;
 import xyz.weechang.moreco.component.rbac.model.domain.Menu;
 import xyz.weechang.moreco.component.rbac.model.domain.enums.MenuTypeEnum;
 import xyz.weechang.moreco.component.rbac.model.dto.MenuQueryRequest;
@@ -9,14 +10,11 @@ import xyz.weechang.moreco.core.controller.BaseController;
 import xyz.weechang.moreco.core.model.dto.PageModel;
 import xyz.weechang.moreco.core.model.dto.R;
 import xyz.weechang.moreco.component.rbac.service.MenuService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModelProperty;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -77,9 +75,11 @@ public class MenuController extends BaseController {
 
     @ApiOperation("根据目录路径，获取授权页面元素")
     @GetMapping("permissionComponent")
-    public R<List<Menu>> permissionComponent(@ApiParam("目录路径") String menuPath) {
+    public R<List<Menu>> permissionComponent(@ApiParam("目录路径") String matchedPaths) {
         String username = getUsername();
-        List<Menu> menus = menuService.permissionComponent(menuPath, username);
+        String[] matchedArray = matchedPaths.split(",");
+        List<String> matchedPathList = Arrays.asList(matchedArray);
+        List<Menu> menus = menuService.permissionComponent(matchedPathList, username);
         return R.ok(menus);
     }
 
