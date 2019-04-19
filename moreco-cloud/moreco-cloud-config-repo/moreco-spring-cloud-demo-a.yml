@@ -34,7 +34,7 @@ spring:
   datasource:
     platform: postgres
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://127.0.0.1:5432/moreco?useSSL=false
+    url: jdbc:postgresql://127.0.0.2:5432/moreco?useSSL=false
     username: moreco
     password: moreco
   jpa:

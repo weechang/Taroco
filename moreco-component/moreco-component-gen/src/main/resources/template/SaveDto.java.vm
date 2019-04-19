@@ -1,0 +1,33 @@
+package xyz.weechang.moreco.component.rbac.model.dto;
+
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollectionUtil;
+import xyz.weechang.moreco.component.rbac.model.domain.Menu;
+import xyz.weechang.moreco.component.rbac.model.domain.Role;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author ${request.author}
+ * date ${date}
+ * time ${time}
+ */
+@Data
+@ApiModel("保存请求")
+public class ${classInfo.clazzSimpleName}SaveRequest implements Serializable {
+    private static final long serialVersionUID = -1L;
+
+    #foreach ($field in $classInfo.fieldInfos)
+    @ApiModelProperty("${field.desc}")
+    private $field.javaType $field.fieldName;
+    #end
+
+    public ${classInfo.clazzSimpleName} to${classInfo.clazzSimpleName}(){
+        return BeanUtil.toBean(this, ${classInfo.clazzSimpleName}.class);
+    }
+}

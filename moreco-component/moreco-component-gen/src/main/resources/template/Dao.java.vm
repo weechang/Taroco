@@ -1,0 +1,13 @@
+package xyz.weechang.moreco.component.rbac.dao;
+
+import xyz.weechang.moreco.component.rbac.model.domain.Role;
+import xyz.weechang.moreco.data.jpa.JpaBaseRepository;
+
+/**
+ * @author ${request.author}
+ * date ${date}
+ * time ${time}
+ */
+public interface ${classInfo.clazzSimpleName}Dao extends JpaBaseRepository<${classInfo.clazzSimpleName}> {
+
+}

@@ -1,0 +1,25 @@
+package xyz.weechang.moreco.component.rbac.service.impl;
+
+${classInfo.clazzName};
+
+import xyz.weechang.moreco.core.model.dto.PageModel;
+import xyz.weechang.moreco.core.service.impl.BaseServiceImpl;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+/**
+ * @author ${request.author}
+ * date ${date}
+ * time ${time}
+ */
+@Service
+public class ${classInfo.clazzSimpleName}ServiceImpl extends BaseServiceImpl<${classInfo.clazzSimpleName}Dao, ${classInfo.clazzSimpleName}> implements ${classInfo.clazzSimpleName}Service {
+
+    @Override
+    public PageModel<${classInfo.clazzSimpleName}> findAll(${classInfo.clazzSimpleName} param, Pageable pageable) {
+        ExampleMatcher matcher = ExampleMatcher.matching();
+        return new PageModel<>(baseDao.findAll(Example.of(param, matcher), pageable));
+    }
+}

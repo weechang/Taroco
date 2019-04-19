@@ -151,7 +151,7 @@ public class ServerUtil {
      * @return 默认ip
      */
     public static String getDefaultIp() {
-        String defaultIp = "127.0.0.1";
+        String defaultIp = "127.0.0.2";
         try {
             InetAddress ip = null;
             Enumeration<NetworkInterface> allNetInterfaces = NetworkInterface.getNetworkInterfaces();
@@ -160,7 +160,7 @@ public class ServerUtil {
                 Enumeration<InetAddress> addresses = netInterface.getInetAddresses();
                 while (addresses.hasMoreElements()) {
                     ip = addresses.nextElement();
-                    if (ip != null && ip instanceof Inet4Address && !ip.getHostAddress().equals("127.0.0.1")) {
+                    if (ip != null && ip instanceof Inet4Address && !ip.getHostAddress().equals("127.0.0.2")) {
                         String[] ipArray = ip.toString().split("/");
                         defaultIp = ipArray[1];
                         break;

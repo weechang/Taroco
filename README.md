@@ -1,12 +1,20 @@
-# moreco
-
-## 项目介绍 
-
-### 更多功能及文档正在不断完善中……
-### 演示地址 [https://moreco.weechang.xyz/](https://moreco.weechang.xyz/)
-### 使用文档 [https://moreco-doc.weechang.xyz](https://moreco.weechang.xyz)
-
+<center> 
+**moreco** 
 moreco -- more ecosystem 更完全的生态系统
+</center>
+
+<center> 
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)  [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/weechang/moreco) [![jdk](https://img.shields.io/badge/JDK-1.8+-green.svg)](https://www.oracle.com/technetwork/java/javase/downloads/index.html) [![github](https://img.shields.io/github/stars/weechang/moreco.svg?style=social)](https://github.com/weechang/moreco)
+</center>
+
+<center>
+-- 前端：[https://github.com/weechang/moreco-view](https://github.com/weechang/moreco-view) -- 
+-- 文档：[https://moreco-doc.weechang.xyz](https://moreco.weechang.xyz) --
+-- 演示：[https://moreco.weechang.xyz/](https://moreco.weechang.xyz/) --
+-- QQ群：[493659743](https://jq.qq.com/?_wv=1027&k=5Czuxq5) -- 
+</center>
+
+## 简介
 
 moreco 是一个能够为小、中、大型项目提供最合适架构的一条龙生态系统。满足项目从小型到中型至大型的衍变过程。从编码到监控至运维都满足、且各种功能都插件化，支持插件间的切换。
 
@@ -27,18 +35,6 @@ moreco不仅仅是一套开发框架，moreco更是一套生态系统。从开�
 * 监控报警：物理机监控、应用监控、方法监控、数据库监控。
 
 * 运维方面：统一日志。
-
-## QQ交流群
-
-欢迎各位有兴趣的朋友加入QQ交流群，一起交流问题、贡献代码
-
-**强烈欢迎拥有Java、Vue、React技能的同学参与贡献**
-
-[493659743](https://jq.qq.com/?_wv=1027&k=5Czuxq5)
-
-## 软件架构
-
-软件架构说明
 
 ## 技术选型
 
@@ -101,6 +97,14 @@ moreco
 ├── moreco-task ------------------------------ 分布式任务管理
 ```
 
+## 软件架构
+
+软件架构说明
+
+## 开发进度汇总
+
+![开发进度](/doc-of-project/moreco-doing.png)
+
 ## 运行效果
 
 ![Login](/doc-of-project/moreco-login.png)
@@ -114,7 +118,3 @@ moreco
 ![swagger](/doc-of-project/moreco-swagger.png)
 
 ![monitor](/doc-of-project/moreco-monitor.png)
-
-## 开发进度汇总
-
-![开发进度](/doc-of-project/moreco-doing.png)

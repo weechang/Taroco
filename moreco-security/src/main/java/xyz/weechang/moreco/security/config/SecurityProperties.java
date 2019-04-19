@@ -22,7 +22,7 @@ import java.util.List;
 public class SecurityProperties {
 
     /***
-     * 系统配置敞亮
+     * 系统配置常量
      */
     /***配置前缀*/
     public static final String PREFIX = "moreco.security";

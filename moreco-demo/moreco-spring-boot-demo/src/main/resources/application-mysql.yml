@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/moreco?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://127.0.0.2:3306/moreco?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     username: moreco
     password: moreco
     driver-class-name: com.mysql.cj.jdbc.Driver

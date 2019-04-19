@@ -10,7 +10,7 @@
             <pattern>%date [%level] [%thread] %logger{60} [%file : %line] %msg%n</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_PATH}daily/${LOG_FILE}.%d{yyyy-MM-dd}.gz</fileNamePattern>
+            <fileNamePattern>${LOG_PATH}${LOG_FILE}/${LOG_FILE}.%d{yyyy-MM-dd}.gz</fileNamePattern>
             <maxHistory>7</maxHistory> <!-- 保留7天 -->
         </rollingPolicy>
     </appender>

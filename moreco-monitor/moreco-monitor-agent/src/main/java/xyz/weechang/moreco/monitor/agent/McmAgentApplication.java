@@ -29,7 +29,7 @@ public class McmAgentApplication implements CommandLineRunner {
 //        sender.sendData(json.toJSONString());
 //        new Monitor().init();;
         Monitor monitor = initMethod();
-        monitor.init("http://127.0.0.1:8080/api/agent", "mcm-app-group-default", "demo_app", "DemoApp_1");
+        monitor.init("http://127.0.0.2:8080/api/agent", "mcm-app-group-default", "demo_app", "DemoApp_1");
     }
 
     @Bean
