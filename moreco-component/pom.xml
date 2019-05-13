@@ -17,8 +17,6 @@
         <module>moreco-component-oss</module>
         <module>moreco-component-rbac</module>
         <module>moreco-component-ops</module>
-        <module>moreco-component-swagger</module>
-        <module>moreco-component-gen</module>
     </modules>
 
     <dependencyManagement>

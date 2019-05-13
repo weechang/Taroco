@@ -1,6 +1,6 @@
 spring:
   application:
-    name: moreco-storage-registry
+    name: moreco-cloud-registry
 server:
   port: 8761
 

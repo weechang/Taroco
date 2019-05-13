@@ -47,23 +47,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <!--self-->
-            <dependency>
-                <groupId>xyz.weechang</groupId>
-                <artifactId>moreco-core</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>xyz.weechang</groupId>
-                <artifactId>moreco-data-jpa</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>xyz.weechang</groupId>
-                <artifactId>moreco-component-swagger</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
             <!-- Spring storage -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>

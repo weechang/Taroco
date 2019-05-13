@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+xyz.weechang.moreco.core.swagger.SwaggerAutoConfiguration,\
+xyz.weechang.moreco.core.generator.config.GenAutoConfiguration

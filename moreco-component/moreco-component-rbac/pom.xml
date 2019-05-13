@@ -28,6 +28,7 @@
         <dependency>
             <groupId>xyz.weechang</groupId>
             <artifactId>moreco-core</artifactId>
+            <version>${project.parent.version}</version>
         </dependency>
     </dependencies>
 

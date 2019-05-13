@@ -139,6 +139,9 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuDao, Menu> implements M
                         i--;
                     }
                 }
+            } else {
+                Menu parent = menu.getParent();
+                menu.addDataMap("parentId", parent == null ? null : parent.getId());
             }
         }
     }

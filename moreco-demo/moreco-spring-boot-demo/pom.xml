@@ -40,11 +40,6 @@
             <artifactId>moreco-security</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
-        <dependency>
-            <groupId>xyz.weechang</groupId>
-            <artifactId>moreco-component-gen</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
 
         <dependency>
             <groupId>mysql</groupId>

@@ -1,6 +1,6 @@
 info:
   app:
-    name: moreco-spring-storage-demo-a
+    name: moreco-spring-cloud-demo-a
 
 server:
   port: ${PORT:8180}

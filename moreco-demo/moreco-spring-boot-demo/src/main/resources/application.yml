@@ -31,3 +31,5 @@ logging:
 moreco:
   security:
     noAuthPaths: []
+  swagger:
+    enabled: true
