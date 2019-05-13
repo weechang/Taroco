@@ -39,7 +39,7 @@
         <qcloud.cos.version>4.4</qcloud.cos.version>
         <oshi.version>3.12.0</oshi.version>
         <t-io.version>3.2.4.v20181218-RELEASE</t-io.version>
-        <redisson.version>3.5.4</redisson.version>
+        <redisson.version>3.9.1</redisson.version>
         <hutool.version>4.4.2</hutool.version>
         <java-jwt.version>3.4.0</java-jwt.version>
         <velocity.version>1.7</velocity.version>
