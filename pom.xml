@@ -16,7 +16,6 @@
         <module>moreco-demo</module>
         <module>moreco-cloud</module>
         <module>moreco-monitor</module>
-        <module>moreco-task</module>
     </modules>
 
     <packaging>pom</packaging>
