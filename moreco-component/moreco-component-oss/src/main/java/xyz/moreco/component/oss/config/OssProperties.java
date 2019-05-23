@@ -1,12 +1,7 @@
 package xyz.moreco.component.oss.config;
 
 import lombok.Data;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
-import xyz.moreco.component.oss.config.storage.Aliyun;
-import xyz.moreco.component.oss.config.storage.Qiniu;
-import xyz.moreco.component.oss.config.storage.Tencent;
-import xyz.moreco.component.oss.config.storage.Upyun;
 
 /**
  * OSS config 文件
@@ -17,24 +12,17 @@ import xyz.moreco.component.oss.config.storage.Upyun;
  */
 @Configuration
 @Data
-@ConfigurationProperties("moreco.oss")
 public class OssProperties {
 
-    /*** 是否开启OSS */
-    private boolean enabled;
+    /*** 阿里云Key */
+    public static final String aliyunPreKey = "morece.oss.aliyun";
+
+    /*** 七牛云Key */
+    public static final String qiniuPreKey = "morece.oss.qiniu";
+
+    /*** 腾讯云Key */
+    public static final String tencentPreKey = "morece.oss.tencent";
 
     /*** 存储方式 */
-    private String storage;
-
-    /*** 阿里云 */
-    private Aliyun aliyun;
-
-    /*** 阿里云 */
-    private Qiniu qiniu;
-
-    /*** 阿里云 */
-    private Tencent tencent;
-
-    /*** 又拍云 */
-    private Upyun Upyun;
+    public static final String storage = "";
 }

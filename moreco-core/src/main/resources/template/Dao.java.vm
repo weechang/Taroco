@@ -1,6 +1,6 @@
 package xyz.weechang.moreco.component.rbac.dao;
 
-import xyz.weechang.moreco.component.rbac.model.domain.Role;
+import ${classInfo.clazzName};
 import xyz.weechang.moreco.data.jpa.JpaBaseRepository;
 
 /**

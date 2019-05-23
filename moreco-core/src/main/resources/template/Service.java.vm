@@ -11,7 +11,7 @@ import org.springframework.data.domain.Pageable;
  * date ${date}
  * time ${time}
  */
-public interface ${classInfo.clazzSimpleName}Service extends BaseService<Role> {
+public interface ${classInfo.clazzSimpleName}Service extends BaseService<${classInfo.clazzSimpleName}> {
 
     /**
      * 根据条件分页查询

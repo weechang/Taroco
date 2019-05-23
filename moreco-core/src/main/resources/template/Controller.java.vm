@@ -1,6 +1,6 @@
 package ${request.packageName}.controller;
 
-import ${classInfo.packageName};
+import ${classInfo.clazzName};
 import ${request.packageName}.model.dto.${classInfo.clazzSimpleName}QueryRequest;
 import ${request.packageName}.model.dto.${classInfo.clazzSimpleName}SaveRequest;
 import ${request.packageName}.service.${classInfo.clazzName}Service;
@@ -31,9 +31,9 @@ public class ${classInfo.clazzSimpleName}Controller extends BaseController {
 
     @ApiOperation("分页获取数据")
     @GetMapping("page")
-    public R<PageModel<Role>> page(
+    public R<PageModel<${classInfo.clazzSimpleName}>> page(
             @ApiParam(name = "查询参数") ${classInfo.clazzSimpleName}QueryRequest queryRequest) {
-        PageModel<${classInfo.clazzSimpleName}> page = ${classInfo.lowerClazzSimpleName}Service.findAll(queryRequest.toRole(), queryRequest.toPageRequest());
+        PageModel<${classInfo.clazzSimpleName}> page = ${classInfo.lowerClazzSimpleName}Service.findAll(queryRequest.to${classInfo.clazzSimpleName}(), queryRequest.toPageRequest());
         ${classInfo.lowerClazzSimpleName}Service.convertDataMap(page.getList());
         return R.ok(page);
     }
@@ -42,15 +42,15 @@ public class ${classInfo.clazzSimpleName}Controller extends BaseController {
     @GetMapping("detail/{id}")
     public R<${classInfo.clazzSimpleName}> detail(
             @ApiParam(name = "id") @PathVariable("id") Long id) {
-        ${classInfo.clazzSimpleName} role = roleService.detail(id);
-        ${classInfo.lowerClazzSimpleName}Service.convertDataMap(role);
-        return R.ok(role);
+        ${classInfo.clazzSimpleName} ${classInfo.lowerClazzSimpleName} = ${classInfo.lowerClazzSimpleName}Service.detail(id);
+        ${classInfo.lowerClazzSimpleName}Service.convertDataMap(${classInfo.lowerClazzSimpleName});
+        return R.ok(${classInfo.lowerClazzSimpleName});
     }
 
     @ApiOperation("保存信息")
     @PostMapping("save")
     public R save(@RequestBody ${classInfo.clazzSimpleName}SaveRequest request) {
-        ${classInfo.clazzSimpleName} ${classInfo.lowerClazzSimpleName} = request.toRole();
+        ${classInfo.clazzSimpleName} ${classInfo.lowerClazzSimpleName} = request.to${classInfo.clazzSimpleName}();
         ${classInfo.lowerClazzSimpleName}Service.save(${classInfo.lowerClazzSimpleName});
         return R.ok();
     }

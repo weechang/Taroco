@@ -1,13 +1,13 @@
 package xyz.weechang.moreco.component.rbac.service.impl;
 
-${classInfo.clazzName};
+import ${classInfo.clazzName};
 
-import xyz.weechang.moreco.core.model.dto.PageModel;
-import xyz.weechang.moreco.core.service.impl.BaseServiceImpl;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import xyz.weechang.moreco.core.model.dto.PageModel;
+import xyz.weechang.moreco.core.service.impl.BaseServiceImpl;
 
 /**
  * @author ${request.author}
@@ -21,5 +21,10 @@ public class ${classInfo.clazzSimpleName}ServiceImpl extends BaseServiceImpl<${c
     public PageModel<${classInfo.clazzSimpleName}> findAll(${classInfo.clazzSimpleName} param, Pageable pageable) {
         ExampleMatcher matcher = ExampleMatcher.matching();
         return new PageModel<>(baseDao.findAll(Example.of(param, matcher), pageable));
+    }
+
+    @Override
+    public ${classInfo.clazzSimpleName} detail(Long id) {
+        return baseDao.getOne(id);
     }
 }

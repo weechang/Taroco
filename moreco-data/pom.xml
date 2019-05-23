@@ -17,7 +17,6 @@
         <module>moreco-data-jpa</module>
         <module>moreco-data-redis</module>
         <module>moreco-data-mongodb</module>
-        <module>moreco-data-mybatis</module>
     </modules>
 
     <dependencyManagement>

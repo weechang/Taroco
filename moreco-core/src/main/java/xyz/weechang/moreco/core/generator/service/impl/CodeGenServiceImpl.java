@@ -115,8 +115,8 @@ public class CodeGenServiceImpl implements CodeGenService {
         List<String> templates = new ArrayList<String>();
         templates.add("template/Controller.java.vm");
         templates.add("template/Dao.java.vm");
-        templates.add("template/QueryDto.java.vm");
-        templates.add("template/SaveDto.java.vm");
+        templates.add("template/QueryRequest.java.vm");
+        templates.add("template/SaveRequest.java.vm");
         templates.add("template/Service.java.vm");
         templates.add("template/ServiceImpl.java.vm");
         return templates;
