@@ -12,9 +12,12 @@
     <artifactId>moreco-cloud</artifactId>
     <packaging>pom</packaging>
     <modules>
+        <module>moreco-cloud-client</module>
+        <module>moreco-cloud-server</module>
         <module>moreco-cloud-config</module>
-        <module>moreco-cloud-register</module>
-        <module>moreco-cloud-gateway</module>
+        <module>mreoco-cloud-eureka</module>
+        <module>mreoco-cloud-gateway</module>
     </modules>
+
 
 </project>

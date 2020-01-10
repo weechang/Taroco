@@ -9,23 +9,18 @@
 
     <modules>
         <module>moreco-core</module>
-        <module>moreco-data</module>
-        <module>moreco-component</module>
-        <module>moreco-security</module>
-        <module>moreco-starter</module>
-        <module>moreco-demo</module>
         <module>moreco-cloud</module>
-        <module>moreco-monitor</module>
+        <module>moreco-alibaba</module>
+        <module>moreco-upms</module>
+        <module>moreco-oss</module>
+        <module>moreco-msg</module>
+        <module>moreco-demo</module>
+        <module>moreco-ops</module>
+        <module>moreco-pay</module>
+        <module>moreco-mq</module>
     </modules>
 
     <packaging>pom</packaging>
-
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.5.RELEASE</version>
-        <relativePath/>
-    </parent>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -36,13 +31,27 @@
         <qiniu.version>[7.2.0, 7.2.99]</qiniu.version>
         <aliyun.oss.version>2.5.0</aliyun.oss.version>
         <qcloud.cos.version>4.4</qcloud.cos.version>
-        <oshi.version>3.12.0</oshi.version>
-        <t-io.version>3.2.4.v20181218-RELEASE</t-io.version>
         <redisson.version>3.9.1</redisson.version>
         <hutool.version>4.4.2</hutool.version>
         <java-jwt.version>3.4.0</java-jwt.version>
         <velocity.version>1.7</velocity.version>
+        <cloud.alibaba.viesion>2.1.0.RELEASE</cloud.alibaba.viesion>
+        <spring-boot-admin.version>2.1.6</spring-boot-admin.version>
+        <java.version>8</java.version>
     </properties>
+
+    <dependencies>
+        <!--others-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
+        </dependency>
+    </dependencies>
 
     <dependencyManagement>
         <dependencies>
@@ -72,93 +81,22 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!--spring data-->
             <dependency>
-                <groupId>org.springframework.data</groupId>
-                <artifactId>spring-data-releasetrain</artifactId>
-                <version>${spring-data-releasetrain.version}</version>
-                <scope>import</scope>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-server</artifactId>
+                <version>${spring-boot-admin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-client</artifactId>
+                <version>${spring-boot-admin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${cloud.alibaba.viesion}</version>
                 <type>pom</type>
-            </dependency>
-
-            <!--swagger -->
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger2</artifactId>
-                <version>${springfox.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger-ui</artifactId>
-                <version>${springfox.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-data-rest</artifactId>
-                <version>${springfox.version}</version>
-            </dependency>
-
-            <!--oss-->
-            <dependency>
-                <groupId>com.qiniu</groupId>
-                <artifactId>qiniu-java-sdk</artifactId>
-                <version>${qiniu.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.aliyun.oss</groupId>
-                <artifactId>aliyun-sdk-oss</artifactId>
-                <version>${aliyun.oss.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.qcloud</groupId>
-                <artifactId>cos_api</artifactId>
-                <version>${qcloud.cos.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.slf4j</groupId>
-                        <artifactId>slf4j-log4j12</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-
-            <!--others-->
-            <dependency>
-                <groupId>com.fasterxml.jackson.datatype</groupId>
-                <artifactId>jackson-datatype-jsr310</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>cn.hutool</groupId>
-                <artifactId>hutool-all</artifactId>
-                <version>${hutool.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.oshi</groupId>
-                <artifactId>oshi-core</artifactId>
-                <version>${oshi.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.t-io</groupId>
-                <artifactId>tio-core</artifactId>
-                <version>${t-io.version}</version>
-            </dependency>
-            <dependency>
-                <artifactId>velocity</artifactId>
-                <groupId>org.apache.velocity</groupId>
-                <version>${velocity.version}</version>
-            </dependency>
-            <!--jwt-->
-            <dependency>
-                <groupId>com.auth0</groupId>
-                <artifactId>java-jwt</artifactId>
-                <version>${java-jwt.version}</version>
-            </dependency>
-
-            <!-- redis -->
-            <dependency>
-                <groupId>org.redisson</groupId>
-                <artifactId>redisson</artifactId>
-                <version>${redisson.version}</version>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -251,15 +189,15 @@
                         </executions>
                     </plugin>
                     <!--<plugin>-->
-                        <!--<groupId>org.sonatype.plugins</groupId>-->
-                        <!--<artifactId>nexus-staging-maven-plugin</artifactId>-->
-                        <!--<version>1.6.8</version>-->
-                        <!--<extensions>true</extensions>-->
-                        <!--<configuration>-->
-                            <!--<serverId>ossrh</serverId>-->
-                            <!--<nexusUrl>https://oss.sonatype.org</nexusUrl>-->
-                            <!--<autoReleaseAfterClose>true</autoReleaseAfterClose>-->
-                        <!--</configuration>-->
+                    <!--<groupId>org.sonatype.plugins</groupId>-->
+                    <!--<artifactId>nexus-staging-maven-plugin</artifactId>-->
+                    <!--<version>1.6.8</version>-->
+                    <!--<extensions>true</extensions>-->
+                    <!--<configuration>-->
+                    <!--<serverId>ossrh</serverId>-->
+                    <!--<nexusUrl>https://oss.sonatype.org</nexusUrl>-->
+                    <!--<autoReleaseAfterClose>true</autoReleaseAfterClose>-->
+                    <!--</configuration>-->
                     <!--</plugin>-->
                 </plugins>
             </build>

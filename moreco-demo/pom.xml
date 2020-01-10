@@ -12,7 +12,8 @@
     <artifactId>moreco-demo</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>moreco-spring-boot-demo</module>
+        <module>moreco-demo-boot</module>
     </modules>
+
 
 </project>
