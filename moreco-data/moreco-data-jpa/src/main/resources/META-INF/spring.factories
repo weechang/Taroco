@@ -1,3 +1,0 @@
-# Ìí¼Ó autoconfigure
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
- xyz.weechang.moreco.data.jpa.JpaBaseRepositoryAutoConfiguration

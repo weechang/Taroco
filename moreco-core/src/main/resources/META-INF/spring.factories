@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+xyz.weechang.moreco.core.config.MorecoCoreAutoConfiguration

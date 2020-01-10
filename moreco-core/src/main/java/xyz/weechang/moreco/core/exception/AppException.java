@@ -1,14 +1,15 @@
 package xyz.weechang.moreco.core.exception;
 
 
-import xyz.weechang.moreco.core.error.SysError;
-import xyz.weechang.moreco.core.error.IError;
+import xyz.weechang.moreco.core.base.IError;
+import xyz.weechang.moreco.core.base.SysError;
 
 /**
- * 说明：
+ * 自定义异常类
  *
  * @author zhangwei
- * date 2017年11月18日23:45:47
+ * date 2019/8/9
+ * time 17:24
  */
 public class AppException extends RuntimeException {
 
@@ -18,53 +19,53 @@ public class AppException extends RuntimeException {
     private String extMessage;
 
     public AppException() {
-        this.error = SysError.SYSTEM_INTERNAL_ERROR;
+        this.error = SysError.UNDEFINED_ERROR;
         this.extMessage = null;
     }
 
     public AppException(String message) {
         super(message);
-        this.error = SysError.SYSTEM_INTERNAL_ERROR;
+        this.error = SysError.UNDEFINED_ERROR;
         this.extMessage = null;
         this.extMessage = message;
     }
 
     public AppException(String message, Throwable cause) {
         super(message, cause);
-        this.error = SysError.SYSTEM_INTERNAL_ERROR;
+        this.error = SysError.UNDEFINED_ERROR;
         this.extMessage = null;
         this.extMessage = message;
     }
 
     public AppException(Throwable cause) {
         super(cause);
-        this.error = SysError.SYSTEM_INTERNAL_ERROR;
+        this.error = SysError.UNDEFINED_ERROR;
         this.extMessage = null;
     }
 
     public AppException(IError error) {
-        this.error = SysError.SYSTEM_INTERNAL_ERROR;
+        this.error = SysError.UNDEFINED_ERROR;
         this.extMessage = null;
         this.error = error;
     }
 
     public AppException(String message, IError error) {
         super(message);
-        this.error = SysError.SYSTEM_INTERNAL_ERROR;
+        this.error = SysError.UNDEFINED_ERROR;
         this.extMessage = message;
         this.error = error;
     }
 
     public AppException(String message, Throwable cause, IError error) {
         super(message, cause);
-        this.error = SysError.SYSTEM_INTERNAL_ERROR;
+        this.error = SysError.UNDEFINED_ERROR;
         this.extMessage = message;
         this.error = error;
     }
 
     public AppException(Throwable cause, IError error) {
         super(cause);
-        this.error = SysError.SYSTEM_INTERNAL_ERROR;
+        this.error = SysError.UNDEFINED_ERROR;
         this.extMessage = null;
         this.error = error;
     }
@@ -83,6 +84,6 @@ public class AppException extends RuntimeException {
 
     @Override
     public String toString() {
-        return super.toString() + ",ns:" + this.error.getNs() + ",code : " + this.error.getCode() + ", msg : " + this.error.getMsg() + ", ExtMessage : " + this.extMessage;
+        return super.toString() + ",app:" + this.error.getApp() + ",code : " + this.error.getCode() + ", msg : " + this.error.getMsg() + ", ExtMessage : " + this.extMessage;
     }
 }

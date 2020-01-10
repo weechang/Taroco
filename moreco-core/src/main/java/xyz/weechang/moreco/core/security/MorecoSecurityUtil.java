@@ -1,47 +1,38 @@
 package xyz.weechang.moreco.core.security;
 
+import com.auth0.jwt.interfaces.Claim;
+import com.auth0.jwt.interfaces.DecodedJWT;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
 /**
+ * 安全类
+ *
  * @author zhangwei
- * date 2019/1/30
- * time 23:22
+ * date 2019/12/23
+ * time 15:07
  */
 public class MorecoSecurityUtil {
 
-    private static MorecoSecurityContent content = MorecoSecurityContent.getInstance();
+    /*** JWT用户ID key */
+    public static final String USER_ID = "userId";
 
-
-    /**
-     * 设置登录信息
-     *
-     * @param username 用户名
-     * @param userId   用户id
-     */
-    public static void setLoginInfo(String username, Long userId) {
-        content.setLoginInfo(username, userId);
+    private static Claim getClaim(String key) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication instanceof AnonymousAuthenticationToken) {
+            return null;
+        }
+        MorecoAuthenticationToken morecoToken = (MorecoAuthenticationToken) authentication;
+        DecodedJWT decodedJWT = morecoToken.getToken();
+        return decodedJWT.getClaim(key);
     }
 
-    /**
-     * 获取用户名
-     *
-     * @return 用户名
-     */
-    public static String getUsername() {
-        return content.getUsername();
-    }
-
-    /**
-     * 获取用户id
-     *
-     * @return 用户id
-     */
     public static Long getUserId() {
-        return content.getUserId();
-    }
-
-    /**
-     * 登出
-     */
-    public static void logout() {
-        content.logout();
+        Claim userIdClaim = getClaim(USER_ID);
+        if (userIdClaim == null) {
+            return -99L;
+        }
+        return userIdClaim.asLong();
     }
 }

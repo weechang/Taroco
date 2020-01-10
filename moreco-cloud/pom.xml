@@ -5,16 +5,19 @@
     <parent>
         <artifactId>moreco</artifactId>
         <groupId>xyz.weechang</groupId>
-        <version>0.0.1</version>
+        <version>0.0.2</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>moreco-cloud</artifactId>
     <packaging>pom</packaging>
     <modules>
+        <module>moreco-cloud-client</module>
+        <module>moreco-cloud-server</module>
         <module>moreco-cloud-config</module>
-        <module>moreco-cloud-register</module>
-        <module>moreco-cloud-gateway</module>
+        <module>mreoco-cloud-eureka</module>
+        <module>mreoco-cloud-gateway</module>
     </modules>
+
 
 </project>
